@@ -1,0 +1,686 @@
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+
+    .hero_section {
+        background-position: center right 20%;
+        height: auto;
+    } 
+    
+    .service_slider {
+        margin-top: 30px;
+    }
+    
+    .login_reg_nav {
+        position: absolute;
+        right: 0px;
+        top: 10px;
+        display: none;
+    }
+    .user_icon_login {
+        position: absolute;
+        right: 0px;
+        top: 10px;
+        display: block;
+    }
+    
+    /* .navbar-brand img {
+        margin-right: 0vw;
+        position: absolute;
+        right: 0px;
+        bottom: 10px;
+        left: 80%;
+        transform: translateX(-20%);
+    } */
+
+    .user_profile_info {
+        right: calc(2rem - 32px);
+        top: calc(1px + 2.4rem);
+    }
+    .dropper {
+        width: 206px;
+    }
+    .dropper a {
+        text-align: center;
+    }
+    .refer {
+        margin-top: 4px;
+        padding-left: 0px;
+        width: 206px;
+    }
+
+    .hero_item_icon {
+        height: 80px;
+        padding-top: 0;
+    }
+
+    .hero_item_icon svg {
+        width: 35px;
+        height: 60px;
+        margin: 10px auto;
+    }
+
+    .hero_item_contetn h2 {
+        font-size: 11px;
+    }
+
+    .service_item {
+        padding: 25px 0px;
+    }
+
+    /* .hero_section {
+        height: 16rem !important;
+        height: auto;
+        background-size: 100% 100%;
+    } */
+
+    /* .hero_content {
+        margin-top: calc(7px + 6vh) !important;
+    } */
+
+    .hero_button2 button {
+        background-color: var(--icon-color-green);
+    }
+    .hero_button1 a {
+        font-size: 11px;
+        padding: 0.2rem 2.6rem;
+        border: 1px solid var(--text-color-black);
+    }
+    .hero_button2 a {
+        font-size: 11px;
+        padding: 0.2rem 1.9rem;
+        background-color: var(--icon-color-green);
+        border: 1px solid var(--text-color-black);
+    }
+    img.hero_apple_icon {
+        width: 4rem;
+    }
+    img.hero_goole_icon {
+        width: 4.3rem;
+    }
+    /* section.service_home {
+        margin-top: 33vh;
+    } */
+
+    .service-margin-top {
+        margin-top: 5px;
+    }
+
+    /* .hero_service {
+        margin-top: 10vh !important;
+    } */
+
+    .become_button button {
+        margin-top: 14px;
+    }
+
+    .invite_content h1 {
+        font-size: 16px;
+    }
+    .tech_content h2 {
+        font-size: 25px;
+    }
+
+    .hero_content h1 {
+        font-size: 15px;
+    }
+
+    .dropper_left_img img {
+        height: calc(0px + 19rem);
+    }
+
+    .member_item img {
+        height: 285px;
+        width: auto;
+    }
+
+    .member_border h3 {
+        top: -11px;
+        /* margin-bottom: 20px; */
+    }
+    /* .qr_logo {
+        margin-top: 12vh;
+    } */
+
+    .tech_right_img img {
+        width: 15rem;
+        /* margin-top: 2vh; */
+        /* margin-bottom: -11px; */
+    }
+
+    .work_card,
+    .recent_card {
+        margin: auto;
+    }
+
+    .dropper_right_content {
+        margin-top: 27vh;
+        /* margin-left: auto; */
+        margin-left: 10vw;
+    }
+
+    .key_border h4 {
+        top: -11px;
+    }
+
+    .key_item {
+        margin: auto;
+    }
+    /* .qr_logo {
+        margin-top: 0;
+    } */
+
+    .blog_main_title h3::after {
+        left: 55%;
+        width: 13%;
+    }
+    .blog_main_title p {
+        margin-top: -33px;
+    }
+    .select_label label {
+        color: var(--text-color-black);
+        margin-left: 22px;
+    }
+    .footer_menu ul {
+        display: inline;
+    }
+    .footer_share {
+        margin-top: 7px;
+        margin-right: 0px;
+        width: 136px;
+    }
+    .footer_share a i {
+        margin-top: 15px;
+    }
+    .mail_input,
+    .link_input {
+        width: 100% !important;
+        margin-right: 0px;
+    }
+    .mail_input_outter_btn {
+        width: 100%;
+        margin-top: 5px;
+    }
+    .invite_button {
+        width: 100%;
+    }
+    .invite_button2 {
+        width: 100%;
+    }
+    .tooltip22 {
+        width: 100%;
+        margin-top: 10px;
+    }
+    .row.short_order {
+        top: -2rem;
+    }
+    .footer_menu li a {
+        padding-left: 8px;
+        color: var(--text-color-black);
+        font-family: var(--montserrat-font);
+        font-size: 15px;
+    }
+    .footer_logo .footer_img {
+        width: 142px;
+    }
+    .circle_curve h1 {
+        width: 100%;
+        height: 38px;
+        margin-bottom: 0px;
+        margin-top: 73px;
+        border-radius: 7px;
+    }
+    .circle_curve h4 {
+        top: 22px;
+    }
+
+    .circle_curve {
+        height: 0px;
+    }
+    .offer_main_area ul {
+        position: relative;
+        left: 42%;
+    }
+
+    .footer_menu {
+        /* position: relative; */
+        /* left: -43px; */
+        float: left;
+    }
+    .footer_menu ul li {
+        padding-left: 3px;
+        font-size: 12px;
+        text-align: center;
+    }
+
+    .accept_offer_image,
+    .offer_image {
+        text-align: center;
+    }
+
+    .profile_tab_title {
+        top: -42rem;
+        left: 2rem;
+    }
+    .inbox_list_area {
+        margin-top: -40px;
+    }
+    .buy_area {
+        margin-top: -42px;
+    }
+    .notifi_icon {
+        width: 5rem;
+        height: 3rem;
+    }
+    .invite_content.refer_earn_content {
+        width: 17rem;
+    }
+    .shop_product_quantity_area {
+        display: inline;
+    }
+    .shop_close_list_btn {
+        position: absolute;
+        right: 0px;
+        top: 0px;
+    }
+    .shop_product_quantity {
+        margin-top: -10px;
+    }
+    .shop_product_quantity_area p {
+        color: #4cb08a;
+        font-size: 17px;
+        margin-left: 1.5rem;
+    }
+    .shop_delivery_svg {
+        width: 48px !important;
+        height: 47px !important;
+        margin-top: 28px !important;
+    }
+
+    .time_name {
+        font-size: calc(1.8rem + 1vw);
+    }
+    .shop_delivery_time ul {
+        text-align: center;
+    }
+    p.time_name.review_inner_time_name {
+        font-size: 1.7rem;
+    }
+    .review_coast_area.mt-3 {
+        text-align: center;
+    }
+    .review_coast_area p {
+        margin: auto;
+    }
+    .dropper_submit_btn {
+        margin-top: 5px;
+        padding: 9px 18px !important;
+    }
+    .dropper_btn_area a button {
+        margin-top: 5px;
+    }
+    .order_dot_line ul li p {
+        font-size: 13px;
+
+        width: 78%;
+    }
+    .order-track_content {
+        margin-left: -1rem;
+    }
+    .review_tip_main_section {
+        padding: 0 2rem 4rem 2rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    /* .hero_section {
+        height: 40rem !important;
+        background-image: url("assets/images/Icons/mobile.png");
+    } */
+    /* .hero_content {
+        margin-top: 0px !important;
+    } */
+    .hero_button1 a {
+        padding: 0.4rem 3.2rem;
+    }
+    .hero_button2 a {
+        padding: 0.4rem 2rem;
+    }
+    img.hero_apple_icon {
+        width: 6rem;
+        margin-right: 13px;
+    }
+    img.hero_goole_icon {
+        width: 6rem;
+    }
+    /* .hero_service {
+        margin-top: 2rem !important;
+    } */
+    .tech_right_img img {
+        width: 22rem;
+    }
+    /* .qr_logo {
+        margin-top: 0;
+    } */
+    .dropper_left_img img {
+        height: calc(0px + 20rem);
+    }
+    .profile_tab_title {
+        top: -42rem;
+        left: 2rem;
+    }
+    .row.short_order {
+        top: -3.5rem;
+    }
+    .select_label label {
+        color: var(--text-color-black);
+
+        margin-left: 22px;
+    }
+
+    .inbox_list_area {
+        margin-top: -40px;
+    }
+
+    .circle_curve h1 {
+        background: var(--GlodTEXT-color-ffce8a);
+        width: 100%;
+        height: 38px;
+        margin: 16px 0 5px 0;
+        line-height: 38px;
+        top: 0vh;
+        border-radius: 6px;
+        padding-bottom: -5px;
+    }
+    .circle_curve h4 {
+        top: 21px;
+    }
+    .offer_image {
+        text-align: center;
+    }
+    .buy_area {
+        margin-top: -42px;
+    }
+    .notifi_icon {
+        width: 5rem;
+        height: 3rem;
+    }
+    .invite_content.refer_earn_content {
+        width: 21rem;
+    }
+    .shop_product_quantity {
+        width: 35%;
+    }
+    .shop_delivery_time ul {
+        text-align: center;
+    }
+    .order_dot_line ul li p {
+        font-size: 13px;
+
+        width: 78%;
+    }
+    .order-track_content {
+        margin-left: -1rem;
+    }
+    .shop_tab_content label {
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    .login_reg_nav {
+        position: absolute;
+        right: 0px;
+        top: 10px;
+    }
+
+    /* section.service_home {
+        margin-top: -2vh;
+    } */
+
+    .navbar-brand img {
+        margin-right: 0vw;
+        position: absolute;
+        top: 10px;
+        left: 45%;
+        transform: translateX(-55%);
+    }
+
+    .user_profile_info {
+        right: calc(2rem - 30px);
+        top: calc(1px + 2.4rem);
+    }
+    .dropper {
+        width: 206px;
+    }
+    .dropper a {
+        text-align: center;
+    }
+    .login_reg {
+        width: 206px !important;
+    }
+    .login_reg a {
+        text-align: center;
+    }
+    .refer {
+        margin-top: 4px;
+        padding-left: 0px;
+        width: 206px;
+    }
+
+    /* .service_slider {
+        margin-top: 30px;
+    } */
+    body {
+        width: 114%;
+    }
+
+    /* .hero_section {
+        height: 36.5rem !important;
+        background-size: 100% 90%;
+    } */
+
+    /* .hero_service {
+        margin-top: 1rem !important;
+    } */
+    .hero_content h1 {
+        font-size: 30px;
+    }
+
+    .hero_content p {
+        font-size: 16px;
+    }
+
+    /* .hero_content {
+        margin-top: 55px!important;
+    } */
+    .hero_download_logo .hero_goole_icon {
+        width: calc(82px + 1vw);
+    }
+    .hero_download_logo .hero_apple_icon {
+        width: calc(83px + 1vw);
+    }
+
+
+    .tech_right_img img {
+        width: 19rem;
+    }
+
+    .dropper_left_img img {
+        height: calc(50px + 23rem);
+        width: calc(82px + 17rem);
+    }
+
+    .recent_card {
+        margin: auto;
+    }
+
+    .blog_main_title h3::after {
+        left: 41%;
+        width: 32%;
+    }
+
+    .offer_image img {
+        height: 62px;
+        width: 47px;
+    }
+    .offer_middle_row {
+        justify-content: space-evenly;
+    }
+    .accept_offer_image img {
+        width: 50px;
+    }
+    .profile_tab_title {
+        left: -13rem;
+    }
+    .notifi_icon {
+        width: 5rem;
+        height: 3rem;
+    }
+    .invite_content.refer_earn_content {
+        width: 22rem;
+    }
+    .order_dot_line ul li p {
+        font-size: 13px;
+
+        width: 78%;
+    }
+    .order-track_content {
+        margin-left: -1rem;
+    }
+    .shop_tab_content label {
+        font-size: 14px;
+        font-weight: 600;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) and (max-width: 1199.98px) {
+    .navbar-nav .nav-item a,
+    .signup_login a,
+    .login_reg_nav li a {
+        font-size: 13px;
+    }
+    .dropper a {
+        text-align: center;
+    }
+
+    .nav-item a,
+    .signup_login a {
+        font-size: 13px;
+    }
+    /* .service_home {
+        margin-top: 3rem!important;
+    } */
+    /* .hero_section {
+        height: 37rem !important;
+    } */
+    .card {
+        min-height: 270px;
+    }
+    /* .hero_service {
+        margin-top: 1rem !important;
+    } */
+    .hero_download_logo .hero_goole_icon {
+        width: calc(89px + 1vw);
+        height: 6vh;
+    }
+
+    .member_rating {
+        width: 201px;
+    }
+
+    .dropper_left_img img {
+        height: calc(50px + 23rem);
+        width: calc(82px + 19rem);
+    }
+
+    .blog_main_title h3::after {
+        left: 36%;
+        width: 39%;
+    }
+
+    .profile_tab_title {
+        left: -18rem;
+    }
+    .notifi_icon {
+        width: 5rem;
+        height: 3rem;
+    }
+
+    .tech_right_img img {
+        width: 18rem;
+    }
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) and (max-width: 1500px) {
+    /* .hero_section {
+        height: 47rem!important;
+    } */
+    .card {
+        min-height: 280px;
+    }
+
+    .tech_right_img img {
+        width: 16rem;
+    }
+    
+    /* .service_home {
+        margin-top: 3rem!important;
+    } */
+}
+
+/* Extra large devices (large desktops, 1500px and up) */
+@media (min-width: 1501px) {
+    .hero_content p {
+        width: 45rem;
+        font-size: calc(6px + 1vw);
+    }
+    .hero_download_logo .hero_apple_icon {
+        width: calc(87px + 3vw);
+    }
+    .hero_download_logo .hero_goole_icon {
+        width: calc(87px + 3rem);
+    }
+    .tech_right_img img {
+        width: 22rem;
+    }
+
+    .qr_logo img{
+        width: 14rem;
+        height: auto;
+    }
+
+    .blog_main_title h3 {
+        padding-left: calc(5px + 21vw);
+    }
+    .blog_main_title h3::before {
+        width: calc(9px + 20vw);
+    }
+    .blog_main_title h3::after {
+        left: 38%;
+        width: 40%;
+    }
+
+    .modal-content.login_page_modal_content {
+        margin-top: 22vh !important;
+    }
+}
+
+@media (min-width: 1920px) {
+    /* .service_home {
+        margin-top: 10rem!important;
+    } */
+
+   
+    .card {
+        min-height: 275px;
+    }
+    .tech_right_img {
+        height: auto;
+        width: 100%;
+    }
+}
