@@ -23,6 +23,27 @@ Route::post('/service_charge/store', [App\Http\Controllers\Admin\ServiceFeeContt
 Route::get('/service_charge/edit/{id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'edit'])->name('servicefee.edit');
 Route::get('/service_charge/update/{id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'update'])->name('servicefee.update');
 
+// ---------------Admin Route Sercice Category--------
+
+Route::get('/category-list', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'index'])->name('category.list');
+Route::get('/category-create', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'create'])->name('category.create');
+Route::post('/category-store', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'store'])->name('category.store');
+Route::get('/category-edit/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'edit'])->name('category.edit');
+Route::post('/category-update/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'update'])->name('category.update');
+Route::post('/category-delete/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'delete'])->name('category.delete');
+Route::get('/category-active/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'active'])->name('category.active');
+Route::get('/category-inactive/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'inactive'])->name('category.inactive');
+
+// ---------------Admin Route Vehicle Type--------
+Route::get('/vehicle-list', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'index'])->name('vehicle.list');
+Route::get('/vehicle-create', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'create'])->name('vehicle.create');
+Route::post('/vehicle-store', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'store'])->name('vehicle.store');
+Route::get('/vehicle-edit/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'edit'])->name('vehicle.edit');
+Route::post('/vehicle-update/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'update'])->name('vehicle.update');
+Route::post('/vehicle-delete/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'delete'])->name('vehicle.delete');
+Route::get('/vehicle-active/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'active'])->name('vehicle.active');
+Route::get('/vehicle-inactice/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'inactive'])->name('vehicle.inactive');
+
 
 
 //user area----------------------------
@@ -58,7 +79,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
     // Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
 });
 
-Route::group(["middleware" => 'auth'], function () {
+// Route::group(["middleware" => 'auth'], function () {
     Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
     Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
@@ -112,4 +133,10 @@ Route::group(["middleware" => 'auth'], function () {
         });
 
     });
-});
+// });
+
+
+
+
+
+

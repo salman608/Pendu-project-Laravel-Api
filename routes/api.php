@@ -22,6 +22,8 @@ use App\Http\Controllers\DropperAuthController;
 //     return $request->user();
 // });
 
+// =========User route Controller==========
+
 Route::group([
     'middleware' => 'api',
     'prefix' => 'auth'
@@ -33,6 +35,7 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);
 });
+
 
 // =======Dropper Route Section=========
 
@@ -48,5 +51,6 @@ Route::group([
     Route::get('/dropper-profile', [DropperAuthController::class, 'dropperProfile']);
 });
 
+
 // ======== Admin Route Coupon=====
-Route::get('/coupons', [CouponController::class, 'getCoupon'])->name('getCoupon');
+Route::post('/submit-coupon', [CouponController::class, 'getCoupon'])->name('getCoupon');
