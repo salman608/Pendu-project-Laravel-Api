@@ -82,5 +82,10 @@ class CategoryController extends Controller
 
     }
 
+    // ========Service Caregory get all category api  =========
+    public function getaAllCat(){
+     return response()->json(Category::all(), 200);
+    }
+
 
 }

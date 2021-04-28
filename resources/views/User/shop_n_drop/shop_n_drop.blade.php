@@ -25,6 +25,20 @@ select.select-box {
         2.5em 2.5em;
     background-repeat: no-repeat;
 }
+#pprice{
+    border:1px solid #2cee8a;
+    border-radius: 4px;
+    /* margin-left: 60px; */
+    width: 150px;
+    display: inline-block;
+}
+#pname{
+    border:1px solid #2cee8a;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+
 
 </style>
 @section('user_content')
@@ -80,22 +94,21 @@ select.select-box {
                           <tbody>
                               <tr class="top border-bottom border-light" id="tableRow_1">
                                   <td><div class="circle"></div></td>
-                                  <td>Toothpaster(2X)</td>
-                                  <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">2</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
-                                  <td class="text-right"><button type="button" class="cross-button" onclick="remove(1)"></button></td>
+                                  <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
+                                  <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                  <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>
+                                  <td colspan="4" class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
+                                  {{-- <td class="text-right"><button type="button" class="cross-button" onclick="remove(1)">+</button></td> --}}
                               </tr>
-                              <tr class="top border-bottom border-light">
+
+                              {{-- <tr class="top border-bottom border-light">
                                   <td><div class="circle"></div></td>
-                                  <td>Brush-Oral B(2X)</td>
+                                  <td><input class="form-control" type="text" id="pname" placeholder="Enter Product Name..."></td>
                                   <td><span class="plus-minus-sign" id="minus"> - </span> <span id="totalProduct2" style="color: #56cd93;font-weight: bold;">2</span> <span class="plus-minus-sign" id="plus"> + </span></td>
-                                  <td class="text-right"><button class="cross-button"></button></td>
-                              </tr>
+                                  <td class="text-right"> <input type="text" id="pprice" class="form-control" placeholder="Price.."> <button class="cross-button"></button></td>
+                              </tr> --}}
                           </tbody>
-                          <tfoot> 
-                              <tr>
-                                  <td colspan="4">+ Add another</div></td>
-                              </tr>
-                          </tfoot>
+
                       </table>
                     </div>
                   </div>
@@ -113,7 +126,7 @@ select.select-box {
                                     <span class="input-group-text border-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" viewBox="0 0 16 36">
                                             <text id="_" data-name="$" transform="translate(8 29)" fill="#5bdb98" font-size="27" font-family="SegoeUI, Segoe UI"><tspan x="-7.277" y="0">$</tspan></text>
-                                        </svg>                                          
+                                        </svg>
                                     </span>
                                 </div>
                                 <input id="product_cost" class="form-control input-group-lg" type="number" name="product_cost"
@@ -168,7 +181,7 @@ select.select-box {
                                 </div>
                             </label>
                         </div>
-                          
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time" id="hrs4" value="4 HRS">
@@ -178,7 +191,7 @@ select.select-box {
                                 </div>
                             </label>
                         </div>
-                        
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time" id="hrs6" value="6 HRS">
@@ -215,7 +228,7 @@ select.select-box {
                                 </div>
                             </label>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
 
@@ -245,7 +258,7 @@ select.select-box {
                                 </div>
                             </label>
                         </div>
-                          
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" value="4 HRS" name="delivery_time_review" id="hrs4">
@@ -255,7 +268,7 @@ select.select-box {
                                 </div>
                             </label>
                         </div>
-                        
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" value="6 HRS" name="delivery_time_review" id="hrs6">
@@ -292,7 +305,7 @@ select.select-box {
                                 </div>
                             </label>
                         </div>
-                    </div>    
+                    </div>
                 </div>
 
                 <div class="form-group">
@@ -320,14 +333,30 @@ select.select-box {
 @include("User.component.post_delivery")
 
 <script>
+    $(document).ready(function(){
+        $('#add_btn').on('click',function(){
+            var html='';
+            html+='<tr>';
+            html+='<td><div class="circle"></div></td>';
+            html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+            html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
+            html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>';
+            html+='<td class="text-right"><button type="button" class="cross-button" id="remove">+</button></td>';
+            html+='</tr>';
+            $('tbody').append(html);
+        });
+    });
+    $(document).on('click','#remove',function(){
+     $(this).closest('tr').remove();
+    });
 
-    function remove(id) {
-        $('#tableRow_' + id).remove();
-    }
+    // function remove(id) {
+    //     $('#tableRow_' + id).remove();
+    // }
 
     $('#nextButton').click(function(){
 
-        
+
         if ($('#category_id').val() == '') {
             swal({
                 icon: 'error',
@@ -400,7 +429,7 @@ select.select-box {
     //     $('#postButtonId').show();
 
     //     var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
-    //     $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true); 
+    //     $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
 
     //     $('#shopAdress').text($('#shop_address').val())
     //     $('#deliveryAddress').text($('#delivery_address').val())
@@ -466,7 +495,7 @@ select.select-box {
                         text: errorText,
                     });
                 }
-                
+
                 $('#postSubmitButtonId').prop('disabled', false);
             })
             .always(function () {

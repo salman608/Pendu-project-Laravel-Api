@@ -25,24 +25,34 @@ Route::get('/service_charge/update/{id}', [App\Http\Controllers\Admin\ServiceFee
 
 // ---------------Admin Route Sercice Category--------
 
-Route::get('/category-list', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'index'])->name('category.list');
-Route::get('/category-create', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'create'])->name('category.create');
-Route::post('/category-store', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'store'])->name('category.store');
-Route::get('/category-edit/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'edit'])->name('category.edit');
-Route::post('/category-update/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'update'])->name('category.update');
-Route::post('/category-delete/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'delete'])->name('category.delete');
-Route::get('/category-active/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'active'])->name('category.active');
-Route::get('/category-inactive/{cat_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'inactive'])->name('category.inactive');
+Route::get('/category-list', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
+Route::get('/category-create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
+Route::post('/category-store', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
+Route::get('/category-edit/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
+Route::post('/category-update/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
+Route::post('/category-delete/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('category.delete');
+Route::get('/category-active/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'active'])->name('category.active');
+Route::get('/category-inactive/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'inactive'])->name('category.inactive');
 
 // ---------------Admin Route Vehicle Type--------
-Route::get('/vehicle-list', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'index'])->name('vehicle.list');
-Route::get('/vehicle-create', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'create'])->name('vehicle.create');
-Route::post('/vehicle-store', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'store'])->name('vehicle.store');
-Route::get('/vehicle-edit/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'edit'])->name('vehicle.edit');
-Route::post('/vehicle-update/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'update'])->name('vehicle.update');
-Route::post('/vehicle-delete/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'delete'])->name('vehicle.delete');
-Route::get('/vehicle-active/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'active'])->name('vehicle.active');
-Route::get('/vehicle-inactice/{vehicle_id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'inactive'])->name('vehicle.inactive');
+Route::get('/vehicle-list', [App\Http\Controllers\Admin\VehicleController::class, 'index'])->name('vehicle.list');
+Route::get('/vehicle-create', [App\Http\Controllers\Admin\VehicleController::class, 'create'])->name('vehicle.create');
+Route::post('/vehicle-store', [App\Http\Controllers\Admin\VehicleController::class, 'store'])->name('vehicle.store');
+Route::get('/vehicle-edit/{vehicle_id}', [App\Http\Controllers\Admin\VehicleController::class, 'edit'])->name('vehicle.edit');
+Route::post('/vehicle-update/{vehicle_id}', [App\Http\Controllers\Admin\VehicleController::class, 'update'])->name('vehicle.update');
+Route::post('/vehicle-delete/{vehicle_id}', [App\Http\Controllers\Admin\VehicleController::class, 'delete'])->name('vehicle.delete');
+Route::get('/vehicle-active/{vehicle_id}', [App\Http\Controllers\Admin\VehicleController::class, 'active'])->name('vehicle.active');
+Route::get('/vehicle-inactice/{vehicle_id}', [App\Http\Controllers\Admin\VehicleController::class, 'inactive'])->name('vehicle.inactive');
+
+// ---------------Admin Route Product Category --------
+Route::get('/product_cat_list', [App\Http\Controllers\Admin\ProductCategoryController::class, 'index'])->name('pro_cat.list');
+Route::get('/product_cat_create', [App\Http\Controllers\Admin\ProductCategoryController::class, 'create'])->name('pro_cat.create');
+Route::post('/product_cat_store', [App\Http\Controllers\Admin\ProductCategoryController::class, 'store'])->name('pro_cat.store');
+Route::get('/product_cat_edit/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'edit'])->name('pro_cat.edit');
+Route::post('/product_cat_update/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'update'])->name('pro_cat.update');
+Route::post('/product_cat_delete/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'delete'])->name('pro_cat.delete');
+Route::get('/product_cat_active/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'active'])->name('pro_cat.active');
+Route::get('/product_cat_inactice/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'inactive'])->name('pro_cat.inactive');
 
 
 

@@ -65,19 +65,23 @@ class VehicleController extends Controller
         return back();
       }
 
-      // ========Service Vehicle delete=========
+      // ======== Vehicle delete=========
       public function delete($vehicle_id){
          $vehicle=Vehicle::FiadOrFail($vehicle_id)->delete();
          return back();
       }
 
-      // ========Service Vehicle active=========
+      // ======== Vehicle active=========
       public function active(){
 
       }
 
-      // ========Service Vehicle inactive=========
+      // ======== Vehicle inactive=========
       public function inactive(){
 
+      }
+       // ======== Vehicle get all api request=========
+      public function getAllVehicle(){
+        return response()->json(Vehicle::all(), 200);
       }
 }
