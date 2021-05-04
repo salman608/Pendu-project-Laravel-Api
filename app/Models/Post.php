@@ -8,20 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     use HasFactory;
-    protected $fillable=[
-      'title',
-      'slug',
-      'category_id',
-      'tegs',
-      'featured_image',
-      'body',
-      'posted_by',
-      'like',
-      'dislike',
-      'status',
-    ];
+    protected $guarded=[];
 
-    public function category(){
-        return $this->belongsTo(Category::class);
-    }
+    public function tags(){
+        return $this->hasMany(Tag::class);
+      }
+
+      public function proCategories(){
+        return $this->hasMany(ProductCat::class);
+      }
 }

@@ -20,9 +20,12 @@
     <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.carousel.min.css')}}" />
     <link rel="stylesheet" href="{{asset('frontend/assets/images/ajax-loader.gif')}}">
     <link rel="stylesheet" href="{{asset('frontend/assets/css/owl.theme.default.min.css')}}"/>
-
+    {{-- Multi select css --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <script src='{{asset('frontend/assets/js/jquery3.2.1.min.js')}}'></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+
 
 </head>
 
@@ -43,6 +46,9 @@
 <!-- OwlCarouse-2.3.4 -->
 <script src="{{asset('frontend/assets/js/owl.carousel.min.js')}}"></script>
 
+<!-- multi select js -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 
 
@@ -60,6 +66,12 @@
       swal("Information was collected.","The information you provided was successfully added to our system...","success")
     </script>
   @endif
+{{-- multi select function --}}
+  <script>
+      $(function () {
+        $('.selectpicker').selectpicker();
+       });
+  </script>
 
 </body>
 

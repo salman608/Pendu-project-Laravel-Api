@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryTime;
 use App\Models\Dropper;
+use App\Models\ProductCat;
 use Illuminate\Http\Request;
+// use Illuminate\Support\Facades\Http;
 use Session;
 
 class ShopAndDropController extends Controller
@@ -16,7 +19,10 @@ class ShopAndDropController extends Controller
      */
     public function index()
     {
-        return view('User.shop_n_drop.shop_n_drop');
+
+        $productcats=ProductCat::all();
+        $deliverytimes=DeliveryTime::all();
+        return view('User.shop_n_drop.shop_n_drop',compact('productcats','deliverytimes'));
     }
 
     /**

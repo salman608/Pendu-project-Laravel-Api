@@ -67,7 +67,7 @@ class ProductCategoryController extends Controller
 
           //========Product category Show API=======
 
-          public function proCatList(){
-              return response()->json(ProductCat::all(),200);
-          }
+        //   public function proCatList(){
+        //       return response()->json(ProductCat::all(),200);
+        //   }
 }

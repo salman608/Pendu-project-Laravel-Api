@@ -5,6 +5,18 @@
         border:none;
         outline: none;
     }
+    #pprice{
+    border:1px solid #2cee8a;
+    border-radius: 4px;
+    /* margin-left: 60px; */
+    width: 150px;
+    display: inline-block;
+}
+#pname{
+    border:1px solid #2cee8a;
+    border-radius: 4px;
+    display: inline-block;
+}
 </style>
 @section('user_content')
 <section class="">
@@ -19,10 +31,10 @@
                         <small class="step-line-text">Task Details</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/task white.svg') }}" alt="">
                     </div>
-                    <div>
+                    {{-- <div>
                         <small class="step-line-text">Timeframe</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/time.svg') }}" alt="">
-                    </div>
+                    </div> --}}
                     <div>
                         <small class="step-line-text" style="margin-left: -40px;">Review & Submit</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
@@ -59,7 +71,7 @@
                           <path id="Path_5909" data-name="Path 5909" d="M99.877,104.451H127.05s.538,5.2-4.932,5.2H104.9s-5.022-.179-5.022-5.2" transform="translate(-81.262 -84.983)"/>
                           <path id="Path_5910" data-name="Path 5910" d="M77.605,116.857v-6.645c0-.344-.022-.676-.053-1a14.7,14.7,0,0,1-12,6.41h-32.3a14.751,14.751,0,0,1-12.14-6.6,10.316,10.316,0,0,0-.073,1.2v6.645s-.387,4.456,6.2,4.456H71.406c6.587,0,6.2-4.456,6.2-4.456" transform="translate(-17.111 -88.698)" fill="#4cb08a"/>
                         </g>
-                      </svg>                      
+                      </svg>
                 </div>
                   <div class="form-group">
                     <label for="taskTitle" class="label-title">Task title</label>
@@ -74,22 +86,14 @@
                             <tbody>
                                 <tr class="top border-bottom border-light" id="tableRow_1">
                                     <td><div class="circle"></div></td>
-                                    <td>Toothpaster(2X)</td>
-                                    <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">2</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
-                                    <td class="text-right"><button type="button" class="cross-button" onclick="remove(1)"></button></td>
+                                    <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
+                                    <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                    <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>
+                                    <td colspan="4" class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
                                 </tr>
-                                <tr class="top border-bottom border-light">
-                                    <td><div class="circle"></div></td>
-                                    <td>Brush-Oral B(2X)</td>
-                                    <td><span class="plus-minus-sign" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">2</span> <span class="plus-minus-sign" id="plus"> + </span></td>
-                                    <td class="text-right"><button class="cross-button"></button></td>
-                                </tr>
+
                             </tbody>
-                            <tfoot> 
-                                <tr>
-                                    <td colspan="4">+ Add another</div></td>
-                                </tr>
-                            </tfoot>
+
                         </table>
                     </div>
                   </div>
@@ -132,12 +136,10 @@
                             </div>
                         </div>
                     </div>
-                  <div class="form-group text-center nb-mover">
-                      <small>No Purchases - Dropper would not be able to make any purchase. Restricted/Illegal Item - Please don’t hand over any  restricted item.</small>
-                  </div>
+
             </div>
 
-            <div id="timeFrameDiv" style="display: none;">
+            <div id="timeFrameDiv" style="">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
                     <div class="row">
@@ -150,7 +152,7 @@
                                 </div>
                             </label>
                         </div>
-                          
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time" value="4 HRS" id="4 Hrs">
@@ -160,7 +162,7 @@
                                 </div>
                             </label>
                         </div>
-                        
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time" value="6 HRS" id="hrs6">
@@ -197,7 +199,10 @@
                                 </div>
                             </label>
                         </div>
-                    </div>    
+                    </div>
+                </div>
+                <div class="form-group text-center nb-mover">
+                    <small>No Purchases - Dropper would not be able to make any purchase. Restricted/Illegal Item - Please don’t hand over any  restricted item.</small>
                 </div>
             </div>
 
@@ -227,7 +232,7 @@
                                 </div>
                             </label>
                         </div>
-                          
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time_review" value="4 HRS" id="hrs4">
@@ -237,7 +242,7 @@
                                 </div>
                             </label>
                         </div>
-                        
+
                         <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time_review" value="6 HRS" id="hrs6">
@@ -274,7 +279,7 @@
                                 </div>
                             </label>
                         </div>
-                    </div>    
+                    </div>
                 </div>
             </div>
           </form>
@@ -300,9 +305,28 @@
 
 <script>
 
-    function remove(id) {
-        $('#tableRow_' + id).remove();
-    }
+//======product and price ======
+$(document).ready(function(){
+    $('#add_btn').on('click',function(){
+        var html='';
+        html+='<tr>';
+        html+='<td><div class="circle"></div></td>';
+        html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+        html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
+        html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>';
+        html+='<td class="text-right"><button type="button" class="cross-button" id="remove">+</button></td>';
+        html+='</tr>';
+        $('tbody').append(html);
+    });
+});
+//Remove product
+    $(document).on('click','#remove',function(){
+        $(this).closest('tr').remove();
+    });
+
+    // function remove(id) {
+    //     $('#tableRow_' + id).remove();
+    // }
 
     $('#nextButton').click(function(){
         if ($('#title').val() == '') {
@@ -336,13 +360,20 @@
         else {
             $('#nextButton').hide();
             $('#task-details').hide();
-            $('#reviewButtons').show();
+            $('#postButtonId').show();
             // $('#titleId').text('Review');
-            $('#timeFrameDiv').show();
+            $('#timeFrameDiv').hide();
+            $('#taskDetails').show();
             // myMap()
+
+        var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+        $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+        $('#ItemCost').val($('#item_cost').val());
+        $('#shopAddress').text($('#shop_address').val());
+        $('#deliveryAddress').text($('#delivery_address').val());
         }
     });
-    
+
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
@@ -400,7 +431,7 @@
                         text: errorText,
                     });
                 }
-                
+
                 $('#postSubmitButtonId').prop('disabled', false);
             })
             .always(function () {

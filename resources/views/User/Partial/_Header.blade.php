@@ -12,7 +12,7 @@
               <!-- ----Menu Items --- -->
               <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   {{-- <a class="navbar-brand" href="{{url('/')}}"> <img
-                          src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo"> 
+                          src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo">
                     </a> --}}
 
                   <ul class="navbar-nav ">
@@ -23,7 +23,8 @@
                           <a class="nav-link" href="{{url('/')}}#how_works">How it works</a>
                       </li>
                       <li class="nav-item">
-                          <a class="nav-link" href="{{route('post')}}">Blogs</a>
+                          {{-- <a class="nav-link" href="{{route('post')}}">Blogs</a> --}}
+                          <a class="nav-link" href="">Blogs</a>
                       </li>
                       @if (!Auth::check())
                         <li class="nav-item dropper">
@@ -39,7 +40,7 @@
 
               {{-- <div class="nav_icon_img">
                 <a class="navbar-brand" href="{{url('/')}}"> <img
-                    src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo"> 
+                    src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo">
                 </a>
               </div> --}}
               <!-- ------ Notificaitons and login ----- -->
@@ -73,7 +74,7 @@
                         <img src="{{ asset('frontend/assets/images/Icons/user green.svg') }}" alt="">
                       </div></a>
                       @endif
-                      
+
                   </ul>
 
                   <div class="user_profile_info pb-1">

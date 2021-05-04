@@ -29,9 +29,13 @@ class TaskController extends Controller
      */
     public function create(TaskRequest $request)
     {
-        $reqData = $request->all();
 
+
+        $reqData = $request->all();
         // dd($reqData);
+        // info($reqData);
+        // return response()->json($reqData);
+
 
         if ($request->hasFile('task_image')) {
             $reqData['task_image'] = $request->task_image->store('uploads/movers/photos');

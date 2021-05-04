@@ -13,6 +13,8 @@ class Task extends Model
 
     protected $fillable = [
         'order_no',
+        // 'user_id',
+        // 'productcat_id',
         'category_id',
         'vahicle_type',
         'title',

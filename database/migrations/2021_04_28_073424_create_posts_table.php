@@ -17,18 +17,16 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string('title')->unique();
             $table->string('slug')->unique();
-            $table->integer('category_id');
-            $table->text('tegs');
+            $table->integer('pcat_id');
+            $table->text('tag_id');
             $table->string('featured_image');
             $table->longText('body');
-            $table->string('posted_by');
             $table->integer('like')->nullable();
             $table->integer('dislike')->nullable();
-            $table->integer('status')->default(0);
+            $table->integer('status')->default(1);
             $table->timestamps();
         });
     }
-    
 
     /**
      * Reverse the migrations.

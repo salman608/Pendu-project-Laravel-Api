@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProductCatsTable extends Migration
+class CreateTagsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,9 @@ class CreateProductCatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('product_cats', function (Blueprint $table) {
+        Schema::create('tags', function (Blueprint $table) {
             $table->id();
-            $table->string('pcat_name');
-            $table->integer('pcat_status')->default(1);
+            $table->string('ptag_name');
             $table->timestamps();
         });
     }
@@ -28,6 +27,6 @@ class CreateProductCatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_cats');
+        Schema::dropIfExists('tags');
     }
 }

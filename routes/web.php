@@ -54,6 +54,39 @@ Route::post('/product_cat_delete/{pcat_id}', [App\Http\Controllers\Admin\Product
 Route::get('/product_cat_active/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'active'])->name('pro_cat.active');
 Route::get('/product_cat_inactice/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'inactive'])->name('pro_cat.inactive');
 
+// ---------------Admin Route Product Tag --------
+Route::get('/product_tag_list', [App\Http\Controllers\Admin\TagController::class, 'index'])->name('pro_tag.list');
+Route::get('/product_tag_create', [App\Http\Controllers\Admin\TagController::class, 'create'])->name('pro_tag.create');
+Route::post('/product_tag_add', [App\Http\Controllers\Admin\TagController::class, 'store'])->name('pro_tag.store');
+Route::get('/product_tag_edit/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'edit'])->name('pro_tag.edit');
+Route::post('/product_tag_update/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'update'])->name('pro_tag.update');
+Route::post('/product_tag_delete/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'delete'])->name('pro_tag.delete');
+
+//--------------Admin Blog Route----------
+Route::group(["as" => 'blog'], function () {
+    Route::get('post-list', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('post.list');
+    Route::get('post-create', [App\Http\Controllers\Admin\BlogController::class, 'create'])->name('post.create');
+    Route::post('post-store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('post.store');
+    Route::get('post-edit/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('post.edit');
+    Route::post('post-update/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('post.update');
+    Route::delete('post-delete/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'delete'])->name('post.delete');
+    Route::get('post-active/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'active'])->name('post.active');
+    Route::get('post-inactive/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'inactive'])->name('post.inactive');
+
+});
+
+//--------------Admin Delivery Time Route----------
+Route::group(["as" => 'time'], function () {
+    Route::get('dtime-list', [App\Http\Controllers\Admin\DelivryTime::class, 'index'])->name('dtime.list');
+    Route::get('dtime-create', [App\Http\Controllers\Admin\DelivryTime::class, 'create'])->name('dtime.create');
+    Route::post('dtime-store', [App\Http\Controllers\Admin\DelivryTime::class, 'store'])->name('dtime.store');
+    Route::get('dtime-edit/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'edit'])->name('dtime.edit');
+    Route::post('dtime-update/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'update'])->name('dtime.update');
+    Route::delete('dtime-delete/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'delete'])->name('dtime.delete');
+    Route::get('dtime-active/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'active'])->name('dtime.active');
+    Route::get('dtime-inactive/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'inactive'])->name('post.inactive');
+
+});
 
 
 //user area----------------------------
@@ -62,11 +95,12 @@ Route::get('/product_cat_inactice/{pcat_id}', [App\Http\Controllers\Admin\Produc
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/post', [App\Http\Controllers\User\PostController::class, 'index'])->name('post');
-Route::get('/post/create', [App\Http\Controllers\User\PostController::class, 'create']);
-Route::get('/single_post/{id}', [App\Http\Controllers\User\PostController::class, 'show']);
+// Route::get('/post', [App\Http\Controllers\User\PostController::class, 'index'])->name('post');
+// Route::get('/post/create', [App\Http\Controllers\User\PostController::class, 'create']);
+// Route::get('/single_post/{id}', [App\Http\Controllers\User\PostController::class, 'show']);
 
 Route::get('/how-it-work', [App\Http\Controllers\User\PostController::class, 'how_it_work'])->name('how-it-work');
 
@@ -90,8 +124,8 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
 });
 
 // Route::group(["middleware" => 'auth'], function () {
-    Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
-    Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    // Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
+    // Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
     // "middleware" => 'admin'
     Route::group(["prefix" => 'admin'], function () {
@@ -110,11 +144,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
             Route::get('dropperOnboarding-list', [App\Http\Controllers\Admin\DropperManagementController::class, 'dropperOnboardingList'])->name('.dropperOnboarding.list');
         });
 
-        Route::group(["as" => 'blog'], function () {
-            Route::get('post-list', [App\Http\Controllers\Admin\BlogController::class, 'postList'])->name('.post.list');
-            Route::get('category-list', [App\Http\Controllers\Admin\BlogController::class, 'categoryList'])->name('.category.list');
-            Route::get('tag-list', [App\Http\Controllers\Admin\BlogController::class, 'tagList'])->name('.tag.list');
-        });
+
     });
 
     Route::group(["as" => 'task.', "prefix" => 'task'], function () {

@@ -4,10 +4,12 @@ use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\CouponController;
-use App\Http\Controllers\Admin\ProductCategoryController;
+use App\Http\Controllers\Api\V1\Admin\ProductCategoryController;
+use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
 use App\Http\Controllers\Admin\VehicleController;
 use \App\Http\Controllers\AuthController;
 use App\Http\Controllers\DropperAuthController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -64,3 +66,6 @@ Route::get('/pro_cat_list', [ProductCategoryController::class, 'proCatList'])->n
 
 // ======== Admin Route Vehicle type api=====
 Route::get('/vehicle-list', [VehicleController::class, 'getAllVehicle'])->name('vehicle.getAll');
+
+//========= Admin dalivery Time api=========
+Route::get('dtime_list', [DeliveryTimeController::class, 'getDeliveryTime'])->name('dtime.getList');

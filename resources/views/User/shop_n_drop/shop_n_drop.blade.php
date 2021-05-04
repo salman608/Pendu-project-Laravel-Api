@@ -1,4 +1,5 @@
 @extends('User.Asset')
+
 <style>
 input[type="text"] {
     background: #f1f1f1;
@@ -54,10 +55,10 @@ select.select-box {
                         <small class="step-line-text">Task Details</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/task white.svg') }}" alt="">
                     </div>
-                    <div>
+                    {{-- <div>
                         <small class="step-line-text">Timeframe</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/time.svg') }}" alt="">
-                    </div>
+                    </div> --}}
                     <div>
                         <small class="step-line-text" style="margin-left: -40px;">Review & Submit</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
@@ -73,12 +74,13 @@ select.select-box {
             <div id="task-details">
                   <div class="form-group">
                     <label for="category_id" class="label-title">Categories</label>
-                    <select class="form-control select-box" id="category_id" name="category_id" required>
-                        <option value="">Select your category</option>
-                        <option value="1">Shop & Drop</option>
-                        <option value="2">Collect & Deliver</option>
-                        <option value="3">Movers</option>
-                    </select>
+                    <select multiple class="selectpicker w-100" id="procat_id" name="productcat[]">
+                        @foreach ($productcats as $pcat)
+                        <option value="1">{{$pcat->pcat_name}}</option>
+                        @endforeach
+                    </select><!-- End -->
+
+
                   </div>
 
                   <div class="form-group">
@@ -163,26 +165,29 @@ select.select-box {
                             </div>
                         </div>
                     </div>
-                  <div class="form-group text-center nb-mover">
+                  {{-- <div class="form-group text-center nb-mover">
                       <small>You'll be asked to securely hold the funds in the app after you have accepted an offer & you'll only be paying for the items you requested.</small>
-                  </div>
+                  </div> --}}
             </div>
 
-            <div id="timeFrameDiv" style="display: none;">
+            <div id="timeFrameDiv" >
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
                     <div class="row">
+                        @foreach ($deliverytimes as $dtime)
                         <div class="pr-2">
                             <label>
-                                <input type="radio" name="delivery_time" id="asap" value="ASAP" checked>
+                                <input type="radio" name="delivery_time"  value="{{$dtime->time}}" checked>
                                 <div>
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
+                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$dtime->time}}</label>
                                 </div>
                             </label>
                         </div>
+                        @endforeach
 
-                        <div class="pr-2">
+
+                        {{-- <div class="pr-2">
                             <label>
                                 <input type="radio" name="delivery_time" id="hrs4" value="4 HRS">
                                 <div>
@@ -227,8 +232,15 @@ select.select-box {
                                     <label class="radio-btn-text" for="setLater">Set<br>later</label>
                                 </div>
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputPassword1" class="label-title">Item Cost</label>
+                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none">
+                </div>
+                <div class="form-group text-center nb-mover">
+                    <small>You'll be asked to securely hold the funds in the app after you have accepted an offer & you'll only be paying for the items you requested.</small>
                 </div>
             </div>
 
@@ -249,17 +261,20 @@ select.select-box {
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title mt-3">Deliver Time</label>
                     <div class="row">
+                        @foreach ($deliverytimes as $dtime )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" value="ASAP" name="delivery_time_review" id="asap">
+                                <input type="radio" value="{{$dtime->time}}" name="delivery_time_review" id="asap">
                                 <div>
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
+                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$dtime->time}}</label>
                                 </div>
                             </label>
                         </div>
+                        @endforeach
 
-                        <div class="pr-2">
+
+                        {{-- <div class="pr-2">
                             <label>
                                 <input type="radio" value="4 HRS" name="delivery_time_review" id="hrs4">
                                 <div>
@@ -304,13 +319,13 @@ select.select-box {
                                     <label class="radio-btn-text" for="setLater">Set<br>later</label>
                                 </div>
                             </label>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
 
                 <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Item Cost</label>
-                    <input type="number" class="form-control" name="item_cost" id="exampleInputPassword1" placeholder="$256" style="outline: none">
+                    <input type="number" class="form-control" name="itemCost" id="ItemCost" value="" style="outline: none">
                 </div>
             </div>
         </form>
@@ -333,6 +348,7 @@ select.select-box {
 @include("User.component.post_delivery")
 
 <script>
+    //======product and price ======
     $(document).ready(function(){
         $('#add_btn').on('click',function(){
             var html='';
@@ -407,10 +423,18 @@ select.select-box {
         else {
             $('#nextButton').hide();
             $('#task-details').hide();
-            $('#reviewButtons').show();
+            $('#postButtonId').show();
             // $('#titleId').text('Review');
-            $('#timeFrameDiv').show();
+            $('#timeFrameDiv').hide();
+            $('#taskDetails').show();
+
             // myMap()
+     var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+        $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+        $('#ItemCost').val($('#item_cost').val());
+        $('#shopAddress').text($('#shop_address').val());
+        $('#deliveryAddress').text($('#delivery_address').val());
+
         }
     });
 
@@ -438,6 +462,11 @@ select.select-box {
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2oTSGJA5OrDmMtcxaS7aP8HjZITxaYx0&callback=myMap"></script> --}}
 <script>
 
@@ -473,9 +502,9 @@ select.select-box {
                     $('#deliveryProcessModal').modal('show');
                     $('form').trigger("reset");
 
-                    setTimeout(function () {
-                        window.location = './'
-                    }, 3000);
+                    // setTimeout(function () {
+                    //     window.location = './'
+                    // }, 3000);
                 }
 
                 $('#postSubmitButtonId').prop('disabled', false);
