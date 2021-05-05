@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDeliveryTimesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,16 @@ class CreateDeliveryTimesTable extends Migration
      */
     public function up()
     {
-        Schema::create('delivery_times', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('title'); // 
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
             $table->string('icon');
-            $table->timestamp('time')->nullable();
+            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
+    
 
     /**
      * Reverse the migrations.
@@ -29,6 +31,6 @@ class CreateDeliveryTimesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('delivery_times');
+        Schema::dropIfExists('categories');
     }
 }

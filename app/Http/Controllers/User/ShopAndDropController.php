@@ -19,10 +19,11 @@ class ShopAndDropController extends Controller
      */
     public function index()
     {
+        $data = [];
+        $data['productcats']=ProductCat::all();
+        $data['deliverytimes']=DeliveryTime::all();
 
-        $productcats=ProductCat::all();
-        $deliverytimes=DeliveryTime::all();
-        return view('User.shop_n_drop.shop_n_drop',compact('productcats','deliverytimes'));
+        return view('User.shop_n_drop.shop_n_drop',$data);
     }
 
     /**

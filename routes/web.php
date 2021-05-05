@@ -148,7 +148,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
     });
 
     Route::group(["as" => 'task.', "prefix" => 'task'], function () {
-        Route::post('add', [App\Http\Controllers\User\TaskController::class, 'create'])->name('add');
+        Route::post('add', [App\Http\Controllers\Frontend\TaskController::class, 'create'])->name('add');
     });
 
     // "middleware" => 'user'
