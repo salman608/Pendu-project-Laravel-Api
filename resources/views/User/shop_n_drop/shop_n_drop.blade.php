@@ -373,7 +373,7 @@ select.select-box {
     $('#nextButton').click(function(){
 
 
-        if ($('#category_id').val() == '') {
+        if ($('#procat_id').val() == '') {
             swal({
                 icon: 'error',
                 title: 'Oops...',
@@ -429,7 +429,7 @@ select.select-box {
             $('#taskDetails').show();
 
             // myMap()
-     var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+      var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
         $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
         $('#ItemCost').val($('#item_cost').val());
         $('#shopAddress').text($('#shop_address').val());
