@@ -24,7 +24,7 @@ class TaskRequest extends FormRequest
     public function rules()
     {
         return [
-            "category_id"      => 'required',
+            // "category_id"      => 'required',
             "title"            => 'required',
             // "additional_note"  => 'required',
             // "product_cost"     => 'required',

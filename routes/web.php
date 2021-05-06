@@ -25,14 +25,14 @@ Route::get('/service_charge/update/{id}', [App\Http\Controllers\Admin\ServiceFee
 
 // ---------------Admin Route Service --------
 
-Route::get('/service-list', [App\Http\Controllers\Admin\ServiceConttroller::class, 'index'])->name('service.list');
-Route::get('/service-create', [App\Http\Controllers\Admin\ServiceConttroller::class, 'create'])->name('service.create');
-Route::post('/service-store', [App\Http\Controllers\Admin\ServiceConttroller::class, 'store'])->name('service.store');
-Route::get('/service-edit/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'edit'])->name('service.edit');
-Route::post('/service-update/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'update'])->name('service.update');
-Route::post('/service-delete/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'delete'])->name('service.delete');
-Route::get('/service-active/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'active'])->name('service.active');
-Route::get('/service-inactive/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'inactive'])->name('service.inactive');
+Route::get('/service-list', [App\Http\Controllers\Admin\ServiceController::class, 'index'])->name('service.list');
+Route::get('/service-create', [App\Http\Controllers\Admin\ServiceController::class, 'create'])->name('service.create');
+Route::post('/service-store', [App\Http\Controllers\Admin\ServiceController::class, 'store'])->name('service.store');
+Route::get('/service-edit/{service_id}', [App\Http\Controllers\Admin\ServiceController::class, 'edit'])->name('service.edit');
+Route::post('/service-update/{service_id}', [App\Http\Controllers\Admin\ServiceController::class, 'update'])->name('service.update');
+Route::post('/service-delete/{service_id}', [App\Http\Controllers\Admin\ServiceController::class, 'delete'])->name('service.delete');
+Route::get('/service-active/{service_id}', [App\Http\Controllers\Admin\ServiceController::class, 'active'])->name('service.active');
+Route::get('/service-inactive/{service_id}', [App\Http\Controllers\Admin\ServiceController::class, 'inactive'])->name('service.inactive');
 
 // ---------------Admin Route Vehicle Type--------
 Route::get('/vehicle-list', [App\Http\Controllers\Admin\VehicleController::class, 'index'])->name('vehicle.list');
@@ -77,14 +77,14 @@ Route::group(["as" => 'blog'], function () {
 
 //--------------Admin Delivery Time Route----------
 Route::group(["as" => 'time'], function () {
-    Route::get('dtime-list', [App\Http\Controllers\Admin\DelivryTime::class, 'index'])->name('dtime.list');
-    Route::get('dtime-create', [App\Http\Controllers\Admin\DelivryTime::class, 'create'])->name('dtime.create');
-    Route::post('dtime-store', [App\Http\Controllers\Admin\DelivryTime::class, 'store'])->name('dtime.store');
-    Route::get('dtime-edit/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'edit'])->name('dtime.edit');
-    Route::post('dtime-update/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'update'])->name('dtime.update');
-    Route::delete('dtime-delete/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'delete'])->name('dtime.delete');
-    Route::get('dtime-active/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'active'])->name('dtime.active');
-    Route::get('dtime-inactive/{time_id}', [App\Http\Controllers\Admin\DelivryTime::class, 'inactive'])->name('post.inactive');
+    Route::get('dtime-list', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'index'])->name('dtime.list');
+    Route::get('dtime-create', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'create'])->name('dtime.create');
+    Route::post('dtime-store', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'store'])->name('dtime.store');
+    Route::get('dtime-edit/{time_id}', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'edit'])->name('dtime.edit');
+    Route::post('dtime-update/{time_id}', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'update'])->name('dtime.update');
+    Route::delete('dtime-delete/{time_id}', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'delete'])->name('dtime.delete');
+    Route::get('dtime-active/{time_id}', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'active'])->name('dtime.active');
+    Route::get('dtime-inactive/{time_id}', [App\Http\Controllers\Admin\DeliveryTimeController::class, 'inactive'])->name('post.inactive');
 
 });
 

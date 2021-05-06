@@ -419,7 +419,8 @@ li.signup_login {
     font-weight: 600;
 }
 .reg_form input {
-    padding: 22px 3px !important;
+    /* padding: 22px 3px !important; */
+
 }
 
 .reg_name_input {
@@ -492,7 +493,7 @@ li.signup_login {
 }
 
 /* .hero_service_section {
-    
+
 } */
 
 .hero_content h1 {
@@ -3512,7 +3513,7 @@ svg.dropper_file_attach {
     text-align: center;
     padding-bottom: 1rem;
 }
-/* 
+/*
 .dropper_btn_area a button {
 } */
 .dropper_home_btn button {
