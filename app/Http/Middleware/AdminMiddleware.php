@@ -6,6 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+// FIXME :  Delete This
 class AdminMiddleware
 {
     /**
