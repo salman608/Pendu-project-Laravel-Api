@@ -73,7 +73,7 @@ select.select-box {
             @csrf
             <div id="task-details">
                   <div class="form-group">
-                    <label for="category_id" class="label-title">Categories</label>
+                    <label for="procat_id" class="label-title">Categories</label>
                     <select multiple class="selectpicker w-100" id="procat_id" name="productcat[]">
                         @foreach ($productcats as $pcat)
                         <option value="1">{{$pcat->pcat_name}}</option>
@@ -373,14 +373,15 @@ select.select-box {
     $('#nextButton').click(function(){
 
 
-        if ($('#procat_id').val() == '') {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Category is required.",
-            })
-        }
-        else if ($('#title').val() == '') {
+        // if ($('#procat_id').val() == '') {
+        //     swal({
+        //         icon: 'error',
+        //         title: 'Oops...',
+        //         text: "Category is required.",
+        //     })
+        // }
+        // else
+        if ($('#title').val() == '') {
 
             swal({
                 icon: 'error',

@@ -33,7 +33,7 @@ class TaskController extends Controller
 
         $reqData = $request->all();
         // dd($reqData);
-        // info($reqData);
+         info($reqData);
         // return response()->json($reqData);
 
 

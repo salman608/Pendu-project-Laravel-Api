@@ -23,16 +23,16 @@ Route::post('/service_charge/store', [App\Http\Controllers\Admin\ServiceFeeContt
 Route::get('/service_charge/edit/{id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'edit'])->name('servicefee.edit');
 Route::get('/service_charge/update/{id}', [App\Http\Controllers\Admin\ServiceFeeConttroller::class, 'update'])->name('servicefee.update');
 
-// ---------------Admin Route Sercice Category--------
+// ---------------Admin Route Service --------
 
-Route::get('/category-list', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('category.list');
-Route::get('/category-create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('category.create');
-Route::post('/category-store', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('category.store');
-Route::get('/category-edit/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('category.edit');
-Route::post('/category-update/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('category.update');
-Route::post('/category-delete/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'delete'])->name('category.delete');
-Route::get('/category-active/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'active'])->name('category.active');
-Route::get('/category-inactive/{cat_id}', [App\Http\Controllers\Admin\CategoryController::class, 'inactive'])->name('category.inactive');
+Route::get('/service-list', [App\Http\Controllers\Admin\ServiceConttroller::class, 'index'])->name('service.list');
+Route::get('/service-create', [App\Http\Controllers\Admin\ServiceConttroller::class, 'create'])->name('service.create');
+Route::post('/service-store', [App\Http\Controllers\Admin\ServiceConttroller::class, 'store'])->name('service.store');
+Route::get('/service-edit/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'edit'])->name('service.edit');
+Route::post('/service-update/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'update'])->name('service.update');
+Route::post('/service-delete/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'delete'])->name('service.delete');
+Route::get('/service-active/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'active'])->name('service.active');
+Route::get('/service-inactive/{service_id}', [App\Http\Controllers\Admin\ServiceConttroller::class, 'inactive'])->name('service.inactive');
 
 // ---------------Admin Route Vehicle Type--------
 Route::get('/vehicle-list', [App\Http\Controllers\Admin\VehicleController::class, 'index'])->name('vehicle.list');
