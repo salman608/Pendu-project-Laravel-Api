@@ -12,7 +12,8 @@ class CreateQuotesTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
+        // TODO : Refactor This
         Schema::create('quotes', function (Blueprint $table) {
             $table->id();
             $table->string('categories');

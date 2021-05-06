@@ -34,6 +34,8 @@
                                 @enderror
                                 <label class='reg_name' for="">Name</label>
                             </div>
+
+                          
                             <!-- name end -->
                             <div class="form-group">
                                 <input id="email" type="email"
@@ -75,6 +77,8 @@
 
                                 <label class='reg_pass' for="  ">Password</label>
                             </div>
+
+
                             <div class="reg_btn">
                                 <button type="submit" class="btn ">Register</button>
                             </div>

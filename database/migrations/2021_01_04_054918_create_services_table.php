@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriesTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -18,7 +18,6 @@ class CreateCategoriesTable extends Migration
             $table->string('title')->unique();
             $table->string('slug')->unique();
             $table->string('icon');
-            $table->tinyInteger('status');
             $table->timestamps();
         });
     }
