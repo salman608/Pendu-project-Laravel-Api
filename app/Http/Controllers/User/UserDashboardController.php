@@ -11,11 +11,12 @@ use Auth;
 class UserDashboardController extends Controller
 {
     public function index()
-    {
-        $droppers = Dropper::get();
-        $posts    = Post::inRandomOrder()->where('status', 1)->latest()->take(3)->get();
+    {   
+        return auth();
+        // $droppers = Dropper::get();
+        // $posts    = Post::inRandomOrder()->where('status', 1)->latest()->take(3)->get();
 
-        return view('home', compact('droppers', 'posts'));
+        // return view('home', compact('droppers', 'posts'));
     }
 
     public function index1()

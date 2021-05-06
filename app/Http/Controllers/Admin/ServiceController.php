@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Image;
 
-class CategoryController extends Controller
+class ServiceController extends Controller
 {
     // ========Service  List=========
     public function index(){
