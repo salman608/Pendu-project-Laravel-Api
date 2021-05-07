@@ -74,13 +74,11 @@ select.select-box {
             <div id="task-details">
                   <div class="form-group">
                     <label for="procat_id" class="label-title">Categories</label>
-                    <select multiple class="selectpicker w-100" id="procat_id" name="productcat[]">
-                        @foreach ($productcats as $pcat)
-                        <option value="1">{{$pcat->pcat_name}}</option>
+                    <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
+                        @foreach ($product_cats as $p_cat)
+                            <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
                         @endforeach
                     </select><!-- End -->
-
-
                   </div>
 
                   <div class="form-group">
@@ -174,13 +172,13 @@ select.select-box {
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
                     <div class="row">
-                        @foreach ($deliverytimes as $dtime)
+                        @foreach ($delivery_times as $d_time)
                         <div class="pr-2">
                             <label>
-                                <input type="radio" name="delivery_time"  value="{{$dtime->time}}" checked>
+                                <input type="radio" name="delivery_time"  value="{{$d_time->title}}" checked>
                                 <div>
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$dtime->time}}</label>
+                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -261,13 +259,13 @@ select.select-box {
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title mt-3">Deliver Time</label>
                     <div class="row">
-                        @foreach ($deliverytimes as $dtime )
+                        @foreach ($delivery_times as $d_time )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" value="{{$dtime->time}}" name="delivery_time_review" id="asap">
+                                <input type="radio" value="{{$d_time->title}}" name="delivery_time_review" id="asap">
                                 <div>
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$dtime->time}}</label>
+                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>

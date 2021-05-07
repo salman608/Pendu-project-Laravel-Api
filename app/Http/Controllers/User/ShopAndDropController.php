@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryTime;
 use App\Models\Dropper;
+use App\Models\ProductCategory;
 use App\Models\Service;
 use Illuminate\Http\Request;
 // use Illuminate\Support\Facades\Http;
@@ -20,8 +21,8 @@ class ShopAndDropController extends Controller
     public function index()
     {
         $data = [];
-        $data['productcats']=Service::all();
-        $data['deliverytimes']=DeliveryTime::all();
+        $data['product_cats']=ProductCategory::all();
+        $data['delivery_times']=DeliveryTime::all();
 
         return view('User.shop_n_drop.shop_n_drop',$data);
     }
