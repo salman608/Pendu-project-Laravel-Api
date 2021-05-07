@@ -49,8 +49,8 @@
                     </g>
                   </svg>
                 </span> Profile info</a>
-                
-                <a class="nav-link @if(isset($_GET['task'])) active @endif" id="v-pills-task-tab" data-toggle="pill" href="#v-pills-task" role="tab" aria-controls="v-pills-task" aria-selected="true"> <span>
+
+                <a class="nav-link " id="v-pills-task-tab" data-toggle="pill" href="#v-pills-task" role="tab" aria-controls="v-pills-task" aria-selected="true"> <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 150 151.25">
                     <g id="task_green" data-name="task green" transform="translate(0 0.62)">
                       <path id="Path_18" data-name="Path 18" d="M150,128.43V45.09c0-12.23-10.84-22.19-24.18-22.19H119.2V21.57C119.2,9.33,108.36-.62,95.02-.62H24.18C10.85-.63,0,9.33,0,21.57v83.35c0,12.23,10.85,22.19,24.18,22.19H30.8v1.33c0,12.24,10.85,22.19,24.18,22.19h70.83C139.16,150.63,150,140.67,150,128.43Zm-33.11,14.93H54.98c-8.99,0-16.27-6.68-16.27-14.93V45.09c0-8.24,7.28-14.93,16.27-14.93h70.83c8.99,0,16.27,6.68,16.27,14.93v83.35c0,8.24-7.28,14.93-16.27,14.93h-8.92Z" fill="#5bdb98"/>
@@ -173,11 +173,12 @@
 
               <div class="tab-content  " id="v-pills-tabContent">
     <!-- ------------- mytask tab ------------- -->
-                <div class="tab-pane fade @if(isset($_GET['task'])) show active @endif" id="v-pills-task" role="tabpanel" aria-labelledby="v-pills-task-tab">
+                <div class="tab-pane fade
+                " id="v-pills-task" role="tabpanel" aria-labelledby="v-pills-task-tab">
                   <div class="profile_tab_title">
                     <h2>My task</h2>
                   </div>
-                  
+
                     <div class="row short_order">
                         <div class="select_label">
                             <label for=" ">Sort orders</label>
@@ -191,14 +192,15 @@
                                 <option value="Order 03">Order 03</option>
                             </select>
                         </div>
-                    </div>   
+                    </div>
 
-                    
+
                     <div class="order_number">
-                        @foreach ($tasks as $task)
+
+
                             <div class="order_cat_date_area mt-3">
                                 <div class="order_cat_date">
-                                    <p>{{ $task->category_id == 1 ? 'shop & drop' : ($task->category_id == 2 ? 'collect & drop' : 'mover') }}</p>
+                                    <p></p>
                                     <h6>15 Nov 2020</h6>
                                 </div>
                             </div>
@@ -206,8 +208,8 @@
                             <div class="order_details_area">
                                 <div class="order_details">
                                     <div class="order_id_coast">
-                                        <h5>Order ID- <span class='id_num' >{{ $task->order_no }}</span> </h5>
-                                        <p>Item cost- <span class='coast'>{{ $task->item_cost }}</span> </p>
+                                        <h5>Order ID- <span class='id_num' ></span> </h5>
+                                        <p>Item cost- <span class='coast'></span> </p>
                                         <h6>Proccessing</h6>
                                     </div>
                                 </div>
@@ -219,8 +221,8 @@
                                     <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5>
                                 </div>
                             </div>
-                        @endforeach
-                        
+
+
                         <div class="order_details_area mt-2">
                             <div class="row">
                                 <div class="col-md-2">
@@ -230,7 +232,7 @@
                                         <h6><i class="fas fa-star"></i> <span>4.5</span> </h6>
                                     </div>
                                 </div>
-                            
+
                                 <div class="col-md-10">
                                     <div class="order_details">
                                         <div class="order_id_coast">
@@ -251,10 +253,10 @@
                             </div>
                         </div>
 
-                        
+
                     </div>
                 </div>
-                
+
 
                 <!-- ------------- inbox tab ------------- -->
               <div class="tab-pane fade @if(isset($_GET['message'])) show active @endif" id="v-pills-inbox" role="tabpanel" aria-labelledby="v-pills-inbox-tab">
@@ -517,9 +519,10 @@
 
 
             <div class="inbox_list_area history_section">
-              
+
               <ul>
-                @foreach ($history as $row)
+
+
                 <p class='mt-1 history_date_time_section'><span class='history_time' >16:40</span>
                   <span class='history_date'>15 Nov 2020</span></p>
                 <li >
@@ -552,9 +555,9 @@
                     </div>
                   </div>
                 </li>
-                @endforeach
+
               </ul>
-              
+
             </div>
 
           </div>
@@ -566,8 +569,8 @@
         </div>
         <div class="inbox_list_area history_section deliveries_section">
               <ul>
-                @foreach ($history as $item)
-                    
+
+
                <li class='mt-2' >
                  <div class="deliveries_item_area">
                   <div class="history_item_name">
@@ -597,7 +600,7 @@
 
 
                 </li>
-              @endforeach
+
               </ul>
             </div>
 
@@ -897,7 +900,7 @@
               <a href="#" class='ins'> <i class="fab fa-instagram-square"></i></a>
              </div>
 
-           
+
          </div>
 
       </div>

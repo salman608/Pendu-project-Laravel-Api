@@ -116,12 +116,12 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
     Route::get('/index', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('index');
     Route::post('/update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update']);
     Route::post('/sendMail', [App\Http\Controllers\User\ProfileController::class, 'sendInvitationMail'])->name('invitation');
-    // Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
+    Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
 });
 
-// Route::group(["middleware" => 'auth'], function () {
+Route::group(["middleware" => 'auth'], function () {
     // Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
-    // Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
     // "middleware" => 'admin'
     Route::group(["prefix" => 'admin'], function () {
@@ -167,7 +167,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
         });
 
     });
-// });
+});
 
 
 
