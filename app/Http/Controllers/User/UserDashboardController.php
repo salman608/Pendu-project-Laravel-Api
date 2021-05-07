@@ -15,8 +15,12 @@ class UserDashboardController extends Controller
         $this->middleware('auth');
     }
     public function index()
-    {   
-        return 'Masud Rana';
+    {
+        return auth();
+        $droppers = Dropper::get();
+        $posts    = Post::inRandomOrder()->where('status', 1)->latest()->take(3)->get();
+
+        return view('home', compact('droppers', 'posts'));
     }
 
     public function index1()

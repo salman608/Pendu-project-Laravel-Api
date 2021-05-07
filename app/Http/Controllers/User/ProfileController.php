@@ -21,15 +21,16 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        $tasks   = Task::where('created_by', Auth::user()->id)->get();
-        $history = Task::where([['created_by', Auth::user()->id], ['status', 2]])->get();
 
-        $data = array(
-            'tasks'   => $tasks,
-            'history' => $history,
-        );
+        // $tasks   = Task::where( Auth::user()->id)->get();
+        // $history = Task::where([[ Auth::user()->id], ['status', 2]])->get();
 
-        return view('User.Profile.index', $data);
+        // $data = array(
+        //     'tasks'   => $tasks,
+        //     'history' => $history,
+        // );
+
+        return view('User.Profile.index');
     }
 
     /**

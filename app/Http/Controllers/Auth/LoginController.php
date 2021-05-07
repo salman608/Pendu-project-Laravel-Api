@@ -35,18 +35,15 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        // if (Auth::check() && Auth::user()->role->id == 1) {
+        if (Auth::check() && Auth::user()) {
 
-        //     $this->redirectTo = route('admin.dashboard');
-        // } elseif (Auth::check() && Auth::user()->role->id == 2) {
-
-        //     $this->redirectTo = route('user.dashboard');
-        // } elseif (Auth::check() && Auth::user()->role->id == 3) {
-
-        //     $this->redirectTo = route('driver.dashboard');
-        // }
+           return redirect()->route('dashboard');
+        }else{
+            return back();
+        }
 
 
-        // $this->middleware('guest')->except('logout');
+
+        $this->middleware('guest')->except('logout');
     }
 }
