@@ -38,11 +38,11 @@
                   </ul>
               </div>
 
-              {{-- <div class="nav_icon_img">
+              <div class="nav_icon_img">
                 <a class="navbar-brand" href="{{url('/')}}"> <img
                     src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo">
                 </a>
-              </div> --}}
+              </div>
               <!-- ------ Notificaitons and login ----- -->
               <div class="">
 

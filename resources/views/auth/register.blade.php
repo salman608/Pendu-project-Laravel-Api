@@ -25,48 +25,51 @@
                             <div class="form-group">
                                 <input id="name" type="text"
                                     class="reg_name_input form-control @error('name') is-invalid @enderror" name="name"
-                                    value="{{ old('name') }}" required autocomplete="name" autofocus>
-
+                                    value="{{ old('name') }}"  autocomplete="name" >
+                                    <label class='reg_name' for="">Name</label>
                                 @error('name')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
                                 @enderror
-                                <label class='reg_name' for="">Name</label>
+
                             </div>
+
+
                             <!-- name end -->
                             <div class="form-group">
                                 <input id="email" type="email"
                                     class="reg_mail_input form-control @error('email') is-invalid @enderror"
-                                    name="email" value="{{ old('email') }}" required autocomplete="email">
-
-                                @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
+                                    name="email" value="{{ old('email') }}"  autocomplete="email">
+                                    <label class='reg_mail' for="email">Email</label>
+                                    @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                 @enderror
-                                <label class='reg_mail' for="">Email</label>
+
                             </div>
                             <!-- email -->
                             <div class="form-group">
-                                <input type="text" class="form-control form-control-lg reg_sub_input" id="" name="suburb">
-                                @error('suburb')
+                                <input type="text" class="form-control  reg_sub_input" id="" name="suburb">
+                                <label class='reg_sub' for="">Suburb</label>
+                                {{-- @error('suburb')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
-                                <label class='reg_sub' for="">Suburb</label>
+                                @enderror --}}
+
                             </div>
 
 
 
                             <div class="form-group">
                                 <input type="text" name="phone" class="form-control form-control-lg reg_phn_input" id=" ">
-                                @error('phone')
+                                {{-- @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror
+                                @enderror --}}
                                 <label class='reg_phn' for="  ">Phone</label>
                             </div>
 
@@ -75,6 +78,10 @@
 
                                 <label class='reg_pass' for="  ">Password</label>
                             </div>
+
+
+
+
                             <div class="reg_btn">
                                 <button type="submit" class="btn ">Register</button>
                             </div>

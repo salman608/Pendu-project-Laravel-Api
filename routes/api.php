@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\CouponController;
@@ -56,8 +56,13 @@ Route::group([
     Route::get('/dropper-profile', [DropperAuthController::class, 'dropperProfile']);
 });
 
+
 // // ======== Admin Route  service Category(shop & drop ...) =====
 // Route::get('/category-list', [ServiceController::class, 'getaAllCat'])->name('category.getaAllCat');
+
+// ======== Admin Route  service Category(shop & drop ...) =====
+Route::get('/category-list', [ServiceController::class, 'getaAllCat'])->name('category.getaAllCat');
+
 
 // ======== Admin Route Coupon submit Api=====
 Route::post('/submit-coupon', [CouponController::class, 'getCoupon'])->name('getCoupon');

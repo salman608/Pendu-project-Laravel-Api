@@ -2,11 +2,6 @@
 
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\HomeController;
-use App\Http\Controllers\User\ShopAndDropController;
-use App\Http\Controllers\User\CollectAndDeliveryController;
-use App\Http\Controllers\User\MoverController;
-
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +13,6 @@ use App\Http\Controllers\User\MoverController;
 | contains the "web" middleware group. Now create something great!
 |
  */
-
 
 // ======= Admin Area ===================
 
@@ -99,26 +93,84 @@ Route::group(["as" => 'time'], function () {
 
 
 
-
 Auth::routes();
 
-/**
- *
- * Frontend  Routes
- *
- */
-
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Services routes
-Route::get('shop_n_drop', [ShopAndDropController::class, 'index']);
-Route::get('collect_n_delivery', [CollectAndDeliveryController::class, 'index']);
-Route::get('mover', [MoverController::class, 'index']);
+// Route::get('/post', [App\Http\Controllers\User\PostController::class, 'index'])->name('post');
+// Route::get('/post/create', [App\Http\Controllers\User\PostController::class, 'create']);
+// Route::get('/single_post/{id}', [App\Http\Controllers\User\PostController::class, 'show']);
 
+Route::get('/how-it-work', [App\Http\Controllers\User\PostController::class, 'how_it_work'])->name('how-it-work');
 
-//dropper routes
-Route::group(["as" => 'dropper.', "prefix" => 'dropper'], function () {
-    Route::get('/register', [App\Http\Controllers\User\DropperController::class, 'create'])->name('add-dropper');
-    Route::post('/store', [App\Http\Controllers\User\DropperController::class, 'store'])->name('store');
+//dropper section
+Route::group(["as" => 'quote.', "prefix" => 'quote'], function () {
+    Route::post('/store', [App\Http\Controllers\User\QuoteController::class, 'store'])->name('store');
 });
+
+
+
+//profile section
+Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
+    Route::get('/index', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('index');
+    Route::post('/update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update']);
+    Route::post('/sendMail', [App\Http\Controllers\User\ProfileController::class, 'sendInvitationMail'])->name('invitation');
+    // Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
+});
+
+// Route::group(["middleware" => 'auth'], function () {
+    // Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
+    // Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+
+    // "middleware" => 'admin'
+    Route::group(["prefix" => 'admin'], function () {
+        Route::get('dashboard', [App\Http\Controllers\Admin\AdminDashboardController::class, 'index'])->name('admin.dashboard');
+
+        Route::group(["as" => 'home'], function () {
+            Route::get('order-list', [App\Http\Controllers\Admin\AdminDashboardController::class, 'orderList'])->name('.order.list');
+            Route::get('customer-list', [App\Http\Controllers\Admin\AdminDashboardController::class, 'customerList'])->name('.customer.list');
+            Route::get('driver-list', [App\Http\Controllers\Admin\AdminDashboardController::class, 'driverList'])->name('.driver.list');
+            Route::get('flagged-list', [App\Http\Controllers\Admin\AdminDashboardController::class, 'flaggedList'])->name('.flagged.list');
+        });
+
+        Route::group(["as" => 'dropperManagement'], function () {
+            Route::get('manager-list', [App\Http\Controllers\Admin\DropperManagementController::class, 'namagerList'])->name('.manager.list');
+            Route::get('dropper-list', [App\Http\Controllers\Admin\DropperManagementController::class, 'dropperList'])->name('.dropper.list');
+            Route::get('dropperOnboarding-list', [App\Http\Controllers\Admin\DropperManagementController::class, 'dropperOnboardingList'])->name('.dropperOnboarding.list');
+        });
+
+
+    });
+
+    Route::group(["as" => 'task.', "prefix" => 'task'], function () {
+        Route::post('add', [App\Http\Controllers\Frontend\TaskController::class, 'create'])->name('add');
+    });
+
+    // "middleware" => 'user'
+    Route::group(["as" => 'user.', "prefix" => 'user'], function () {
+        Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
+    });
+
+    Route::get('payment', [App\Http\Controllers\User\PaymentController::class, 'index']);
+    Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);
+    Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
+
+    // "middleware" => 'driver'
+    Route::group(["as" => 'driver.', "prefix" => 'driver'], function () {
+        Route::get('dashboard', [App\Http\Controllers\Driver\DriverDashboardController::class, 'index'])->name('dashboard');
+        //quote section
+        Route::group(["as" => 'quote.', "prefix" => 'quote'], function () {
+            Route::get('/user-quote', [App\Http\Controllers\Driver\QuoteController::class, 'user_quote'])->name('user-quote');
+            Route::get('/pending/{id}', [App\Http\Controllers\Driver\QuoteController::class, 'pending'])->name('pending');
+            Route::get('/accept/{id}', [App\Http\Controllers\Driver\QuoteController::class, 'accept'])->name('accept');
+        });
+
+    });
+// });
+
+
+
+
+
+

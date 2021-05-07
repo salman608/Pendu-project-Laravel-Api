@@ -23,9 +23,9 @@ class CreateDroppersTable extends Migration
             $table->string('abn');
             $table->integer('vehicle_id');
             $table->integer('category_id');
-            $table->string('licensef_front_side')->default('font.png');
-            $table->string('licensef_back_side')->default('back.png');
-            $table->string('profile_image')->default('profile.png');
+            $table->string('license_front')->nullable();
+            $table->string('license_back')->nullable();
+            $table->string('profile_image')->nullable();
             $table->timestamps();
         });
     }

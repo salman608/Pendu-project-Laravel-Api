@@ -412,57 +412,84 @@ li.signup_login {
 }
 .reg_form label {
     color: var(--text-color-black);
-    background: white;
+    background: rgb(255, 255, 255);
     padding: 0 10px;
     font-family: var(--montserrat-font);
     font-size: 16px;
     font-weight: 600;
 }
-.reg_form input {
-    /* padding: 22px 3px !important; */
-
+.reg_form .form-group  {
+    line-height: 3px !important;
 }
+
+
+
+
 
 .reg_name_input {
     position: relative;
+    /* padding: 22px 3px !important; */
 }
 .reg_name {
-    position: absolute;
+    /* position: absolute;
     top: 5px;
-    left: 45px;
+    left: 45px; */
+    position: relative;
+    top: -39px !important;
+    left: 33px;
 }
 
 .reg_mail_input {
     position: relative;
+
 }
 .reg_mail {
-    position: absolute;
+    /* position: absolute;
     top: 67px;
-    left: 45px;
+    left: 45px; */
+
+    position: relative;
+    top: -39px;
+    left: 33px;
+
 }
 .reg_sub_input {
     position: relative;
+    /* padding: 22px 3px !important; */
 }
 .reg_sub {
-    position: absolute;
-    top: 133px;
-    left: 45px;
+    position: relative;
+    top: -39px;
+    left: 33px;
+}
+.reg_form label .reg_sub{
+   padding-top: 21px !important;
 }
 .reg_phn_input {
     position: relative;
+    /* padding: 22px 3px !important; */
 }
 .reg_phn {
-    position: absolute;
-    top: 197px;
-    left: 45px;
+    /* position: absolute;
+    top: 180px;
+    left: 45px; */
+
+    position: relative;
+    top: -48px;
+    left: 33px;
 }
 .reg_pass_input {
     position: relative;
+    padding: 22px 3px !important;
 }
 .reg_pass {
-    position: absolute;
-    top: 258px;
-    left: 45px;
+    /* position: absolute;
+    top: 244px;
+    left: 45px; */
+
+    position: relative;
+    top: -48px;
+    left: 33px;
 }
 
 .reg_btn button {
