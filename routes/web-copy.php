@@ -147,10 +147,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
         Route::post('add', [App\Http\Controllers\Frontend\TaskController::class, 'create'])->name('add');
     });
 
-    // "middleware" => 'user'
-    Route::group(["as" => 'user.', "prefix" => 'user'], function () {
-        Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
-    });
+ 
 
     Route::get('payment', [App\Http\Controllers\User\PaymentController::class, 'index']);
     Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);

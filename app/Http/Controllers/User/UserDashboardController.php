@@ -9,14 +9,14 @@ use App\Models\Dropper;
 use Auth;
 
 class UserDashboardController extends Controller
-{
+{   
+    public function __construct()
+    {   
+        $this->middleware('auth');
+    }
     public function index()
     {   
-        return auth();
-        // $droppers = Dropper::get();
-        // $posts    = Post::inRandomOrder()->where('status', 1)->latest()->take(3)->get();
-
-        // return view('home', compact('droppers', 'posts'));
+        return 'Masud Rana';
     }
 
     public function index1()
