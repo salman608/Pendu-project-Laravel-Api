@@ -15,13 +15,18 @@
 
                 <div class="w-100 d-flex justify-content-center">
                     <div id="input_container">
-                        <input type="text" id="input" value="3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka">
+                        <input class="form-control input-group-lg " type="text" name="delivery_address2" id="delivery_address2"
+                                   title="Enter your delivery address"
+                                   placeholder="Enter your delivery address" required/>
+
+
+                        <!-- <input type="text" id="input" value="3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka"> -->
                         <img src="{{ asset('frontend/assets/images/Icons/location.svg') }}" width="20px" height="20px" id="input_img" style="margin-bottom: 5px!important">
                     </div>
                 </div>
 
                 <div style="margin: 5 25 20 25;">
-                    <p class="mt-3">3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka</p>
+                    <!-- <p class="mt-3">3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka</p> -->
                     <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: -10px;width: 100%">Select Delivery Point</button>
                 </div>
             </div>

@@ -1,6 +1,8 @@
 @extends('User.Asset')
 
 <style>
+
+.pac-container { z-index: 100000; }
 input[type="text"] {
     background: #f1f1f1;
     border:none;
@@ -97,18 +99,18 @@ select.select-box {
                                   <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
                                   <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
                                   <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>
-                                  <td colspan="4" class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
-                                  {{-- <td class="text-right"><button type="button" class="cross-button" onclick="remove(1)">+</button></td> --}}
+                                  <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
                               </tr>
-
-                              {{-- <tr class="top border-bottom border-light">
-                                  <td><div class="circle"></div></td>
-                                  <td><input class="form-control" type="text" id="pname" placeholder="Enter Product Name..."></td>
-                                  <td><span class="plus-minus-sign" id="minus"> - </span> <span id="totalProduct2" style="color: #56cd93;font-weight: bold;">2</span> <span class="plus-minus-sign" id="plus"> + </span></td>
-                                  <td class="text-right"> <input type="text" id="pprice" class="form-control" placeholder="Price.."> <button class="cross-button"></button></td>
-                              </tr> --}}
                           </tbody>
-
+                          <tfoot >
+                                <tr >
+                                    <td colspan="5" class="text-center">
+                                        <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                    </td>
+                                </tr>
+                          </tfoot>
+                          <thead>
+                          </thead>
                       </table>
                     </div>
                   </div>
@@ -170,15 +172,15 @@ select.select-box {
 
             <div id="timeFrameDiv" >
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
+                    <label for="exampleInputEmail1" class="label-title">Delivery Time</label>
                     <div class="row">
                         @foreach ($delivery_times as $d_time)
                         <div class="pr-2" >
                             <label >
-                                <input type="radio" name="delivery_time"  value="{{$d_time->title}}" checked>
+                                <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
                                 <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
+                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -257,12 +259,12 @@ select.select-box {
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title mt-3">Deliver Time</label>
+                    <label for="exampleInputEmail1" class="label-title mt-3">Delivery Time</label>
                     <div class="row">
                         @foreach ($delivery_times as $d_time )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" value="{{$d_time->title}}" name="delivery_time_review" id="asap">
+                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap">
                                 <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
@@ -341,33 +343,48 @@ select.select-box {
     </div><br><br>
 </section>
 
-@include("User.component.googleMap_pickup_modal")
+
+                              
+
+
+// <div id="googleMap22" class="map"></div>
+
+// @include("User.component.googleMap_pickup_modal") 
 @include("User.component.googleMap_delivery_modal")
 @include("User.component.post_delivery")
 
 <script>
-    //======product and price ======
+
     $(document).ready(function(){
+
+        // Add another Product field
         $('#add_btn').on('click',function(){
-            var html='';
+            let html='';
             html+='<tr>';
             html+='<td><div class="circle"></div></td>';
             html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
             html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
             html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>';
-            html+='<td class="text-right"><button type="button" class="cross-button" id="remove">+</button></td>';
+            html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
             html+='</tr>';
             $('tbody').append(html);
         });
-    });
-    $(document).on('click','#remove',function(){
-     $(this).closest('tr').remove();
+
+        // remove product field
+        $(document).on('click','#remove',function(){
+            $(this).closest('tr').remove();
+        });
+
+        // Select Delivery Time based on 2nd Lable
+        $('.delivery_time_checker').click(function(){
+            
+            let label = $('.delivery_time_checker').parents("label");
+            label.children().prop("checked", true);
+        });
+
     });
 
-    // function remove(id) {
-    //     $('#tableRow_' + id).remove();
-    // }
-
+    // Next Step
     $('#nextButton').click(function(){
 
 
@@ -379,6 +396,8 @@ select.select-box {
         //     })
         // }
         // else
+            
+        // Chekc is empty
         if ($('#title').val() == '') {
 
             swal({
@@ -427,16 +446,19 @@ select.select-box {
             $('#timeFrameDiv').hide();
             $('#taskDetails').show();
 
-            // myMap()
-      var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
-        $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-        $('#ItemCost').val($('#item_cost').val());
-        $('#shopAddress').text($('#shop_address').val());
-        $('#deliveryAddress').text($('#delivery_address').val());
+
+            let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+
+            $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+
+            $('#ItemCost').val($('#item_cost').val());
+            $('#shopAddress').text($('#shop_address').val());
+            $('#deliveryAddress').text($('#delivery_address').val());
 
         }
     });
 
+    // TODO: Will Remove
     // $('#backButtonId').click(function(){
     //     $('#nextButton').show();
     //     $('#task-details').show();
@@ -459,22 +481,19 @@ select.select-box {
     // })
 
 </script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 
-<!-- (Optional) Latest compiled and minified JavaScript translation files -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2oTSGJA5OrDmMtcxaS7aP8HjZITxaYx0&callback=myMap"></script> --}}
+
+
 <script>
-
+    // Submission Button
     $('#postSubmitButtonId').click(function() {
         $('form').submit();
     })
 
+    // Form tag
     $('form').submit(function (event) {
         event.preventDefault();
+
         $('#postSubmitButtonId').attr('disabled', 'disabled');
 
         $.ajax({
@@ -482,55 +501,267 @@ select.select-box {
                 type: 'POST',
                 dataType: 'json',
                 data: $('form').serialize(),
-            })
-            .done(function (response) {
+        })
+        .done(function (response) {
 
-                console.log('====================================');
-                console.log(response);
-                console.log('====================================');
+            console.log('====================================');
+            console.log(response);
+            console.log('====================================');
 
-                if (response.alertType == 'error') {
-                    swal({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                    });
+            if (response.alertType == 'error') {
+                swal({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: response.message,
+                });
 
-                } else {
+            } else {
 
-                    $('#deliveryProcessModal').modal('show');
-                    $('form').trigger("reset");
+                $('#deliveryProcessModal').modal('show');
+                $('form').trigger("reset");
 
-                    // setTimeout(function () {
-                    //     window.location = './'
-                    // }, 3000);
+                // setTimeout(function () {
+                //     window.location = './'
+                // }, 3000);
+            }
+
+            $('#postSubmitButtonId').prop('disabled', false);
+
+        })
+        .fail(function (error) {
+
+            if (error.responseJSON) {
+                let errorText = ''
+                for (const [key, value] of Object.entries(error.responseJSON.errors)) {
+                    errorText += value + '. ';
                 }
 
-                $('#postSubmitButtonId').prop('disabled', false);
+                swal({
+                    icon: 'info',
+                    title: 'Oops...',
+                    text: errorText,
+                });
+            }
 
-            })
-            .fail(function (error) {
-
-                if (error.responseJSON) {
-                    let errorText = ''
-                    for (const [key, value] of Object.entries(error.responseJSON.errors)) {
-                        errorText += value + '. ';
-                    }
-
-                    swal({
-                        icon: 'info',
-                        title: 'Oops...',
-                        text: errorText,
-                    });
-                }
-
-                $('#postSubmitButtonId').prop('disabled', false);
-            })
-            .always(function () {
-                console.log("complete");
-            });
+            $('#postSubmitButtonId').prop('disabled', false);
+        })
+        .always(function () {
+            console.log("complete");
+        });
     });
 
+
+
 </script>
+
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9wIv3EiEy0aH3YTSRRZP8eRNbitATDo&libraries=places"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+
+
+
+<script>
+
+
+    $(".pickupModal").click(function() {
+        // myMap();
+        // initMap();
+    });
+
+    // $(".deliveryModal").click(function() {
+    //     myDeliveryMap();
+    // });
+
+
+    function initMap() {
+        // Map options
+        var options = {
+          zoom: 8,
+          center: { lat: 42.3601, lng: -71.0589 },
+        };
+
+        // New map
+        var map = new google.maps.Map(document.getElementById("map"), options);
+
+        // Add marker
+        var marker = new google.maps.Marker({
+          position: { lat: 42.4668, lng: -70.9495 },
+          map: map,
+          icon:
+            "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+        });
+
+        var infoWindow = new google.maps.InfoWindow({
+          content: "<h1 style='font-style:italic'>Lynn MA</h1>",
+        });
+
+        marker.addListener("click", function () {
+          infoWindow.open(map, marker);
+        });
+      }
+
+
+    // function myMap() {
+    //     var mapProp = {
+    //         center: new google.maps.LatLng(51.508742, -0.12085),
+    //         zoom: 5,
+    //         disableDefaultUI: true,
+    //         mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     };
+
+    //     var map = new google.maps.Map(
+    //         document.getElementById("googleMap"),
+    //         mapProp
+    //     );
+    // }
+
+    // function myDeliveryMap() {
+    //     var mapProp = {
+    //         center: new google.maps.LatLng(51.508742, -0.12085),
+    //         zoom: 5,
+    //         disableDefaultUI: true,
+    //         mapTypeId: google.maps.MapTypeId.ROADMAP
+    //     };
+
+    //     var map = new google.maps.Map(
+    //         document.getElementById("googleMapDelivery"),
+    //         mapProp
+    //     );
+    // }
+
+
+
+
+
+</script>
+
+
+
+
+<script>
+    // Maps
+
+    
+    let options = {
+        // types: ['(cities)',],
+        componentRestrictions: { country: "bd" }, 
+    }
+    
+    let shop_address = document.getElementById("shop_address");
+    let auto_shop_address = new google.maps.places.Autocomplete(shop_address, options);
+    
+    let delivery_address = document.getElementById("delivery_address");
+    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address, options);
+    	
+    $('#googleMapPicupModal').on('shown.bs.modal',function(){
+        google.maps.event.trigger(map, "resize");
+    });
+
+
+
+    function initMap(map) {
+  
+        
+
+        // Add marker
+        let marker = new google.maps.Marker({
+          position: { lat: 42.4668, lng: -70.9495 },
+          map: map,
+        //   icon:
+        //     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+        });
+
+        let infoWindow = new google.maps.InfoWindow({
+          content: "<h1 style='font-style:italic'>Lynn MA</h1>",
+        });
+
+        marker.addListener("click", function () {
+          infoWindow.open(map, marker);
+        });
+      }
+
+      
+
+
+
+
+
+
+
+
+
+    $('#pickupSpanId').click(function(){
+        
+        // Map options
+        // let options = {
+        //   zoom: 8,
+        //   center: { lat: 42.3601, lng: -71.0589 },
+        // };
+
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMap"), {
+          zoom: 8,
+          center: { lat: 42.3601, lng: -71.0589 },
+        });
+
+
+        let shop_address2 = document.getElementById("shop_address2");
+        let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2, options);
+        
+        // mapWithMarker(map, 'hello');	
+        google.maps.event.trigger(map, "resize");
+        initMap(map);
+
+        
+    });
+
+    $('#deliverySpanId').click(function(){
+
+        // Map options
+        // let options = {
+        //   zoom: 8,
+        //   center: { lat: 42.3601, lng: -71.0589 },
+        // };
+
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMapDelivery"), options);
+
+        
+        let delivery_address2 = document.getElementById("delivery_address2");
+        let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2, options);
+
+        // mapWithMarker(map, 'hello');
+    });
+
+
+    // function mapWithMarker(map, property) {
+
+    //     // Add marker
+    //     let marker = new google.maps.Marker({
+    //       position: { lat: 42.4668, lng: -70.9495 },
+    //       map: map,
+    //       icon:
+    //         "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    //     });
+
+    //     let infoWindow = new google.maps.InfoWindow({
+    //       content: "<h1 style='font-style:italic'>Lynn MA</h1>",
+    //     });
+
+    //     marker.addListener("click", function () {
+    //       infoWindow.open(map, marker);
+    //     });
+    // }
+
+
+
+
+</script>
+
+
 
 @endsection

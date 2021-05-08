@@ -32,39 +32,3 @@ $(".reviewButtonCls").click(function() {
     $(".shopAddress").text($("#shop_address").val());
     $(".deliveryAddress").text($("#delivery_address").val());
 });
-
-$(".pickupModal").click(function() {
-    myMap();
-});
-
-$(".deliveryModal").click(function() {
-    myDeliveryMap();
-});
-
-function myMap() {
-    var mapProp = {
-        center: new google.maps.LatLng(51.508742, -0.12085),
-        zoom: 5,
-        disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(
-        document.getElementById("googleMap"),
-        mapProp
-    );
-}
-
-function myDeliveryMap() {
-    var mapProp = {
-        center: new google.maps.LatLng(51.508742, -0.12085),
-        zoom: 5,
-        disableDefaultUI: true,
-        mapTypeId: google.maps.MapTypeId.ROADMAP
-    };
-
-    var map = new google.maps.Map(
-        document.getElementById("googleMapDelivery"),
-        mapProp
-    );
-}
