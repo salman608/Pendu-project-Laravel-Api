@@ -106,13 +106,14 @@ img.close-popup-image,
     height: 0;
 }
 
-/* IMAGE STYLES */
+
+/* IMAGE STYLESl */
 [type="radio"] + div {
     cursor: pointer;
     border-radius: 10px;
     background: transparent;
     border: 1px solid #90a0b2;
-    width: 150px;
+    width: 180px !important;
     height: 60px;
     margin-top: 10px;
 }

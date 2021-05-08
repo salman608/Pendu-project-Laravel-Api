@@ -173,10 +173,10 @@ select.select-box {
                     <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
                     <div class="row">
                         @foreach ($delivery_times as $d_time)
-                        <div class="pr-2">
-                            <label>
+                        <div class="pr-2" >
+                            <label >
                                 <input type="radio" name="delivery_time"  value="{{$d_time->title}}" checked>
-                                <div>
+                                <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
@@ -263,7 +263,7 @@ select.select-box {
                         <div class="pr-2">
                             <label>
                                 <input type="radio" value="{{$d_time->title}}" name="delivery_time_review" id="asap">
-                                <div>
+                                <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
