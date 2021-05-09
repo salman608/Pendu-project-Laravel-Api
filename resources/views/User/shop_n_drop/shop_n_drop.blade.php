@@ -567,73 +567,14 @@ select.select-box {
 <script>
 
 
-    $(".pickupModal").click(function() {
-        // myMap();
-        // initMap();
-    });
+    // $(".pickupModal").click(function() {
+    //     // myMap();
+    //     // initMap();
+    // });
 
     // $(".deliveryModal").click(function() {
     //     myDeliveryMap();
     // });
-
-
-    function initMap() {
-        // Map options
-        var options = {
-          zoom: 8,
-          center: { lat: 42.3601, lng: -71.0589 },
-        };
-
-        // New map
-        var map = new google.maps.Map(document.getElementById("map"), options);
-
-        // Add marker
-        var marker = new google.maps.Marker({
-          position: { lat: 42.4668, lng: -70.9495 },
-          map: map,
-          icon:
-            "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-        });
-
-        var infoWindow = new google.maps.InfoWindow({
-          content: "<h1 style='font-style:italic'>Lynn MA</h1>",
-        });
-
-        marker.addListener("click", function () {
-          infoWindow.open(map, marker);
-        });
-      }
-
-
-    // function myMap() {
-    //     var mapProp = {
-    //         center: new google.maps.LatLng(51.508742, -0.12085),
-    //         zoom: 5,
-    //         disableDefaultUI: true,
-    //         mapTypeId: google.maps.MapTypeId.ROADMAP
-    //     };
-
-    //     var map = new google.maps.Map(
-    //         document.getElementById("googleMap"),
-    //         mapProp
-    //     );
-    // }
-
-    // function myDeliveryMap() {
-    //     var mapProp = {
-    //         center: new google.maps.LatLng(51.508742, -0.12085),
-    //         zoom: 5,
-    //         disableDefaultUI: true,
-    //         mapTypeId: google.maps.MapTypeId.ROADMAP
-    //     };
-
-    //     var map = new google.maps.Map(
-    //         document.getElementById("googleMapDelivery"),
-    //         mapProp
-    //     );
-    // }
-
-
 
 
 
@@ -651,117 +592,88 @@ select.select-box {
         componentRestrictions: { country: "bd" }, 
     }
     
+    var shop_address_marker;
+    let delivery_address_marker;
+    
     let shop_address = document.getElementById("shop_address");
     let auto_shop_address = new google.maps.places.Autocomplete(shop_address, options);
     
     let delivery_address = document.getElementById("delivery_address");
     let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address, options);
-    	
-    $('#googleMapPicupModal').on('shown.bs.modal',function(){
-        google.maps.event.trigger(map, "resize");
-    });
 
 
+    auto_shop_address.addListener("place_changed", () => {
+        console.log(auto_shop_address)
+    })
+    
+    function ShowLocationOnTheMap(map, latitude, longitude) {
 
-    function initMap(map) {
-  
+        if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+            shop_address_marker.setMap(null);
+        }
+
+        // // Add Marker
+        shop_address_marker = new google.maps.Marker({
+            position: new google.maps.LatLng(latitude, longitude),
+            map: map,
+        });
+    }
+ 
+    $(".pickupModal").click(function() {
         
-
-        // Add marker
-        let marker = new google.maps.Marker({
-          position: { lat: 42.4668, lng: -70.9495 },
-          map: map,
-        //   icon:
-        //     "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-        });
-
-        let infoWindow = new google.maps.InfoWindow({
-          content: "<h1 style='font-style:italic'>Lynn MA</h1>",
-        });
-
-        marker.addListener("click", function () {
-          infoWindow.open(map, marker);
-        });
-      }
-
-      
-
-
-
-
-
-
-
-
-
-    $('#pickupSpanId').click(function(){
-        
-        // Map options
-        // let options = {
-        //   zoom: 8,
-        //   center: { lat: 42.3601, lng: -71.0589 },
-        // };
-
         // New map
         let map = new google.maps.Map(document.getElementById("googleMap"), {
-          zoom: 8,
-          center: { lat: 42.3601, lng: -71.0589 },
+            zoom: 7,
+            center: { lat: 23.810332, lng: 90.4125181 },
+            // disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
-
 
         let shop_address2 = document.getElementById("shop_address2");
         let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2, options);
         
-        // mapWithMarker(map, 'hello');	
-        google.maps.event.trigger(map, "resize");
-        initMap(map);
+        auto_shop_address2.addListener("place_changed", () => {
+            let place = auto_shop_address2.getPlace();
 
-        
+            // console.log(place.geometry.location.lat());
+            // console.log(place.geometry.location.lng());
+            
+            ShowLocationOnTheMap(
+                map,
+                place.geometry.location.lat(),
+                place.geometry.location.lng()
+            );
+
+            if (place.geometry.viewport) {
+               map.fitBounds(place.geometry.viewport);
+            }
+        });
     });
 
-    $('#deliverySpanId').click(function(){
-
-        // Map options
-        // let options = {
-        //   zoom: 8,
-        //   center: { lat: 42.3601, lng: -71.0589 },
-        // };
-
+    $(".deliveryModal").click(function() {
         // New map
-        let map = new google.maps.Map(document.getElementById("googleMapDelivery"), options);
+        let map = new google.maps.Map(document.getElementById("googleMapDelivery"), {
+            zoom: 8,
+            // center: { lat: 42.3601, lng: -71.0589 },
+            // disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
 
-        
         let delivery_address2 = document.getElementById("delivery_address2");
         let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2, options);
 
-        // mapWithMarker(map, 'hello');
+        auto_delivery_address2.addListener("place_changed", () => {
+            let place = auto_delivery_address2.getPlace();
+
+            ShowLocationOnTheMap(
+                map,
+                place.geometry.location.lat(),
+                place.geometry.location.lng()
+            );
+        });
     });
 
-
-    // function mapWithMarker(map, property) {
-
-    //     // Add marker
-    //     let marker = new google.maps.Marker({
-    //       position: { lat: 42.4668, lng: -70.9495 },
-    //       map: map,
-    //       icon:
-    //         "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
-    //     });
-
-    //     let infoWindow = new google.maps.InfoWindow({
-    //       content: "<h1 style='font-style:italic'>Lynn MA</h1>",
-    //     });
-
-    //     marker.addListener("click", function () {
-    //       infoWindow.open(map, marker);
-    //     });
-    // }
-
-
-
-
 </script>
-
 
 
 @endsection
