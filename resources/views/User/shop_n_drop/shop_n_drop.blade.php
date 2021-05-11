@@ -70,7 +70,7 @@ select.select-box {
         </div>
     </div>
 
-    <div class="container" style="border-radius: 10px; bacground: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
+    <div class="container" style="border-radius: 10px; background: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
         <form>
             @csrf
             <div id="task-details">
@@ -98,7 +98,7 @@ select.select-box {
                                   <td><div class="circle"></div></td>
                                   <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
                                   <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
-                                  <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>
+                                  <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
                                   <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
                               </tr>
                           </tbody>
@@ -235,9 +235,9 @@ select.select-box {
                         </div> --}}
                     </div>
                 </div>
-                <div class="form-group">
+                <!-- <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Item Cost</label>
-                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none">
+                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none"> -->
                 </div>
                 <div class="form-group text-center nb-mover">
                     <small>You'll be asked to securely hold the funds in the app after you have accepted an offer & you'll only be paying for the items you requested.</small>
@@ -347,9 +347,7 @@ select.select-box {
                               
 
 
-// <div id="googleMap22" class="map"></div>
-
-// @include("User.component.googleMap_pickup_modal") 
+@include("User.component.googleMap_pickup_modal") 
 @include("User.component.googleMap_delivery_modal")
 @include("User.component.post_delivery")
 
@@ -364,7 +362,7 @@ select.select-box {
             html+='<td><div class="circle"></div></td>';
             html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
             html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
-            html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>';
+            html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
             html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
             html+='</tr>';
             $('tbody').append(html);
@@ -565,25 +563,6 @@ select.select-box {
 
 
 <script>
-
-
-    // $(".pickupModal").click(function() {
-    //     // myMap();
-    //     // initMap();
-    // });
-
-    // $(".deliveryModal").click(function() {
-    //     myDeliveryMap();
-    // });
-
-
-
-</script>
-
-
-
-
-<script>
     // Maps
 
     
@@ -591,143 +570,188 @@ select.select-box {
         // types: ['(cities)',],
         componentRestrictions: { country: "bd" }, 
     }
+    centeredLatLng = { lat: 23.810332, lng: 90.4125181 }
     
-    var shop_address_marker;
+    let shop_address_marker;
+    var shop_address = { address: '', lat: '', lng: '' };
+    var shop_address_modal = { address: '', lat: '', lng: '' };
+    let shop_address_input = document.getElementById("shop_address");
+    let auto_shop_address = new google.maps.places.Autocomplete(shop_address_input, options);    
+    let shop_address2_input = document.getElementById("shop_address2");
+
     let delivery_address_marker;
-    
-    let shop_address = document.getElementById("shop_address");
-    let shop_address_flag = false;
-    let auto_shop_address = new google.maps.places.Autocomplete(shop_address, options);
-    
-    let shop_address2 = document.getElementById("shop_address2");
-    let shop_address2_map;
-
-    
-    let delivery_address = document.getElementById("delivery_address");
-    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address, options);
-
+    var delivery_address = { address: '', lat: '', lng: '' };
+    var delivery_address_modal = { address: '', lat: '', lng: '' };
+    let delivery_address_input = document.getElementById("delivery_address");
+    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address_input, options);    
+    let delivery_address2_input = document.getElementById("delivery_address2");
 
     auto_shop_address.addListener("place_changed", () => {
-        console.log(auto_shop_address)
-    })
+        shop_address.address = shop_address_input.value;
+
+        let place = auto_shop_address.getPlace();
+        shop_address.lat = place.geometry.location.lat();
+        shop_address.lng = place.geometry.location.lng();
+    });
+
+    auto_delivery_address.addListener("place_changed", () => {
+        delivery_address.address = delivery_address.value;
+
+        let place = auto_delivery_address.getPlace();
+        delivery_address.lat = place.geometry.location.lat();
+        delivery_address.lng = place.geometry.location.lng();
+    });
+
+
+
     
-    function ShowLocationOnTheMap(map, latitude, longitude) {
+    // function ShowLocationOnTheMap(map, latitude, longitude) {
 
-        if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
-            shop_address_marker.setMap(null);
-        }
+    //     // Remove old marker
+    //     if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+    //         shop_address_marker.setMap(null);
+    //     }
 
-        // Add Marker
-        shop_address_marker = new google.maps.Marker({
-            position: new google.maps.LatLng(latitude, longitude),
-            map: map,
-        });
-    }
+    //     // Add Marker
+    //     shop_address_marker = new google.maps.Marker({
+    //         position: new google.maps.LatLng(latitude, longitude),
+    //         map: map,
+    //     });
+    // }
  
-    $("#shop_address2").click(function() {
-        alert('Vanishhh');
 
-        // let shop_address2 = document.getElementById("shop_address2");
-        let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2, options);
+    $(".pickupModal").click(function() {
         
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMap"), {
+            zoom: 7,
+            center: centeredLatLng,
+            disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
 
-         auto_shop_address2.addListener("place_changed", () => {
+        let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
+        
+        auto_shop_address2.addListener("place_changed", () => {
             let place = auto_shop_address2.getPlace();
+            let latitude = place.geometry.location.lat();
+            let longitude = place.geometry.location.lng();
 
-            // console.log(place.geometry.location.lat());
-            // console.log(place.geometry.location.lng());
-            
-            ShowLocationOnTheMap(
-                shop_address2_map,
-                place.geometry.location.lat(),
-                place.geometry.location.lng()
-            );
+            shop_address_modal.address = shop_address2_input.value;
+            shop_address_modal.lat = latitude;
+            shop_address_modal.lng = longitude;
+
+            // ShowLocationOnTheMap(
+            //     map,
+            //     place.geometry.location.lat(),
+            //     place.geometry.location.lng()
+            // );
+
+            // Remove old marker
+            if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+                shop_address_marker.setMap(null);
+            }
+
+            // Add Marker
+            shop_address_marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+            });
 
             if (place.geometry.viewport) {
-               shop_address2_map.fitBounds(place.geometry.viewport);
+               map.fitBounds(place.geometry.viewport);
             }
         });
     });
 
-    $(".pickupModal").click(function() {
-        
-        shop_address2.value = shop_address.value;
+    $("#picupModalBtn").click(function() {
 
-        let place = auto_shop_address.getPlace();
-        let lat = place.geometry.location.lat();
-        let lng = place.geometry.location.lng();
-    
-        shop_address2_map = new google.maps.Map(document.getElementById("googleMap"), {
-            zoom: 15,
-            center: { lat: lat, lng: lng},
-            disableDefaultUI: true,
-            // mapTypeId: google.maps.MapTypeId.ROADMAP,
-        });
-        
+        if(
+            shop_address2_input.value == '' || 
+            typeof shop_address_modal == 'undefined' || 
+            shop_address_modal.address == '' ||
+            shop_address_modal.lng == '' ||
+            shop_address_modal.lat == '' 
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Shop/Pickup address is invalid. Try again.",
+            });
 
-        // console.log(place.geometry.location.lat());
-        // console.log(place.geometry.location.lng());
-        
-        ShowLocationOnTheMap(
-            shop_address2_map,lat,lng
-        );
-
-        // if (place.geometry.viewport) {
-        //        map.fitBounds(place.geometry.viewport);
-        // }
-
-        // // New map
-        // let map = new google.maps.Map(document.getElementById("googleMap"), {
-        //     zoom: 7,
-        //     center: { lat: 23.810332, lng: 90.4125181 },
-        //     // disableDefaultUI: true,
-        //     // mapTypeId: google.maps.MapTypeId.ROADMAP,
-        // });
-
-        // let shop_address2 = document.getElementById("shop_address2");
-        // let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2, options);
-        
-        // auto_shop_address2.addListener("place_changed", () => {
-        //     let place = auto_shop_address2.getPlace();
-
-        //     // console.log(place.geometry.location.lat());
-        //     // console.log(place.geometry.location.lng());
-            
-        //     ShowLocationOnTheMap(
-        //         map,
-        //         place.geometry.location.lat(),
-        //         place.geometry.location.lng()
-        //     );
-
-        //     if (place.geometry.viewport) {
-        //        map.fitBounds(place.geometry.viewport);
-        //     }
-        // });
+            return; 
+        }
+        shop_address = shop_address_modal;
+        shop_address_input.value = shop_address.address;
+        $("#googleMapPicupModal").modal('hide');
     });
 
     $(".deliveryModal").click(function() {
         // New map
         let map = new google.maps.Map(document.getElementById("googleMapDelivery"), {
-            zoom: 8,
-            // center: { lat: 42.3601, lng: -71.0589 },
-            // disableDefaultUI: true,
+            zoom: 7,
+            center: centeredLatLng,
+            disableDefaultUI: true,
             // mapTypeId: google.maps.MapTypeId.ROADMAP,
         });
 
-        let delivery_address2 = document.getElementById("delivery_address2");
-        let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2, options);
-
+        let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2_input, options);
+        
         auto_delivery_address2.addListener("place_changed", () => {
             let place = auto_delivery_address2.getPlace();
+            let latitude = place.geometry.location.lat();
+            let longitude = place.geometry.location.lng();
 
-            ShowLocationOnTheMap(
-                map,
-                place.geometry.location.lat(),
-                place.geometry.location.lng()
-            );
+            delivery_address_modal.address = delivery_address2_input.value;
+            delivery_address_modal.lat = latitude;
+            delivery_address_modal.lng = longitude;
+
+            // ShowLocationOnTheMap(
+            //     map,
+            //     place.geometry.location.lat(),
+            //     place.geometry.location.lng()
+            // );
+
+            // Remove old marker
+            if(typeof delivery_address_marker !== 'undefined' && delivery_address_marker !== null) {
+                delivery_address_marker.setMap(null);
+            }
+
+            // Add Marker
+            delivery_address_marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+            });
+
+            if (place.geometry.viewport) {
+               map.fitBounds(place.geometry.viewport);
+            }
         });
     });
 
+
+    $("#deliveryModalBtn").click(function() {
+
+        if(
+            delivery_address2_input.value == '' || 
+            typeof delivery_address_modal == 'undefined' || 
+            delivery_address_modal.address == '' ||
+            delivery_address_modal.lng == '' ||
+            delivery_address_modal.lat == '' 
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is invalid. Try again.",
+            });
+
+            return; 
+        }
+        delivery_address = delivery_address_modal;
+        delivery_address_input.value = delivery_address.address;
+
+        $("#googleMapDeliveryModal").modal('hide');
+    });
 </script>
 
 
