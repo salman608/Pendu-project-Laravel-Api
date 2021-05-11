@@ -596,7 +596,12 @@ select.select-box {
     let delivery_address_marker;
     
     let shop_address = document.getElementById("shop_address");
+    let shop_address_flag = false;
     let auto_shop_address = new google.maps.places.Autocomplete(shop_address, options);
+    
+    let shop_address2 = document.getElementById("shop_address2");
+    let shop_address2_map;
+
     
     let delivery_address = document.getElementById("delivery_address");
     let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address, options);
@@ -612,42 +617,92 @@ select.select-box {
             shop_address_marker.setMap(null);
         }
 
-        // // Add Marker
+        // Add Marker
         shop_address_marker = new google.maps.Marker({
             position: new google.maps.LatLng(latitude, longitude),
             map: map,
         });
     }
  
-    $(".pickupModal").click(function() {
-        
-        // New map
-        let map = new google.maps.Map(document.getElementById("googleMap"), {
-            zoom: 7,
-            center: { lat: 23.810332, lng: 90.4125181 },
-            // disableDefaultUI: true,
-            // mapTypeId: google.maps.MapTypeId.ROADMAP,
-        });
+    $("#shop_address2").click(function() {
+        alert('Vanishhh');
 
-        let shop_address2 = document.getElementById("shop_address2");
+        // let shop_address2 = document.getElementById("shop_address2");
         let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2, options);
         
-        auto_shop_address2.addListener("place_changed", () => {
+
+         auto_shop_address2.addListener("place_changed", () => {
             let place = auto_shop_address2.getPlace();
 
             // console.log(place.geometry.location.lat());
             // console.log(place.geometry.location.lng());
             
             ShowLocationOnTheMap(
-                map,
+                shop_address2_map,
                 place.geometry.location.lat(),
                 place.geometry.location.lng()
             );
 
             if (place.geometry.viewport) {
-               map.fitBounds(place.geometry.viewport);
+               shop_address2_map.fitBounds(place.geometry.viewport);
             }
         });
+    });
+
+    $(".pickupModal").click(function() {
+        
+        shop_address2.value = shop_address.value;
+
+        let place = auto_shop_address.getPlace();
+        let lat = place.geometry.location.lat();
+        let lng = place.geometry.location.lng();
+    
+        shop_address2_map = new google.maps.Map(document.getElementById("googleMap"), {
+            zoom: 15,
+            center: { lat: lat, lng: lng},
+            disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+        
+
+        // console.log(place.geometry.location.lat());
+        // console.log(place.geometry.location.lng());
+        
+        ShowLocationOnTheMap(
+            shop_address2_map,lat,lng
+        );
+
+        // if (place.geometry.viewport) {
+        //        map.fitBounds(place.geometry.viewport);
+        // }
+
+        // // New map
+        // let map = new google.maps.Map(document.getElementById("googleMap"), {
+        //     zoom: 7,
+        //     center: { lat: 23.810332, lng: 90.4125181 },
+        //     // disableDefaultUI: true,
+        //     // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        // });
+
+        // let shop_address2 = document.getElementById("shop_address2");
+        // let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2, options);
+        
+        // auto_shop_address2.addListener("place_changed", () => {
+        //     let place = auto_shop_address2.getPlace();
+
+        //     // console.log(place.geometry.location.lat());
+        //     // console.log(place.geometry.location.lng());
+            
+        //     ShowLocationOnTheMap(
+        //         map,
+        //         place.geometry.location.lat(),
+        //         place.geometry.location.lng()
+        //     );
+
+        //     if (place.geometry.viewport) {
+        //        map.fitBounds(place.geometry.viewport);
+        //     }
+        // });
     });
 
     $(".deliveryModal").click(function() {
