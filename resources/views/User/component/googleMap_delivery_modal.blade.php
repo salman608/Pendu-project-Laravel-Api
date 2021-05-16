@@ -27,7 +27,7 @@
 
                 <div style="margin: 5 25 20 25;">
                     <!-- <p class="mt-3">3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka</p> -->
-                    <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: -10px;width: 100%">Select Delivery Point</button>
+                    <button type="button" id="deliveryModalBtn" class="button text-white" style="margin-top: -10px;width: 100%">Select Delivery Point</button>
                 </div>
             </div>
         </div>
