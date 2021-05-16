@@ -34,8 +34,8 @@ Route::group([
     'prefix' => 'auth'
 
 ], function ($router) {
-    Route::post('/login', [AuthController::class, 'login']);
-    Route::post('/register', [AuthController::class, 'register']);
+    // Route::post('/login', [AuthController::class, 'login'])->name('api.login');
+    Route::post('/register', [AuthController::class, 'register'])->name('api-register');
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/user-profile', [AuthController::class, 'userProfile']);

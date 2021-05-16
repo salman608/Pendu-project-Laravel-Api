@@ -41,6 +41,7 @@ class DropperAuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function register(Request $request) {
+
         $validator = Validator::make($request->all(), [
             'first_name' => 'required|string|between:2,100',
             'last_name' => 'required|string|between:2,100',
@@ -49,11 +50,27 @@ class DropperAuthController extends Controller
             'abn' => 'required|string',
             'vehicle_id' => 'required',
             'category_id' => 'required',
-            'licensef_front_side' => 'required',
-            'licensef_back_side' => 'required',
+            'license_front' => 'required',
+            'license_back' => 'required',
             'profile_image' => 'required',
             'password' => 'required|string|confirmed|min:6',
         ]);
+
+         //profile image part
+         if ($request->hasFile('profile_image')) {
+            $path = $request->profile_image->store('uploads/dropper/photos');
+
+        }
+
+        //licensef_front_side image part
+        if ($request->hasFile('license_front')) {
+            $path = $request->license_front->store('uploads/dropper/photos');
+        }
+
+        //licensef_back_side image part
+        if ($request->hasFile('license_back')) {
+            $path = $request->license_back->store('uploads/dropper/photos');
+        }
 
         if($validator->fails()){
             return response()->json($validator->errors()->toJson(), 400);

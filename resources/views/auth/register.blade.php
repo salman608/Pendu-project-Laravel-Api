@@ -20,7 +20,7 @@
                 <div class="modal-body">
 
                     <div class="reg_form">
-                        <form method="POST" action="{{ route('register') }}">
+                        <form method="POST" action="{{ route('api-register') }}">
                             @csrf
                             <div class="form-group">
                                 <input id="name" type="text"
