@@ -38,12 +38,6 @@ Route::get('collect_n_delivery', [CollectAndDeliveryController::class, 'index'])
 Route::get('mover', [MoverController::class, 'index']);
 
 
-//dropper routes
-Route::group(["as" => 'dropper.', "prefix" => 'dropper'], function () {
-    Route::get('/register', [App\Http\Controllers\User\DropperController::class, 'create'])->name('add-dropper');
-    Route::post('/store', [App\Http\Controllers\User\DropperController::class, 'store'])->name('store');
-});
-
 /**
  * User routes
  */

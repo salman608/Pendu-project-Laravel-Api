@@ -14,8 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'api',
-        // 'guard' => 'web',
+        'guard' => 'web',
         'passwords' => 'users',
     ],
 
@@ -47,18 +46,22 @@ return [
             'provider' => 'users',
             'hash' => false,
         ],
-
+        // start mine
         'dropper' => [
             'driver' => 'session',
             'provider' => 'droppers',
-            // 'hash' => false,
         ],
 
         'dropper-api' => [
             'driver' => 'jwt',
             'provider' => 'droppers',
-            // 'hash' => false,
+            'hash' => false,
         ],
+
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admins',
+        ]
     ],
 
     /*
@@ -88,6 +91,10 @@ return [
             'driver' => 'eloquent',
             'model' => App\Models\Dropper::class,
         ],
+        'admins' => [
+            'driver' => 'eloquent',
+            'model' => App\Models\Admin::class,
+        ],
 
         // 'users' => [
         //     'driver' => 'database',
@@ -113,6 +120,18 @@ return [
     'passwords' => [
         'users' => [
             'provider' => 'users',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'dropper' => [
+            'provider' => 'droppers',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'admin' => [
+            'provider' => 'admins',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

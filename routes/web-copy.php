@@ -155,13 +155,13 @@ Route::group(["middleware" => 'auth'], function () {
 
     // "middleware" => 'driver'
     Route::group(["as" => 'driver.', "prefix" => 'driver'], function () {
-        Route::get('dashboard', [App\Http\Controllers\Driver\DriverDashboardController::class, 'index'])->name('dashboard');
+        // Route::get('dashboard', [App\Http\Controllers\Driver\DriverDashboardController::class, 'index'])->name('dashboard');
         //quote section
-        Route::group(["as" => 'quote.', "prefix" => 'quote'], function () {
-            Route::get('/user-quote', [App\Http\Controllers\Driver\QuoteController::class, 'user_quote'])->name('user-quote');
-            Route::get('/pending/{id}', [App\Http\Controllers\Driver\QuoteController::class, 'pending'])->name('pending');
-            Route::get('/accept/{id}', [App\Http\Controllers\Driver\QuoteController::class, 'accept'])->name('accept');
-        });
+        // Route::group(["as" => 'quote.', "prefix" => 'quote'], function () {
+        //     Route::get('/user-quote', [App\Http\Controllers\Driver\QuoteController::class, 'user_quote'])->name('user-quote');
+        //     Route::get('/pending/{id}', [App\Http\Controllers\Driver\QuoteController::class, 'pending'])->name('pending');
+        //     Route::get('/accept/{id}', [App\Http\Controllers\Driver\QuoteController::class, 'accept'])->name('accept');
+        // });
 
     });
 });

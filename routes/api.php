@@ -8,8 +8,9 @@ use \App\Http\Controllers\Admin\CouponController;
 use App\Http\Controllers\Api\V1\Admin\ProductCategoryController;
 use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
 use App\Http\Controllers\Admin\VehicleController;
-use \App\Http\Controllers\AuthController;
-use App\Http\Controllers\DropperAuthController;
+use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
+use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
+// use App\Http\Controllers\DropperAuthController;
 
 
 /*
@@ -38,23 +39,35 @@ Route::group([
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
-    Route::get('/user-profile', [AuthController::class, 'userProfile']);
+    Route::get('/profile', [AuthController::class, 'profile']);
 });
 
-
-// =======Dropper Route Section=========
-
 Route::group([
-    // 'middleware' => 'dropper',
-    'prefix' => 'driver'
+    'middleware' => 'api',
+    'prefix' => 'dropper'
 
 ], function ($router) {
     Route::post('/login', [DropperAuthController::class, 'login']);
     Route::post('/register', [DropperAuthController::class, 'register']);
     Route::post('/logout', [DropperAuthController::class, 'logout']);
     Route::post('/refresh', [DropperAuthController::class, 'refresh']);
-    Route::get('/dropper-profile', [DropperAuthController::class, 'dropperProfile']);
+    Route::get('/profile', [DropperAuthController::class, 'profile']);
 });
+
+
+// =======Dropper Route Section=========
+
+// Route::group([
+//     // 'middleware' => 'dropper',
+//     'prefix' => 'driver'
+
+// ], function ($router) {
+//     Route::post('/login', [DropperAuthController::class, 'login']);
+//     Route::post('/register', [DropperAuthController::class, 'register']);
+//     Route::post('/logout', [DropperAuthController::class, 'logout']);
+//     Route::post('/refresh', [DropperAuthController::class, 'refresh']);
+//     Route::get('/dropper-profile', [DropperAuthController::class, 'dropperProfile']);
+// });
 
 
 // // ======== Admin Route  service Category(shop & drop ...) =====

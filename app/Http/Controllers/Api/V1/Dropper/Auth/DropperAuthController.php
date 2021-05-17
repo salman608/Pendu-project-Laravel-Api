@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api\V1\Dropper\Auth;
 
 use App\Models\Dropper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Validator;
+use App\Http\Controllers\Controller;
 
 class DropperAuthController extends Controller
 {
@@ -106,7 +107,7 @@ class DropperAuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh() {
-        return $this->createNewToken(auth('dropper')->refresh());
+        return $this->createNewToken(auth('dropper-api')->refresh());
     }
 
     /**
@@ -114,7 +115,7 @@ class DropperAuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function dropperProfile() {
+    public function profile() {
         $dropper = Auth::guard('dropper-api')->user();
         return response()->json($dropper);
     }

@@ -22,7 +22,7 @@ class CreateDroppersTable extends Migration
             $table->string('password');
             $table->string('abn');
             $table->integer('vehicle_id');
-            $table->integer('category_id');
+            $table->integer('service_id');
             $table->string('license_front')->nullable();
             $table->string('license_back')->nullable();
             $table->string('profile_image')->nullable();

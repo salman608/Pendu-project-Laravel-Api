@@ -11,7 +11,6 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 class Dropper extends Authenticatable implements JWTSubject
 {
     use HasFactory;
-    protected $guard = 'dropper-api';
 
     protected $fillable = [
         'first_name',
