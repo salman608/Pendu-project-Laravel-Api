@@ -49,7 +49,7 @@ class DropperAuthController extends Controller
             'phone' => 'required|string|max:16',
             'abn' => 'required|string',
             'vehicle_id' => 'required',
-            'category_id' => 'required',
+            'service_id' => 'required',
             'license_front' => 'required',
             'license_back' => 'required',
             'profile_image' => 'required',

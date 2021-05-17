@@ -128,12 +128,11 @@
                 <div class="form-group col-md-6">
 
                     <div class="drop_fisrt_name_area">
-                        <label name="category" for="inputEmail11" class='dropfnm'>Select category</label>
-                        <select name="category_id" class="custom-select dropper_select1 mr-sm-2" id="inlineFormCustomSelect24">
-                            <option selected>Select your category</option>
-                            <option value="1">Shop & Drop</option>
-                            <option value="2">Collect & Deliver</option>
-                            <option value="3">Movers</option>
+                        <label name="service" for="inputEmail11" class='dropfnm'>Select category</label>
+                        <select multiple class="selectpicker w-100 from-controll" name="product_cats[]" id="dropperselect">
+                                <option value="">1</option>
+                                <option value="">1</option>
+                                <option value="">1</option>
                         </select>
                     </div>
                 </div>
@@ -173,7 +172,7 @@
                         <div class="text-center" id="license_front_side_span"></div>
                     </div>
                 </div>
-                
+
                 <div class="form-group col-md-4 mt-4 ">
                     <div class="drop_font_area">
 
@@ -342,20 +341,20 @@
 
 
 <script>
-    $('#file_input_dropper_font').change(function(e) { 
-        var imgName = e.target.files[0].name; 
-        $("#license_front_side_span").text(imgName); 
-    }); 
+    $('#file_input_dropper_font').change(function(e) {
+        var imgName = e.target.files[0].name;
+        $("#license_front_side_span").text(imgName);
+    });
 
-    $('#file_input_dropper_back').change(function(e) { 
-        var imgName = e.target.files[0].name; 
-        $("#license_back_side_span").text(imgName); 
-    }); 
-    
-    $('#profile_image').change(function(e) { 
-        var imgName = e.target.files[0].name; 
-        $("#profile_image_span").text(imgName); 
-    }); 
+    $('#file_input_dropper_back').change(function(e) {
+        var imgName = e.target.files[0].name;
+        $("#license_back_side_span").text(imgName);
+    });
+
+    $('#profile_image').change(function(e) {
+        var imgName = e.target.files[0].name;
+        $("#profile_image_span").text(imgName);
+    });
 
 
 </script>
