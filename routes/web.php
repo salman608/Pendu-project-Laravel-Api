@@ -33,6 +33,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // Services routes
 Route::get('shop_n_drop', [ShopAndDropController::class, 'index']);
+Route::post('shop_n_drop', [ShopAndDropController::class, 'store'])->name('shop_n_drop.add');
 Route::get('collect_n_delivery', [CollectAndDeliveryController::class, 'index']);
 Route::get('mover', [MoverController::class, 'index']);
 

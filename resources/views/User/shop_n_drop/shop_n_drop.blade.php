@@ -71,7 +71,7 @@ select.select-box {
     </div>
 
     <div class="container" style="border-radius: 10px; background: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
-        <form>
+        <form method="POST" action="{{route('shop_n_drop.add')}}">
             @csrf
             <div id="task-details">
                   <div class="form-group">
@@ -116,9 +116,8 @@ select.select-box {
                   </div>
                     <div class="form-group">
                         <label for="additional_note" class="label-title">Additional notes</label>
-                        <input id="additional_note" class="form-control input-group-lg bg-input-orange" type="text" name="additional_note"
-                            title="Enter your total cost of the items"
-                            placeholder="Enter your total cost of the items" required/>
+                  
+                        <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note" title="Enter your total cost of the items" placeholder="Enter your total cost of the items" required ></textarea>
                     </div>
 
                     <div class="form-group">
@@ -237,8 +236,8 @@ select.select-box {
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Item Cost</label>
-                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none"> -->
-                </div>
+                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none"> 
+                </div> -->
                 <div class="form-group text-center nb-mover">
                     <small>You'll be asked to securely hold the funds in the app after you have accepted an offer & you'll only be paying for the items you requested.</small>
                 </div>
@@ -482,75 +481,6 @@ select.select-box {
 
 
 
-<script>
-    // Submission Button
-    $('#postSubmitButtonId').click(function() {
-        $('form').submit();
-    })
-
-    // Form tag
-    $('form').submit(function (event) {
-        event.preventDefault();
-
-        $('#postSubmitButtonId').attr('disabled', 'disabled');
-
-        $.ajax({
-                url: "{{ route('task.add') }}",
-                type: 'POST',
-                dataType: 'json',
-                data: $('form').serialize(),
-        })
-        .done(function (response) {
-
-            console.log('====================================');
-            console.log(response);
-            console.log('====================================');
-
-            if (response.alertType == 'error') {
-                swal({
-                    icon: 'error',
-                    title: 'Oops...',
-                    text: response.message,
-                });
-
-            } else {
-
-                $('#deliveryProcessModal').modal('show');
-                $('form').trigger("reset");
-
-                // setTimeout(function () {
-                //     window.location = './'
-                // }, 3000);
-            }
-
-            $('#postSubmitButtonId').prop('disabled', false);
-
-        })
-        .fail(function (error) {
-
-            if (error.responseJSON) {
-                let errorText = ''
-                for (const [key, value] of Object.entries(error.responseJSON.errors)) {
-                    errorText += value + '. ';
-                }
-
-                swal({
-                    icon: 'info',
-                    title: 'Oops...',
-                    text: errorText,
-                });
-            }
-
-            $('#postSubmitButtonId').prop('disabled', false);
-        })
-        .always(function () {
-            console.log("complete");
-        });
-    });
-
-
-
-</script>
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- Latest compiled and minified JavaScript -->
@@ -754,5 +684,75 @@ select.select-box {
     });
 </script>
 
+
+<script>
+    // Submission Button
+    $('#postSubmitButtonId').click(function() {
+        $('form').submit();
+    })
+
+    // Form tag
+    // $('form').submit(function (event) {
+    //     event.preventDefault();
+
+    //     $('#postSubmitButtonId').attr('disabled', 'disabled');
+
+    //     $.ajax({
+    //             url: "{{ route('task.add') }}",
+    //             type: 'POST',
+    //             dataType: 'json',
+    //             data: $('form').serialize(),
+    //     })
+    //     .done(function (response) {
+
+    //         console.log('====================================');
+    //         console.log(response);
+    //         console.log('====================================');
+
+    //         if (response.alertType == 'error') {
+    //             swal({
+    //                 icon: 'error',
+    //                 title: 'Oops...',
+    //                 text: response.message,
+    //             });
+
+    //         } else {
+
+    //             $('#deliveryProcessModal').modal('show');
+    //             $('form').trigger("reset");
+
+    //             // setTimeout(function () {
+    //             //     window.location = './'
+    //             // }, 3000);
+    //         }
+
+    //         $('#postSubmitButtonId').prop('disabled', false);
+
+    //     })
+    //     .fail(function (error) {
+
+    //         if (error.responseJSON) {
+    //             let errorText = ''
+    //             for (const [key, value] of Object.entries(error.responseJSON.errors)) {
+    //                 errorText += value + '. ';
+    //             }
+
+    //             swal({
+    //                 icon: 'info',
+    //                 title: 'Oops...',
+    //                 text: errorText,
+    //             });
+    //         }
+
+    //         $('#postSubmitButtonId').prop('disabled', false);
+    //     })
+    //     .always(function () {
+    //         console.log("complete");
+    //     });
+    // });
+
+
+
+</script>
 
 @endsection
