@@ -21,9 +21,9 @@ class Dropper extends Authenticatable implements JWTSubject
         'password',
         'abn',
         'vehicle_id',
-        'category_id',
-        'licensef_front_side',
-        'licensef_back_side',
+        'service_id',
+        'license_front',
+        'license_back',
         'profile_image',
     ];
 

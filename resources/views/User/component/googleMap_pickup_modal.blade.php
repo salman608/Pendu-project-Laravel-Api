@@ -11,12 +11,12 @@
                 </button>
             </div>
             <div class="modal-body popUpImage position-relative" style="padding: 0">
-                
+
                 <div id="googleMap" class="map"></div>
 
                 <div class="w-100 d-flex justify-content-center">
                     <div id="input_container">
-                    <input class="form-control input-group-lg " type="text" name="shop_address2" id="shop_address2"
+                    <input type="text" name="input shop_address2" id="shop_address2"
                                    title="Enter your pickup address"
                                    placeholder="Enter your pickup address" required/>
 

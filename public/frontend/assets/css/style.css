@@ -451,7 +451,12 @@ textarea.form-control {
         bottom: 3%;
     }
 
-    
+
+}
+
+#dropperselect{
+    background: white;
+    border-radius: 22px;
 }
 
 /*# sourceMappingURL=style.css.map */

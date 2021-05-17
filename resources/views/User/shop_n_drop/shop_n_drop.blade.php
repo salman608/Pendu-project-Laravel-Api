@@ -343,10 +343,10 @@ select.select-box {
 </section>
 
 
-                              
 
 
-@include("User.component.googleMap_pickup_modal") 
+
+@include("User.component.googleMap_pickup_modal")
 @include("User.component.googleMap_delivery_modal")
 @include("User.component.post_delivery")
 
@@ -374,7 +374,7 @@ select.select-box {
 
         // Select Delivery Time based on 2nd Lable
         $('.delivery_time_checker').click(function(){
-            
+
             let label = $('.delivery_time_checker').parents("label");
             label.children().prop("checked", true);
         });
@@ -393,7 +393,7 @@ select.select-box {
         //     })
         // }
         // else
-            
+
         // Chekc is empty
         if ($('#title').val() == '') {
 
@@ -495,25 +495,25 @@ select.select-box {
 <script>
     // Maps
 
-    
+
     let options = {
         // types: ['(cities)',],
-        componentRestrictions: { country: "bd" }, 
+        componentRestrictions: { country: "bd" },
     }
     centeredLatLng = { lat: 23.810332, lng: 90.4125181 }
-    
+
     let shop_address_marker;
     var shop_address = { address: '', lat: '', lng: '' };
     var shop_address_modal = { address: '', lat: '', lng: '' };
     let shop_address_input = document.getElementById("shop_address");
-    let auto_shop_address = new google.maps.places.Autocomplete(shop_address_input, options);    
+    let auto_shop_address = new google.maps.places.Autocomplete(shop_address_input, options);
     let shop_address2_input = document.getElementById("shop_address2");
 
     let delivery_address_marker;
     var delivery_address = { address: '', lat: '', lng: '' };
     var delivery_address_modal = { address: '', lat: '', lng: '' };
     let delivery_address_input = document.getElementById("delivery_address");
-    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address_input, options);    
+    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address_input, options);
     let delivery_address2_input = document.getElementById("delivery_address2");
 
     auto_shop_address.addListener("place_changed", () => {
@@ -534,7 +534,7 @@ select.select-box {
 
 
 
-    
+
     // function ShowLocationOnTheMap(map, latitude, longitude) {
 
     //     // Remove old marker
@@ -548,10 +548,10 @@ select.select-box {
     //         map: map,
     //     });
     // }
- 
+
 
     $(".pickupModal").click(function() {
-        
+
         // New map
         let map = new google.maps.Map(document.getElementById("googleMap"), {
             zoom: 7,
@@ -561,7 +561,7 @@ select.select-box {
         });
 
         let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
-        
+
         auto_shop_address2.addListener("place_changed", () => {
             let place = auto_shop_address2.getPlace();
             let latitude = place.geometry.location.lat();
@@ -597,11 +597,11 @@ select.select-box {
     $("#picupModalBtn").click(function() {
 
         if(
-            shop_address2_input.value == '' || 
-            typeof shop_address_modal == 'undefined' || 
+            shop_address2_input.value == '' ||
+            typeof shop_address_modal == 'undefined' ||
             shop_address_modal.address == '' ||
             shop_address_modal.lng == '' ||
-            shop_address_modal.lat == '' 
+            shop_address_modal.lat == ''
         ) {
             swal({
                 icon: 'error',
@@ -609,7 +609,7 @@ select.select-box {
                 text: "Shop/Pickup address is invalid. Try again.",
             });
 
-            return; 
+            return;
         }
         shop_address = shop_address_modal;
         shop_address_input.value = shop_address.address;
@@ -626,7 +626,7 @@ select.select-box {
         });
 
         let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2_input, options);
-        
+
         auto_delivery_address2.addListener("place_changed", () => {
             let place = auto_delivery_address2.getPlace();
             let latitude = place.geometry.location.lat();
@@ -663,11 +663,11 @@ select.select-box {
     $("#deliveryModalBtn").click(function() {
 
         if(
-            delivery_address2_input.value == '' || 
-            typeof delivery_address_modal == 'undefined' || 
+            delivery_address2_input.value == '' ||
+            typeof delivery_address_modal == 'undefined' ||
             delivery_address_modal.address == '' ||
             delivery_address_modal.lng == '' ||
-            delivery_address_modal.lat == '' 
+            delivery_address_modal.lat == ''
         ) {
             swal({
                 icon: 'error',
@@ -675,7 +675,7 @@ select.select-box {
                 text: "Delivery address is invalid. Try again.",
             });
 
-            return; 
+            return;
         }
         delivery_address = delivery_address_modal;
         delivery_address_input.value = delivery_address.address;

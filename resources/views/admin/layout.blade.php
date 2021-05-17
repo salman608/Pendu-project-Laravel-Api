@@ -149,13 +149,13 @@
                             </a>
                             <ul class="submenu" {{ Request::routeIs('blog*') ? 'style=display:block;' : '' }}>
                                 <li class="submenu-item {{ Request::is('admin/post-list') ? 'active' : '' }}">
-                                    <a href="{{ route('blog.post.list') }}">Posts</a>
+                                    <a href="">Posts</a>
                                 </li>
                                 <li class="submenu-item {{ Request::is('admin/category-list') ? 'active' : '' }}">
-                                    <a href="{{ route('blog.category.list') }}">Categories</a>
+                                    <a href="">Categories</a>
                                 </li>
                                 <li class="submenu-item {{ Request::is('admin/tag-list') ? 'active' : '' }}">
-                                    <a href="{{ route('blog.tag.list') }}">Tag</a>
+                                    <a href="">Tag</a>
                                 </li>
                             </ul>
                         </li>
