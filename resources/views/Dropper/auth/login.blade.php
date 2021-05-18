@@ -1,9 +1,9 @@
 @extends('User.Asset')
 @section('user_content')
+ <h1>I am dropper</h1>
 
 
-
-
+{{--
 <section class="login_page">
     <div class="login_img_overly"></div>
 
@@ -29,22 +29,22 @@
                                 class="login_input form-control @error('email') is-invalid @enderror" name="email"
                                 value="{{ old('email') }}"  autocomplete="email" autofocus>
                                 <label class='login_email' for="email">Email address</label>
-                                {{-- @error('email')
+                                @error('email')
                                 <span class="invalid-feedback mb-4" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror --}}
+                                @enderror
                             </div>
 
                             <div class="form-group">
                                 <input id="password" type="password"
                                     class="pass_input form-control @error('password') is-invalid @enderror"
                                     name="password" required autocomplete="current-password">
-                                {{-- @error('password')
+                                @error('password')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror --}}
+                                @enderror
                                 <label class='login_pass' for="password">Password</label>
                             </div>
 
@@ -97,13 +97,13 @@
                 </div>
 
                 <div class="modal-footer login_footer">
-                    <!-- <p>New user,<a href="{{ url('register') }}"><span data-toggle="modal" data-target="#reg_exampleModalCenter"> Register!</span></a></p> -->
+                  <p>New user,<a href="{{ url('register') }}"><span data-toggle="modal" data-target="#reg_exampleModalCenter"> Register!</span></a></p>
                 </div>
             </div>
 
         </div>
     </div>
 
-</section>
+</section> --}}
 
 @endsection
