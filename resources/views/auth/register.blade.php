@@ -20,7 +20,7 @@
                 <div class="modal-body">
 
                     <div class="reg_form">
-                        <form method="POST" action="{{ route('api-register') }}">
+                        <form method="POST" action="{{ route('register') }}">
                             @csrf
                             <div class="form-group">
                                 <input id="name" type="text"
@@ -53,11 +53,11 @@
                             <div class="form-group">
                                 <input type="text" class="form-control  reg_sub_input" id="" name="suburb">
                                 <label class='reg_sub' for="">Suburb</label>
-                                {{-- @error('suburb')
+                                @error('suburb')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror --}}
+                                @enderror
 
                             </div>
 
@@ -65,18 +65,28 @@
 
                             <div class="form-group">
                                 <input type="text" name="phone" class="form-control form-control-lg reg_phn_input" id=" ">
-                                {{-- @error('phone')
+                                @error('phone')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
                                 </span>
-                                @enderror --}}
+                                @enderror
                                 <label class='reg_phn' for="  ">Phone</label>
                             </div>
 
                             <div class="form-group">
                                 <input type="password" name="password" class="form-control form-control-lg reg_pass_input" id=" ">
-
+                                @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                                 <label class='reg_pass' for="  ">Password</label>
+                            </div>
+
+                            <div class="form-group">
+                                <input type="password" name="password_confirmation" class="form-control form-control-lg reg_pass_input" id=" ">
+                           
+                                <label class='reg_pass' for="  ">Confirm PassPassword</label>
                             </div>
 
 
