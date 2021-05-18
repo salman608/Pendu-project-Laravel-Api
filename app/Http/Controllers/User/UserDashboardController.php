@@ -16,8 +16,9 @@ class UserDashboardController extends Controller
     }
     public function index()
     {
-        return auth()->user();
+        // return auth()->user();
 
+        return view('home');
         // return view('home', compact('droppers', 'posts'));
     }
 

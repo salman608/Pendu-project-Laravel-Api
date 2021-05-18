@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CouponController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -89,11 +90,29 @@ Route::group(["as" => 'time'], function () {
 });
 
 
+
+
+
+// Admin  -> Coupon 
+Route::group(["as" => 'admin.', "prefix" => 'admin'], function () {
+    Route::resource('coupons', CouponController::class);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
 //user area----------------------------
 
 
-
-Auth::routes();
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

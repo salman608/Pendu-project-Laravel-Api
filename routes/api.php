@@ -31,7 +31,6 @@ use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 // =========User route Controller==========
 
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'auth'
 
 ], function ($router) {
@@ -42,8 +41,11 @@ Route::group([
     Route::get('/profile', [AuthController::class, 'profile']);
 });
 
+
+/**
+ * Dropper Routes
+ */
 Route::group([
-    'middleware' => 'api',
     'prefix' => 'dropper'
 
 ], function ($router) {

@@ -69,6 +69,7 @@ class Kernel extends HttpKernel
 
 
         //create middleware
+        'jwt.verify' => \App\Http\Middleware\JwtMiddleware::class,
         'admin'=>AdminMiddleware::class,
         'user'=>UserMiddleware::class,
         'driver'=>DriverMiddleware::class,

@@ -55,7 +55,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'suburb' => ['required', 'string', 'max:255'],
             'phone' => ['required', 'max:255'],
-            'password' => ['required', 'string', 'min:8'],
+            'password' => ['required','confirmed','string', 'min:8'],
         ]);
     }
 
@@ -67,18 +67,12 @@ class RegisterController extends Controller
      */
     public static function create(array $data)
     {
-
-       $user=User::create([
+        return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'suburb' => $data['suburb'],
             'phone' => $data['phone'],
-            'password' => Hash::make($data['password']),
+            'password' => Hash::make(+$data['password']),
         ]);
-        Auth::login($user);
-
-       return redirect()->route('home');
-
-
     }
 }
