@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Dropper\Auth;
 
+use App\Http\Controllers\Admin\VehicleController;
 use App\Http\Controllers\Controller;
+use App\Models\Service;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Models\Vehicle;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -80,6 +83,9 @@ class RegisterController extends Controller
 
     public function showRegisterForm()
     {
-        return view('dropper.auth.register');
+        $data=[];
+        $data['vehicles']=Vehicle::all();
+        $data['services']=Service::all();
+        return view('dropper.auth.register',$data);
     }
 }

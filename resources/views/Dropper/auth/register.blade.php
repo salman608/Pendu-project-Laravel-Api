@@ -116,11 +116,11 @@
                         <label for="inputEmail10" class='dropfnm'>Vehicle type</label>
                         <select class="custom-select dropper_select1 mr-sm-2" name="vehicle_type"
                             id="inlineFormCustomSelect22">
-                            <option selected>Select your vehicle</option>
-                            <option value="Bike">Bike</option>
-                            <option value="Car">Car</option>
-                            <option value="Ute">Ute</option>
-                            <option value="Van or truck">Van or truck</option>
+                            <option value="">Select your Vehicle</option>
+                            @foreach ($vehicles as $vehicle )
+                            <option value="">{{$vehicle->title}}</option>
+                            @endforeach
+
                         </select>
                     </div>
                 </div>
@@ -130,9 +130,11 @@
                     <div class="drop_fisrt_name_area">
                         <label name="service" for="inputEmail11" class='dropfnm'>Select category</label>
                         <select multiple class="selectpicker w-100 from-controll" name="product_cats[]" id="dropperselect">
-                                <option value="">1</option>
-                                <option value="">1</option>
-                                <option value="">1</option>
+                            @foreach ($services as $data)
+                            <option value="">{{$data->title}}</option>
+                            @endforeach
+
+
                         </select>
                     </div>
                 </div>
