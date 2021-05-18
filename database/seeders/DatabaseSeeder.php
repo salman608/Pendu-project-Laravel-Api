@@ -19,7 +19,11 @@ class DatabaseSeeder extends Seeder
 
         // //database seeder for user table 
         // $this->call(UsersTableSeeder::class);
+        $this->call(DropperSeeder::class);
+        $this->call(UserSeeder::class);
         $this->call(ServiceSeeder::class);
+        $this->call(CouponSeeder::class);
+        $this->call(DeliveryTimeSeeder::class);
         $this->call(ProductCategorySeeder::class);
         $this->call(DeliveryTimeSeeder::class);
 
