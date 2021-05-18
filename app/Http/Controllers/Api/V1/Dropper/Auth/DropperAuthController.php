@@ -11,7 +11,8 @@ use App\Http\Controllers\Controller;
 class DropperAuthController extends Controller
 {
     public function __construct() {
-        $this->middleware('auth:dropper-api', ['except' => ['login', 'register']]);
+        // $this->middleware('auth:dropper-api', ['except' => ['login', 'register']]);
+        $this->middleware('jwt.verify', ['except' => ['login', 'register']]);
     }
 
     /**
