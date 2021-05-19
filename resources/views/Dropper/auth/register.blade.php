@@ -120,7 +120,6 @@
                             @foreach ($vehicles as $vehicle )
                             <option value="{{$vehicle->id}}">{{$vehicle->title}}</option>
                             @endforeach
-
                         </select>
                     </div>
                 </div>
