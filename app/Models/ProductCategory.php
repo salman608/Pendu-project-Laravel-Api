@@ -9,5 +9,10 @@ class ProductCategory extends Model
 {
     use HasFactory;
 
-    protected $guraded = [];
+    protected $guarded = [];
+
+    public function tasks()
+    {
+        return $this->belongsToMany(Task::class, 'product_category_task', 'product_category_id','task_id');
+    }
 }

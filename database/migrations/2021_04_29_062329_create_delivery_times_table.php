@@ -15,7 +15,8 @@ class CreateDeliveryTimesTable extends Migration
     {
         Schema::create('delivery_times', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('title')->unique();
+            $table->string('slug')->unique();
             $table->string('icon')->nullable();
             $table->timestamp('time')->nullable();
             $table->timestamps();

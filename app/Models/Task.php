@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use phpDocumentor\Reflection\Types\This;
 
 class Task extends Model
 {
@@ -13,12 +14,10 @@ class Task extends Model
 
     protected $fillable = [
         'order_no',
-        // 'user_id',
-        // 'productcat_id',
+        'user_id',
         'category_id',
-        'vahicle_type',
+        'vehicle_type',
         'title',
-        'product_id',
         'additional_note',
         'product_cost',
         'shop_address',
@@ -29,8 +28,16 @@ class Task extends Model
         'task_image',
         'status',
         'accepted_by',
-        'created_by',
         'created_at',
         'updated_at',
     ];
+
+    public function productCategories()
+    {
+        return $this->belongsToMany(ProductCategory::class, 'product_category_task', 'task_id', 'product_category_id');
+    }
+
+    public function products(){
+        return $this->hasMany(TaskProducts::class);
+    }
 }

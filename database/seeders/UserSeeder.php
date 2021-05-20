@@ -15,6 +15,7 @@ class UserSeeder extends Seeder
     public function run()
     {
         //this is admin area
+        DB::table('users')->truncate();
         DB::table('users')->insert([
             "name"=>'user',
             "email"=>'user@gmail.com',
