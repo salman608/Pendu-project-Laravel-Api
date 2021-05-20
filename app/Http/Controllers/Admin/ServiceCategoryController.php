@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Service;
+use App\Models\ServiceCategory;
 use Illuminate\Http\Request;
 
-class ServiceController extends Controller
+class ServiceCategoryController extends Controller
 {
     // ========Service  List=========
     public function index(){
@@ -31,7 +31,7 @@ class ServiceController extends Controller
            Image::make($service_icon)->resize(270,270)->save('upload/service/'.$name_gen);
            $service_icon = 'upload/service/'.$name_gen;
 
-           $service=new Service();
+           $service=new ServiceCategory();
            $service->title=$request->title;
            $service->slug=Str::slug($request->title);
            $service->icon=$service_icon;
@@ -48,7 +48,7 @@ class ServiceController extends Controller
       // ========Service  update=========
       public function update(Request $request,$service_id){
 
-        $service=Service::FindOrFail($service_id);
+        $service=ServiceCategory::FindOrFail($service_id);
 
         //Service Image part
         $service_image = $request->file('icon');
@@ -66,7 +66,7 @@ class ServiceController extends Controller
 
       // ========Service  delete=========
       public function delete($service_id){
-         $service=Service::FiadOrFail($service_id)->delete();
+         $service=ServiceCategory::FiadOrFail($service_id)->delete();
          return back();
       }
 
@@ -82,6 +82,6 @@ class ServiceController extends Controller
 
       // ========Service  get all category api  =========
       public function getaAllCat(){
-       return response()->json(Service::all(), 200);
+       return response()->json(ServiceCategory::all(), 200);
       }
 }

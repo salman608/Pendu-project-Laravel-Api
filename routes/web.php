@@ -6,7 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ShopAndDropController;
 use App\Http\Controllers\User\CollectAndDeliveryController;
 use App\Http\Controllers\User\MoverController;
-
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +27,9 @@ Auth::routes();
  * Frontend  Routes
  *
  */
+Route::get('/hello', function(){
+    return Carbon::tomorrow();
+});
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 // Route::get('/', [HomeController::class, 'index'])->name('home');

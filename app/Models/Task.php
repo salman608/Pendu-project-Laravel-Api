@@ -11,26 +11,28 @@ class Task extends Model
 
     protected $table = 'tasks';
 
-    protected $fillable = [
-        'order_no',
-        // 'user_id',
-        // 'productcat_id',
-        'category_id',
-        'vahicle_type',
-        'title',
-        'product_id',
-        'additional_note',
-        'product_cost',
-        'shop_address',
-        'delivery_address',
-        'delivery_time',
-        'total_products',
-        'item_cost',
-        'task_image',
-        'status',
-        'accepted_by',
-        'created_by',
-        'created_at',
-        'updated_at',
-    ];
+    protected $guarded = [];
+
+    public function productCategories()
+    {
+        return $this->belongsToMany(ProductCategory::class, 'product_category_task', 'task_id', 'product_category_id');
+    }
+
+    public function products(){
+        return $this->hasMany(TaskProducts::class);
+    }
+
+    public function vehicle(){
+        return $this->belongsTo(Vehicle::class);
+    }
+    public function getImageUrlAttribute($value){
+    	$imageUrl = "";
+    	if(! is_null($this->image)){
+
+    		$imagePath = public_path()."/uploads/images/tasks/".$this->image;
+    		if(file_exists($imagePath)) $imageUrl = asset("uploads/images/tasks/". $this->image);
+    	}
+    	return $imageUrl;
+    }
+
 }

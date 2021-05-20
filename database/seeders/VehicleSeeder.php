@@ -21,7 +21,8 @@ class VehicleSeeder extends Seeder
             ['title' => 'Bike','icon' => 'bike.png','status'=>1],
             ['title' => 'car','icon' => 'car.png','status'=>1],
             ['title' => 'Track','icon' => 'track.png','status'=>1],
-            ['title' => 'Utte','icon' => 'utte.png','status'=>1],
+            ['title' => 'Ute','icon' => 'utte.png','status'=>1],
+            ['title' => 'Van','icon' => 'van.png','status'=>1],
         ]);
 
         $vehicles->each(function($vehicle){

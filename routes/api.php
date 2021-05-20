@@ -1,15 +1,17 @@
 <?php
 
-use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\ServiceCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\CouponController;
-// use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Api\V1\Admin\ProductCategoryController;
 use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
 use App\Http\Controllers\Admin\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
+use App\Http\Controllers\Api\V1\User\TaskController;
+use App\Http\Controllers\ApiController;
+
 // use App\Http\Controllers\DropperAuthController;
 
 
@@ -41,6 +43,24 @@ Route::group([
     Route::get('/profile', [AuthController::class, 'profile']);
 });
 
+// Route::prefix('v1')->name('v1.')->group(function () {
+Route::prefix('v1')->group(function () {
+	Route::get('/ping', [ApiController::class, 'ping']);
+    Route::get('/me', [ApiController::class, 'me']);
+
+    Route::fallback(function () {
+        return response()->json([
+            'status'=> 404, 
+            'message' => 'Route does not exist'
+        ], 404);
+    });
+  
+});
+
+
+Route::prefix('v1')->middleware('jwt.verify')->group(function () {
+	Route::post('/tasks/create', [TaskController::class, 'store']);
+});
 
 /**
  * Dropper Routes
@@ -73,10 +93,10 @@ Route::group([
 
 
 // // ======== Admin Route  service Category(shop & drop ...) =====
-// Route::get('/category-list', [ServiceController::class, 'getaAllCat'])->name('category.getaAllCat');
+// Route::get('/category-list', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
 
 // ======== Admin Route  service Category(shop & drop ...) =====
-Route::get('/category-list', [ServiceController::class, 'getaAllCat'])->name('category.getaAllCat');
+Route::get('/category-list', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
 
 
 // ======== Admin Route Coupon submit Api=====

@@ -15,6 +15,7 @@ class DropperSeeder extends Seeder
     public function run()
     {
         //this is admin area
+        DB::table('droppers')->truncate();
         DB::table('droppers')->insert([
             "first_name"=>'mr.',
             "last_name"=>'dropper',

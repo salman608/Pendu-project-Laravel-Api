@@ -1,41 +1,30 @@
 <?php
+
 namespace App\Repositories;
 
-use App\Contracts\CouponContract;
 use App\Models\Coupon;
+use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 
-class CouponRepository extends BaseRepository implements CouponContract
+
+class CouponRepository  
 {
-
-    public function __construct(Coupon $model)
+    public function __construct()
     {
-        parent::__construct($model);
+        # code...
     }
 
-    public function listCoupons (string $order = 'id', string $sort = 'desc', array $columns = ['*'])
+    public static function list()
     {
-        return $this->all($columns, $order, $sort);
+        return Coupon::all();
     }
 
-    public function findCouponById(int $id)
+    public static function store($newcoupon)
     {
         try {
-            return $this->findOneOrFail($id);
- 
-        } catch (ModelNotFoundException $e) {
- 
-            throw new ModelNotFoundException($e);
-        }
- 
-    }
-
-    public function createCoupon(array $params)
-    {
-        try {
-            $coupon = new Coupon($params);
+            $coupon = new Coupon($newcoupon);
             $coupon->save();
 
             return $coupon;
@@ -43,14 +32,4 @@ class CouponRepository extends BaseRepository implements CouponContract
             throw new InvalidArgumentException($exception->getMessage());
         }
     }
-
-    public function updateCoupon(array $params)
-    {
-
-    }
-    public function deleteCoupon($id)
-    {
-
-    }
-
 }
