@@ -34,7 +34,7 @@ class TaskRepository
     //     }
     // }
 
-    public static function saveShopDropData($data){
+    public static function saveTaskData($data){
  
         // 1 = shop & drop, 2 = collect & delivery, 3 = movers
         $task   = new Task();
@@ -51,6 +51,15 @@ class TaskRepository
         $task->user_id      = request()->user()->id;
         $task->delivery_time_id      = $data['delivery_time_id'];
         $task->service_category_id   = $data['service_category_id'];
+
+        if(!empty($data['vehicle_id'])){
+            $task->vehicle_id   = $data['vehicle_id'];
+        }
+
+        if(!empty($data['image'])){
+            $task->image   = $data['image'];
+        }
+
         $task->save();
 
         return $task;

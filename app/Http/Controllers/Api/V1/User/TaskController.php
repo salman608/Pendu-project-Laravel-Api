@@ -9,15 +9,15 @@ use Validator;
 use Exception;
 use DB;
 use Illuminate\Support\Facades\Log;
-
+use Image;
+use Illuminate\Support\Str;
 class TaskController extends ApiController
 {
     public function __construct() {
 
     }
 
-    public function saveShopDrop(Request $request){
-      
+    public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
             
@@ -31,7 +31,7 @@ class TaskController extends ApiController
             'notes' => 'required|string',
 
             'total_cost' => 'required',
-            'user_id' => 'required',
+            'vehicle_id' => 'sometimes|required',
             'delivery_time_id' => 'required',
             'service_category_id' => 'required',
             'products' => 'required',
@@ -50,13 +50,36 @@ class TaskController extends ApiController
 
         try {
             $data = $validator->validated();
-            $task = TaskRepository::saveShopDropData($data);
+
+            // image upload
+            if ($file = $request->file('image')) {
+
+                $name = Str::random(5).date('mdYHis').uniqid() .'.' . $file->getClientOriginalExtension();
+                Image::make($file)->resize(270,270)->save('uploads/images/tasks/'.$name);
+                $data['image'] = $name;
+                
+                // $name = uniqid() . $file->getClientOriginalName();
+                // $name = strtolower(str_replace(' ', '-', $name));
+                // // $file->move('images/tasks/', $name);
+                // Image::make($file)->resize(270,270)->save('upload/images/tasks/'.$name);
+                // return $data['image'] = $name;
+            }
+
+            
+
+
+            $task = TaskRepository::saveTaskData($data);
             $task->products()->createMany($data['products']);
             $task->productCategories()->attach($data['product_category_ids']);
             
             DB::commit();
             
-            $task->load(['products','productCategories']);
+            if(!empty($data['vehicle_id'])){
+                $task->load(['products','productCategories','vehicle']);
+            } else{
+                $task->load(['products','productCategories']);
+            }
+
             return $this->respondWithSuccess(
                 'Task request is submitted',
                 $task
@@ -64,6 +87,11 @@ class TaskController extends ApiController
 
         } catch (Exception $e) {
             DB::rollBack();
+
+            if(!empty($data['image']) && file_exists('uploads/images/tasks/'.$data['image'])){
+				unlink('uploads/images/tasks/'.$data['image']);
+			}
+
 
             Log::info($e->getMessage());
 
@@ -74,4 +102,5 @@ class TaskController extends ApiController
             );
         }
     }
+ 
 }

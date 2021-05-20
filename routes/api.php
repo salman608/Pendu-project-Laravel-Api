@@ -50,7 +50,7 @@ Route::prefix('v1')->group(function () {
 
     Route::fallback(function () {
         return response()->json([
-            'success'=> false, 
+            'status'=> 404, 
             'message' => 'Route does not exist'
         ], 404);
     });
@@ -59,9 +59,7 @@ Route::prefix('v1')->group(function () {
 
 
 Route::prefix('v1')->middleware('jwt.verify')->group(function () {
-	Route::post('/tasks/shop-n-drop/create', [TaskController::class, 'saveShopDrop']);
-	Route::post('/tasks/collect-n-delivery/create', [TaskController::class, 'saveCollectDelivery']);
-	Route::post('/tasks/mover/create', [TaskController::class, 'saveMover']);
+	Route::post('/tasks/create', [TaskController::class, 'store']);
 });
 
 /**
