@@ -37,10 +37,10 @@ class ApiController extends Controller
      */
     protected function respondWithSuccess($message = '', $data = [], $code = 200){
         return response()->json([
-            'success' => true,
+            'status' => $code,
             'message' => $message,
-            'data' =>[]
-        ]);
+            'data' =>$data
+        ], $code);
     }
 
     /**
@@ -53,9 +53,9 @@ class ApiController extends Controller
      */
     protected function respondWithError($message = '', $data = [], $code = 200){
         return response()->json([
-            'success' => false,
+            'status' => $code,
             'message' => $message,
-            'data' =>[]
-        ]);
+            'error' =>$data
+        ], $code);
     }
 }

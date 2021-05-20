@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use phpDocumentor\Reflection\Types\This;
 
 class Task extends Model
 {
@@ -12,25 +11,7 @@ class Task extends Model
 
     protected $table = 'tasks';
 
-    protected $fillable = [
-        'order_no',
-        'user_id',
-        'category_id',
-        'vehicle_type',
-        'title',
-        'additional_note',
-        'product_cost',
-        'shop_address',
-        'delivery_address',
-        'delivery_time',
-        'total_products',
-        'item_cost',
-        'task_image',
-        'status',
-        'accepted_by',
-        'created_at',
-        'updated_at',
-    ];
+    protected $guarded = [];
 
     public function productCategories()
     {

@@ -31,8 +31,11 @@ class DatabaseSeeder extends Seeder
 
 
 
+        // {address: "Mirpur-1, Dhaka, Bangladesh", lat: 23.7956037, lng: 90.3536548}
+        // {address: "Uttara Sector 11 Park, Dhaka, Bangladesh", lat: 23.8764744, lng: 90.39197949999999}
 
-
+        // {address: "Savar New Market, 1340, Savar Union, Bangladesh", lat: 23.8506918, lng: 90.259203}
+        // {address: "Dhanmondi 32 Road Bridge, Dhanmondi Bridge, Dhaka, Bangladesh", lat: 23.7509735, lng: 90.373582}
 
     }
 }

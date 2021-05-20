@@ -9,6 +9,7 @@ use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
 use App\Http\Controllers\Admin\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
+use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\ApiController;
 
 // use App\Http\Controllers\DropperAuthController;
@@ -43,7 +44,7 @@ Route::group([
 });
 
 // Route::prefix('v1')->name('v1.')->group(function () {
-Route::prefix('v1')->name('v1.')->group(function () {
+Route::prefix('v1')->group(function () {
 	Route::get('/ping', [ApiController::class, 'ping']);
     Route::get('/me', [ApiController::class, 'me']);
 
@@ -53,9 +54,15 @@ Route::prefix('v1')->name('v1.')->group(function () {
             'message' => 'Route does not exist'
         ], 404);
     });
+  
 });
 
 
+Route::prefix('v1')->middleware('jwt.verify')->group(function () {
+	Route::post('/tasks/shop-n-drop/create', [TaskController::class, 'saveShopDrop']);
+	Route::post('/tasks/collect-n-delivery/create', [TaskController::class, 'saveCollectDelivery']);
+	Route::post('/tasks/mover/create', [TaskController::class, 'saveMover']);
+});
 
 /**
  * Dropper Routes
