@@ -20,7 +20,6 @@ class Dropper extends Authenticatable implements JWTSubject
         'password',
         'abn',
         'vehicle_id',
-        'service_id',
         'license_front',
         'license_back',
         'profile_image',
@@ -61,5 +60,9 @@ class Dropper extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+
+    public function services(){
+        return $this->belongsToMany(Service::class);
     }
 }

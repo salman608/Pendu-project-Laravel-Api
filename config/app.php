@@ -168,6 +168,11 @@ return [
 
 
         /*
+         * My Created Service Providers...
+         */
+        App\Providers\RepositoryServiceProvider::class,
+
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,

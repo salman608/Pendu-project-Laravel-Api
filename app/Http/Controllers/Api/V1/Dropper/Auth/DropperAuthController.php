@@ -51,7 +51,7 @@ class DropperAuthController extends Controller
             'phone' => 'required|string|max:16',
             'abn' => 'required|string',
             'vehicle_id' => 'required',
-            'service_id' => 'required',
+            'services' => 'required',
             'license_front' => 'required',
             'license_back' => 'required',
             'profile_image' => 'required',
@@ -83,6 +83,7 @@ class DropperAuthController extends Controller
                     $validator->validated(),
                     ['password' => bcrypt($request->password)]
                 ));
+            $dropper->services()->attach($request->services);
 
         return response()->json([
             'message' => 'dropper successfully registered',

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Coupon;
 use App\Repositories\CouponRepository;
 use Illuminate\Http\Request;
+use App\Contracts\CouponContract;
 
 class CouponController extends Controller
 {   

@@ -13,7 +13,7 @@ Route::group(["as" => 'dropper.', "prefix" => 'dropper'], function () {
     // Route::post('login', [LoginController::class, 'login'])->name('login');
     // Route::post('logout', [LoginController::class, 'logout'])->name('logout');
 
-    Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('register');
+    Route::get('register', [RegisterController::class, 'showRegisterForm'])->name('dropper.register');
     Route::post('register', [RegisterController::class, 'register'])->name('register');
 
 

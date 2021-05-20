@@ -114,13 +114,12 @@
 
                     <div class="drop_fisrt_name_area">
                         <label for="inputEmail10" class='dropfnm'>Vehicle type</label>
-                        <select class="custom-select dropper_select1 mr-sm-2" name="vehicle_type"
+                        <select class="custom-select dropper_select1 mr-sm-2" name="vehicle_id"
                             id="inlineFormCustomSelect22">
-                            <option selected>Select your vehicle</option>
-                            <option value="Bike">Bike</option>
-                            <option value="Car">Car</option>
-                            <option value="Ute">Ute</option>
-                            <option value="Van or truck">Van or truck</option>
+                            <option value="">Select your Vehicle</option>
+                            @foreach ($vehicles as $vehicle )
+                            <option value="{{$vehicle->id}}">{{$vehicle->title}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </div>
@@ -129,10 +128,12 @@
 
                     <div class="drop_fisrt_name_area">
                         <label name="service" for="inputEmail11" class='dropfnm'>Select category</label>
-                        <select multiple class="selectpicker w-100 from-controll" name="product_cats[]" id="dropperselect">
-                                <option value="">1</option>
-                                <option value="">1</option>
-                                <option value="">1</option>
+                        <select multiple class="selectpicker w-100 from-controll" name="services[]" id="dropperselect">
+                            @foreach ($services as $data)
+                            <option value="{{$data->id}}">{{$data->title}}</option>
+                            @endforeach
+
+
                         </select>
                     </div>
                 </div>
@@ -166,7 +167,7 @@
                                 </g>
                             </svg>
 
-                            <input name="license_front_side" id="file_input_dropper_font" class='custom-file-input' type="file" />
+                            <input name="license_front" id="file_input_dropper_font" class='custom-file-input' type="file" />
 
                         </label>
                         <div class="text-center" id="license_front_side_span"></div>
@@ -194,7 +195,7 @@
                                 </g>
                             </svg>
 
-                            <input name="licensef_back_side" id="file_input_dropper_back" class='custom-file-input'
+                            <input name="license_back" id="file_input_dropper_back" class='custom-file-input'
                                 type="file" />
 
                         </label>

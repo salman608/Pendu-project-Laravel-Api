@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateVehiclesTable extends Migration
+class CreateDropperServiceTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,10 @@ class CreateVehiclesTable extends Migration
      */
     public function up()
     {
-        Schema::create('vehicles', function (Blueprint $table) {
+        Schema::create('dropper_service', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->string('icon');
-            $table->integer('status')->default(1);
+            $table->integer('dropper_id');
+            $table->integer('service_id');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateVehiclesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('vehicles');
+        Schema::dropIfExists('dropper_service');
     }
 }
