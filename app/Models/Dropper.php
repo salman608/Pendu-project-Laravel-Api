@@ -63,6 +63,6 @@ class Dropper extends Authenticatable implements JWTSubject
     }
 
     public function services(){
-        return $this->belongsToMany(Service::class);
+        return $this->belongsToMany(ServiceCategory::class);
     }
 }

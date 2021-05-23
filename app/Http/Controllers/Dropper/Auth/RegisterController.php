@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dropper\Auth;
 use App\Http\Controllers\Admin\VehicleController;
 use App\Http\Controllers\Controller;
 use App\Models\Dropper;
-use App\Models\Service;
+use App\Models\ServiceCategory;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Models\Vehicle;
@@ -197,7 +197,7 @@ class RegisterController extends Controller
     {
         $data=[];
         $data['vehicles']=Vehicle::all();
-        $data['services']=Service::all();
+        $data['services']=ServiceCategory::all();
         return view('dropper.auth.register',$data);
     }
 }

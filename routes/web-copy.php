@@ -56,25 +56,14 @@ Route::get('/product_cat_active/{pcat_id}', [App\Http\Controllers\Admin\ProductC
 Route::get('/product_cat_inactice/{pcat_id}', [App\Http\Controllers\Admin\ProductCategoryController::class, 'inactive'])->name('pro_cat.inactive');
 
 // ---------------Admin Route Product Tag --------
-Route::get('/product_tag_list', [App\Http\Controllers\Admin\TagController::class, 'index'])->name('pro_tag.list');
-Route::get('/product_tag_create', [App\Http\Controllers\Admin\TagController::class, 'create'])->name('pro_tag.create');
-Route::post('/product_tag_add', [App\Http\Controllers\Admin\TagController::class, 'store'])->name('pro_tag.store');
-Route::get('/product_tag_edit/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'edit'])->name('pro_tag.edit');
-Route::post('/product_tag_update/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'update'])->name('pro_tag.update');
-Route::post('/product_tag_delete/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'delete'])->name('pro_tag.delete');
+Route::get('/tag_list', [App\Http\Controllers\Admin\TagController::class, 'index'])->name('tag.list');
+Route::get('/tag_create', [App\Http\Controllers\Admin\TagController::class, 'create'])->name('tag.create');
+Route::post('/tag_add', [App\Http\Controllers\Admin\TagController::class, 'store'])->name('tag.store');
+Route::get('/tag_edit/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'edit'])->name('tag.edit');
+Route::post('/tag_update/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'update'])->name('tag.update');
+Route::post('/tag_delete/{tag_id}', [App\Http\Controllers\Admin\TagController::class, 'delete'])->name('tag.delete');
 
-//--------------Admin Blog Route----------
-Route::group(["as" => 'blog'], function () {
-    Route::get('post-list', [App\Http\Controllers\Admin\BlogController::class, 'index'])->name('post.list');
-    Route::get('post-create', [App\Http\Controllers\Admin\BlogController::class, 'create'])->name('post.create');
-    Route::post('post-store', [App\Http\Controllers\Admin\BlogController::class, 'store'])->name('post.store');
-    Route::get('post-edit/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'edit'])->name('post.edit');
-    Route::post('post-update/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'update'])->name('post.update');
-    Route::delete('post-delete/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'delete'])->name('post.delete');
-    Route::get('post-active/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'active'])->name('post.active');
-    Route::get('post-inactive/{post_id}', [App\Http\Controllers\Admin\BlogController::class, 'inactive'])->name('post.inactive');
 
-});
 
 //--------------Admin Delivery Time Route----------
 Route::group(["as" => 'time'], function () {
@@ -93,7 +82,7 @@ Route::group(["as" => 'time'], function () {
 
 
 
-// Admin  -> Coupon 
+// Admin  -> Coupon
 Route::group(["as" => 'admin.', "prefix" => 'admin'], function () {
     Route::resource('coupons', CouponController::class);
 });
@@ -166,7 +155,7 @@ Route::group(["middleware" => 'auth'], function () {
         Route::post('add', [App\Http\Controllers\Frontend\TaskController::class, 'create'])->name('add');
     });
 
- 
+
 
     Route::get('payment', [App\Http\Controllers\User\PaymentController::class, 'index']);
     Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);

@@ -20,14 +20,14 @@ class TaskController extends ApiController
     public function store(Request $request){
 
         $validator = Validator::make($request->all(), [
-            
+
             'title' => 'required|string',
 
             'from' => 'required|string',
             'from_latlng' => 'required',
             'to' => 'required|string',
             'to_latlng' => 'required',
-            
+
             'notes' => 'required|string',
 
             'total_cost' => 'required',
@@ -57,7 +57,7 @@ class TaskController extends ApiController
                 $name = Str::random(5).date('mdYHis').uniqid() .'.' . $file->getClientOriginalExtension();
                 Image::make($file)->resize(270,270)->save('uploads/images/tasks/'.$name);
                 $data['image'] = $name;
-                
+
                 // $name = uniqid() . $file->getClientOriginalName();
                 // $name = strtolower(str_replace(' ', '-', $name));
                 // // $file->move('images/tasks/', $name);
@@ -65,15 +65,15 @@ class TaskController extends ApiController
                 // return $data['image'] = $name;
             }
 
-            
+
 
 
             $task = TaskRepository::saveTaskData($data);
             $task->products()->createMany($data['products']);
             $task->productCategories()->attach($data['product_category_ids']);
-            
+
             DB::commit();
-            
+
             if(!empty($data['vehicle_id'])){
                 $task->load(['products','productCategories','vehicle']);
             } else{
@@ -102,5 +102,5 @@ class TaskController extends ApiController
             );
         }
     }
- 
+
 }
