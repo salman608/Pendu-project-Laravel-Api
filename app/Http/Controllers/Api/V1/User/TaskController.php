@@ -75,9 +75,9 @@ class TaskController extends ApiController
             DB::commit();
             
             if(!empty($data['vehicle_id'])){
-                $task->load(['products','productCategories','vehicle']);
+                $task->load(['products','productCategories','deliveryTime','vehicle']);
             } else{
-                $task->load(['products','productCategories']);
+                $task->load(['products','productCategories','deliveryTime']);
             }
 
             return $this->respondWithSuccess(
@@ -102,5 +102,5 @@ class TaskController extends ApiController
             );
         }
     }
- 
+
 }

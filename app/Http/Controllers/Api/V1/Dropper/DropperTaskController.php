@@ -3,9 +3,10 @@
 namespace App\Http\Controllers\Api\V1\Dropper;
 
 use App\Http\Controllers\ApiController;
+use App\Repositories\TaskOfferRepository;
 use Illuminate\Http\Request;
-use App\Models\Task;
-use App\Models\TaskOffer;
+use Exception;
+use Illuminate\Support\Facades\Log;
 
 class DropperTaskController extends ApiController
 {
@@ -17,12 +18,7 @@ class DropperTaskController extends ApiController
 
         try {
 
-            $task_offer             = new TaskOffer();
-            $task_offer->amount     = $request->amount;
-            $task_offer->dropper_id = request()->user()->id;
-            $task_offer->task_id    = $taskId;
-            $task_offer->save();
-
+            $task_offer = TaskOfferRepository::saveTaskOfferData($taskId, $request->all());
 
             return $this->respondWithSuccess(
                 'Your offer is submitted',

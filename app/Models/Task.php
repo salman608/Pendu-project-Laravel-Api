@@ -29,6 +29,9 @@ class Task extends Model
     public function vehicle(){
         return $this->belongsTo(Vehicle::class);
     }
+    public function deliveryTime(){
+        return $this->belongsTo(DeliveryTime::class);
+    }
 
 
     public function getImageUrlAttribute($value){
