@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TaskCheckout extends Model
+class TaskOrder extends Model
 {
     use HasFactory;
 

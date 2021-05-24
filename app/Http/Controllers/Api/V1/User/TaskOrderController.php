@@ -3,8 +3,8 @@
 namespace App\Http\Controllers\Api\V1\User;
 
 use App\Http\Controllers\ApiController;
-use App\Models\TaskCheckout;
-use App\Repositories\TaskCheckOutRepository;
+use App\Models\TaskOrder;
+use App\Repositories\TaskOrderRepository;
 use App\Repositories\TaskRepository;
 use Illuminate\Http\Request;
 use Validator;
@@ -13,7 +13,7 @@ use DB;
 use Illuminate\Support\Facades\Log;
 use Image;
 use Illuminate\Support\Str;
-class TaskCheckOutController extends ApiController
+class TaskOrderController extends ApiController
 {
     public function __construct() {
 
@@ -24,14 +24,14 @@ class TaskCheckOutController extends ApiController
         DB::beginTransaction();
 
         try {                     
-            $task_checkout = TaskCheckOutRepository::saveCheckOutData($taskId, $offerId, $request->all());
+            $task_order = TaskOrderRepository::saveTaskOrderData($taskId, $offerId, $request->all());
 
 
             DB::commit();
             
             return $this->respondWithSuccess(
                 'Your checkout request is submitted.',
-                $task_checkout
+                $task_order
             );
 
         } catch (Exception $e) {

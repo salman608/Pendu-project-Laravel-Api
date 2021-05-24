@@ -10,7 +10,7 @@ use App\Http\Controllers\Admin\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
-use App\Http\Controllers\Api\V1\User\TaskCheckOutController;
+use App\Http\Controllers\Api\V1\User\TaskOrderController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\ApiController;
 
@@ -65,7 +65,7 @@ Route::prefix('v1')->middleware('jwt.verify')->group(function () {
 	
     Route::get('/tasks/{taskId}/offers', function(){ return "list of offers"; });
     Route::get('/tasks/{taskId}/offers/{offerId}', function(){ return "Offer accepted"; });
-    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskCheckOutController::class, 'store']);
+    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
 });
 
 /**

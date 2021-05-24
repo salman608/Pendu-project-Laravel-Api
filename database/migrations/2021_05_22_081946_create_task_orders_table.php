@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTaskCheckoutsTable extends Migration
+class CreateTaskOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateTaskCheckoutsTable extends Migration
      */
     public function up()
     {
-        Schema::create('task_checkouts', function (Blueprint $table) {
+        Schema::create('task_orders', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('task_id');
             $table->unsignedBigInteger('task_offer_id');
