@@ -3341,7 +3341,7 @@ thead.support_table_head {
     color: #90a0b2;
     font-weight: normal;
     font-size: 15px;
-    width: 57%;
+    width: 100%;
 }
 
 .blog_header_content {
@@ -3362,7 +3362,7 @@ thead.support_table_head {
 
 .blog_right_bar_img img {
     width: 150px;
-    height: 100%;
+
     border-top-right-radius: 10px;
     border-bottom-right-radius: 10px;
 }

@@ -17,4 +17,8 @@ class Post extends Model
     //   public function proCategories(){
     //     return $this->hasMany(ProductCat::class);
     //   }
+
+    public function serviceCategory(){
+        return $this->belongsTo(ServiceCategory::class);
+    }
 }

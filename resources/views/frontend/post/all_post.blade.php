@@ -4,43 +4,43 @@
 <div class="container mt-4">
     <div class="row">
         <div class="col-lg-5  ">
-            @foreach($post as $post)
+            @foreach($posts as $post)
             <div class="card blog_item blog_page_left_item1 mt-3">
 
-                <img class="card-img-top" src="{{$post->featured_image}}"
+                <img class="card-img-top" src="{{ asset('uploads/images/posts/' . $post->featured_image)}}"
                     alt="Card image cap">
                 <div class="blog-dat mt-4">
                     <ul>
-                        <li style='list-style: none;'><a href="#">{{$post->category ? $post->category->cat_name : ''}}</a></li>
-                        <li><span><a href="#">{{$post->created_at->diffForHumans()}}</a></span></li>
+                        <li style='list-style: none;'><a href="#">{{$post->serviceCategory->title}}</a></li>
+                        <li><span><a href="#">{{$post->created_at->format('F j, Y')}}</a></span></li>
                     </ul>
                 </div>
                 <div class="card-body blog_home_title">
-                    <a href="{{url('single_post/'.$post->slug)}}">
-                        <h5 class="card-title">{{$post->body}}, </h5>
+                    <a href="{{route('singlepost',$post->id)}}">
+                        <h5 class="card-title">{{Str::limit($post->title,40)}}</h5>
                     </a>
                 </div>
             </div>
             @endforeach
         </div>
         <div class="col-lg-7 ">
-            @foreach($all_post as $v_post)
+          @foreach($side_post as $v_post)
             <div class="blog_right_article_area mt-3">
                 <div class="blog_left_content">
                     <div class="blog-dat blog_page_date_cat ">
                         <ul>
                             <li style='list-style: none;'><a
-                                    href="#">{{$v_post->category ? $v_post->category->cat_name : ''}}</a></li>
-                            <li><span><a href="#">{{$v_post->created_at->diffForHumans()}}</a></span></li>
+                                    href="#">{{$v_post->serviceCategory->title}}</a></li>
+                            <li><span><a href="#">{{$v_post->created_at->format('F j, Y')}}</a></span></li>
                         </ul>
                     </div>
                     <div class="blog_left_text">
-                        <p> <a href="{{url('single_post/'.$v_post->slug)}}">{{$v_post->body}}</a></p>
+                        <p> <a href="{{route('singlepost',$v_post->id)}}">{{Str::limit($v_post->title,40)}}</a></p>
                     </div>
                 </div>
 
                 <div class="blog_right_bar_img">
-                    <img src="{{$v_post->featured_image}}" alt="">
+                    <img src="{{asset('uploads/images/posts/' . $v_post->featured_image)}}" alt="">
                 </div>
 
             </div>
@@ -59,108 +59,25 @@
     </div>
 
     <div class="row">
+        @foreach ($all_post as $post)
         <div class="col-md-4 col-sm-6 mt-2 ">
             <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg"
+                <img class="card-img-top" src="{{asset('uploads/images/posts/' . $post->featured_image)}}"
                     alt="Card image cap">
                 <div class="blog-dat mt-4">
                     <ul>
-                        <li style='list-style: none;'><a href="#">Collect & Drop</a></li>
-                        <li><span><a href="#">January 01,2021</a></span></li>
+                        <li style='list-style: none;'><a href="#">{{$post->serviceCategory->title}}</a></li>
+                        <li><span><a href="#">{{$post->created_at->format('F j, Y')}}</a></span></li>
                     </ul>
                 </div>
                 <div class="card-body blog_home_title">
-                    <a href="blog_content.html">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5>
+                    <a href="{{route('singlepost',$post->id)}}">
+                        <h5 class="card-title">{{Str::limit($post->title,40)}}</h5>
                     </a>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 col-sm-6 mt-2 ">
-            <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg"
-                    alt="Card image cap">
-                <div class="blog-dat mt-4">
-                    <ul>
-                        <li style='list-style: none;'><a href="#">Collect & Drop</a></li>
-                        <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                </div>
-                <div class="card-body blog_home_title">
-                    <a href="blog_content.html">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 mt-2  ">
-            <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/ocean-1283641_1280.jpg"
-                    alt="Card image cap">
-                <div class="blog-dat mt-4">
-                    <ul>
-                        <li style='list-style: none;'><a href="#">Collect & Drop</a></li>
-                        <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                </div>
-                <div class="card-body blog_home_title">
-                    <a href="blog_content.html">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 mt-2 ">
-            <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg"
-                    alt="Card image cap">
-                <div class="blog-dat mt-4">
-                    <ul>
-                        <li style='list-style: none;'><a href="#">Collect & Drop</a></li>
-                        <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                </div>
-                <div class="card-body blog_home_title">
-                    <a href="#">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 mt-2 ">
-            <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg"
-                    alt="Card image cap">
-                <div class="blog-dat mt-4">
-                    <ul>
-                        <li style='list-style: none;'><a href="#">Collect & Drop</a></li>
-                        <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                </div>
-                <div class="card-body blog_home_title">
-                    <a href="#">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 col-sm-6 mt-2  ">
-            <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg"
-                    alt="Card image cap">
-                <div class="blog-dat mt-4">
-                    <ul>
-                        <li style='list-style: none;'><a href="#">Collect & Drop</a></li>
-                        <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                </div>
-                <div class="card-body blog_home_title">
-                    <a href="#">
-                        <h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5>
-                    </a>
-                </div>
-            </div>
-        </div>
+        @endforeach
 
         <!-- ---------- pagination section ------------ -->
         <div class="pagination_section mt-3">
