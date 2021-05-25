@@ -889,7 +889,7 @@
                         </ul>
                       </div>
                       <div class="card-body blog_home_title">
-                        <a href="{{route('singlepost',$post->id)}}"><h5 class="card-title">{{$post->title}}</h5></a>
+                        <a href="{{route('singlepost',$post->id)}}"><h5 class="card-title">{{Str::limit($post->title,40)}}</h5></a>
                       </div>
                     </div>
                   </div>

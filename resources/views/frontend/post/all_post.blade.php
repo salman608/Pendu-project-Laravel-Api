@@ -17,7 +17,7 @@
                 </div>
                 <div class="card-body blog_home_title">
                     <a href="{{route('singlepost',$post->id)}}">
-                        <h5 class="card-title">{{Str::limit($post->title,80)}}</h5>
+                        <h5 class="card-title">{{Str::limit($post->title,40)}}</h5>
                     </a>
                 </div>
             </div>
@@ -35,7 +35,7 @@
                         </ul>
                     </div>
                     <div class="blog_left_text">
-                        <p> <a href="{{route('singlepost',$v_post->id)}}">{{Str::limit($v_post->title,80)}}</a></p>
+                        <p> <a href="{{route('singlepost',$v_post->id)}}">{{Str::limit($v_post->title,40)}}</a></p>
                     </div>
                 </div>
 
@@ -72,7 +72,7 @@
                 </div>
                 <div class="card-body blog_home_title">
                     <a href="{{route('singlepost',$post->id)}}">
-                        <h5 class="card-title">{{Str::limit($post->title,80)}}</h5>
+                        <h5 class="card-title">{{Str::limit($post->title,40)}}</h5>
                     </a>
                 </div>
             </div>

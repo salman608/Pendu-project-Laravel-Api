@@ -138,7 +138,7 @@
                 </div>
                 <div class="card-body blog_home_title">
                     <a href="{{route('singlepost',$v_post->id)}}">
-                        <h5 class="card-title">{{$v_post->title}}, </h5>
+                        <h5 class="card-title">{{Str::limit($v_post->title,40)}}, </h5>
                     </a>
                 </div>
             </div>
