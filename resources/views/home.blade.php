@@ -878,50 +878,23 @@
           <div class="container">
 
             <div class="row">
-              <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
-                <div class="card blog_item " >
-                  <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg" alt="Card image cap">
-                  <div class="blog-dat mt-4">
-                    <ul>
-                      <li style='list-style: none;' ><a href="#">Collect & Drop</a></li>
-                      <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
+                @foreach ($posts as $post )
+                <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
+                    <div class="card blog_item " >
+                      <img class="card-img-top" src="{{asset('uploads/images/posts/' . $post->featured_image)}}" alt="Card image cap">
+                      <div class="blog-dat mt-4">
+                        <ul>
+                          <li style='list-style: none;' ><a href="#">{{$post->serviceCategory->title}}</a></li>
+                          <li><span><a href="#">{{$post->created_at->format('F j, Y')}}</a></span></li>
+                        </ul>
+                      </div>
+                      <div class="card-body blog_home_title">
+                        <a href="{{route('singlepost',$post->id)}}"><h5 class="card-title">{{$post->title}}</h5></a>
+                      </div>
+                    </div>
                   </div>
-                  <div class="card-body blog_home_title">
-                    <a href="#"><h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5></a>
-                  </div>
-                </div>
-              </div>
+                @endforeach
 
-              <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
-                <div class="card blog_item " >
-                  <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/ocean-1283641_1280.jpg" alt="Card image cap">
-                  <div class="blog-dat mt-4">
-                    <ul>
-                      <li style='list-style: none;' ><a href="#">Collect & Drop</a></li>
-                      <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                  </div>
-                  <div class="card-body blog_home_title">
-                    <a href="#"><h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5></a>
-                  </div>
-                </div>
-              </div>
-
-              <div class="col-lg-4 col-md-4 col-sm-6 mt-2  ">
-                <div class="card blog_item " >
-                  <img class="card-img-top" src="{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg" alt="Card image cap">
-                  <div class="blog-dat mt-4">
-                    <ul>
-                      <li style='list-style: none;' ><a href="#">Collect & Drop</a></li>
-                      <li><span><a href="#">January 01,2021</a></span></li>
-                    </ul>
-                  </div>
-                  <div class="card-body blog_home_title">
-                    <a href="#"><h5 class="card-title">Lorem ipsum dolor sit amet, consetetur sadipscing elitr, </h5></a>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>

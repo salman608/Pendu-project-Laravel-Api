@@ -34,7 +34,7 @@
 
                 </div>
                 <div class="blog_header_img">
-                    <img src="{{$v_header_post->featured_image}}" alt="">
+                    <img src="{{asset('uploads/images/posts/' . $v_header_post->featured_image)}}" alt="">
 
                 </div>
 
@@ -79,9 +79,9 @@
             <div class="blog-dat blog_content_date_cat ">
                 <ul>
                     <li style='list-style: none;'><a
-                            href="#">{{$single_post->category_id ?$single_post->category->cat_name:''}}</a></li>
+                            href="#">{{$single_post->serviceCategory->title}}</a></li>
                     <li style='    margin-left: 34px;'><span><a
-                                href="#">{{$single_post->created_at->diffForHumans()}}</a></span></li>
+                                href="#">{{$single_post->created_at->format('F j, Y')}}</a></span></li>
                 </ul>
             </div>
         </div>
@@ -89,7 +89,7 @@
     <div class="row">
         <div class="col-12">
             <div class="blog_inner_content_section">
-                <img src="{{$single_post->featured_image}}" alt="">
+                <img src="{{asset('uploads/images/posts/' . $single_post->featured_image)}}" alt="">
                 <p>{{$single_post->body}}
             </div>
         </div>
@@ -128,16 +128,16 @@
         @foreach(App\Models\Post::inRandomOrder()->limit(3)->get() as $v_post)
         <div class="col-md-4 col-sm-6 mt-2 ">
             <div class="card blog_item ">
-                <img class="card-img-top" src="{{asset($v_post->featured_image)}}" alt="Card image cap">
+                <img class="card-img-top" src="{{asset('uploads/images/posts/' . $v_post->featured_image)}}" alt="Card image cap">
                 <div class="blog-dat mt-4">
                     <ul>
                         <li style='list-style: none;'><a
-                                href="#">{{$v_post->category_id ? $v_post->category->cat_name :''}}</a></li>
-                        <li><span><a href="#">{{$v_post->created_at->diffForHumans()}}</a></span></li>
+                                href="#">{{$v_post->serviceCategory->title}}</a></li>
+                        <li><span><a href="#">{{$v_post->created_at->format('F j, Y')}}</a></span></li>
                     </ul>
                 </div>
                 <div class="card-body blog_home_title">
-                    <a href="{{url('single_post/'.$v_post->slug)}}">
+                    <a href="{{route('singlepost',$v_post->id)}}">
                         <h5 class="card-title">{{$v_post->title}}, </h5>
                     </a>
                 </div>

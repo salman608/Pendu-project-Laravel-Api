@@ -23,7 +23,7 @@
                         <a class="nav-link" href="{{url('/')}}#how_works">How it works</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="">Blogs</a>
+                        <a class="nav-link" href="{{route('allpost')}}">Blogs</a>
                     </li>
                     @if (!Auth::check())
                       <li class="nav-item dropper">

@@ -58,3 +58,11 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 //     Route::post('post/create', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('store');
 
 // });
+
+
+/**
+ * Frontend routes
+ */
+
+Route::get('post-list', [App\Http\Controllers\Frontend\PostController::class, 'allPost'])->name('allpost');
+Route::get('singlepost/{post}', [App\Http\Controllers\Frontend\PostController::class, 'singlePost'])->name('singlepost');
