@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ServiceCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use \App\Http\Controllers\Admin\CouponController;
+use App\Http\Controllers\Admin\PostController;
 use App\Http\Controllers\Api\V1\Admin\ProductCategoryController;
 use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
 use App\Http\Controllers\Admin\VehicleController;
@@ -54,11 +55,11 @@ Route::prefix('v1')->group(function () {
 
     Route::fallback(function () {
         return response()->json([
-            'status'=> 404, 
+            'status'=> 404,
             'message' => 'Route does not exist'
         ], 404);
     });
-  
+
 });
 
 
@@ -136,3 +137,7 @@ Route::get('/vehicle-list', [VehicleController::class, 'getAllVehicle'])->name('
 
 //========= Admin dalivery Time api=========
 Route::get('dtime_list', [DeliveryTimeController::class, 'getDeliveryTime'])->name('dtime.getList');
+
+Route::post('posts/create', [PostController::class, 'store']);
+Route::get('posts/list', [PostController::class, 'list']);
+Route::get('/posts/{post}', [PostController::class, 'show']);

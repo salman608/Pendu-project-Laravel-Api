@@ -22,20 +22,20 @@ class VehicleController extends Controller
       // ========Vehicle store=========
       public function store(Request $request){
           $request->validate([
-              'vehicle_name'=>'required|unique:categories,vehicle_name|max:255',
-              'vehicle_image'=>'required',
+              'name'=>'required|unique:categories,vehicle_name|max:255',
+              'icon'=>'required',
             ]);
 
          //Vehicle Image part
-           $vehicle_image = $request->file('vehicle_image');
-           $name_gen=hexdec(uniqid()).'.'.$vehicle_image->getClientOriginalExtension();
-           Image::make($vehicle_image)->resize(270,270)->save('upload/vehicle/'.$name_gen);
-           $vehicle_image = 'upload/vehicle/'.$name_gen;
+           $icon = $request->file('icon');
+           $name_gen=hexdec(uniqid()).'.'.$icon->getClientOriginalExtension();
+           Image::make($icon)->resize(270,270)->save('upload/vehicle/'.$name_gen);
+           $icon = 'upload/vehicle/'.$name_gen;
 
            $vehicle=new Vehicle();
-           $vehicle->vehicle_name=$request->vehicle_name;
-           $vehicle->slug=Str::slug($request->vehicle_name);
-           $vehicle->vehicle_image=$vehicle_image;
+           $vehicle->name=$request->name;
+           $vehicle->slug=Str::slug($request->name);
+           $vehicle->icon=$icon;
            $vehicle->save();
            return back();
 

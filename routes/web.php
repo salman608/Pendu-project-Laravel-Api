@@ -47,3 +47,14 @@ Route::get('mover', [MoverController::class, 'index']);
 Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
 });
+
+/**
+ * Admin routes
+ */
+
+//==========Admin Post Route==========
+// Route::group(["as" => 'blog'], function () {
+       Route::get('post-list', [App\Http\Controllers\Admin\PostController::class, 'list'])->name('post.list');
+//     Route::post('post/create', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('store');
+
+// });

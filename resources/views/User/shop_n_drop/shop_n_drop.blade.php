@@ -116,7 +116,7 @@ select.select-box {
                   </div>
                     <div class="form-group">
                         <label for="additional_note" class="label-title">Additional notes</label>
-                  
+
                         <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note" title="Enter your total cost of the items" placeholder="Enter your total cost of the items" required ></textarea>
                     </div>
 
@@ -236,7 +236,7 @@ select.select-box {
                 </div>
                 <!-- <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Item Cost</label>
-                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none"> 
+                    <input type="number" class="form-control" name="item_cost" id="item_cost" placeholder="$256" style="outline: none">
                 </div> -->
                 <div class="form-group text-center nb-mover">
                     <small>You'll be asked to securely hold the funds in the app after you have accepted an offer & you'll only be paying for the items you requested.</small>

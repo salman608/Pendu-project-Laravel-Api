@@ -22,12 +22,12 @@ class TagController extends Controller
     //=========Admin tag store ========
     public function store(Request $request){
         $request->validate([
-            'ptag_name'=>'required|max:255',
+            'name'=>'required|max:255',
 
           ]);
           $tag=new Tag();
-          $tag->ptag_name=$request->ptag_name;
-          $tag->slug=Str::slug($request->ptag_name);
+          $tag->name=$request->name;
+          $tag->slug=Str::slug($request->name);
           $tag->save();
           return back();
     }
@@ -40,8 +40,8 @@ class TagController extends Controller
     //=========Admin tag update ========
     public function update(Request $request, $tag_id){
         $tag=Tag::FindOrFail($tag_id);
-        $tag->ptag_name=$request->ptag_name;
-        $tag->slug=Str::slug($request->ptag_name);
+        $tag->name=$request->name;
+        $tag->slug=Str::slug($request->name);
         $tag->save();
         return redirect()->route('pro_tag.list');
     }

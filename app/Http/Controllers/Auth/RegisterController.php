@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
+use App\Notifications\ReferralBonus;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Notification;
 
 class RegisterController extends Controller
 {
@@ -67,12 +69,23 @@ class RegisterController extends Controller
      */
     public static function create(array $data)
     {
+        $referrer = User::where('referrer_id',session()->pull('referrer'))->first();
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'referrer_id' => $referrer ? $referrer->id : null,
             'suburb' => $data['suburb'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
+    protected function registered(Request $request, $user)
+        {
+            if ($user->referrer !== null) {
+                Notification::send($user->referrer, new ReferralBonus($user));
+            }
+
+            return redirect($this->redirectPath());
+        }
 }

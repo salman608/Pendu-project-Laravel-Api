@@ -20,6 +20,7 @@ class User extends Authenticatable implements JWTSubject
      */
     protected $fillable = [
         'name',
+        'referrer_id',
         'email',
         'suburb',
         'phone',
@@ -50,6 +51,21 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(role::class);
       }
 
+    public function referrer()
+    {
+        return $this->belongsTo(User::class, 'referrer_id', 'id');
+    }
+
+/**
+ * A user has many referrals.
+ *
+ * @return \Illuminate\Database\Eloquent\Relations\HasMany
+ */
+    public function referrals()
+    {
+        return $this->hasMany(User::class, 'referrer_id', 'id');
+    }
+
       /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -66,5 +82,17 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+
+  protected $appends = ['referral_link'];
+
+/**
+ * Get the user's referral link.
+ *
+ * @return string
+ */
+    public function getReferralLinkAttribute()
+    {
+        return $this->referral_link = route('register', ['ref' => $this->id,mt_rand(1000,9999)]);
     }
 }
