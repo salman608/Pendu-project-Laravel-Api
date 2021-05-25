@@ -54,7 +54,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
 //==========Admin Post Route==========
 // Route::group(["as" => 'blog'], function () {
-       Route::get('posts', [App\Http\Controllers\Admin\PostController::class, 'list'])->name('post.list');
+       Route::get('post-list', [App\Http\Controllers\Admin\PostController::class, 'list'])->name('post.list');
 //     Route::post('post/create', [App\Http\Controllers\Admin\PostController::class, 'store'])->name('store');
 
 // });
@@ -65,4 +65,4 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
  */
 
 Route::get('posts', [App\Http\Controllers\Frontend\PostController::class, 'allPost'])->name('allpost');
-Route::get('posts/{post}', [App\Http\Controllers\Frontend\PostController::class, 'singlePost'])->name('singlepost');
+Route::get('singlepost/{post}', [App\Http\Controllers\Frontend\PostController::class, 'singlePost'])->name('singlepost');

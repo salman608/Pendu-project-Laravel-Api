@@ -130,7 +130,7 @@ Route::get('/categories', [ServiceCategoryController::class, 'getaAllCat'])->nam
 Route::post('/submit-coupon', [CouponController::class, 'getCoupon'])->name('getCoupon');
 
 // ======== Admin Route Product category api=====
-Route::get('/productcat', [ProductCategoryController::class, 'proCatList'])->name('pro_cat.catList');
+Route::get('/productcats', [ProductCategoryController::class, 'proCatList'])->name('pro_cat.catList');
 
 // ======== Admin Route Vehicle type api=====
 Route::get('/vehicles', [VehicleController::class, 'getAllVehicle'])->name('vehicle.getAll');
@@ -138,7 +138,6 @@ Route::get('/vehicles', [VehicleController::class, 'getAllVehicle'])->name('vehi
 //========= Admin dalivery Time api=========
 Route::get('datetimes', [DeliveryTimeController::class, 'getDeliveryTime'])->name('dtime.getList');
 
-// ========== Blog part============
 Route::post('posts', [PostController::class, 'store']);
 Route::get('posts', [PostController::class, 'list']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
