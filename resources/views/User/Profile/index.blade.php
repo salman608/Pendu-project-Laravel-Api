@@ -867,6 +867,11 @@
           <img src="{{asset('frontend')}}/assets/images/Icons/Layer refer.png" alt="">
           <h1> Invite a friend , you both get $15 </h1>
           <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna</p>
+          {{-- <ul class="list-group mt-3">
+
+            <li class="list-group-item">Referrer: {{ Auth::user()->referrer->name ?? 'Not Specified' }}</li>
+            <li class="list-group-item">Refferal count: {{ count(Auth::user()->referrals)  ?? '0' }}</li>
+        </ul> --}}
 
          </div>
 
@@ -883,7 +888,7 @@
              <p class='more_way more_way_refer' >More way to invite</p>
 
              <div class="section_tooltipss">
-               <input type="text" class=" link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+               <input type="text" class=" link_input" value=" {{ Auth::user()->referral_link }}" id="myInput1">
 
                <div class="tooltip22">
                <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">
