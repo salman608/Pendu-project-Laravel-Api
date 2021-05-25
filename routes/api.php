@@ -13,6 +13,8 @@ use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
 use App\Http\Controllers\Api\V1\User\TaskOrderController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\ApiController;
+use App\Models\Task;
+use App\Models\TaskOffer;
 
 // use App\Http\Controllers\DropperAuthController;
 
@@ -63,8 +65,21 @@ Route::prefix('v1')->group(function () {
 Route::prefix('v1')->middleware('jwt.verify')->group(function () {
 	Route::post('/tasks/create', [TaskController::class, 'store']);
 	
-    Route::get('/tasks/{taskId}/offers', function(){ return "list of offers"; });
-    Route::get('/tasks/{taskId}/offers/{offerId}', function(){ return "Offer accepted"; });
+    Route::get('/tasks/{taskId}/offers', function($taskId){ 
+
+       $task_offers = TaskOffer::where('task_id',$taskId)->get();
+        return $task_offers; 
+    });
+    Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){ 
+        // return "Offer accepted";
+
+        return response()->json([
+            'status' => 200,
+            'message' => "Offer accepted",
+            'data' => Task::find($taskId)
+        ]);
+    
+    });
     Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
 });
 
