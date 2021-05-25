@@ -65,13 +65,13 @@ Route::prefix('v1')->group(function () {
 
 Route::prefix('v1')->middleware('jwt.verify')->group(function () {
 	Route::post('/tasks/create', [TaskController::class, 'store']);
-	
-    Route::get('/tasks/{taskId}/offers', function($taskId){ 
+
+    Route::get('/tasks/{taskId}/offers', function($taskId){
 
        $task_offers = TaskOffer::where('task_id',$taskId)->get();
-        return $task_offers; 
+        return $task_offers;
     });
-    Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){ 
+    Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
         // return "Offer accepted";
 
         return response()->json([
@@ -79,7 +79,7 @@ Route::prefix('v1')->middleware('jwt.verify')->group(function () {
             'message' => "Offer accepted",
             'data' => Task::find($taskId)
         ]);
-    
+
     });
     Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
 });
@@ -96,8 +96,8 @@ Route::group([
     Route::post('/logout', [DropperAuthController::class, 'logout']);
     Route::post('/refresh', [DropperAuthController::class, 'refresh']);
     Route::get('/profile', [DropperAuthController::class, 'profile']);
-    
-    
+
+
     // Task Submit Offer
     Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
 
@@ -123,21 +123,22 @@ Route::group([
 // Route::get('/category-list', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
 
 // ======== Admin Route  service Category(shop & drop ...) =====
-Route::get('/category-list', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
+Route::get('/categories', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
 
 
 // ======== Admin Route Coupon submit Api=====
 Route::post('/submit-coupon', [CouponController::class, 'getCoupon'])->name('getCoupon');
 
 // ======== Admin Route Product category api=====
-Route::get('/pro_cat_list', [ProductCategoryController::class, 'proCatList'])->name('pro_cat.catList');
+Route::get('/productcat', [ProductCategoryController::class, 'proCatList'])->name('pro_cat.catList');
 
 // ======== Admin Route Vehicle type api=====
-Route::get('/vehicle-list', [VehicleController::class, 'getAllVehicle'])->name('vehicle.getAll');
+Route::get('/vehicles', [VehicleController::class, 'getAllVehicle'])->name('vehicle.getAll');
 
 //========= Admin dalivery Time api=========
-Route::get('dtime_list', [DeliveryTimeController::class, 'getDeliveryTime'])->name('dtime.getList');
+Route::get('datetimes', [DeliveryTimeController::class, 'getDeliveryTime'])->name('dtime.getList');
 
-Route::post('posts/create', [PostController::class, 'store']);
-Route::get('posts/list', [PostController::class, 'list']);
+// ========== Blog part============
+Route::post('posts', [PostController::class, 'store']);
+Route::get('posts', [PostController::class, 'list']);
 Route::get('/posts/{post}', [PostController::class, 'show']);
