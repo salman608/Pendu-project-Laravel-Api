@@ -2,7 +2,6 @@
 
 namespace App\Repositories;
 
-use App\Models\Coupon;
 use App\Models\Task;
 use Illuminate\Http\Request;
 use Illuminate\Database\QueryException;

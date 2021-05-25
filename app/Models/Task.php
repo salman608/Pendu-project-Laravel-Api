@@ -22,9 +22,18 @@ class Task extends Model
         return $this->hasMany(TaskProducts::class);
     }
 
+    public function offers(){
+        return $this->hasMany(TaskOffer::class);
+    }
+    
     public function vehicle(){
         return $this->belongsTo(Vehicle::class);
     }
+    public function deliveryTime(){
+        return $this->belongsTo(DeliveryTime::class);
+    }
+
+
     public function getImageUrlAttribute($value){
     	$imageUrl = "";
     	if(! is_null($this->image)){

@@ -10,8 +10,12 @@ use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
 use App\Http\Controllers\Admin\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
+use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
+use App\Http\Controllers\Api\V1\User\TaskOrderController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\ApiController;
+use App\Models\Task;
+use App\Models\TaskOffer;
 
 // use App\Http\Controllers\DropperAuthController;
 
@@ -34,9 +38,9 @@ use App\Http\Controllers\ApiController;
 // =========User route Controller==========
 
 Route::group([
-    'prefix' => 'auth'
+    'prefix' => 'v1/auth'
 
-], function ($router) {
+], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -61,13 +65,30 @@ Route::prefix('v1')->group(function () {
 
 Route::prefix('v1')->middleware('jwt.verify')->group(function () {
 	Route::post('/tasks/create', [TaskController::class, 'store']);
+	
+    Route::get('/tasks/{taskId}/offers', function($taskId){ 
+
+       $task_offers = TaskOffer::where('task_id',$taskId)->get();
+        return $task_offers; 
+    });
+    Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){ 
+        // return "Offer accepted";
+
+        return response()->json([
+            'status' => 200,
+            'message' => "Offer accepted",
+            'data' => Task::find($taskId)
+        ]);
+    
+    });
+    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
 });
 
 /**
  * Dropper Routes
  */
 Route::group([
-    'prefix' => 'dropper'
+    'prefix' => 'v1/dropper'
 
 ], function ($router) {
     Route::post('/login', [DropperAuthController::class, 'login']);
@@ -75,6 +96,11 @@ Route::group([
     Route::post('/logout', [DropperAuthController::class, 'logout']);
     Route::post('/refresh', [DropperAuthController::class, 'refresh']);
     Route::get('/profile', [DropperAuthController::class, 'profile']);
+    
+    
+    // Task Submit Offer
+    Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
+
 });
 
 
