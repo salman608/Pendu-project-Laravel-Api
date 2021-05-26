@@ -10,4 +10,12 @@ class DropperGroup extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    /**
+     * Get Perks of Dropper Status
+     */
+    public function perkStatus()
+    {
+        return $this->hasMany(DropperGroupStatus::class);
+    }
 }

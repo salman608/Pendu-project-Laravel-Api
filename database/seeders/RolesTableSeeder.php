@@ -18,18 +18,24 @@ class RolesTableSeeder extends Seeder
         
     //admin area
     DB::table('roles')->insert([
-        "name"=>'admin'
+        "name"=>'admin',
+        'created_at'        => now(),
+        'updated_at'        => now()
     ]);
 
     //user area
     DB::table('roles')->insert([
-        "name"=>'user'
+        "name"=>'user',
+        'created_at'        => now(),
+        'updated_at'        => now()
     ]);
 
 
     //Driver area
     DB::table('roles')->insert([
-        "name"=>'driver'
+        "name"=>'driver',
+        'created_at'        => now(),
+        'updated_at'        => now()
     ]);
 
 

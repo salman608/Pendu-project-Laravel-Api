@@ -26,6 +26,8 @@ class DropperGroupSeeder extends Seeder
             \DB::table('dropper_groups')->insert([
                 'title'             => $dropper_group['title'],
                 'commission_rate'   => $dropper_group['commission_rate'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
 
@@ -65,7 +67,9 @@ class DropperGroupSeeder extends Seeder
         $experts_statuses->each(function($experts_status){
             \DB::table('dropper_group_statuses')->insert([
                 'title'             => $experts_status['title'],
-                'dropper_group_id'  => $experts_status['dropper_group_id']
+                'dropper_group_id'  => $experts_status['dropper_group_id'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
         

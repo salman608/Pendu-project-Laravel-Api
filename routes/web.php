@@ -48,6 +48,16 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
 });
 
+
+/**
+ * Stripe Check
+ */
+
+
+Route::get('stripe', [HomeController::class, 'stripe']);
+Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
+
+
 /**
  * Admin routes
  */

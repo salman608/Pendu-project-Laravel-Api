@@ -24,7 +24,9 @@ class TaskPaymentMethodSeeder extends Seeder
 
         $payment_methods->each(function($method){
             \DB::table('task_payment_methods')->insert([
-                'title' => $method['title']
+                'title' => $method['title'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
     }

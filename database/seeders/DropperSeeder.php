@@ -23,7 +23,9 @@ class DropperSeeder extends Seeder
             "phone" => '01638173361',
             "abn" => 'suburb',
             "vehicle_id" => 123456,
-            "password"=>bcrypt('password')
+            "password"=>bcrypt('password'),
+            'created_at'        => now(),
+            'updated_at'        => now()
         ]);
     }
 }

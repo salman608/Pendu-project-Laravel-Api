@@ -29,6 +29,8 @@ class ServiceCategorySeeder extends Seeder
                 'title' => $service['title'],
                 'slug' => Str::slug( $service['title']),
                 'icon' => $service['icon'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
     }
