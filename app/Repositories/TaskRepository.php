@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Doctrine\Instantiator\Exception\InvalidArgumentException;
 use Illuminate\Support\Str;
 
-class TaskRepository  
+class TaskRepository
 {
     public function __construct()
     {
@@ -34,7 +34,7 @@ class TaskRepository
     // }
 
     public static function saveTaskData($data){
- 
+
         // 1 = shop & drop, 2 = collect & delivery, 3 = movers
         $task   = new Task();
         $task->task_id      = Str::random(12);
