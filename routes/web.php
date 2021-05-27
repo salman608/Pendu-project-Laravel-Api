@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\User\ShopAndDropController;
 use App\Http\Controllers\User\CollectAndDeliveryController;
+use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\MoverController;
 use Carbon\Carbon;
 
@@ -46,6 +47,7 @@ Route::get('mover', [MoverController::class, 'index']);
  */
 Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
+
 });
 
 
@@ -56,6 +58,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
 Route::get('stripe', [HomeController::class, 'stripe']);
 Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
+Route::post('/tasks', [App\Http\Controllers\User\TaskController::class, 'store'])->name('task.store');
 
 
 /**

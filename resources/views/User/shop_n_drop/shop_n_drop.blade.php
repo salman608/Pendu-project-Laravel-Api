@@ -71,7 +71,7 @@ select.select-box {
     </div>
 
     <div class="container" style="border-radius: 10px; background: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
-        <form method="POST" action="{{route('shop_n_drop.add')}}">
+        <form method="POST" action="{{route('task.store')}}">
             @csrf
             <div id="task-details">
                   <div class="form-group">
@@ -353,6 +353,7 @@ select.select-box {
 <script>
 
     $(document).ready(function(){
+
 
         // Add another Product field
         $('#add_btn').on('click',function(){

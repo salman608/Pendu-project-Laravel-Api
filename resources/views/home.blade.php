@@ -1,6 +1,48 @@
 @extends('User.Asset')
 @section('user_content')
 
+{{-- style start Here --}}
+<style>
+.car{
+    background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
+}
+.ute{
+    background-image:url({{ asset('frontend/assets/images/Icons/ute.svg') }});
+}
+.van{
+    background-image:url({{ asset('frontend/assets/images/Icons/van.svg') }});
+}
+.truck{
+    background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
+}
+
+
+.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+    -webkit-filter: none;
+       -moz-filter: none;
+            filter: none;
+}
+.drinkcard-cc{
+    cursor:pointer;
+    background-size:contain;
+    background-repeat:no-repeat;
+    display:inline-block;
+    width:100px;height:70px;
+    -webkit-transition: all 100ms ease-in;
+       -moz-transition: all 100ms ease-in;
+            transition: all 100ms ease-in;
+    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+            filter: brightness(1.8) grayscale(1) opacity(.7);
+}
+.drinkcard-cc:hover{
+    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+            filter: brightness(1.2) grayscale(.5) opacity(.9);
+}
+</style>
+
 <!-- ------  login Modal ----- -->
 <div class="login_modal">
 
@@ -336,16 +378,15 @@
 
           <div class="container member_border ">
             <h3>Pro Drivers in Your Area</h3>
-
-
             <div class="owl-carousel owl-theme ">
               @foreach (App\Models\Dropper::all() as $dropper)
               <div class="item">
                 <div class="card member_item" >
 
-                  <img class="card-img-top" src="{{asset($dropper->profile_image)}}" alt="Card image cap">
+                  <img class="card-img-top" src="{{asset('uploads/dropper/photos/' . $dropper->profile_image)}}" alt="Card image cap">
 
                   <div class="member_rating">
+
                     <ul>
                       <li class="ratting_wrapper"><i class="fas fa-star"></i> <span class="rating_point">4.80</span> </li>
                       <li class='ml-auto' >
@@ -366,7 +407,7 @@
                   <div class="card-body ">
                     <div class="member_details">
                       <p>Success rate</p>
-                      <p>5.00</p>
+                      <p>{{$dropper->first_name}}</p>
                     </div>
                     <div class="member_details">
                       <p>Accuracy score</p>
@@ -423,14 +464,36 @@
                       <div class="form-group row">
                         <label for="input_text" class="col-sm-2 col-form-label">Categories</label>
                         <div class="col-sm-10">
-                          <input name="categories" type="text" class="form-control" id="input_text" >
+                            <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
+                                @foreach ($product_cats as $p_cat)
+                                    <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
+                                @endforeach
+                            </select>
                         </div>
                       </div>
                       <input type="hidden" name="driver_id" value="" id="">
                       <div class="form-group row">
                         <label for="input_category" class="col-sm-2 col-form-label">Products</label>
                         <div class="col-sm-10">
-                           <textarea name="product" class="form-control" id="input_category" rows="3" ></textarea>
+                            <table class="table table-borderless border-top-0">
+                                <tbody>
+                                    <tr class="top border-bottom border-light" id="tableRow_1">
+                                        <td><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
+                                        <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                        <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                        <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
+                                    </tr>
+                                </tbody>
+                                {{-- <tfoot >
+                                      <tr >
+                                          <td colspan="5" class="text-center">
+                                              <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                          </td>
+                                      </tr>
+                                </tfoot> --}}
+                                <thead>
+                                </thead>
+                            </table>
                         </div>
                       </div>
 
@@ -443,13 +506,48 @@
                       <div class="form-group row">
                         <label for="input_shop_pickup" class="col-sm-2 col-form-label">Enter shops/ Pickup address</label>
                         <div class="col-sm-10">
-                          <input name="pick_address" type="text" class="form-control" id="input_shop_pickup" >
+                            <div class="input-group">
+                                <input class="form-control input-group-lg" type="text" name="shop_address" id="shop_address"
+                                   title="Enter your pickup address"
+                                   placeholder="Enter your pickup address" required/>
+                                <div class="input-group-append cursor-pointer">
+                                    <span class="input-group-text border-0 pickupModal" data-toggle="modal" data-target="#googleMapPicupModal" id="pickupSpanId">
+                                        <img src="{{ asset('frontend/assets/images/Icons/location.svg') }}" alt="" width="20" height="auto">
+                                    </span>
+                                </div>
+                            </div>
                         </div>
                       </div>
                       <div class="form-group row">
                         <label for="input_delivery_address" class="col-sm-2 col-form-label">Enter delivery address</label>
                         <div class="col-sm-10">
-                          <input name="delivery_address" type="text" class="form-control" id="input_delivery_address" >
+                            <div class="input-group">
+                                <input id="delivery_address" class="form-control input-group-lg" type="text" name="delivery_address"
+                                   title="Enter your delivery address"
+                                   placeholder="Enter your delivery address" required/>
+                                <div class="input-group-append cursor-pointer">
+                                    <span class="input-group-text border-0 deliveryModal" data-toggle="modal" data-target="#googleMapDeliveryModal" id="deliverySpanId">
+                                        <img src="{{ asset('frontend/assets/images/Icons/location green.svg') }}" alt="" width="20" height="auto">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="input_offer" class="col-sm-2 col-form-label">Dalivery Time</label>
+                        <div class="col-sm-10">
+                            <div class="row">
+                                @foreach ($delivery_times as $d_time)
+                                <div class="pr-2" >
+                                    <label >
+                                        <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
+                                        <div style="width:100px !important;">
+                                            <label class="radio-btn-text delivery_time_checker" style="margin-top: 12px;font-size:15px;margin-left: 22px;" for="asap" >{{$d_time->title}}</label>
+                                        </div>
+                                    </label>
+                                </div>
+                                @endforeach
+                            </div>
                         </div>
                       </div>
                       <div class="form-group row">
@@ -470,8 +568,246 @@
                     </form>
                   </div>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">...</div>
-                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">...</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                    <div class="shop_tab_content">
+                        <form method="POST" action="{{route('quote.store')}}">
+                            @csrf
+                          <div class="form-group row">
+                            <label for="input_text" class="col-sm-2 col-form-label">Categories</label>
+                            <div class="col-sm-10">
+                                <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
+                                    @foreach ($product_cats as $p_cat)
+                                        <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                          </div>
+                          <input type="hidden" name="driver_id" value="" id="">
+                          <div class="form-group row">
+                            <label for="input_category" class="col-sm-2 col-form-label">Products</label>
+                            <div class="col-sm-10">
+                                <table class="table table-borderless border-top-0">
+                                    <tbody>
+                                        <tr class="top border-bottom border-light" id="tableRow_1">
+
+                                            <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
+                                            <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                            <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
+                                        </tr>
+                                    </tbody>
+                                    {{-- <tfoot >
+                                          <tr >
+                                              <td colspan="5" class="text-center">
+                                                  <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                              </td>
+                                          </tr>
+                                    </tfoot> --}}
+                                    <thead>
+                                    </thead>
+                                </table>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="input_product_cost" class="col-sm-2 col-form-label">Product cost</label>
+                            <div class="col-sm-10">
+                              <input name="product_cost" type="text" class="form-control" id="input_product_cost" >
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_shop_pickup" class="col-sm-2 col-form-label">Enter shops/ Pickup address</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input class="form-control input-group-lg" type="text" name="shop_address" id="shop_address"
+                                       title="Enter your pickup address"
+                                       placeholder="Enter your pickup address" required/>
+                                    <div class="input-group-append cursor-pointer">
+                                        <span class="input-group-text border-0 pickupModal" data-toggle="modal" data-target="#googleMapPicupModal" id="pickupSpanId">
+                                            <img src="{{ asset('frontend/assets/images/Icons/location.svg') }}" alt="" width="20" height="auto">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_delivery_address" class="col-sm-2 col-form-label">Enter delivery address</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input id="delivery_address" class="form-control input-group-lg" type="text" name="delivery_address"
+                                       title="Enter your delivery address"
+                                       placeholder="Enter your delivery address" required/>
+                                    <div class="input-group-append cursor-pointer">
+                                        <span class="input-group-text border-0 deliveryModal" data-toggle="modal" data-target="#googleMapDeliveryModal" id="deliverySpanId">
+                                            <img src="{{ asset('frontend/assets/images/Icons/location green.svg') }}" alt="" width="20" height="auto">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_offer" class="col-sm-2 col-form-label">Dalivery Time</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    @foreach ($delivery_times as $d_time)
+                                    <div class="pr-2" >
+                                        <label >
+                                            <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
+                                            <div style="width:100px !important;">
+                                                <label class="radio-btn-text delivery_time_checker" style="margin-top: 12px;font-size:15px;margin-left: 22px;" for="asap" >{{$d_time->title}}</label>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_offer" class="col-sm-2 col-form-label">Offered delivery fee</label>
+                            <div class="col-sm-10">
+                              <input name="delivery_fee" type="text" class="form-control" id="input_offer" >
+                            </div>
+                          </div>
+
+
+
+                          <div class="modal-footer become_footer">
+                            <button  type="submit" class="btn ">Request quote</button>
+
+                          </div>
+
+
+                        </form>
+                      </div>
+                </div>
+                <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
+                    <div class="shop_tab_content">
+                        <form method="POST" action="{{route('quote.store')}}">
+                            @csrf
+                          <div class="form-group row">
+                            <label for="input_text" class="col-sm-2 col-form-label">Vehicle Type</label>
+                            <div class="col-sm-10">
+                                <div class="cc-selector">
+                                    <div class="row">
+                                        <div class="col">
+                                            <input id="car" type="radio" name="vahicle_type" value="car" checked />
+                                            <label class="drinkcard-cc car" for="car"></label>
+                                        </div>
+                                        <div class="col">
+                                            <input id="ute" type="radio" name="vahicle_type" value="ute" />
+                                            <label class="drinkcard-cc ute" for="ute"></label>
+                                        </div>
+                                        <div class="col">
+                                            <input id="van" type="radio" name="vahicle_type" value="van" />
+                                            <label class="drinkcard-cc van" for="van"></label>
+                                        </div>
+
+                                        <div class="col">
+                                            <input id="truck" type="radio" name="vahicle_type" value="truck" />
+                                            <label class="drinkcard-cc truck" for="truck"></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <input type="hidden" name="driver_id" value="" id="">
+                          <div class="form-group row">
+                            <label for="input_category" class="col-sm-2 col-form-label">Products</label>
+                            <div class="col-sm-10">
+                                <table class="table table-borderless border-top-0">
+                                    <tbody>
+                                        <tr class="top border-bottom border-light" id="tableRow_1">
+
+                                            <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
+                                            <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                            <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn_mover">+</button>
+                                        </tr>
+                                    </tbody>
+                                    {{-- <tfoot >
+                                          <tr >
+                                              <td colspan="5" class="text-center">
+                                                  <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                              </td>
+                                          </tr>
+                                    </tfoot> --}}
+                                    <thead>
+                                    </thead>
+                                </table>
+                            </div>
+                          </div>
+
+                          <div class="form-group row">
+                            <label for="input_product_cost" class="col-sm-2 col-form-label">Product cost</label>
+                            <div class="col-sm-10">
+                              <input name="product_cost" type="text" class="form-control" id="input_product_cost" >
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_shop_pickup" class="col-sm-2 col-form-label">Enter shops/ Pickup address</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input class="form-control input-group-lg" type="text" name="shop_address" id="shop_address"
+                                       title="Enter your pickup address"
+                                       placeholder="Enter your pickup address" required/>
+                                    <div class="input-group-append cursor-pointer">
+                                        <span class="input-group-text border-0 pickupModal" data-toggle="modal" data-target="#googleMapPicupModal" id="pickupSpanId">
+                                            <img src="{{ asset('frontend/assets/images/Icons/location.svg') }}" alt="" width="20" height="auto">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_delivery_address" class="col-sm-2 col-form-label">Enter delivery address</label>
+                            <div class="col-sm-10">
+                                <div class="input-group">
+                                    <input id="delivery_address" class="form-control input-group-lg" type="text" name="delivery_address"
+                                       title="Enter your delivery address"
+                                       placeholder="Enter your delivery address" required/>
+                                    <div class="input-group-append cursor-pointer">
+                                        <span class="input-group-text border-0 deliveryModal" data-toggle="modal" data-target="#googleMapDeliveryModal" id="deliverySpanId">
+                                            <img src="{{ asset('frontend/assets/images/Icons/location green.svg') }}" alt="" width="20" height="auto">
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_offer" class="col-sm-2 col-form-label">Dalivery Time</label>
+                            <div class="col-sm-10">
+                                <div class="row">
+                                    @foreach ($delivery_times as $d_time)
+                                    <div class="pr-2" >
+                                        <label >
+                                            <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
+                                            <div style="width:100px !important;">
+                                                <label class="radio-btn-text delivery_time_checker" style="margin-top: 12px;font-size:15px;margin-left: 22px;" for="asap" >{{$d_time->title}}</label>
+                                            </div>
+                                        </label>
+                                    </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                          </div>
+                          <div class="form-group row">
+                            <label for="input_offer" class="col-sm-2 col-form-label">Offered delivery fee</label>
+                            <div class="col-sm-10">
+                              <input name="delivery_fee" type="text" class="form-control" id="input_offer" >
+                            </div>
+                          </div>
+
+
+
+                          <div class="modal-footer become_footer">
+                            <button  type="submit" class="btn ">Request quote</button>
+
+                          </div>
+
+
+                        </form>
+                      </div>
+                </div>
               </div>
 
             </div>
@@ -900,7 +1236,9 @@
           </div>
         </section>
 
-
+        @include("User.component.googleMap_pickup_quote")
+        @include("User.component.googleMap_delivery_quote")
+        @include("User.component.post_delivery")
 
        <!-- ================ Footer  ============= -->
 
@@ -953,6 +1291,236 @@
          </div>
 
        </section>
+       <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+       <!-- Latest compiled and minified JavaScript -->
+       <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9wIv3EiEy0aH3YTSRRZP8eRNbitATDo&libraries=places"></script>
 
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+       <!-- (Optional) Latest compiled and minified JavaScript translation files -->
+       <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+<script>
+
+    let options = {
+        // types: ['(cities)',],
+        componentRestrictions: { country: "bd" },
+    }
+    centeredLatLng = { lat: 23.810332, lng: 90.4125181 }
+
+    let shop_address_marker;
+    var shop_address = { address: '', lat: '', lng: '' };
+    var shop_address_modal = { address: '', lat: '', lng: '' };
+    let shop_address_input = document.getElementById("shop_address");
+    let auto_shop_address = new google.maps.places.Autocomplete(shop_address_input, options);
+    let shop_address2_input = document.getElementById("shop_address2");
+
+    let delivery_address_marker;
+    var delivery_address = { address: '', lat: '', lng: '' };
+    var delivery_address_modal = { address: '', lat: '', lng: '' };
+    let delivery_address_input = document.getElementById("delivery_address");
+    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address_input, options);
+    let delivery_address2_input = document.getElementById("delivery_address2");
+
+    auto_shop_address.addListener("place_changed", () => {
+        shop_address.address = shop_address_input.value;
+
+        let place = auto_shop_address.getPlace();
+        shop_address.lat = place.geometry.location.lat();
+        shop_address.lng = place.geometry.location.lng();
+    });
+
+    auto_delivery_address.addListener("place_changed", () => {
+        delivery_address.address = delivery_address.value;
+
+        let place = auto_delivery_address.getPlace();
+        delivery_address.lat = place.geometry.location.lat();
+        delivery_address.lng = place.geometry.location.lng();
+    });
+
+
+
+
+    // function ShowLocationOnTheMap(map, latitude, longitude) {
+
+    //     // Remove old marker
+    //     if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+    //         shop_address_marker.setMap(null);
+    //     }
+
+    //     // Add Marker
+    //     shop_address_marker = new google.maps.Marker({
+    //         position: new google.maps.LatLng(latitude, longitude),
+    //         map: map,
+    //     });
+    // }
+
+
+    $(".pickupModal").click(function() {
+
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMap"), {
+            zoom: 7,
+            center: centeredLatLng,
+            disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
+
+        auto_shop_address2.addListener("place_changed", () => {
+            let place = auto_shop_address2.getPlace();
+            let latitude = place.geometry.location.lat();
+            let longitude = place.geometry.location.lng();
+
+            shop_address_modal.address = shop_address2_input.value;
+            shop_address_modal.lat = latitude;
+            shop_address_modal.lng = longitude;
+
+            // ShowLocationOnTheMap(
+            //     map,
+            //     place.geometry.location.lat(),
+            //     place.geometry.location.lng()
+            // );
+
+            // Remove old marker
+            if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+                shop_address_marker.setMap(null);
+            }
+
+            // Add Marker
+            shop_address_marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+            });
+
+            if (place.geometry.viewport) {
+               map.fitBounds(place.geometry.viewport);
+            }
+        });
+    });
+
+    $("#picupModalBtn").click(function() {
+
+        if(
+            shop_address2_input.value == '' ||
+            typeof shop_address_modal == 'undefined' ||
+            shop_address_modal.address == '' ||
+            shop_address_modal.lng == '' ||
+            shop_address_modal.lat == ''
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Shop/Pickup address is invalid. Try again.",
+            });
+
+            return;
+        }
+        shop_address = shop_address_modal;
+        shop_address_input.value = shop_address.address;
+        $("#googleMapPicupModal").modal('hide');
+    });
+
+    $(".deliveryModal").click(function() {
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMapDelivery"), {
+            zoom: 7,
+            center: centeredLatLng,
+            disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2_input, options);
+
+        auto_delivery_address2.addListener("place_changed", () => {
+            let place = auto_delivery_address2.getPlace();
+            let latitude = place.geometry.location.lat();
+            let longitude = place.geometry.location.lng();
+
+            delivery_address_modal.address = delivery_address2_input.value;
+            delivery_address_modal.lat = latitude;
+            delivery_address_modal.lng = longitude;
+
+            // ShowLocationOnTheMap(
+            //     map,
+            //     place.geometry.location.lat(),
+            //     place.geometry.location.lng()
+            // );
+
+            // Remove old marker
+            if(typeof delivery_address_marker !== 'undefined' && delivery_address_marker !== null) {
+                delivery_address_marker.setMap(null);
+            }
+
+            // Add Marker
+            delivery_address_marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+            });
+
+            if (place.geometry.viewport) {
+               map.fitBounds(place.geometry.viewport);
+            }
+        });
+    });
+
+
+    $("#deliveryModalBtn").click(function() {
+
+        if(
+            delivery_address2_input.value == '' ||
+            typeof delivery_address_modal == 'undefined' ||
+            delivery_address_modal.address == '' ||
+            delivery_address_modal.lng == '' ||
+            delivery_address_modal.lat == ''
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is invalid. Try again.",
+            });
+
+            return;
+        }
+        delivery_address = delivery_address_modal;
+        delivery_address_input.value = delivery_address.address;
+
+        $("#googleMapDeliveryModal").modal('hide');
+    });
+</script>
+<script>
+ $(document).ready(function(){
+
+// Add another Product field
+$('#add_btn').on('click',function(){
+    let html='';
+    html+='<tr>';
+    // html+='<td><div class="circle"></div></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+    html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
+    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
+    html+='</tr>';
+    $('tbody').append(html);
+});
+
+// remove product field
+$(document).on('click','#remove',function(){
+    $(this).closest('tr').remove();
+});
+
+$('#add_btn_mover').on('click',function(){
+    let html='';
+    html+='<tr>';
+    // html+='<td><div class="circle"></div></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+    html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
+    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
+    html+='</tr>';
+    $('tbody').append(html);
+});
+});
+
+</script>
 
 @endsection

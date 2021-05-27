@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
         //  \App\Models\Category::factory(20)->create();
         //  \App\Models\Post::factory(20)->create();
 
-        // //database seeder for user table 
+        // //database seeder for user table
         // $this->call(UsersTableSeeder::class);
         $this->call(DropperSeeder::class);
         $this->call(UserSeeder::class);
@@ -29,6 +29,8 @@ class DatabaseSeeder extends Seeder
         $this->call(DeliveryTimeSeeder::class);
         $this->call(VehicleSeeder::class);
         $this->call(DropperGroupSeeder::class);
+        $this->call(PostSeeder::class);
+        
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 
