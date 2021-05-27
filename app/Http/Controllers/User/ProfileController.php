@@ -7,10 +7,11 @@ use App\Mail\InvitationMail;
 use App\Models\ReferalMail;
 use App\Models\Task;
 use App\Models\User;
-use Auth;
+use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Session;
+use Tymon\JWTAuth\Contracts\Providers\Auth as ProvidersAuth;
 
 class ProfileController extends Controller
 {
@@ -95,7 +96,7 @@ class ProfileController extends Controller
 
         //profile iamge part
         if ($request->hasFile('profile_image')) {
-            $path                    = $request->profile_image->store('uploads/dropper/photos');
+            $path                    = $request->profile_image->store('uploads/user/photos');
             $update['profile_image'] = $path;
         }
 

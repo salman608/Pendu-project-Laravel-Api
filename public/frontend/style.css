@@ -501,7 +501,11 @@ li.signup_login {
     font-size: 18px;
     font-weight: 600;
 }
-
+/* ==============User profile ========== */
+.custom-file{
+    border: 1px solid #5bdb98 ;
+    border-radius: 9px;
+}
 /* ============= Hero Section ========= */
 
 .hero_section {
@@ -3926,3 +3930,5 @@ button.btn.checkout_payment_btn {
 .cursor-pointer {
     cursor: pointer;
 }
+
+

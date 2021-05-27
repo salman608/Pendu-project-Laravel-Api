@@ -15,7 +15,7 @@ class VehicleSeeder extends Seeder
      */
     public function run()
     {
-        // Service Dummy Data
+        // Vehicle Dummy Data
         \DB::table('vehicles')->truncate();
         $vehicles = collect([
             ['title' => 'Bike','icon' => 'bike.png','status'=>1],
