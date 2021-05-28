@@ -3,6 +3,8 @@
 
 {{-- style start Here --}}
 <style>
+
+.modal { overflow-y: auto !important; }
 .car{
     background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
 }

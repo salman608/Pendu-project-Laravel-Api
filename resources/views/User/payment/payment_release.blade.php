@@ -3,8 +3,17 @@
 <div class="modal fade" id="paymentReleaseModalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div>
+
+            <div style="background: #60e99c;height: 8px;">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
+                    </button>
+                </div>
+            </div>
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0 0 744 687">
+
                     <defs>
                       <clipPath id="clip-path">
                         <rect id="Rectangle_2475" data-name="Rectangle 2475" width="250.555" height="234.467" fill="none"/>
@@ -39,10 +48,8 @@
                     <g id="Group_2864" data-name="Group 2864" transform="translate(-19669 -1567)">
                       <rect id="Rectangle_4272" data-name="Rectangle 4272" width="744" height="687" rx="10" transform="translate(19669 1567)" fill="#fff"/>
                       <path id="Rectangle_4275" data-name="Rectangle 4275" d="M10,0H734a10,10,0,0,1,10,10v4a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V10A10,10,0,0,1,10,0Z" transform="translate(19669 1567)" fill="#60e99c"/>
-                      <g id="Group_2814" data-name="Group 2814" transform="translate(18927.494 1277)">
-                        <circle id="Ellipse_159" data-name="Ellipse 159" cx="19.5" cy="19.5" r="19.5" transform="translate(1424.505 317)" fill="#f1f1f1"/>
-                        <text id="X" transform="translate(1444.505 344)" fill="#f97a7a" font-size="20" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-6.93" y="0">X</tspan></text>
-                      </g>
+
+
                       <line id="Line_81" data-name="Line 81" x2="657" transform="translate(19713.5 1890.5)" fill="none" stroke="#e8e8e8" stroke-width="1"/>
                       <g id="Group_1384" data-name="Group 1384" transform="translate(19908.418 1594.5)">
                         <g id="Group_1383" data-name="Group 1383" clip-path="url(#clip-path)">
@@ -159,10 +166,16 @@
             </div>
         </div>
     </div>
-</div>
+{{-- </div> --}}
 
 <script>
     $('#releasePaymentId').click(function() {
         $('#taskProcessModal').modal('hide');
     })
 </script>
+<script>
+    $('#taskProcessModal').click(function() {
+       $('#paymentConfirmModalId').modal('hide');
+   })
+</script>
+

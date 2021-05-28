@@ -46,6 +46,7 @@ Route::group([
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);
+    // Route::post('/update/{id}', [AuthController::class, 'update']);
 });
 
 // Route::prefix('v1')->name('v1.')->group(function () {

@@ -3,7 +3,15 @@
 <div class="modal fade" id="paymentConfirmModalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div style="background: #60e99c;height: 8px;"></div>
+
+            <div style="background: #60e99c;height: 8px;">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
+                    </button>
+                </div>
+            </div>
             <div class="d-flex justify-content-center">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="259.255" height="314.048" viewBox="0 0 259.255 314.048">
                     <defs>
@@ -91,7 +99,7 @@
                         </g>
                       </g>
                     </g>
-                  </svg>  
+                  </svg>
             </div>
             <div class="d-flex justify-content-center">
                 <h5 class="payment-done">Payment Done!</h5>
@@ -112,17 +120,18 @@
                 <p>(please keep the communications within the pendu platform to avoid any disputes)</p>
             </div>
             <div class="d-flex justify-content-center">
+
                 {{-- <a href="#">
                   <svg xmlns="http://www.w3.org/2000/svg" width="106" height="45" viewBox="0 0 106 45">
                     <rect id="Rectangle_4295" data-name="Rectangle 4295" width="106" height="45" rx="5" fill="#60e99c"/>
                   </svg>
-                  
+
                 </svg>
                 </a>
                 <a href="#" data-toggle="modal" data-target="#taskProcessModal">
                   <svg xmlns="http://www.w3.org/2000/svg" width="218" height="45" viewBox="0 0 218 45">
                     <rect id="Rectangle_4296" data-name="Rectangle 4296" width="218" height="45" rx="5" fill="#ffce8a"/>
-                  </svg>                  
+                  </svg>
                 </a> --}}
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="336" height="45" viewBox="0 0 336 45">
                   <defs>
@@ -133,10 +142,14 @@
                       <rect id="Rectangle_2431" data-name="Rectangle 2431" width="27.652" height="27.652" fill="#fff"/>
                     </clipPath>
                   </defs>
+
                   <g id="Group_2847" data-name="Group 2847" transform="translate(-17200 -2112)">
+
                     <rect id="Rectangle_4295" data-name="Rectangle 4295" width="106" height="45" rx="5" transform="translate(17200 2112)" fill="#60e99c"/>
                     <rect id="Rectangle_4296" data-name="Rectangle 4296" width="218" height="45" rx="5" transform="translate(17318 2112)" fill="#ffce8a"/>
-                    <text id="Chat" transform="translate(17274 2140)" fill="#fff" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-16.262" y="0">Chat</tspan></text>
+                     <a href="">
+                    <text id="Chat"  transform="translate(17274 2140)" fill="#fff" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-16.262" y="0">Chat</tspan></text>
+                    </a>
                     <g id="Group_2844" data-name="Group 2844" transform="translate(17212 2120.115)">
                       <g id="Group_1329" data-name="Group 1329" clip-path="url(#clip-path)">
                         <path id="Path_5796" data-name="Path 5796" d="M62.605,19.879a.9.9,0,0,1-.6-.229L57.778,15.9H56.057a7.728,7.728,0,0,1-7.483-7.951A7.728,7.728,0,0,1,56.057,0H61.67a7.731,7.731,0,0,1,7.462,7.974,7.882,7.882,0,0,1-5.591,7.67v3.24a1,1,0,0,1-.543.9.888.888,0,0,1-.393.089M56.057,1.989a5.8,5.8,0,0,0-5.612,5.963,5.8,5.8,0,0,0,5.612,5.963h2.058a.9.9,0,0,1,.6.229l2.956,2.614V14.83a.977.977,0,0,1,.8-.994,5.932,5.932,0,0,0,4.631-6.849,5.733,5.733,0,0,0-5.435-5Z" transform="translate(-41.145 -0.001)" fill="#fff"/>
@@ -146,17 +159,25 @@
                         <path id="Path_5797" data-name="Path 5797" d="M6.494,75.3A.887.887,0,0,1,6.1,75.21a1,1,0,0,1-.543-.9v-3.24a8.012,8.012,0,0,1-5.3-9.73,7.844,7.844,0,0,1,4.107-5.178.909.909,0,0,1,1.264.416,1.026,1.026,0,0,1-.391,1.343.934.934,0,0,1-.105.05A6.12,6.12,0,0,0,2.334,65.86,5.666,5.666,0,0,0,6.625,69.3a.977.977,0,0,1,.8.994v1.928L10.385,69.6a.908.908,0,0,1,.6-.268h2.058a5.4,5.4,0,0,0,4.013-1.809.9.9,0,0,1,1.328-.02,1.043,1.043,0,0,1,.019,1.411,7.274,7.274,0,0,1-5.36,2.405H11.321L7.093,75.071a.9.9,0,0,1-.6.229" transform="translate(0 -47.471)" fill="#fff"/>
                       </g>
                     </g>
+                    <a data-toggle="modal" data-target="#taskProcessModal" style="cursor: pointer;">
                     <g id="Group_2845" data-name="Group 2845" transform="translate(17334 2120.115)">
                       <g id="Group_1331" data-name="Group 1331" clip-path="url(#clip-path-2)">
                         <path id="Path_5798" data-name="Path 5798" d="M25.923,12.1H24.05a10.4,10.4,0,0,0-8.5-8.5V1.728a1.728,1.728,0,0,0-3.456,0V3.6a10.4,10.4,0,0,0-8.5,8.5H1.728a1.728,1.728,0,1,0,0,3.456H3.6a10.4,10.4,0,0,0,8.5,8.5v1.873a1.728,1.728,0,1,0,3.456,0V24.05a10.4,10.4,0,0,0,8.5-8.5h1.873a1.728,1.728,0,1,0,0-3.456m-12.1,8.641a6.913,6.913,0,1,1,6.913-6.913,6.921,6.921,0,0,1-6.913,6.913" fill="#fff"/>
                       </g>
                     </g>
-                    <text id="Check_progress" data-name="Check progress" transform="translate(17441 2140)" fill="#fff" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-54.164" y="0">Check progress</tspan></text>
+                    <text id="Check_progress"  data-name="Check progress" transform="translate(17441 2140)" fill="#fff" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-54.164" y="0">Check progress</tspan></text>
+                  </a>
                   </g>
+
                 </svg>
-                
+
             </div>
             <br><br>
         </div>
     </div>
 </div>
+<script>
+    $('#taskProcessModal').click(function() {
+       $('#paymentConfirmModalId').modal('hide');
+   })
+</script>

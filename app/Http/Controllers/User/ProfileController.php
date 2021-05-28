@@ -11,6 +11,7 @@ use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session as FacadesSession;
 use Tymon\JWTAuth\Contracts\Providers\Auth as ProvidersAuth;
 
 class ProfileController extends Controller
@@ -102,7 +103,7 @@ class ProfileController extends Controller
 
         $update->save();
 
-        Session::flash('insert', 'Updated Sucessfully...');
+        FacadesSession::flash('insert', 'Updated Sucessfully...');
         return redirect()->route('profile.index');
     }
 

@@ -80,7 +80,7 @@
         cursor: pointer;
     }
     /* HIDE RADIO */
-    [type=radio] { 
+    [type=radio] {
         position: absolute;
         opacity: 0;
         width: 0;
@@ -210,8 +210,8 @@
                         </g>
                     </g>
                     </g>
-                </svg>    
-            </div>              
+                </svg>
+            </div>
             <div class="col-md-12 col-sm-12 col-lg-12 text-center" style="font-family: Montserrat;
             font-weight: 600;
             font-size: 15px;
@@ -227,7 +227,49 @@
                 <p>Want to give a tip!</p>
             </div>
             <div class="col-md-12 col-sm-12 col-lg-12 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="336" height="50" viewBox="0 0 336 50">
+                <div class="row text-center" style="margin: auto" >
+
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <div style="background: #ffebcf;color:#ffebcf">
+                                <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">$5</label>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" value="4 HRS" id="4 Hrs">
+                            <div>
+                                <label class="" style="margin-top: 16px;margin-right: 6px;" for="hrs4">$10</label>
+                            </div>
+                        </label>
+                    </div>
+
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" value="6 HRS" id="hrs6">
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">$15</label>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" value="Same Day" id="sameDay">
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">$25</label>
+                            </div>
+                        </label>
+                    </div>
+
+            </div>
+
+
+
+
+                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="336" height="50" viewBox="0 0 336 50">
                     <g id="Group_2866" data-name="Group 2866" transform="translate(-22048 -2195)">
                     <rect id="Rectangle_4307" data-name="Rectangle 4307" width="72" height="50" rx="5" transform="translate(22048 2195)" fill="#ffebcf"/>
                     <g id="Rectangle_4308" data-name="Rectangle 4308" transform="translate(22136 2195)" fill="none" stroke="#90a0b2" stroke-width="1">
@@ -247,8 +289,9 @@
                     <text id="_15" data-name="$15" transform="translate(22260 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$15</tspan></text>
                     <text id="_20" data-name="$20" transform="translate(22348 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$20</tspan></text>
                     </g>
-                </svg> 
-            </div>  
+                </svg> --}}
+            </div>
+
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="410" height="45" viewBox="0 0 410 45">
                     <g id="Group_3158" data-name="Group 3158" transform="translate(7410 -2859)">
@@ -282,7 +325,7 @@
                 font-size: 14px;
                 color: #1b3149;">More ways to invite</p>
             </div>
-            
+
             <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
                 <div class="row w-100 d-flex justify-content-center">
                     <input id="additionalNote" class="form-control w-50" type="text" name="email"
@@ -320,7 +363,7 @@
                       </g>
                       <text id="Share-" transform="translate(1101 871)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Share-</tspan></text>
                     </g>
-                </svg>                  
+                </svg>
             </div>
         </div>
     </div>
