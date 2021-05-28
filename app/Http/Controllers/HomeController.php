@@ -46,7 +46,7 @@ class HomeController extends Controller
                 "amount" => 100*100,
                 "currency" => "INR",
                 "source" => $request->stripeToken,
-                "description" => "This payment is testing purpose of websolutionstuff.com",
+                "description" => "This payment is testing purpose of Pendu Service",
         ]);
    
         Session::flash('success', 'Payment Successful !');

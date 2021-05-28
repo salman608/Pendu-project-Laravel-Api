@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -58,6 +59,12 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
 Route::get('stripe', [HomeController::class, 'stripe']);
 Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
+
+Route::get('stripe33', [CheckoutController::class, 'stripe33']);
+Route::get('stripe3', [CheckoutController::class, 'stripe3']);
+Route::post('stripe3', [CheckoutController::class, 'stripePost3'])->name('stripe3.post');
+
+
 Route::post('/tasks', [App\Http\Controllers\User\TaskController::class, 'store'])->name('task.store');
 
 
