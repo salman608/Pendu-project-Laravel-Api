@@ -668,7 +668,7 @@
           </div>
 
 
-          </div>
+          {{-- </div> --}}
 
 
 
@@ -1591,8 +1591,6 @@
       </div>
     </div>
   </div>
-
-
 
 @include("User.component.task_process")
 @include("User.payment.payment_release")
