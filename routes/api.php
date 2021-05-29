@@ -1,13 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\ServiceCategoryController;
+use App\Http\Controllers\Api\V1\Others\ServiceCategoryController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use \App\Http\Controllers\Admin\CouponController;
-use App\Http\Controllers\Admin\PostController;
-use App\Http\Controllers\Api\V1\Admin\ProductCategoryController;
-use \App\Http\Controllers\Api\V1\Admin\DeliveryTimeController;
-use App\Http\Controllers\Admin\VehicleController;
+use \App\Http\Controllers\Api\V1\Others\CouponController;
+use App\Http\Controllers\Api\V1\Others\PostController;
+use App\Http\Controllers\Api\V1\Others\ProductCategoryController;
+use \App\Http\Controllers\Api\V1\Others\DeliveryTimeController;
+use \App\Http\Controllers\Api\V1\Others\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
@@ -64,13 +64,42 @@ Route::prefix('v1')->group(function () {
 
 
 Route::prefix('v1')->middleware('jwt.verify')->group(function () {
-	Route::post('/tasks/create', [TaskController::class, 'store']);
+	Route::post('/tasks', [TaskController::class, 'store']);
 
     Route::get('/tasks/{taskId}/offers', function($taskId){
 
        $task_offers = TaskOffer::where('task_id',$taskId)->get();
         return $task_offers;
     });
+
+
+
+
+  
+
+    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
+
+
+    Route::get('/product-categories', [ProductCategoryController::class, 'index']);
+    Route::get('/service-categories', [ServiceCategoryController::class, 'index']);
+
+
+    Route::get('/vehicles', [VehicleController::class, 'index']);
+    Route::get('/delivery-times', [DeliveryTimeController::class, 'index']);
+
+    Route::get('/coupons/{coupon}', [CouponController::class, 'applyCoupon']);
+
+
+
+
+        
+
+    Route::get('posts', [PostController::class, 'index']);
+    Route::get('/posts/{post}', [PostController::class, 'show']);
+    Route::post('posts', [PostController::class, 'store']);
+
+
+
     Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
         // return "Offer accepted";
 
@@ -81,7 +110,6 @@ Route::prefix('v1')->middleware('jwt.verify')->group(function () {
         ]);
 
     });
-    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
 });
 
 /**
@@ -122,22 +150,7 @@ Route::group([
 // // ======== Admin Route  service Category(shop & drop ...) =====
 // Route::get('/category-list', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
 
-// ======== Admin Route  service Category(shop & drop ...) =====
-Route::get('/categories', [ServiceCategoryController::class, 'getaAllCat'])->name('category.getaAllCat');
 
 
-// ======== Admin Route Coupon submit Api=====
-Route::post('/submit-coupon', [CouponController::class, 'getCoupon'])->name('getCoupon');
 
-// ======== Admin Route Product category api=====
-Route::get('/productcats', [ProductCategoryController::class, 'proCatList'])->name('pro_cat.catList');
 
-// ======== Admin Route Vehicle type api=====
-Route::get('/vehicles', [VehicleController::class, 'getAllVehicle'])->name('vehicle.getAll');
-
-//========= Admin dalivery Time api=========
-Route::get('datetimes', [DeliveryTimeController::class, 'getDeliveryTime'])->name('dtime.getList');
-
-Route::post('posts', [PostController::class, 'store']);
-Route::get('posts', [PostController::class, 'list']);
-Route::get('/posts/{post}', [PostController::class, 'show']);

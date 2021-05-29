@@ -48,17 +48,6 @@ class ShopAndDropController extends Controller
     public function store(Request $request)
     {   
 
-        // $products           =  json_decode($request->products,true);
-        // var_dump($products);
-        // return true;
-
-        // return $request-> product_cats;
-        // "title": null,
-        // "product_cats": ["3","4"],
-        //  "additional_note": null,
-        // "product_cost": null,
-        // "delivery_time": "4",
-
         DB::beginTransaction();
 
         try {
@@ -80,8 +69,9 @@ class ShopAndDropController extends Controller
             $data['notes']              = $request->additional_note;
             $data['total_cost']         = $request->product_cost;  
             $data['delivery_time_id']   = $request->delivery_time;
+            $data['service_category_id']   = 1;
 
-            $task = TaskRepository::saveShopDropData($data);
+            $task = TaskRepository::saveTaskData($data);
 
             $task->products()->createMany($products);
             $task->productCategories()->attach($request-> product_cats);

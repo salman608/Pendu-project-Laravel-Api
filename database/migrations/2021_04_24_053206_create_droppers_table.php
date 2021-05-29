@@ -21,6 +21,7 @@ class CreateDroppersTable extends Migration
             $table->string('phone');
             $table->string('password');
             $table->string('abn');
+            $table->double('balance')->default(0);
             $table->integer('vehicle_id');
             $table->unsignedBigInteger('dropper_group_id')->default(1);
             $table->string('license_front')->nullable();

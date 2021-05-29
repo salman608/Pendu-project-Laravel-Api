@@ -79,9 +79,4 @@ class ServiceCategoryController extends Controller
       public function inactive(){
 
       }
-
-      // ========Service  get all category api  =========
-      public function getaAllCat(){
-       return response()->json(ServiceCategory::all(), 200);
-      }
 }
