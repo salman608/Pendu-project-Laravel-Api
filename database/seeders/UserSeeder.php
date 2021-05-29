@@ -21,7 +21,9 @@ class UserSeeder extends Seeder
             "email"=>'user@gmail.com',
             "phone" => '01638173361',
             "suburb" => 'suburb',
-            "password"=>bcrypt('password')
+            "password"=>bcrypt('password'),
+            'created_at'        => now(),
+            'updated_at'        => now()
         ]);
     }
 }

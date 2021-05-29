@@ -28,7 +28,9 @@ class DatabaseSeeder extends Seeder
         $this->call(ProductCategorySeeder::class);
         $this->call(DeliveryTimeSeeder::class);
         $this->call(VehicleSeeder::class);
+        $this->call(DropperGroupSeeder::class);
         $this->call(PostSeeder::class);
+        
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
 

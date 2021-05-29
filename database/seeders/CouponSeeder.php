@@ -27,7 +27,9 @@ class CouponSeeder extends Seeder
             DB::table('coupons')->insert([
                 'title' => $coupon['title'],
                 'coupon_code' => $coupon['coupon_code'],
-                'discount_price' => $coupon['discount_price']
+                'discount_price' => $coupon['discount_price'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
     }

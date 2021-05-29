@@ -32,6 +32,8 @@ class DeliveryTimeSeeder extends Seeder
                 'title' => $delivery_time['title'],
                 'slug' => Str::slug($delivery_time['title']),
                 'time' => $delivery_time['time'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
     }

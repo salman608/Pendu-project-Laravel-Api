@@ -30,6 +30,8 @@ class VehicleSeeder extends Seeder
                 'title' => $vehicle['title'],
                 'icon' => $vehicle['icon'],
                 'status'=>$vehicle['status'],
+                'created_at'        => now(),
+                'updated_at'        => now()
             ]);
         });
     }

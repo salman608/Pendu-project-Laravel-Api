@@ -48,7 +48,7 @@ select.select-box {
 <section class="">
     <div style="height: 120px; background: #5bdb98"></div>
     <div class="container" style="margin-top: -60px;">
-        <span class="font-weight-bold" id="titleId">Movers</span>
+        <span class="font-weight-bold" id="titleId">Shop and Drop</span>
         <div class="row" style="background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);height: 80px;border-radius: 10px;">
             <div class="d-flex justify-content-center" style="width: 80%;align-items: center;margin: auto;
             ">
@@ -70,8 +70,20 @@ select.select-box {
         </div>
     </div>
 
+    <div class="container">
+
+        @if (session()->has('error'))
+            <div class="alert alert-danger mt-4" style="font-size: 22px;" role="alert">{{ session()->get('error') }}</div>
+        @endif
+
+        @if (session()->has('success'))
+            <div class="alert alert-success mt-4" style="font-size: 22px;" role="alert">{{ session()->get('success') }}</div>
+        @endif
+
+    </div>
+
     <div class="container" style="border-radius: 10px; background: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
-        <form method="POST" action="{{route('task.store')}}">
+        <form method="POST" action="{{route('shop_n_drop.store')}}" id="shop-n-drop-form">
             @csrf
             <div id="task-details">
                   <div class="form-group">
@@ -121,7 +133,7 @@ select.select-box {
                     </div>
 
                     <div class="form-group">
-                        <label for="product_cost" class="label-title">Product cost</label>
+                        <label for="product_cost" class="label-title">Products cost</label>
                             <div class="input-group">
                                 <div class="input-group-append">
                                     <span class="input-group-text border-0">
@@ -323,8 +335,8 @@ select.select-box {
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputPassword1" class="label-title">Item Cost</label>
-                    <input type="number" class="form-control" name="itemCost" id="ItemCost" value="" style="outline: none">
+                    <label for="exampleInputPassword1" class="label-title">Total Products Cost</label>
+                    <input type="number" class="form-control" name="itemCost" id="ItemCost" value="" disabled style="outline: none">
                 </div>
             </div>
         </form>
@@ -382,102 +394,6 @@ select.select-box {
 
     });
 
-    // Next Step
-    $('#nextButton').click(function(){
-
-
-        // if ($('#procat_id').val() == '') {
-        //     swal({
-        //         icon: 'error',
-        //         title: 'Oops...',
-        //         text: "Category is required.",
-        //     })
-        // }
-        // else
-
-        // Chekc is empty
-        if ($('#title').val() == '') {
-
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Title is required.",
-            })
-        }
-        else if ($('#additional_note').val() == '') {
-
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Additional note is required.",
-            })
-        }
-        else if ($('#product_cost').val() == '') {
-
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Product cost is required.",
-            })
-        }
-        else if ($('#shop_address').val() == '') {
-
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Shop address is required.",
-            })
-        }
-        else if ($('#delivery_address').val() == '') {
-
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Delivery address is required.",
-            })
-        }
-        else {
-            $('#nextButton').hide();
-            $('#task-details').hide();
-            $('#postButtonId').show();
-            // $('#titleId').text('Review');
-            $('#timeFrameDiv').hide();
-            $('#taskDetails').show();
-
-
-            let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
-
-            $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-
-            $('#ItemCost').val($('#item_cost').val());
-            $('#shopAddress').text($('#shop_address').val());
-            $('#deliveryAddress').text($('#delivery_address').val());
-
-        }
-    });
-
-    // TODO: Will Remove
-    // $('#backButtonId').click(function(){
-    //     $('#nextButton').show();
-    //     $('#task-details').show();
-    //     // $('#titleId').text('Drop & Shop');
-    //     $('#reviewButtons').hide();
-    //     $('#timeFrameDiv').hide();
-    // });
-
-    // $('#reviewButtonId').click(function() {
-    //     $('#reviewButtons').hide();
-    //     $('#timeFrameDiv').hide();
-    //     $('#taskDetails').show();
-    //     $('#postButtonId').show();
-
-    //     var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
-    //     $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-
-    //     $('#shopAdress').text($('#shop_address').val())
-    //     $('#deliveryAddress').text($('#delivery_address').val())
-    // })
-
 </script>
 
 
@@ -495,7 +411,6 @@ select.select-box {
 
 <script>
     // Maps
-
 
     let options = {
         // types: ['(cities)',],
@@ -526,7 +441,7 @@ select.select-box {
     });
 
     auto_delivery_address.addListener("place_changed", () => {
-        delivery_address.address = delivery_address.value;
+        delivery_address.address = delivery_address_input.value;
 
         let place = auto_delivery_address.getPlace();
         delivery_address.lat = place.geometry.location.lat();
@@ -683,77 +598,159 @@ select.select-box {
 
         $("#googleMapDeliveryModal").modal('hide');
     });
+
+
+
+    // next button 
+    
+    // Next Step
+    $('#nextButton').click(function(){
+
+        if ($('#procat_id').val().length == 0) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Category is required.",
+            })
+        }
+
+        // Check title is empty
+        else if ($('#title').val() == '') {
+
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Title is required.",
+            })
+        }
+        else if ($('#additional_note').val() == '') {
+
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Additional note is required.",
+            })
+        }
+        else if ($('#product_cost').val() == '') {
+
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Product cost is required.",
+            })
+        }
+        else if ($('#shop_address').val() == '') {
+
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Shop address is required.",
+            })
+        }
+        else if(
+            shop_address.address == '' ||
+            shop_address.lng == '' ||
+            shop_address.lat == ''
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Shop/Pickup address is invalid. Try again.",
+            });
+        }
+        else if ($('#delivery_address').val() == '') {
+
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is required.",
+            })
+        }
+
+        else if(
+            delivery_address.address == '' ||
+            delivery_address.lng == '' ||
+            delivery_address.lat == ''
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is invalid. Try again.",
+            });
+
+            return;
+        }
+        else {
+            $('#nextButton').hide();
+            $('#task-details').hide();
+            $('#postButtonId').show();
+            // $('#titleId').text('Review');
+            $('#timeFrameDiv').hide();
+            $('#taskDetails').show();
+
+            let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+
+            $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+            // $('#product_cost').val() ==
+            $('#ItemCost').val($('#product_cost').val());
+            $('#shopAddress').text($('#shop_address').val());
+            $('#deliveryAddress').text($('#delivery_address').val());
+
+        }
+    });
 </script>
 
 
 <script>
     // Submission Button
     $('#postSubmitButtonId').click(function() {
-        $('form').submit();
-    })
+        event.preventDefault();
 
-    // Form tag
-    // $('form').submit(function (event) {
-    //     event.preventDefault();
+        // Form
+        var form = document.getElementById('shop-n-drop-form');
 
-    //     $('#postSubmitButtonId').attr('disabled', 'disabled');
+        var p_names  = $("input[name='pro_name[]']")
+            .map(function(){return $(this).val();}).get();
 
-    //     $.ajax({
-    //             url: "{{ route('task.add') }}",
-    //             type: 'POST',
-    //             dataType: 'json',
-    //             data: $('form').serialize(),
-    //     })
-    //     .done(function (response) {
+        var p_prices  = $("input[name='pro_price[]']")
+            .map(function(){return $(this).val();}).get();
 
-    //         console.log('====================================');
-    //         console.log(response);
-    //         console.log('====================================');
+        // "products"      : [
+        //         {"name": "Pepsi 2L", "price": 150, "qty": 4},
+        //         {"name": "Cake 2p", "price": 350, "qty": 2}
+        // ]
 
-    //         if (response.alertType == 'error') {
-    //             swal({
-    //                 icon: 'error',
-    //                 title: 'Oops...',
-    //                 text: response.message,
-    //             });
+        var products = p_names.map(function(name, index){
+            let product = {name: name, price: p_prices[index], qty: 1};
+            return product;
+        });
 
-    //         } else {
-
-    //             $('#deliveryProcessModal').modal('show');
-    //             $('form').trigger("reset");
-
-    //             // setTimeout(function () {
-    //             //     window.location = './'
-    //             // }, 3000);
-    //         }
-
-    //         $('#postSubmitButtonId').prop('disabled', false);
-
-    //     })
-    //     .fail(function (error) {
-
-    //         if (error.responseJSON) {
-    //             let errorText = ''
-    //             for (const [key, value] of Object.entries(error.responseJSON.errors)) {
-    //                 errorText += value + '. ';
-    //             }
-
-    //             swal({
-    //                 icon: 'info',
-    //                 title: 'Oops...',
-    //                 text: errorText,
-    //             });
-    //         }
-
-    //         $('#postSubmitButtonId').prop('disabled', false);
-    //     })
-    //     .always(function () {
-    //         console.log("complete");
-    //     });
-    // });
+        // hiddenProductsInput
+        var hiddenProductsInput = document.createElement('input');
+        hiddenProductsInput.setAttribute('type', 'hidden');
+        hiddenProductsInput.setAttribute('name', 'products');
+        hiddenProductsInput.setAttribute('value', JSON.stringify(products));
+        form.appendChild(hiddenProductsInput);
 
 
+        // hiddenShopAddressInput
+        var hiddenShopAddressInput = document.createElement('input');
+        hiddenShopAddressInput.setAttribute('type', 'hidden');
+        hiddenShopAddressInput.setAttribute('name', 'shop_address');
+        hiddenShopAddressInput.setAttribute('value', JSON.stringify(shop_address));
+        form.appendChild(hiddenShopAddressInput);
 
+        // hiddenDeliveryAddressInput
+        var hiddenDeliveryAddressInput = document.createElement('input');
+        hiddenDeliveryAddressInput.setAttribute('type', 'hidden');
+        hiddenDeliveryAddressInput.setAttribute('name', 'delivery_address');
+        hiddenDeliveryAddressInput.setAttribute('value', JSON.stringify(delivery_address));
+        form.appendChild(hiddenDeliveryAddressInput);
+
+        // Submit the form
+        form.submit();
+
+    });
 </script>
 
 @endsection

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -36,8 +37,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 
 // Services routes
-Route::get('shop_n_drop', [ShopAndDropController::class, 'index']);
-Route::post('shop_n_drop', [ShopAndDropController::class, 'store'])->name('shop_n_drop.add');
+Route::get('shop_n_drop', [ShopAndDropController::class, 'index'])->name('shop_n_drop');
+Route::post('shop_n_drop', [ShopAndDropController::class, 'store'])->name('shop_n_drop.store');
+
+
+// Route::post('/tasks', [App\Http\Controllers\User\TaskController::class, 'store'])->name('task.store');
+
+
+
 Route::get('collect_n_delivery', [CollectAndDeliveryController::class, 'index']);
 Route::get('mover', [MoverController::class, 'index']);
 
@@ -50,7 +57,20 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
 });
 
-Route::post('/tasks', [App\Http\Controllers\User\TaskController::class, 'store'])->name('task.store');
+
+/**
+ * Stripe Check
+ */
+
+
+Route::get('stripe', [HomeController::class, 'stripe']);
+Route::post('stripe', [HomeController::class, 'stripePost'])->name('stripe.post');
+
+Route::get('stripe33', [CheckoutController::class, 'stripe33']);
+Route::get('stripe3', [CheckoutController::class, 'stripe3']);
+Route::post('stripe3', [CheckoutController::class, 'stripePost3'])->name('stripe3.post');
+
+
 
 
 /**
