@@ -90,20 +90,20 @@
         /* IMAGE STYLES */
     [type=radio] + div {
         cursor: pointer;
-        border-radius: 10px;
-        background: transparent;
-        border: 1px solid #90a0b2;
-        width: 150px;
-        height: 60px;
-        margin-top: 10px;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px solid #90a0b2;
+    width: 80px !important;
+    height: 60px;
+    margin-top: 10px;
     }
 
         /* CHECKED STYLES */
     [type=radio]:checked + div {
         border: 0px;
         padding: 0px;
-        background: #5bdb98;
-        border-radius: 10px;
+        background: #ffebcf;
+        border-radius: 2px;
     }
     [type=radio]:checked + div > label{
         color: #fff;
@@ -226,28 +226,26 @@
             ">
                 <p>Want to give a tip!</p>
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 text-center">
-                <div class="row text-center" style="margin: auto" >
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <div class="row text-center">
 
-                    <div class="pr-2">
+                    <div class="pr-2" style="margin: auto;">
                         <label>
                             <input type="radio" name="delivery_time" id="" value="ASAP" checked>
-                            <div style="background: #ffebcf;color:#ffebcf">
-                                <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">$5</label>
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$5</label>
                             </div>
                         </label>
                     </div>
-
-                    <div class="pr-2">
+                    <div class="pr-2" style="margin: auto;">
                         <label>
                             <input type="radio" name="delivery_time" value="4 HRS" id="4 Hrs">
                             <div>
-                                <label class="" style="margin-top: 16px;margin-right: 6px;" for="hrs4">$10</label>
+                                <label class="" style="margin-top: 16px;" for="hrs4">$10</label>
                             </div>
                         </label>
                     </div>
-
-                    <div class="pr-2">
+                    <div class="pr-2" style="margin: auto;">
                         <label>
                             <input type="radio" name="delivery_time" value="6 HRS" id="hrs6">
                             <div>
@@ -255,14 +253,15 @@
                             </div>
                         </label>
                     </div>
-                    <div class="pr-2">
+                    <div class="pr-2" style="margin: auto;">
                         <label>
                             <input type="radio" name="delivery_time" value="Same Day" id="sameDay">
                             <div>
                                 <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">$25</label>
                             </div>
                         </label>
-                    </div>
+
+                </div>
 
             </div>
 

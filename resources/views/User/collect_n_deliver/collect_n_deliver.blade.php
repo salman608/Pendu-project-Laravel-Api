@@ -12,10 +12,73 @@
     width: 150px;
     display: inline-block;
 }
+
 #pname{
     border:1px solid #2cee8a;
     border-radius: 4px;
     display: inline-block;
+    width: 356px;
+}
+.qty .count {
+    color: #56cd93;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px;
+    min-width: 35px;
+    text-align: center;
+
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background: gray;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+
+.minus:hover{
+    background-color: #56cd93 !important;
+}
+.plus:hover{
+    background-color: #56cd93 !important;
+}
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{
+    border: 0;
+    width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
 }
 </style>
 @section('user_content')
@@ -87,13 +150,24 @@
                                 <tr class="top border-bottom border-light" id="tableRow_1">
                                     <td><div class="circle"></div></td>
                                     <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
-                                    <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
-                                    <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>
-                                    <td colspan="4" class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
+                                    <td class="qty">
+                                           <span class="minus" style="background: #8f8f8f">-</span>
+                                           <input type="number" class="count" name="qty[]" value="1">
+                                           <span class="plus" style="background: #8f8f8f">+</span>
+                                      </td>
+                                    <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                    <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
                                 </tr>
-
                             </tbody>
-
+                            <tfoot >
+                                  <tr >
+                                      <td colspan="5" class="text-center">
+                                          <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                      </td>
+                                  </tr>
+                            </tfoot>
+                            <thead>
+                            </thead>
                         </table>
                     </div>
                   </div>
@@ -225,7 +299,7 @@
                     <div class="row">
                         <div class="pr-2">
                             <label>
-                                <input type="radio" name="delivery_time_review" id="asap" value="ASAP" checked>
+                                <input type="radio" name="delivery_time_review" id="asap" value="ASAP" checked disabled>
                                 <div>
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
@@ -307,26 +381,52 @@
 
 //======product and price ======
 $(document).ready(function(){
-    $('#add_btn').on('click',function(){
-        var html='';
-        html+='<tr>';
-        html+='<td><div class="circle"></div></td>';
-        html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-        html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
-        html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Price.."></td>';
-        html+='<td class="text-right"><button type="button" class="cross-button" id="remove">+</button></td>';
-        html+='</tr>';
-        $('tbody').append(html);
-    });
-});
-//Remove product
-    $(document).on('click','#remove',function(){
-        $(this).closest('tr').remove();
-    });
 
-    // function remove(id) {
-    //     $('#tableRow_' + id).remove();
-    // }
+
+// Add another Product field
+$('#add_btn').on('click',function(){
+    let html='';
+    html+='<tr>';
+    html+='<td><div class="circle"></div></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
+    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
+    html+='</tr>';
+    $('tbody').append(html);
+});
+
+// remove product field
+$(document).on('click','#remove',function(){
+    $(this).closest('tr').remove();
+});
+
+// Select Delivery Time based on 2nd Lable
+$('.delivery_time_checker').click(function(){
+
+    let label = $('.delivery_time_checker').parents("label");
+    label.children().prop("checked", true);
+});
+
+});
+
+// quantity count
+$(document).ready(function(){
+    $('.count').prop('disabled', true);
+       $(document).on('click','.plus',function(){
+        //    console.log($(this).siblings('input').val());
+       var countInput = $(this).siblings('input');
+        $(countInput).val(parseInt(countInput.val()) + 1 );
+    });
+    $(document).on('click','.minus',function(){
+        // console.log($(this).siblings('input').val());
+        var countMinus = $(this).siblings('input');
+        $(countMinus).val(parseInt(countMinus.val()) - 1 );
+            if ($(countMinus).val() == 0) {
+                $(countMinus).val(1);
+            }
+        });
+ });
 
     $('#nextButton').click(function(){
         if ($('#title').val() == '') {
