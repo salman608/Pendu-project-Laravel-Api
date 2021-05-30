@@ -78,6 +78,11 @@ Route::prefix('v1')->middleware('jwt.verify')->group(function () {
   
 
     Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
+    Route::post('/task-order/{taskOrderId}/review',[TaskOrderController::class, 'storeReview']);
+    Route::post('/task-order/{taskOrderId}/tips',[TaskOrderController::class, 'storeTips']);
+
+
+
 
 
     Route::get('/product-categories', [ProductCategoryController::class, 'index']);
