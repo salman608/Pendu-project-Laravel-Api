@@ -16,10 +16,15 @@
     width: 291px;
     margin: auto !important;
     background: rgb(96, 233, 156);
+    border: 1px solid rgb(96, 233, 156);
     display: block;
     margin-top: 12px!important;
     margin-bottom: 10px !important;
     }
+.button-review:hover{
+    background: rgb(88, 231, 150);
+    border: 1px solid rgb(88, 231, 150);
+}
 .rate {
     float: left;
     margin-left: 265px;
