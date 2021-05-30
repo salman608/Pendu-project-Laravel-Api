@@ -5,7 +5,7 @@
         border:none;
         outline: none;
     }
-    #pprice{
+#pprice{
     border:1px solid #2cee8a;
     border-radius: 4px;
     /* margin-left: 60px; */

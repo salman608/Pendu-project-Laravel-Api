@@ -43,6 +43,73 @@
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
+#pname{
+    /* width: 206px !important; */
+}
+.qty{
+    width: 128px !important;
+}
+.qty .count {
+    color: #56cd93;
+    display: inline-block;
+    vertical-align: top;
+    font-size: 25px;
+    font-weight: 700;
+    line-height: 30px;
+    padding: 0 2px;
+    min-width: 35px;
+    text-align: center;
+
+}
+.qty .plus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background: gray;
+    }
+.qty .minus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: top;
+    color: white;
+    width: 30px;
+    height: 30px;
+    font: 30px/1 Arial,sans-serif;
+    text-align: center;
+    border-radius: 50%;
+    background-clip: padding-box;
+}
+
+.minus:hover{
+    background-color: #56cd93 !important;
+}
+.plus:hover{
+    background-color: #56cd93 !important;
+}
+/*Prevent text selection*/
+span{
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+input{
+    border: 0;
+    width: 2%;
+}
+nput::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input:disabled{
+    background-color:white;
+}
 </style>
 
 <!-- ------  login Modal ----- -->
@@ -481,7 +548,11 @@
                                 <tbody>
                                     <tr class="top border-bottom border-light" id="tableRow_1">
                                         <td><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
-                                        <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                        <td class="qty">
+                                            <span class="minus" style="background: #8f8f8f">-</span>
+                                            <input type="number" class="count" name="qty[]" value="1">
+                                            <span class="plus" style="background: #8f8f8f">+</span>
+                                       </td>
                                         <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
                                         <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
                                     </tr>
@@ -592,7 +663,7 @@
                                     <tbody>
                                         <tr class="top border-bottom border-light" id="tableRow_1">
 
-                                            <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
+                                            <td id="pname"><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
                                             <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
                                             <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
                                             <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
@@ -1490,7 +1561,10 @@
     });
 </script>
 <script>
- $(document).ready(function(){
+
+//======product and price ======
+$(document).ready(function(){
+
 
 // Add another Product field
 $('#add_btn').on('click',function(){
@@ -1498,7 +1572,7 @@ $('#add_btn').on('click',function(){
     html+='<tr>';
     // html+='<td><div class="circle"></div></td>';
     html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-    html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
+    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
     html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
     html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
     html+='</tr>';
@@ -1510,19 +1584,32 @@ $(document).on('click','#remove',function(){
     $(this).closest('tr').remove();
 });
 
-$('#add_btn_mover').on('click',function(){
-    let html='';
-    html+='<tr>';
-    // html+='<td><div class="circle"></div></td>';
-    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-    html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
-    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
-    html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
-    html+='</tr>';
-    $('tbody').append(html);
-});
+// Select Delivery Time based on 2nd Lable
+$('.delivery_time_checker').click(function(){
+
+    let label = $('.delivery_time_checker').parents("label");
+    label.children().prop("checked", true);
 });
 
+});
+
+// quantity count
+$(document).ready(function(){
+    $('.count').prop('disabled', true);
+       $(document).on('click','.plus',function(){
+        //    console.log($(this).siblings('input').val());
+       var countInput = $(this).siblings('input');
+        $(countInput).val(parseInt(countInput.val()) + 1 );
+    });
+    $(document).on('click','.minus',function(){
+        // console.log($(this).siblings('input').val());
+        var countMinus = $(this).siblings('input');
+        $(countMinus).val(parseInt(countMinus.val()) - 1 );
+            if ($(countMinus).val() == 0) {
+                $(countMinus).val(1);
+            }
+        });
+ });
 </script>
 
 @endsection
