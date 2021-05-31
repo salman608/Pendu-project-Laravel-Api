@@ -18,4 +18,9 @@ class DropperGroup extends Model
     {
         return $this->hasMany(DropperGroupStatus::class);
     }
+
+    public function rules()
+    {
+        return $this->hasMany(DropperGroupRule::class);
+    }
 }

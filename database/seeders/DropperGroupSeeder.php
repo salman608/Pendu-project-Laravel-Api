@@ -34,12 +34,7 @@ class DropperGroupSeeder extends Seeder
 
         // dropper_group_statuses
         \DB::table('dropper_group_statuses')->truncate();
-        $experts_statuses = collect([
-            'Priority notification of the tasks',
-            'Low commission rate of 15%'
-        ]);
-
-
+ 
         $experts_statuses = collect([
             [
                 'title'             => 'Priority notification of the tasks', 
@@ -72,7 +67,72 @@ class DropperGroupSeeder extends Seeder
                 'updated_at'        => now()
             ]);
         });
-        
 
+
+        // dropper_group_rules
+        \DB::table('dropper_group_rules')->truncate();
+        $group_rules = collect([
+            // Rising
+            [
+                'title'             => 'Rating - 3-5 Star rating', 
+                'dropper_group_id'  =>  1
+            ],
+            [
+                'title'             => 'Minimum AOA - 60%', 
+                'dropper_group_id'  =>  1
+            ],
+            [
+                'title'             => 'Successful completion - 60%', 
+                'dropper_group_id'  =>  1
+            ],
+            [
+                'title'             => 'Minimum monthly Total Tasks - 0', 
+                'dropper_group_id'  =>  1
+            ],
+
+            // Experts
+            [
+                'title'             => 'Rating - 4-5 Star rating', 
+                'dropper_group_id'  =>  2
+            ],
+            [
+                'title'             => 'Minimum AOA - 80%', 
+                'dropper_group_id'  =>  2
+            ],
+            [
+                'title'             => 'Successful completion - 80%', 
+                'dropper_group_id'  =>  2
+            ],
+            [
+                'title'             => 'Minimum monthly Total Tasks - 50', 
+                'dropper_group_id'  =>  2
+            ],
+            // Pro
+            [
+                'title'             => 'Rating - 4.5-5 Star rating', 
+                'dropper_group_id'  =>  3
+            ],
+            [
+                'title'             => 'Minimum AOA - 90% or above', 
+                'dropper_group_id'  =>  3
+            ],
+            [
+                'title'             => 'Successful completion - 90% or above', 
+                'dropper_group_id'  =>  3
+            ],
+            [
+                'title'             => 'Minimum monthly Total Tasks - 100', 
+                'dropper_group_id'  =>  3
+            ],
+        ]);
+
+        $group_rules->each(function($group_rule){
+            \DB::table('dropper_group_rules')->insert([
+                'title'             => $group_rule['title'],
+                'dropper_group_id'  => $group_rule['dropper_group_id'],
+                'created_at'        => now(),
+                'updated_at'        => now()
+            ]);
+        });
     }
 }

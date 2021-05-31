@@ -9,5 +9,10 @@ class TaskOrder extends Model
 {
     use HasFactory;
 
+    public const STATUS_ASSIGNED       = 'Assigned';
+    public const STATUS_IN_PROGRESS    = 'In Progress';
+    public const STATUS_COLLECTED      = 'Collected';
+    public const STATUS_DELIVERED      = 'Delivered';
+
     protected $guarded = [];
 }

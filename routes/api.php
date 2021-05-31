@@ -11,6 +11,7 @@ use \App\Http\Controllers\Api\V1\Others\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
+use App\Http\Controllers\Api\V1\User\AppController;
 use App\Http\Controllers\Api\V1\User\TaskOrderController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\ApiController;
@@ -102,8 +103,10 @@ Route::prefix('v1')->middleware('jwt.verify')->group(function () {
     Route::get('posts', [PostController::class, 'index']);
     Route::get('/posts/{post}', [PostController::class, 'show']);
     Route::post('posts', [PostController::class, 'store']);
-
-
+    
+    Route::get('/app-permission', [ AppController::class, 'appPermission']);
+    Route::post('/app-permission/{id}', [ AppController::class, 'updateAppPermission']);
+    
 
     Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
         // return "Offer accepted";

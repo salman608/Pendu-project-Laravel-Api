@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\TaskOrder;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -24,7 +25,16 @@ class CreateTaskOrdersTable extends Migration
             $table->double('service_fee')->default(0);
             $table->double('promo_discount')->default(0);
             $table->double('total')->default(0);
-            $table->integer('status')->default(0);
+            
+            
+            $table->enum('status', [
+                TaskOrder::STATUS_ASSIGNED,
+                TaskOrder::STATUS_IN_PROGRESS,
+                TaskOrder::STATUS_COLLECTED,
+                TaskOrder::STATUS_DELIVERED,
+            ])->default(TaskOrder::STATUS_ASSIGNED);
+            
+            
             $table->timestamps();
         });
     }

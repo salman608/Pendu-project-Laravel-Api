@@ -118,7 +118,9 @@ class DropperAuthController extends Controller
      */
     public function profile() {
         $dropper = Auth::guard('dropper-api')->user();
-        return response()->json($dropper->load(['level', 'level.perkStatus']));
+        return response()->json($dropper->load(
+            ['level', 'level.perkStatus', 'level.rules']
+        ));
     }
 
     /**
