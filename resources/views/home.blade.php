@@ -102,7 +102,7 @@ input{
     border: 0;
     width: 2%;
 }
-nput::-webkit-outer-spin-button,
+input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
@@ -1335,12 +1335,10 @@ input:disabled{
                     </div>
 
                     <p class='more_way' >More way to invite</p>
-
-
                     <div class="section_tooltipss">
 
 
-                      <input type="text" class=" link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+                      <input type="text" class="link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
 
                       <div class="tooltip22">
                       <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">

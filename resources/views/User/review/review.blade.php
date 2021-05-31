@@ -115,6 +115,19 @@
         font-weight: 800;
         color: #5bdb98;
     }
+
+    /* invite button */
+    .link_input{
+        margin-left: 173px !important;
+        width: 560px !important;
+    }
+    .section_tooltipss{
+        width: 100%;
+    }
+
+   .tooltip22 {
+       padding-left: 20px;
+    }
 </style>
 <section class="">
     <div style="height: 120px; background: #5bdb98"></div>
@@ -334,10 +347,24 @@
 
             <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
                 <div class="row w-100 d-flex justify-content-center">
-                    <input id="additionalNote" class="form-control w-50" type="text" name="email"
-                        title="Enter email address"
-                        placeholder="Enter email address" style="background: #f1f1f1"/>
-                    <button class="button ml-4 pl-5 pr-5" style="background: #90a0b2;color:#fff;height:37px;border-radius: 5px; padding: 0;">Send invite</button>
+                    {{-- <div class="section_tooltipss">
+                        <input type="text" class=" link_input  w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:50%!important ">
+                        <div class="tooltip22">
+                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">
+                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                          Copy text
+                          </button>
+                        </div>
+                      </div> --}}
+                      <div class="section_tooltipss">
+                        <input type="text" class="link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+                        <div class="tooltip22">
+                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()" style="width: 179px;">
+                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                          Copy Referral
+                          </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -374,5 +401,22 @@
         </div>
     </div>
 </section>
+<script>
+    // =============== footer intive tooltip ==============
+function myFunctions() {
+    var copyText = document.getElementById("myInput1");
+    copyText.select();
+    copyText.setSelectionRange(0, 99999);
+    document.execCommand("copy");
+
+    var tooltip = document.getElementById("myTooltip1");
+    tooltip.innerHTML = "Copied: " + copyText.value;
+  }
+
+  function outFunca() {
+    var tooltip = document.getElementById("myTooltip1");
+    tooltip.innerHTML = "Copy to clipboard";
+  }
+  </script>
 
 @endsection

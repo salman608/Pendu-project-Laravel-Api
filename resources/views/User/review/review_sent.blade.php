@@ -80,7 +80,7 @@
         cursor: pointer;
     }
     /* HIDE RADIO */
-    [type=radio] { 
+    [type=radio] {
         position: absolute;
         opacity: 0;
         width: 0;
@@ -114,6 +114,19 @@
         font-size: 18px;
         font-weight: 800;
         color: #5bdb98;
+    }
+
+    /* * invite button */
+    .link_input{
+        margin-left: 173px !important;
+        width: 560px !important;
+    }
+    .section_tooltipss{
+        width: 100%;
+    }
+
+   .tooltip22 {
+       padding-left: 20px;
     }
 </style>
 <section class="">
@@ -210,8 +223,8 @@
                         </g>
                     </g>
                     </g>
-                </svg>    
-            </div>              
+                </svg>
+            </div>
             <div class="col-md-12 col-sm-12 col-lg-12 text-center" style="font-family: Montserrat;
             font-weight: 600;
             font-size: 15px;
@@ -232,11 +245,11 @@
             font-size: 16px;
             text-align: center;
             color: #60e99c;
-            
+
             ">
                 <p>You have sent the Tip successfully</p>
             </div>
-            
+
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-5" style="font-family: Montserrat;
             font-size: 11px;
             color: #90a0b2;
@@ -256,15 +269,24 @@
                 <p style="font-family: Montserrat;
                 font-weight: normal;
                 font-size: 14px;
-                color: #1b3149;">More ways to invite</p>
+                color: #1b3149;">More ways to invites</p>
             </div>
-            
+
             <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
                 <div class="row w-100 d-flex justify-content-center">
-                    <input id="additionalNote" class="form-control w-50" type="text" name="email"
+                    <div class="section_tooltipss">
+                        <input type="text" class="link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+                        <div class="tooltip22">
+                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()" style="width: 179px;">
+                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                          Copy Referral
+                          </button>
+                        </div>
+                    </div>
+                    {{-- <input id="additionalNote" class="form-control w-50" type="text" name="email" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1"
                         title="Enter email address"
                         placeholder="Enter email address" style="background: #f1f1f1"/>
-                    <button class="button ml-4 pl-5 pr-5" style="background: #90a0b2;color:#fff;height:37px;border-radius: 5px; padding: 0;">Send invite</button>
+                    <button class="button ml-4 pl-5 pr-5" style="background: #90a0b2;color:#fff;height:37px;border-radius: 5px; padding: 0;" copy>Copy Refarel</button> --}}
                 </div>
             </div>
 
@@ -296,7 +318,7 @@
                       </g>
                       <text id="Share-" transform="translate(1101 871)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Share-</tspan></text>
                     </g>
-                </svg>                  
+                </svg>
             </div>
         </div>
     </div>
