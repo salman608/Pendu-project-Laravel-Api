@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="{{asset('frontend')}}/style.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/responsive.css">
     <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/custom.css">
+    <link rel="stylesheet" href="{{asset('frontend')}}/assets/css/style.css">
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="{{asset('frontend/assets/css/bootstrap.min.css')}}">
     <!-- Google Font -->
