@@ -402,21 +402,6 @@
     </div>
 </section>
 <script>
-    // =============== footer intive tooltip ==============
-function myFunctions() {
-    var copyText = document.getElementById("myInput1");
-    copyText.select();
-    copyText.setSelectionRange(0, 99999);
-    document.execCommand("copy");
 
-    var tooltip = document.getElementById("myTooltip1");
-    tooltip.innerHTML = "Copied: " + copyText.value;
-  }
-
-  function outFunca() {
-    var tooltip = document.getElementById("myTooltip1");
-    tooltip.innerHTML = "Copy to clipboard";
-  }
-  </script>
 
 @endsection

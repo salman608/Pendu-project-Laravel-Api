@@ -103,9 +103,9 @@
             <div class="blog_content_share_section ">
                 <div class="share_invite">
                     <span>Share:-</span>
-                    <a href="#" class='twiter'> <i class="fab fa-twitter-square"></i></a>
-                    <a href="#" class='fb'> <i class="fab fa-facebook-square"></i></a>
-                    <a href="#" class='ins'> <i class="fab fa-instagram-square"></i></a>
+                    <a href="#" class='twiter' id="twr-btn" target="_blank"> <i class="fab fa-twitter-square"></i></a>
+                    <a href="#" class='fb' id="fb-btn" target="_blank"> <i class="fab fa-facebook-square"></i></a>
+                    <a href="#" class='ins' id="ins-btn" target="_blank"> <i class="fab fa-instagram-square"></i></a>
                 </div>
             </div>
         </div>
@@ -147,5 +147,21 @@
     </div>
 
 </div>
+
+<script>
+    // social share button
+
+    const twiterBtn=document.getElementById('twr-btn');
+    const facebookBtn=document.getElementById('fb-btn');
+    const instagramBtn=document.getElementById('ins-btn');
+
+    let postUrl=encodeURI(document.location.href);
+    let postTitle=encodeURI('{{$single_post->title}}');
+
+    twiterBtn.setAttribute("href",`https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+    // instagramBtn.setAttribute("href",`https://www.instagram.com/sharer.php?u=${postUrl}`);
+    facebookBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUrl}`);
+
+</script>
 
 @endsection
