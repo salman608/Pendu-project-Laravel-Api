@@ -1,4 +1,18 @@
 @extends('User.Asset')
+<style>
+    p{
+        font-family: var(--montserrat-font)!important;
+    }
+    .service_drop{
+        margin-top: -23px;
+        border: 1px solid #90a0b2;
+        border-radius: 10px;
+    }
+    .dropdown-toggle{
+        border-radius: 10px !important;
+    }
+
+</style>
 @section('user_content')
 
 <section class="breadcrumb_main">
@@ -36,9 +50,6 @@
             </div>
         </div>
     </div>
-
-
-
 </div>
 
 <!-- /* =========================Become a dropper =============== */ -->
@@ -58,8 +69,6 @@
             <div class="form-row mt-4 ">
                 <div class="form-group col-md-6">
                     <div class="drop_fisrt_name_area">
-
-
                         <label for="inputEmail4" class='dropfnm'>First name</label>
                         <input type="text" name="first_name" class="form-control form-control-lg" id="inputEmail4">
 
@@ -126,9 +135,9 @@
 
                 <div class="form-group col-md-6">
 
-                    <div class="drop_fisrt_name_area">
+                    <div class="service_area">
                         <label name="service" for="inputEmail11" class='dropfnm'>Select category</label>
-                        <select multiple class="selectpicker w-100 from-controll" name="services[]" id="dropperselect">
+                        <select multiple class="selectpicker w-100 from-controll service_drop" name="services[]" id="dropperselect">
                             @foreach ($services as $data)
                             <option value="{{$data->id}}">{{$data->title}}</option>
                             @endforeach
