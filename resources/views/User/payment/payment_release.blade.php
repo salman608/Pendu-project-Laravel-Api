@@ -1,10 +1,88 @@
+<style>
+ .review-row{
+        margin-top: -222px;
+    }
+.text-review{
+        margin: auto;
 
+    }
+.accurancy-lebel{
+    font-weight: 500;
+    padding-right: 34px;
+    margin-left: 2px;
+    }
+
+.button-review{
+    width: 291px;
+    margin: auto !important;
+    background: rgb(96, 233, 156);
+    border: 1px solid rgb(96, 233, 156);
+    display: block;
+    margin-top: 12px!important;
+    margin-bottom: 10px !important;
+    }
+.button-review:hover{
+    background: rgb(88, 231, 150);
+    border: 1px solid rgb(88, 231, 150);
+}
+.rate {
+    float: left;
+    margin-left: 265px;
+
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    top:-9999px;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #ffc700;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #c59b08;
+}
+
+#ex1Slider .slider-selection {
+	background: #0eca46;
+}
+
+
+
+</style>
 {{-- payment confirm modal --}}
 <div class="modal fade" id="paymentReleaseModalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-            <div>
+
+            <div style="background: #60e99c;height: 8px;">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
+                    </button>
+                </div>
+            </div>
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" viewBox="0 0 744 687">
+
                     <defs>
                       <clipPath id="clip-path">
                         <rect id="Rectangle_2475" data-name="Rectangle 2475" width="250.555" height="234.467" fill="none"/>
@@ -39,10 +117,8 @@
                     <g id="Group_2864" data-name="Group 2864" transform="translate(-19669 -1567)">
                       <rect id="Rectangle_4272" data-name="Rectangle 4272" width="744" height="687" rx="10" transform="translate(19669 1567)" fill="#fff"/>
                       <path id="Rectangle_4275" data-name="Rectangle 4275" d="M10,0H734a10,10,0,0,1,10,10v4a0,0,0,0,1,0,0H0a0,0,0,0,1,0,0V10A10,10,0,0,1,10,0Z" transform="translate(19669 1567)" fill="#60e99c"/>
-                      <g id="Group_2814" data-name="Group 2814" transform="translate(18927.494 1277)">
-                        <circle id="Ellipse_159" data-name="Ellipse 159" cx="19.5" cy="19.5" r="19.5" transform="translate(1424.505 317)" fill="#f1f1f1"/>
-                        <text id="X" transform="translate(1444.505 344)" fill="#f97a7a" font-size="20" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-6.93" y="0">X</tspan></text>
-                      </g>
+
+
                       <line id="Line_81" data-name="Line 81" x2="657" transform="translate(19713.5 1890.5)" fill="none" stroke="#e8e8e8" stroke-width="1"/>
                       <g id="Group_1384" data-name="Group 1384" transform="translate(19908.418 1594.5)">
                         <g id="Group_1383" data-name="Group 1383" clip-path="url(#clip-path)">
@@ -111,58 +187,55 @@
                       <text id="Payment_released_" data-name="Payment released!" transform="translate(20041 1865.487)" font-size="25" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-119.85" y="0">Payment released!</tspan></text>
                       <text id="Review_your_experience" data-name="Review your experience" transform="translate(20049 1919.487)" fill="#5bdb98" font-size="16" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-98.408" y="0">Review your experience</tspan></text>
                       <text id="Overall_rating" data-name="Overall rating" transform="translate(19907 1962.487)" fill="#1b3149" font-size="16" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-56.128" y="0">Overall rating</tspan></text>
-                      <g id="Group_2861" data-name="Group 2861" transform="translate(94 -41)">
-                        <rect id="Rectangle_2477" data-name="Rectangle 2477" width="156" height="28" rx="14" transform="translate(20030 1984)" fill="#e7f8ef"/>
-                        <g id="Group_1386" data-name="Group 1386" transform="translate(20041.609 1989.523)">
-                          <g id="Group_1385" data-name="Group 1385" clip-path="url(#clip-path-8)">
-                            <path id="Path_5900" data-name="Path 5900" d="M9.426.218l2.5,5.066a.393.393,0,0,0,.3.215l5.59.812a.393.393,0,0,1,.218.67l-4.045,3.943a.393.393,0,0,0-.113.347l.955,5.568a.393.393,0,0,1-.57.414l-5-2.629a.393.393,0,0,0-.365,0l-5,2.629a.393.393,0,0,1-.57-.414l.955-5.568a.393.393,0,0,0-.113-.347L.119,6.981a.393.393,0,0,1,.218-.67L5.927,5.5a.393.393,0,0,0,.3-.215L8.722.218a.393.393,0,0,1,.7,0" transform="translate(0 0)" fill="#ffb44a"/>
-                          </g>
-                        </g>
-                        <g id="Group_1387" data-name="Group 1387" transform="translate(20070.805 1989.523)">
-                          <g id="Group_1385-2" data-name="Group 1385" clip-path="url(#clip-path-8)">
-                            <path id="Path_5900-2" data-name="Path 5900" d="M9.426.218l2.5,5.066a.393.393,0,0,0,.3.215l5.59.812a.393.393,0,0,1,.218.67l-4.045,3.943a.393.393,0,0,0-.113.347l.955,5.568a.393.393,0,0,1-.57.414l-5-2.629a.393.393,0,0,0-.365,0l-5,2.629a.393.393,0,0,1-.57-.414l.955-5.568a.393.393,0,0,0-.113-.347L.119,6.981a.393.393,0,0,1,.218-.67L5.927,5.5a.393.393,0,0,0,.3-.215L8.722.218a.393.393,0,0,1,.7,0" transform="translate(0 0)" fill="#ffb44a"/>
-                          </g>
-                        </g>
-                        <g id="Group_1388" data-name="Group 1388" transform="translate(20099.998 1989.523)">
-                          <g id="Group_1385-3" data-name="Group 1385" clip-path="url(#clip-path-8)">
-                            <path id="Path_5900-3" data-name="Path 5900" d="M9.426.218l2.5,5.066a.393.393,0,0,0,.3.215l5.59.812a.393.393,0,0,1,.218.67l-4.045,3.943a.393.393,0,0,0-.113.347l.955,5.568a.393.393,0,0,1-.57.414l-5-2.629a.393.393,0,0,0-.365,0l-5,2.629a.393.393,0,0,1-.57-.414l.955-5.568a.393.393,0,0,0-.113-.347L.119,6.981a.393.393,0,0,1,.218-.67L5.927,5.5a.393.393,0,0,0,.3-.215L8.722.218a.393.393,0,0,1,.7,0" transform="translate(0 0)" fill="#ffb44a"/>
-                          </g>
-                        </g>
-                        <g id="Group_1389" data-name="Group 1389" transform="translate(20129.191 1989.523)">
-                          <g id="Group_1385-4" data-name="Group 1385" clip-path="url(#clip-path-8)">
-                            <path id="Path_5900-4" data-name="Path 5900" d="M9.426.218l2.5,5.066a.393.393,0,0,0,.3.215l5.59.812a.393.393,0,0,1,.218.67l-4.045,3.943a.393.393,0,0,0-.113.347l.955,5.568a.393.393,0,0,1-.57.414l-5-2.629a.393.393,0,0,0-.365,0l-5,2.629a.393.393,0,0,1-.57-.414l.955-5.568a.393.393,0,0,0-.113-.347L.119,6.981a.393.393,0,0,1,.218-.67L5.927,5.5a.393.393,0,0,0,.3-.215L8.722.218a.393.393,0,0,1,.7,0" transform="translate(0 0)" fill="#ffb44a"/>
-                          </g>
-                        </g>
-                        <g id="Group_1390" data-name="Group 1390" transform="translate(20158.385 1989.523)">
-                          <g id="Group_1385-5" data-name="Group 1385" clip-path="url(#clip-path-12)">
-                            <path id="Path_5900-5" data-name="Path 5900" d="M9.426.218l2.5,5.066a.393.393,0,0,0,.3.215l5.59.812a.393.393,0,0,1,.218.67l-4.045,3.943a.393.393,0,0,0-.113.347l.955,5.568a.393.393,0,0,1-.57.414l-5-2.629a.393.393,0,0,0-.365,0l-5,2.629a.393.393,0,0,1-.57-.414l.955-5.568a.393.393,0,0,0-.113-.347L.119,6.981a.393.393,0,0,1,.218-.67L5.927,5.5a.393.393,0,0,0,.3-.215L8.722.218a.393.393,0,0,1,.7,0" transform="translate(0 0)" fill="#fff"/>
-                          </g>
-                        </g>
-                      </g>
-                      <text id="Order_accuracy" data-name="Order accuracy" transform="translate(19914 2005.487)" fill="#1b3149" font-size="16" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-63.04" y="0">Order accuracy</tspan></text>
-                      <g id="Group_2863" data-name="Group 2863" transform="translate(47 -40)">
-                        <g id="Group_1420" data-name="Group 1420" transform="translate(11556 -260)">
-                          <path id="Path_5964" data-name="Path 5964" d="M1.408-9.4H9.35l2.121-2.882L13.861-9.4h7.731A1.408,1.408,0,0,1,23-7.991v12.2a1.408,1.408,0,0,1-1.408,1.408H1.408A1.408,1.408,0,0,1,0,4.214v-12.2A1.408,1.408,0,0,1,1.408-9.4Z" transform="translate(8542 2317)" fill="#1b3149"/>
-                          <text id="_20_" data-name="20%" transform="translate(8554 2318.487)" fill="#fff" font-size="8" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-8.448" y="0">20%</tspan></text>
-                        </g>
-                        <line id="Line_56" data-name="Line 56" x2="153" transform="translate(20080.5 2039.5)" fill="none" stroke="#e8e8e8" stroke-linecap="round" stroke-width="4"/>
-                        <line id="Line_55" data-name="Line 55" x2="31" transform="translate(20080.5 2039.5)" fill="none" stroke="#5bdb98" stroke-linecap="round" stroke-width="4"/>
-                      </g>
-                      <rect id="Rectangle_2480" data-name="Rectangle 2480" width="425" height="131" rx="5" transform="translate(19851 2037)" fill="#fff7ec"/>
-                      <text id="Write_your_experience_here" data-name="Write your experience here" transform="translate(19943 2062.487)" fill="#8f8f8f" font-size="12" font-family="Montserrat-Regular, Montserrat"><tspan x="-81.156" y="0">Write your experience here</tspan></text>
-                      <rect id="Rectangle_2481" data-name="Rectangle 2481" width="425" height="45" rx="5" transform="translate(19851 2184)" fill="#60e99c"/>
-                    <a href="{{ url('review') }}"  id="submitReview">
-                        <text id="Submit" transform="translate(20064 2212)" fill="#fff" font-size="16" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-30.096" y="0">Submit</tspan></text>
-                    </a>
-                    </g>
-                  </svg>
+
+                    </svg>
+
+                    {{-- <form action=""> --}}
+                    <div class="row review-row">
+
+
+                            <div class="rate">
+
+                                <input type="radio" id="star5" name="rate" value="5" />
+                                <label for="star5" title="text">5 stars</label>
+                                <input type="radio" id="star4" name="rate" value="4" />
+                                <label for="star4" title="text">4 stars</label>
+                                <input type="radio" id="star3" name="rate" value="3" />
+                                <label for="star3" title="text">3 stars</label>
+                                <input type="radio" id="star2" name="rate" value="2" />
+                                <label for="star2" title="text">2 stars</label>
+                                <input type="radio" id="star1" name="rate" value="1" />
+                                <label for="star1" title="text">1 star</label>
+                              </div>
+                              <div class="accurancy" style="margin: auto;">
+                                  <label class="accurancy-lebel" for="" style="font-size: 13px">Order accurancy</label>
+                                  <input type="range" class="form-range">
+                              </div>
+                              <div class="text-review">
+                                  <textarea class="form-control input-group-lg bg-input-orange" name="" id="" cols="36" rows="4" placeholder="Write your experience here"></textarea>
+                              </div>
+                              <br>
+
+                        </div>
+
+                        <a class="btn btn-success mt-3 mb-3 button-review" href="{{ url('review') }}"  id="submitReview">Submit</a>
+                    {{-- </form> --}}
+                    </div>
+
             </div>
         </div>
-    </div>
-</div>
+
+{{-- </div> --}}
+
 
 <script>
     $('#releasePaymentId').click(function() {
         $('#taskProcessModal').modal('hide');
     })
 </script>
+<script>
+    $('#taskProcessModal').click(function() {
+       $('#paymentConfirmModalId').modal('hide');
+   });
+</script>
+

@@ -80,7 +80,7 @@
         cursor: pointer;
     }
     /* HIDE RADIO */
-    [type=radio] { 
+    [type=radio] {
         position: absolute;
         opacity: 0;
         width: 0;
@@ -90,20 +90,20 @@
         /* IMAGE STYLES */
     [type=radio] + div {
         cursor: pointer;
-        border-radius: 10px;
-        background: transparent;
-        border: 1px solid #90a0b2;
-        width: 150px;
-        height: 60px;
-        margin-top: 10px;
+    border-radius: 2px;
+    background: transparent;
+    border: 1px solid #90a0b2;
+    width: 80px !important;
+    height: 60px;
+    margin-top: 10px;
     }
 
         /* CHECKED STYLES */
     [type=radio]:checked + div {
         border: 0px;
         padding: 0px;
-        background: #5bdb98;
-        border-radius: 10px;
+        background: #ffebcf;
+        border-radius: 2px;
     }
     [type=radio]:checked + div > label{
         color: #fff;
@@ -114,6 +114,19 @@
         font-size: 18px;
         font-weight: 800;
         color: #5bdb98;
+    }
+
+    /* invite button */
+    .link_input{
+        margin-left: 173px !important;
+        width: 560px !important;
+    }
+    .section_tooltipss{
+        width: 100%;
+    }
+
+   .tooltip22 {
+       padding-left: 20px;
     }
 </style>
 <section class="">
@@ -210,8 +223,8 @@
                         </g>
                     </g>
                     </g>
-                </svg>    
-            </div>              
+                </svg>
+            </div>
             <div class="col-md-12 col-sm-12 col-lg-12 text-center" style="font-family: Montserrat;
             font-weight: 600;
             font-size: 15px;
@@ -226,8 +239,56 @@
             ">
                 <p>Want to give a tip!</p>
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="336" height="50" viewBox="0 0 336 50">
+            <div class="col-md-12 col-sm-12 col-lg-12">
+                <div class="row text-center">
+
+                    <div class="pr-2" style=" margin-left: 394px;">
+                        <label>
+                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$5</label>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$10</label>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$15</label>
+                            </div>
+                        </label>
+                    </div>
+                    <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$25</label>
+                            </div>
+                        </label>
+                    </div>
+                    {{-- <div class="pr-2">
+                        <label>
+                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <div>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$5</label>
+                            </div>
+                        </label>
+                    </div> --}}
+
+            </div>
+
+
+
+
+                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="336" height="50" viewBox="0 0 336 50">
                     <g id="Group_2866" data-name="Group 2866" transform="translate(-22048 -2195)">
                     <rect id="Rectangle_4307" data-name="Rectangle 4307" width="72" height="50" rx="5" transform="translate(22048 2195)" fill="#ffebcf"/>
                     <g id="Rectangle_4308" data-name="Rectangle 4308" transform="translate(22136 2195)" fill="none" stroke="#90a0b2" stroke-width="1">
@@ -247,8 +308,9 @@
                     <text id="_15" data-name="$15" transform="translate(22260 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$15</tspan></text>
                     <text id="_20" data-name="$20" transform="translate(22348 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$20</tspan></text>
                     </g>
-                </svg> 
-            </div>  
+                </svg> --}}
+            </div>
+
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="410" height="45" viewBox="0 0 410 45">
                     <g id="Group_3158" data-name="Group 3158" transform="translate(7410 -2859)">
@@ -282,13 +344,27 @@
                 font-size: 14px;
                 color: #1b3149;">More ways to invite</p>
             </div>
-            
+
             <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
                 <div class="row w-100 d-flex justify-content-center">
-                    <input id="additionalNote" class="form-control w-50" type="text" name="email"
-                        title="Enter email address"
-                        placeholder="Enter email address" style="background: #f1f1f1"/>
-                    <button class="button ml-4 pl-5 pr-5" style="background: #90a0b2;color:#fff;height:37px;border-radius: 5px; padding: 0;">Send invite</button>
+                    {{-- <div class="section_tooltipss">
+                        <input type="text" class=" link_input  w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:50%!important ">
+                        <div class="tooltip22">
+                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">
+                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                          Copy text
+                          </button>
+                        </div>
+                      </div> --}}
+                      <div class="section_tooltipss">
+                        <input type="text" class="link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+                        <div class="tooltip22">
+                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()" style="width: 179px;">
+                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                          Copy Referral
+                          </button>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -320,10 +396,12 @@
                       </g>
                       <text id="Share-" transform="translate(1101 871)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Share-</tspan></text>
                     </g>
-                </svg>                  
+                </svg>
             </div>
         </div>
     </div>
 </section>
+<script>
+
 
 @endsection

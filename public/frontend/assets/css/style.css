@@ -1,7 +1,10 @@
+
 .wizard {
     width: 920px;
     position: relative;
 }
+
+
 
 .wizard > .steps {
     position: absolute;
@@ -460,3 +463,5 @@ textarea.form-control {
 }
 
 /*# sourceMappingURL=style.css.map */
+
+

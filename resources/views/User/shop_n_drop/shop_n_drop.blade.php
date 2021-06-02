@@ -28,20 +28,6 @@ select.select-box {
         2.5em 2.5em;
     background-repeat: no-repeat;
 }
-#pprice{
-    border:1px solid #2cee8a;
-    border-radius: 4px;
-    /* margin-left: 60px; */
-    width: 150px;
-    display: inline-block;
-}
-#pname{
-    border:1px solid #2cee8a;
-    border-radius: 4px;
-    display: inline-block;
-}
-
-
 
 </style>
 @section('user_content')
@@ -109,7 +95,11 @@ select.select-box {
                               <tr class="top border-bottom border-light" id="tableRow_1">
                                   <td><div class="circle"></div></td>
                                   <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
-                                  <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                  <td class="qty">
+                                         <span class="minus" style="background: #8f8f8f">-</span>
+                                         <input type="number" class="count" name="qty[]" value="1">
+                                         <span class="plus" style="background: #8f8f8f">+</span>
+                                    </td>
                                   <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
                                   <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
                               </tr>
@@ -275,7 +265,7 @@ select.select-box {
                         @foreach ($delivery_times as $d_time )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap">
+                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
                                 <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
@@ -373,7 +363,7 @@ select.select-box {
             html+='<tr>';
             html+='<td><div class="circle"></div></td>';
             html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-            html+='<td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>';
+            html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
             html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
             html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
             html+='</tr>';
@@ -393,6 +383,24 @@ select.select-box {
         });
 
     });
+
+    // quantity count
+    $(document).ready(function(){
+		    $('.count').prop('disabled', true);
+   			$(document).on('click','.plus',function(){
+                //    console.log($(this).siblings('input').val());
+               var countInput = $(this).siblings('input');
+				$(countInput).val(parseInt(countInput.val()) + 1 );
+    		});
+        	$(document).on('click','.minus',function(){
+                // console.log($(this).siblings('input').val());
+                var countMinus = $(this).siblings('input');
+    			$(countMinus).val(parseInt(countMinus.val()) - 1 );
+    				if ($(countMinus).val() == 0) {
+						$(countMinus).val(1);
+					}
+    	    	});
+ 		});
 
 </script>
 
@@ -601,8 +609,8 @@ select.select-box {
 
 
 
-    // next button 
-    
+    // next button
+
     // Next Step
     $('#nextButton').click(function(){
 
@@ -751,6 +759,8 @@ select.select-box {
         form.submit();
 
     });
+
+
 </script>
 
 @endsection

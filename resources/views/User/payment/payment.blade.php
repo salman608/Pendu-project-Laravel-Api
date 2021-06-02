@@ -48,7 +48,7 @@
     }
 
     .container-box {
-        background: #fff; 
+        background: #fff;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         border-radius: 10px;
     }
@@ -87,7 +87,7 @@
         margin-left: 3px;
         color: #8f8f8f;
     }
-  
+
 </style>
 @section('user_content')
 <section class="">
@@ -123,7 +123,7 @@
                                 </table>
                             </div>
                         </div>
-                        
+
                         <div class="form-group w-100">
                             <label for="exampleInputEmail1" class="label-title">Deliver Info</label>
                             <div class="task-details-timeframe" style="padding-left: 30px;padding-top: 8px;">
@@ -199,7 +199,7 @@
                         </tr>
                     </table>
                 </div>
-                
+
                 <div class="input-group">
                     <input type="text" class="form-control bg-white border-right-0 promo-code-field" id="taskTitle" placeholder="Enter promo code">
                     <div class="input-group-append">
@@ -208,7 +208,7 @@
                             <path id="Path_7539" data-name="Path 7539" d="M7077.18,886l8.1,6.8-8.1,7.178" transform="translate(-7076.682 -885.426)" fill="none" stroke="#90a0b2" stroke-width="1.5"/>
                             </svg>
                         </span>
-                    </div>  
+                    </div>
                 </div>
                 <div>
                     <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: 15px;width: 100%;" style="padding-bottom: 15px" data-toggle="modal" data-target="#paymentConfirmModalId">Procced</button>
@@ -223,6 +223,13 @@
 </section>
 @include('User.payment.payment_confirm_modal')
 @include('User.component.task_process')
+
+@include("User.payment.payment_release")
+<script>
+     $('#taskProcessModal').click(function() {
+        $('#paymentConfirmModalId').modal('hide');
+    })
+</script>
 <script>
     // $('.payment-checkbox"]').click(function(e) {
     //     $(".payment-checkbox input[type='checkbox']").find(':checked').addClass('payment-select-checkbox');

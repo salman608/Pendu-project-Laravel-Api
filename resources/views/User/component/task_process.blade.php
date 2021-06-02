@@ -1,4 +1,72 @@
+<style>
+.track-row{
+    margin-top: -217px;
+    margin-left: 37px;
+    }
+  .step-line {
+    width: 417px;
+    display: flex;
+    justify-content: space-between;
+    border-top:2px dashed #60e99c;
+    padding-top: 15px;
+    margin-top: 15px;
+    margin: auto;
+}
+.step-line-text {
+    margin-top: 10px;
+    margin-left: -38px;
+    position: absolute;
+    font-size: 9px;
+}
+hr {
+    margin-top: 10px;
+    margin-bottom: 2rem;
+    border: 0;
+    border-top: 2px solid rgba(0,0,0,.1);
+    width: 90%;
+}
+.chat-btn{
+    margin-left: 116px;
+    width: 108px;
+    border-radius: 23px;
+    font-size: 10px;
+    background: #60e99c;
+    border: 1px solid #60e99c;
+}
+.chat-btn:hover{
+    background: #41ab70;
+    border: 1px solid #41ab70;
 
+}
+.home-btn{
+    width: 108px;
+    background: #60e99c;
+    border: 1px solid #60e99c;
+    margin-left: 110px;
+    border-radius: 5px;
+}
+
+.home-btn:hover{
+
+    background: #41ab70;
+    border: 1px solid #41ab70;
+
+}
+.release-btn{
+    background: #ffce8a;
+    border: 1px solid #ffce8a;
+    border-radius: 5px;
+}
+.release-btn:hover{
+    background: #e4a957;
+    border: 1px solid #e4a957;
+
+}
+
+
+
+
+</style>
 {{-- payment confirm modal --}}
 <div class="modal fade" id="taskProcessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -124,8 +192,10 @@
                         <path id="Path_5863" data-name="Path 5863" d="M313.012,785.61a8.2,8.2,0,0,1-3.967-1.359,8.395,8.395,0,0,0-7.608-.73,9.023,9.023,0,0,1-8.127-.78,7.563,7.563,0,0,0-3.712-1.278.3.3,0,1,1,.057-.592,8.18,8.18,0,0,1,3.967,1.36,8.383,8.383,0,0,0,7.605.731,9,9,0,0,1,8.122.777,7.617,7.617,0,0,0,3.717,1.281.3.3,0,0,1,.27.326.294.294,0,0,1-.325.264" transform="translate(-202.786 -547.304)" fill="#cf3f0a"/>
                       </g>
                     </g>
-                  </svg>                  
+                  </svg>
             </div>
+
+
             <div class="row">
                 <div class=" col-sm-6 col-md-6 d-flex justify-content-center">
                     <small>Track order</small>
@@ -155,17 +225,20 @@
                 </div>
             </div>
 
-            <br><br>
-            
-            <div class="d-flex justify-content-center">
+            <br><br> --}}
+
+            {{-- <div class="d-flex justify-content-center">
                 <a href="#" class="button">Chat</a>
                 <a href="#" class="button">Check progress</a>
             </div>
-            <br><br> --}}
+            <br><br>
+            --}}
+
+
             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="100%" height="auto" viewBox="0 0 744 643">
               <defs>
                 <clipPath id="clip-path">
-                  <rect width="744" height="643" fill="none"/>
+                  <rect width="744" height="310" fill="none"/>
                 </clipPath>
                 <clipPath id="clip-path-2">
                   <path id="Path_5803" data-name="Path 5803" d="M77.264,413.314a3.966,3.966,0,0,0,.045.557c-.132-.01-.263-.017-.4-.017a4.274,4.274,0,0,0-4.5,4c0,.109.011.213.019.319H72.41c-2.055,0-3.837.739-3.967,3.049a3.021,3.021,0,0,0,2.171,3.03c1.048.423,3.329.3,9.332.3,7.354,0,13.982.017,13.982.017a3.268,3.268,0,0,0,2.662-3c.273-2.553-2.085-4.557-4.843-4.49,0-.067.008-.138.008-.206a4.266,4.266,0,0,0-4.5-3.983,4.946,4.946,0,0,0-1.01.1,4.519,4.519,0,0,0-8.983.313" transform="translate(-68.438 -409.114)" fill="none"/>
@@ -332,79 +405,82 @@
                     </g>
                   </g>
                 </g>
-                <line id="Line_81" data-name="Line 81" x2="657" transform="translate(17960.5 2041.5)" fill="none" stroke="#e8e8e8" stroke-width="1"/>
-                <text id="Track_order" data-name="Track order" transform="translate(18079 2024)" fill="#8f8f8f" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-39.355" y="0">Track order</tspan></text>
-                <text id="ID_25425233254" data-name="ID#25425233254" transform="translate(18468 2024)" fill="#8f8f8f" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-59.902" y="0">ID#25425233254</tspan></text>
-                <g id="Group_2858" data-name="Group 2858" transform="translate(32 -112)">
-                  <path id="Path_7396" data-name="Path 7396" d="M12302.5,980.553V430.912" transform="translate(17547.088 14500.706) rotate(-90)" fill="none" stroke="#60e99c" stroke-linecap="round" stroke-width="1.5" stroke-dasharray="2 5"/>
-                  <path id="Path_7398" data-name="Path 7398" d="M12302.5,980.553V430.912" transform="translate(17547.088 14500.706) rotate(-90)" fill="none" stroke="#60e99c" stroke-linecap="round" stroke-width="1.5" stroke-dasharray="2 5"/>
-                  <path id="Path_7399" data-name="Path 7399" d="M12302.5,616.412v-185.5" transform="translate(17547.088 14500.706) rotate(-90)" fill="none" stroke="#8f8f8f" stroke-linecap="round" stroke-width="1.5" stroke-dasharray="2 5"/>
-                  <text id="Order_is_delivered" data-name="Order is delivered" transform="translate(18523 2233)" font-size="14" font-family="SegoeUI, Segoe UI"><tspan x="-54.831" y="0">Order is delivered</tspan></text>
-                  <g id="Group_2853" data-name="Group 2853" transform="translate(18461 1774)">
-                    <g transform="matrix(1, 0, 0, 1, -577, 17)" filter="url(#Ellipse_165)">
-                      <circle id="Ellipse_165-5" data-name="Ellipse 165" cx="11.5" cy="11.5" r="11.5" transform="translate(627 396)" fill="#60e99c"/>
-                    </g>
-                    <path id="Path_5864" data-name="Path 5864" d="M12295.124,424.465l4.821,4.392,8.972-9.5" transform="translate(-12241)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
-                  </g>
-                  <text id="_You_can_ask_for_product_image_in_the_chat_box_" data-name="(You can ask for product 
-            image in the chat box)" transform="translate(18164 2256)" fill="#8f8f8f" font-size="12" font-family="SegoeUI, Segoe UI"><tspan x="-65.871" y="0">(You can ask for product </tspan><tspan x="-59.194" y="16">image in the chat box)</tspan></text>
-                  <text id="Task_is_assigned" data-name="Task is assigned" transform="translate(17984 2233)" font-size="14" font-family="SegoeUI, Segoe UI"><tspan x="-48.457" y="0">Task is assigned</tspan></text>
-                  <g id="Group_2850" data-name="Group 2850" transform="translate(17922 1774)">
-                    <g transform="matrix(1, 0, 0, 1, -38, 17)" filter="url(#Ellipse_165-2)">
-                      <circle id="Ellipse_165-6" data-name="Ellipse 165" cx="11.5" cy="11.5" r="11.5" transform="translate(88 396)" fill="#2a8b00"/>
-                    </g>
-                    <path id="Path_5864-2" data-name="Path 5864" d="M12295.124,424.465l4.821,4.392,8.972-9.5" transform="translate(-12241)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
-                  </g>
-                  <text id="Task_is_in_the_progress" data-name="Task is in the progress" transform="translate(18164 2233)" font-size="14" font-family="SegoeUI, Segoe UI"><tspan x="-67.686" y="0">Task is in the progress</tspan></text>
-                  <g id="Group_2851" data-name="Group 2851" transform="translate(18102 1774)">
-                    <g transform="matrix(1, 0, 0, 1, -218, 17)" filter="url(#Ellipse_165-3)">
-                      <circle id="Ellipse_165-7" data-name="Ellipse 165" cx="11.5" cy="11.5" r="11.5" transform="translate(268 396)" fill="#ffce8a"/>
-                    </g>
-                    <path id="Path_5864-3" data-name="Path 5864" d="M12295.124,424.465l4.821,4.392,8.972-9.5" transform="translate(-12241)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
-                  </g>
-                  <text id="Order_collected" data-name="Order collected" transform="translate(18342 2233)" font-size="14" font-family="SegoeUI, Segoe UI"><tspan x="-47.619" y="0">Order collected</tspan></text>
-                  <g id="Group_2852" data-name="Group 2852" transform="translate(18281 1774)">
-                    <g transform="matrix(1, 0, 0, 1, -397, 17)" filter="url(#Ellipse_165-4)">
-                      <circle id="Ellipse_165-8" data-name="Ellipse 165" cx="11.5" cy="11.5" r="11.5" transform="translate(447 396)" fill="#f97a7a"/>
-                    </g>
-                    <path id="Path_5864-4" data-name="Path 5864" d="M12295.124,424.465l4.821,4.392,8.972-9.5" transform="translate(-12241)" fill="none" stroke="#fff" stroke-linecap="round" stroke-width="1.5"/>
-                  </g>
-                  <g id="Group_2857" data-name="Group 2857">
-                    <rect id="Rectangle_4299" data-name="Rectangle 4299" width="132" height="25" rx="12.5" transform="translate(18098 2290)" fill="#60e99c"/>
-                    <g id="Group_2854" data-name="Group 2854" transform="translate(18168.363 2294.807)">
-                      <g id="Group_1365" data-name="Group 1365" clip-path="url(#clip-path-10)">
-                        <path id="Path_5867" data-name="Path 5867" d="M13.173,16.124a.619.619,0,0,1-.466-.211L10.73,13.653a9.733,9.733,0,0,1-2.437.307,9.115,9.115,0,0,1-5.822-2.007A6.435,6.435,0,0,1,0,6.98,6.44,6.44,0,0,1,2.471,2.006,9.114,9.114,0,0,1,8.293,0a9.109,9.109,0,0,1,5.82,2.006A6.434,6.434,0,0,1,16.584,6.98a6.532,6.532,0,0,1-2.793,5.227v3.3a.619.619,0,0,1-.619.619Zm-2.235-3.79a.619.619,0,0,1,.466.211l1.15,1.314v-1.97a.619.619,0,0,1,.271-.511,5.379,5.379,0,0,0,2.523-4.4c0-3.166-3.164-5.742-7.054-5.742S1.241,3.814,1.241,6.98,4.4,12.723,8.293,12.723a8.459,8.459,0,0,0,2.465-.361.616.616,0,0,1,.18-.028" fill="#fff"/>
-                        <path id="Path_5868" data-name="Path 5868" d="M133.009,181.654a.419.419,0,0,1-.061,0l-.06-.009a.51.51,0,0,1-.059-.015c-.017-.006-.039-.013-.057-.021s-.037-.016-.054-.026-.035-.02-.052-.031-.033-.023-.049-.036a.611.611,0,0,1-.045-.041c-.014-.014-.028-.03-.041-.045a.566.566,0,0,1-.036-.049q-.017-.025-.031-.052c-.01-.018-.018-.036-.026-.055a.583.583,0,0,1-.02-.057.629.629,0,0,1-.024-.119c0-.02,0-.041,0-.061a.579.579,0,0,1,0-.061.627.627,0,0,1,.024-.119.586.586,0,0,1,.02-.057q.012-.028.026-.054t.031-.052c.011-.016.023-.033.036-.049a.611.611,0,0,1,.041-.045c.014-.014.03-.028.045-.041a.571.571,0,0,1,.049-.036.506.506,0,0,1,.052-.031l.054-.026a.558.558,0,0,1,.057-.021l.059-.015c.02,0,.041-.007.06-.009a.6.6,0,0,1,.122,0l.06.009a.56.56,0,0,1,.059.015.573.573,0,0,1,.057.021c.019.008.037.017.055.026a.556.556,0,0,1,.052.031.582.582,0,0,1,.049.036.6.6,0,0,1,.045.041c.014.014.028.03.041.045a.573.573,0,0,1,.036.049.6.6,0,0,1,.031.052q.014.027.026.054c.008.019.014.038.021.057s.011.041.015.059a.607.607,0,0,1,0,.242.586.586,0,0,1-.015.059c-.006.018-.013.038-.021.057s-.016.037-.026.055-.02.035-.031.052-.023.033-.036.049-.027.031-.041.045-.03.028-.045.041a.6.6,0,0,1-.049.036l-.052.031c-.018.009-.036.018-.055.026s-.038.014-.057.021a.564.564,0,0,1-.059.015c-.02,0-.041.007-.06.009a.58.58,0,0,1-.061,0" transform="translate(-126.929 -172.973)" fill="#fff"/>
-                        <path id="Path_5869" data-name="Path 5869" d="M244.029,181.659a.583.583,0,0,1-.061,0l-.06-.009a.506.506,0,0,1-.059-.015c-.017-.006-.038-.013-.057-.021s-.037-.016-.055-.026a.642.642,0,0,1-.1-.067.533.533,0,0,1-.045-.041q-.022-.022-.041-.045c-.013-.016-.025-.032-.036-.049s-.022-.034-.031-.052-.018-.036-.026-.054-.014-.038-.02-.057a.5.5,0,0,1-.015-.059.639.639,0,0,1-.012-.121.6.6,0,0,1,0-.061.593.593,0,0,1,.009-.06.5.5,0,0,1,.015-.059c.006-.019.013-.038.02-.057a.547.547,0,0,1,.026-.054.6.6,0,0,1,.031-.052c.011-.016.024-.033.036-.049a.611.611,0,0,1,.041-.045c.014-.014.029-.028.045-.041a.644.644,0,0,1,.1-.067c.018-.009.036-.018.055-.026l.057-.021a.573.573,0,0,1,.059-.015c.02,0,.041-.007.06-.009a.668.668,0,0,1,.124,0l.06.009a.561.561,0,0,1,.059.015c.018.006.038.013.057.021s.037.017.055.026.035.02.052.031a.518.518,0,0,1,.049.036.608.608,0,0,1,.045.041c.014.014.028.03.041.045a.573.573,0,0,1,.036.049q.017.025.031.052c.009.018.018.036.026.054a.593.593,0,0,1,.021.057c.006.019.011.041.015.059a.569.569,0,0,1,.009.06.608.608,0,0,1,0,.061.6.6,0,0,1,0,.061c0,.02-.005.041-.009.06a.536.536,0,0,1-.015.059.588.588,0,0,1-.021.057c-.007.019-.017.037-.026.054s-.02.035-.031.052-.023.033-.036.049a.612.612,0,0,1-.041.045c-.014.014-.03.028-.045.041a.529.529,0,0,1-.049.036l-.052.031c-.018.009-.036.018-.055.026s-.038.014-.057.021a.561.561,0,0,1-.059.015c-.02,0-.041.007-.06.009a.6.6,0,0,1-.064,0" transform="translate(-233.369 -172.978)" fill="#fff"/>
-                        <path id="Path_5870" data-name="Path 5870" d="M188.517,181.641a.623.623,0,0,1-.438-.181.6.6,0,0,1-.041-.045c-.013-.016-.025-.032-.036-.049a.47.47,0,0,1-.031-.052.541.541,0,0,1-.026-.054.589.589,0,0,1-.021-.057c-.006-.019-.011-.041-.015-.059s-.007-.04-.009-.06a.65.65,0,0,1,0-.124q0-.03.009-.06a.58.58,0,0,1,.015-.059.589.589,0,0,1,.021-.057.541.541,0,0,1,.026-.054c.009-.018.02-.035.031-.052a.515.515,0,0,1,.036-.049.6.6,0,0,1,.041-.045.624.624,0,0,1,.5-.178l.06.009c.019,0,.039.009.059.015a.548.548,0,0,1,.057.021c.019.008.037.016.055.026a.64.64,0,0,1,.1.067.536.536,0,0,1,.045.041.592.592,0,0,1,.041.045c.013.016.025.032.036.049a.6.6,0,0,1,.031.052q.014.027.026.054c.007.019.014.038.02.057a.5.5,0,0,1,.015.059q.006.03.009.06a.567.567,0,0,1,0,.124q0,.03-.009.06a.5.5,0,0,1-.015.059c-.006.019-.013.038-.02.057a.539.539,0,0,1-.026.054.592.592,0,0,1-.031.052c-.011.016-.023.033-.036.049a.6.6,0,0,1-.041.045c-.014.014-.029.028-.045.041a.646.646,0,0,1-.1.067c-.018.009-.036.018-.055.026s-.038.014-.057.021-.041.011-.059.015a.542.542,0,0,1-.06.009c-.02,0-.04,0-.061,0" transform="translate(-180.147 -172.96)" fill="#fff"/>
-                      </g>
-                    </g>
-                    <text id="Chat" transform="translate(18145 2307)" fill="#fff" font-size="12" font-family="SegoeUI, Segoe UI"><tspan x="-12.196" y="0">Chat</tspan></text>
-                  </g>
-                </g>
-                <g id="Group_2859" data-name="Group 2859" transform="translate(0 5)">
-                  <rect id="Rectangle_4300" data-name="Rectangle 4300" width="132" height="45" rx="5" transform="translate(18120 2241)" fill="#60e99c"/>
-                  <rect id="Rectangle_4301" data-name="Rectangle 4301" width="194" height="45" rx="5" transform="translate(18262 2241)" fill="#ffce8a"/>
-                  <text id="Home" transform="translate(18201 2269)" fill="#fff" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-21.441" y="0">Home</tspan></text>
-                  <g id="Group_2855" data-name="Group 2855" transform="translate(18130 2252)">
-                    <path id="Path_2264" data-name="Path 2264" d="M1056.124,107.346a.883.883,0,0,1-.558-.209l-12.914-10.526-12.914,10.526a.9.9,0,0,1-1.318-.386,1.21,1.21,0,0,1,.2-1.394l13.472-10.987a.866.866,0,0,1,1.116,0l13.472,10.987a1.2,1.2,0,0,1,.215,1.534A.931.931,0,0,1,1056.124,107.346Z" transform="translate(-1028.285 -94.162)" fill="#fff"/>
-                    <path id="Path_2265" data-name="Path 2265" d="M1043.208,100.737a1.1,1.1,0,0,1-1.1-1.1V95.244a1.1,1.1,0,0,1,1.1-1.1h4.395a1.1,1.1,0,1,1,0,2.2h-3.3v3.3A1.1,1.1,0,0,1,1043.208,100.737Z" transform="translate(-1038.891 -94.145)" fill="#fff"/>
-                    <path id="Path_2266" data-name="Path 2266" d="M1061.611,166.155h-4.643a1.025,1.025,0,0,1-.929-1.1v-7.691h-5.572v7.691a1.025,1.025,0,0,1-.929,1.1H1044.9a3.073,3.073,0,0,1-2.786-3.3V151.872a.942.942,0,1,1,1.857,0v10.987a1.025,1.025,0,0,0,.929,1.1h3.714v-7.691a1.024,1.024,0,0,1,.929-1.1h7.429a1.024,1.024,0,0,1,.929,1.1v7.691h3.714a1.024,1.024,0,0,0,.929-1.1V151.872a.942.942,0,1,1,1.857,0v10.987A3.073,3.073,0,0,1,1061.611,166.155Z" transform="translate(-1038.891 -141.135)" fill="#fff"/>
-                  </g>
-                  <a href="#" data-toggle="modal" data-target="#paymentReleaseModalId" id="releasePaymentId">
-                  <text id="Release_payment" data-name="Release payment" transform="translate(18376 2268.487)" fill="#fff" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-59.652" y="0">Release payment</tspan></text>
-                  <g id="Group_2856" data-name="Group 2856" transform="translate(18273.613 2250)">
-                    <g id="Group_1367" data-name="Group 1367" clip-path="url(#clip-path-11)">
-                      <path id="Path_5871" data-name="Path 5871" d="M20.186,108.084H4.807A4.806,4.806,0,0,1,0,103.278V89.821a.961.961,0,0,1,.961-.961H20.186a4.806,4.806,0,0,1,4.806,4.806v9.612a4.806,4.806,0,0,1-4.806,4.806M1.923,90.782v12.5a2.884,2.884,0,0,0,2.884,2.884H20.186a2.884,2.884,0,0,0,2.884-2.884V93.666a2.884,2.884,0,0,0-2.884-2.884Z" transform="translate(-0.001 -83.084)" fill="#fff"/>
-                      <path id="Path_5872" data-name="Path 5872" d="M22.107,7.7a.961.961,0,0,1-.961-.961V4.094a2.239,2.239,0,0,0-.75-1.8,1.865,1.865,0,0,0-1.605-.308L2.672,5.651a.961.961,0,0,0-.75.961A.961.961,0,1,1,0,6.612a2.884,2.884,0,0,1,2.24-2.836L18.368.114A3.749,3.749,0,0,1,21.6.8a4.172,4.172,0,0,1,1.471,3.3V6.737a.961.961,0,0,1-.961.961" transform="translate(0.001 0)" fill="#fff"/>
-                      <path id="Path_5873" data-name="Path 5873" d="M217.6,185.277h-6.728a3.845,3.845,0,0,1,0-7.69H217.6a.961.961,0,0,1,.961.961v5.767a.961.961,0,0,1-.961.961m-6.728-5.767a1.922,1.922,0,1,0,0,3.845h5.767v-3.845Z" transform="translate(-193.574 -166.044)" fill="#fff"/>
-                    </g>
-                  </g>
-                  </a>
-                </g>
-              </g>
             </svg>
-            
+         {{-- <div class="d-flex justify-content-center" style="margin-top: -102px;">
+            <div class="row track-row">
+                <div class=" col-sm-6 col-md-6 d-flex justify-content-center">
+                    <small>Track order</small>
+                </div>
+                <div class=" col-sm-6 col-md-6 d-flex justify-content-center">
+                    <small>ID#25425233254</small>
+                </div>
+                <hr>
+            </div>
+        </div> --}}
+        <div class="container-fluid">
+            <div class="row track-row">
+                <div class="col-sm-6"><small>Track order</small></div>
+                <div class="col-sm-6"><small>ID#25425233254</small></div>
+
+            </div>
+            <hr>
+
+            <div class="step-line mt-6">
+
+                <div class="bg-done-first-step">
+                    <small class="step-line-text">Task is assigned</small>
+                    <img class="task-img" src="{{ asset('frontend/assets/images/Icons/task white.svg') }}" alt="">
+                </div>
+                <div>
+                    <small class="step-line-text">Task is in the progress</small>
+                    <img class="task-img" src="{{ asset('frontend/assets/images/Icons/time.svg') }}" alt="">
+                </div>
+                <div>
+                    <small class="step-line-text" style="margin-left: -40px;">Order collected</small>
+                    <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
+                </div>
+                <div>
+                    <small class="step-line-text" style="margin-left: -40px;">Order is delivered</small>
+                    <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
+                </div>
+            </div>
+            <div class="chat mt-3">
+                <div class="text" style="margin-left:131px;"><small style="font-size: 8px; color:gray;">(you can ask for product <br> image in the chat box)</small></div>
+
+                <a href="" class="btn btn-sm btn-success chat-btn mt-2">            Chat   <i class="fa fa-comments"></i></a>
+            </div>
+             <div class="redirect mt-4 mb-4">
+                 <a href="" class="btn  btn-success home-btn"><i class="fa fa-home"></i>    Home</a>
+                 <a href="" data-toggle="modal" data-target="#paymentReleaseModalId" id="releasePaymentId" class="btn  btn-success release-btn"><i class="fa fa-book"></i>    Release Payment </a>
+             </div>
+
+
         </div>
+
+
+            {{-- <div style="padding-left: 8px; padding-right: 8px;">
+                <div class="step-line">
+                    <div class="bg-done-first-step">
+                        <small class="step-line-text">Task is assigned</small>
+                        <img class="task-img" src="{{ asset('frontend/assets/images/Icons/task white.svg') }}" alt="">
+                    </div>
+                    <div>
+                        <small class="step-line-text">Task is in the progress</small>
+                        <img class="task-img" src="{{ asset('frontend/assets/images/Icons/time.svg') }}" alt="">
+                    </div>
+                    <div>
+                        <small class="step-line-text" style="margin-left: -40px;">Order collected</small>
+                        <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
+                    </div>
+                    <div>
+                        <small class="step-line-text" style="margin-left: -40px;">Order is delivered</small>
+                        <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
+                    </div>
+                </div>
+            </div> --}}
+
+       </div>
     </div>
 </div>
+
+
