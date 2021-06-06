@@ -44,7 +44,7 @@
             filter: brightness(1.2) grayscale(.5) opacity(.9);
 }
 #pname{
-    /* width: 206px !important; */
+    width: 206px !important;
 }
 .qty{
     width: 128px !important;
@@ -662,9 +662,12 @@ input:disabled{
                                 <table class="table table-borderless border-top-0">
                                     <tbody>
                                         <tr class="top border-bottom border-light" id="tableRow_1">
-
-                                            <td id="pname"><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
-                                            <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                            <td><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
+                                            <td class="qty">
+                                                <span class="minus" style="background: #8f8f8f">-</span>
+                                                <input type="number" class="count" name="qty[]" value="1">
+                                                <span class="plus" style="background: #8f8f8f">+</span>
+                                           </td>
                                             <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
                                             <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
                                         </tr>
@@ -790,11 +793,14 @@ input:disabled{
                                 <table class="table table-borderless border-top-0">
                                     <tbody>
                                         <tr class="top border-bottom border-light" id="tableRow_1">
-
-                                            <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
-                                            <td><span class="plus-minus-sign cursor-pointer minus" id="minus"> - </span> <span id="totalProduct" style="color: #56cd93;font-weight: bold;">1</span> <span class="plus-minus-sign cursor-pointer plus" id="plus"> + </span></td>
+                                            <td><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
+                                            <td class="qty">
+                                                <span class="minus" style="background: #8f8f8f">-</span>
+                                                <input type="number" class="count" name="qty[]" value="1">
+                                                <span class="plus" style="background: #8f8f8f">+</span>
+                                           </td>
                                             <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
-                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn_mover">+</button>
+                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
                                         </tr>
                                     </tbody>
                                     {{-- <tfoot >
@@ -1370,11 +1376,12 @@ input:disabled{
        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 <script>
-
-    let options = {
+        // Maps
+let options = {
         // types: ['(cities)',],
-        componentRestrictions: { country: "bd" },
-    }
+componentRestrictions: { country: "bd" },
+}
+
     centeredLatLng = { lat: 23.810332, lng: 90.4125181 }
 
     let shop_address_marker;
@@ -1400,98 +1407,80 @@ input:disabled{
     });
 
     auto_delivery_address.addListener("place_changed", () => {
-        delivery_address.address = delivery_address.value;
+        delivery_address.address = delivery_address_input.value;
 
         let place = auto_delivery_address.getPlace();
         delivery_address.lat = place.geometry.location.lat();
         delivery_address.lng = place.geometry.location.lng();
     });
 
+$(".pickupModal").click(function() {
 
+// New map
+let map = new google.maps.Map(document.getElementById("googleMap"), {
+    zoom: 7,
+    center: centeredLatLng,
+    disableDefaultUI: true,
+    // mapTypeId: google.maps.MapTypeId.ROADMAP,
+});
 
+let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
+// console.log(auto_shop_address2.val());
 
-    // function ShowLocationOnTheMap(map, latitude, longitude) {
+auto_shop_address2.addListener("place_changed", () => {
+    let place = auto_shop_address2.getPlace();
+    let latitude = place.geometry.location.lat();
+    let longitude = place.geometry.location.lng();
 
-    //     // Remove old marker
-    //     if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
-    //         shop_address_marker.setMap(null);
-    //     }
+    shop_address_modal.address = shop_address2_input.value;
+    shop_address_modal.lat = latitude;
+    shop_address_modal.lng = longitude;
 
-    //     // Add Marker
-    //     shop_address_marker = new google.maps.Marker({
-    //         position: new google.maps.LatLng(latitude, longitude),
-    //         map: map,
-    //     });
-    // }
+    // ShowLocationOnTheMap(
+    //     map,
+    //     place.geometry.location.lat(),
+    //     place.geometry.location.lng()
+    // );
 
+    // Remove old marker
+    if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+        shop_address_marker.setMap(null);
+    }
 
-    $(".pickupModal").click(function() {
-
-        // New map
-        let map = new google.maps.Map(document.getElementById("googleMap"), {
-            zoom: 7,
-            center: centeredLatLng,
-            disableDefaultUI: true,
-            // mapTypeId: google.maps.MapTypeId.ROADMAP,
-        });
-
-        let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
-
-        auto_shop_address2.addListener("place_changed", () => {
-            let place = auto_shop_address2.getPlace();
-            let latitude = place.geometry.location.lat();
-            let longitude = place.geometry.location.lng();
-
-            shop_address_modal.address = shop_address2_input.value;
-            shop_address_modal.lat = latitude;
-            shop_address_modal.lng = longitude;
-
-            // ShowLocationOnTheMap(
-            //     map,
-            //     place.geometry.location.lat(),
-            //     place.geometry.location.lng()
-            // );
-
-            // Remove old marker
-            if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
-                shop_address_marker.setMap(null);
-            }
-
-            // Add Marker
-            shop_address_marker = new google.maps.Marker({
-                position: new google.maps.LatLng(latitude, longitude),
-                map: map,
-            });
-
-            if (place.geometry.viewport) {
-               map.fitBounds(place.geometry.viewport);
-            }
-        });
+    // Add Marker
+    shop_address_marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        map: map,
     });
 
-    $("#picupModalBtn").click(function() {
+    if (place.geometry.viewport) {
+       map.fitBounds(place.geometry.viewport);
+    }
+ });
+});
+$("#picupModalBtn").click(function() {
 
-        if(
-            shop_address2_input.value == '' ||
-            typeof shop_address_modal == 'undefined' ||
-            shop_address_modal.address == '' ||
-            shop_address_modal.lng == '' ||
-            shop_address_modal.lat == ''
-        ) {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Shop/Pickup address is invalid. Try again.",
-            });
-
-            return;
-        }
-        shop_address = shop_address_modal;
-        shop_address_input.value = shop_address.address;
-        $("#googleMapPicupModal").modal('hide');
+if(
+    shop_address2_input.value == '' ||
+    typeof shop_address_modal == 'undefined' ||
+    shop_address_modal.address == '' ||
+    shop_address_modal.lng == '' ||
+    shop_address_modal.lat == ''
+) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Shop/Pickup address is invalid. Try again.",
     });
 
-    $(".deliveryModal").click(function() {
+    return;
+}
+    shop_address = shop_address_modal;
+    shop_address_input.value = shop_address.address;
+    $("#googleMapPicupModal").modal('hide');
+});
+
+$(".deliveryModal").click(function() {
         // New map
         let map = new google.maps.Map(document.getElementById("googleMapDelivery"), {
             zoom: 7,
@@ -1557,9 +1546,11 @@ input:disabled{
 
         $("#googleMapDeliveryModal").modal('hide');
     });
-</script>
-<script>
 
+</script>
+
+
+<script>
 //======product and price ======
 $(document).ready(function(){
 

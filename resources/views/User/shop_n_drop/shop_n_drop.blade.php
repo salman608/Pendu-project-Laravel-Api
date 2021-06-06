@@ -28,6 +28,13 @@ select.select-box {
         2.5em 2.5em;
     background-repeat: no-repeat;
 }
+.qty{
+    text-align: center !important;
+}
+.plus-button{
+    font-weight: bold;
+    width: 70px;
+}
 
 </style>
 @section('user_content')
@@ -88,7 +95,7 @@ select.select-box {
 
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Products</label>&ensp;
-                    <small style="color: #ffdaa5">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
+                    <small style="color: #56cd93">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
                     <div class="products-box">
                       <table class="table table-borderless border-top-0">
                           <tbody>
@@ -100,9 +107,10 @@ select.select-box {
                                          <input type="number" class="count" name="qty[]" value="1">
                                          <span class="plus" style="background: #8f8f8f">+</span>
                                     </td>
-                                  <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                  <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."><div id="result"></div> </td>
                                   <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
                               </tr>
+
                           </tbody>
                           <tfoot >
                                 <tr >
@@ -113,25 +121,30 @@ select.select-box {
                           </tfoot>
                           <thead>
                           </thead>
+
                       </table>
+
+
                     </div>
                   </div>
                     <div class="form-group">
                         <label for="additional_note" class="label-title">Additional notes</label>
-
                         <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note" title="Enter your total cost of the items" placeholder="Enter your total cost of the items" required ></textarea>
                     </div>
 
+
                     <div class="form-group">
+
                         <label for="product_cost" class="label-title">Products cost</label>
                             <div class="input-group">
-                                <div class="input-group-append">
+                                <div class="input-group-append" >
                                     <span class="input-group-text border-0">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="25" viewBox="0 0 16 36">
                                             <text id="_" data-name="$" transform="translate(8 29)" fill="#5bdb98" font-size="27" font-family="SegoeUI, Segoe UI"><tspan x="-7.277" y="0">$</tspan></text>
                                         </svg>
                                     </span>
                                 </div>
+
                                 <input id="product_cost" class="form-control input-group-lg" type="number" name="product_cost"
                             title="Enter your total cost of the items"
                             placeholder="Enter your total cost of the items" required/>
@@ -187,53 +200,6 @@ select.select-box {
                         </div>
                         @endforeach
 
-
-                        {{-- <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" id="hrs4" value="4 HRS">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/4hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs4">4Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" id="hrs6" value="6 HRS">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/6hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">6Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" id="sameDay" value="Same Day">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/same day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="sameDay">Same<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" id="nextDay" value="Next Day">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/next day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="nextDay">Next<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-0">
-                            <label>
-                                <input type="radio" name="delivery_time" id="setLater" value="Set Later">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/set latter.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="setLater">Set<br>later</label>
-                                </div>
-                            </label>
-                        </div> --}}
                     </div>
                 </div>
                 <!-- <div class="form-group">
@@ -273,54 +239,6 @@ select.select-box {
                             </label>
                         </div>
                         @endforeach
-
-
-                        {{-- <div class="pr-2">
-                            <label>
-                                <input type="radio" value="4 HRS" name="delivery_time_review" id="hrs4">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/4hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs4">4Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" value="6 HRS" name="delivery_time_review" id="hrs6">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/6hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">6Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" value="Same Day" name="delivery_time_review" id="sameDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/same day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="sameDay">Same<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" value="Next Day" name="delivery_time_review" id="nextDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/next day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="nextDay">Next<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-0">
-                            <label>
-                                <input type="radio" value="Set Later" name="delivery_time_review" id="setLater">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/set latter.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="setLater">Set<br>later</label>
-                                </div>
-                            </label>
-                        </div> --}}
                     </div>
                 </div>
 
@@ -762,5 +680,16 @@ select.select-box {
 
 
 </script>
+<script>
+    $(document).ready(function(){
+        $("#pprice").on("input", function(){
+            // Print entered value in a div box
+            $("#product_cost").val($(this).val());
+
+        });
+
+
+    });
+    </script>
 
 @endsection

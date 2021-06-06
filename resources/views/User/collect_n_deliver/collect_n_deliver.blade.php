@@ -5,6 +5,13 @@
         border:none;
         outline: none;
     }
+    .qty{
+    text-align: center !important;
+   }
+  .plus-button{
+    font-weight: bold;
+    width: 70px;
+   }
 </style>
 
 @section('user_content')
@@ -62,6 +69,14 @@
                         </g>
                       </svg>
                 </div>
+                <div class="form-group">
+                    <label for="procat_id" class="label-title">Categories</label>
+                    <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
+                        @foreach ($product_cats as $p_cat)
+                            <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
+                        @endforeach
+                    </select><!-- End -->
+                  </div>
                   <div class="form-group">
                     <label for="taskTitle" class="label-title">Task title</label>
                     <input type="text" class="form-control" id="taskTitle" name="title" placeholder="Enter your title here" style="outline: none">
@@ -69,7 +84,7 @@
 
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Products</label>&ensp;
-                    <small style="color: #ffdaa5">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
+                    <small style="color: #56cd93">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
                     <div class="products-box">
                         <table class="table table-borderless border-top-0">
                             <tbody>
@@ -97,6 +112,12 @@
                         </table>
                     </div>
                   </div>
+
+                  <div class="form-group">
+                    <label for="additional_note" class="label-title">Additional notes</label>
+
+                    <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note" title="Enter your total cost of the items" placeholder="Enter your total cost of the items" required ></textarea>
+                </div>
 
                     <div class="form-group">
                         <label for="productCost" class="label-title">Product cost</label>
@@ -140,65 +161,22 @@
             </div>
 
             <div id="timeFrameDiv" style="">
+
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
+                    <label for="exampleInputEmail1" class="label-title">Delivery Time</label>
                     <div class="row">
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" id="asap" value="ASAP" checked>
-                                <div>
+                        @foreach ($delivery_times as $d_time)
+                        <div class="pr-2" >
+                            <label >
+                                <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
+                                <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
+                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
+                        @endforeach
 
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="4 HRS" id="4 Hrs">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/4hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs4">4Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="6 HRS" id="hrs6">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/6hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">6Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="Same Day" id="sameDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/same day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="sameDay">Same<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="Next Day" id="nextDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/next day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="nextDay">Next<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-0">
-                            <label>
-                                <input type="radio" name="delivery_time" value="Set Later" id="setLater">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/set latter.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="setLater">Set<br>later</label>
-                                </div>
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="form-group text-center nb-mover">
@@ -221,64 +199,19 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title mt-3">Deliver Time</label>
+                    <label for="exampleInputEmail1" class="label-title mt-3">Delivery Time</label>
                     <div class="row">
+                        @foreach ($delivery_times as $d_time )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" name="delivery_time_review" id="asap" value="ASAP" checked disabled>
-                                <div>
+                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
+                                <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
+                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="4 HRS" id="hrs4">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/4hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs4">4Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="6 HRS" id="hrs6">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/6hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">6Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="Same Day" id="sameDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/same day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="sameDay">Same<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="Next Day" id="nextDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/next day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="nextDay">Next<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-0">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="Set Later" id="setLater">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/set latter.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="setLater">Set<br>later</label>
-                                </div>
-                            </label>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -403,8 +336,180 @@ $(document).ready(function(){
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2oTSGJA5OrDmMtcxaS7aP8HjZITxaYx0&callback=myMap"></script> --}}
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9wIv3EiEy0aH3YTSRRZP8eRNbitATDo&libraries=places"></script>
+<script>
+        // Maps
 
+        let options = {
+        // types: ['(cities)',],
+        componentRestrictions: { country: "bd" },
+    }
+    centeredLatLng = { lat: 23.810332, lng: 90.4125181 }
+
+    let shop_address_marker;
+    var shop_address = { address: '', lat: '', lng: '' };
+    var shop_address_modal = { address: '', lat: '', lng: '' };
+    let shop_address_input = document.getElementById("shop_address");
+    let auto_shop_address = new google.maps.places.Autocomplete(shop_address_input, options);
+    let shop_address2_input = document.getElementById("shop_address2");
+
+    let delivery_address_marker;
+    var delivery_address = { address: '', lat: '', lng: '' };
+    var delivery_address_modal = { address: '', lat: '', lng: '' };
+    let delivery_address_input = document.getElementById("delivery_address");
+    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address_input, options);
+    let delivery_address2_input = document.getElementById("delivery_address2");
+
+    auto_shop_address.addListener("place_changed", () => {
+        shop_address.address = shop_address_input.value;
+
+        let place = auto_shop_address.getPlace();
+        shop_address.lat = place.geometry.location.lat();
+        shop_address.lng = place.geometry.location.lng();
+    });
+
+    auto_delivery_address.addListener("place_changed", () => {
+        delivery_address.address = delivery_address_input.value;
+
+        let place = auto_delivery_address.getPlace();
+        delivery_address.lat = place.geometry.location.lat();
+        delivery_address.lng = place.geometry.location.lng();
+    });
+
+$(".pickupModal").click(function() {
+
+// New map
+let map = new google.maps.Map(document.getElementById("googleMap"), {
+    zoom: 7,
+    center: centeredLatLng,
+    disableDefaultUI: true,
+    // mapTypeId: google.maps.MapTypeId.ROADMAP,
+});
+
+let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
+// console.log(auto_shop_address2.val());
+
+auto_shop_address2.addListener("place_changed", () => {
+    let place = auto_shop_address2.getPlace();
+    let latitude = place.geometry.location.lat();
+    let longitude = place.geometry.location.lng();
+
+    shop_address_modal.address = shop_address2_input.value;
+    shop_address_modal.lat = latitude;
+    shop_address_modal.lng = longitude;
+
+    // ShowLocationOnTheMap(
+    //     map,
+    //     place.geometry.location.lat(),
+    //     place.geometry.location.lng()
+    // );
+
+    // Remove old marker
+    if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+        shop_address_marker.setMap(null);
+    }
+
+    // Add Marker
+    shop_address_marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        map: map,
+    });
+
+    if (place.geometry.viewport) {
+       map.fitBounds(place.geometry.viewport);
+    }
+});
+});
+$("#picupModalBtn").click(function() {
+
+if(
+    shop_address2_input.value == '' ||
+    typeof shop_address_modal == 'undefined' ||
+    shop_address_modal.address == '' ||
+    shop_address_modal.lng == '' ||
+    shop_address_modal.lat == ''
+) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Shop/Pickup address is invalid. Try again.",
+    });
+
+    return;
+}
+    shop_address = shop_address_modal;
+    shop_address_input.value = shop_address.address;
+    $("#googleMapPicupModal").modal('hide');
+});
+
+$(".deliveryModal").click(function() {
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMapDelivery"), {
+            zoom: 7,
+            center: centeredLatLng,
+            disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2_input, options);
+
+        auto_delivery_address2.addListener("place_changed", () => {
+            let place = auto_delivery_address2.getPlace();
+            let latitude = place.geometry.location.lat();
+            let longitude = place.geometry.location.lng();
+
+            delivery_address_modal.address = delivery_address2_input.value;
+            delivery_address_modal.lat = latitude;
+            delivery_address_modal.lng = longitude;
+
+            // ShowLocationOnTheMap(
+            //     map,
+            //     place.geometry.location.lat(),
+            //     place.geometry.location.lng()
+            // );
+
+            // Remove old marker
+            if(typeof delivery_address_marker !== 'undefined' && delivery_address_marker !== null) {
+                delivery_address_marker.setMap(null);
+            }
+
+            // Add Marker
+            delivery_address_marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+            });
+
+            if (place.geometry.viewport) {
+               map.fitBounds(place.geometry.viewport);
+            }
+        });
+    });
+
+
+    $("#deliveryModalBtn").click(function() {
+
+        if(
+            delivery_address2_input.value == '' ||
+            typeof delivery_address_modal == 'undefined' ||
+            delivery_address_modal.address == '' ||
+            delivery_address_modal.lng == '' ||
+            delivery_address_modal.lat == ''
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is invalid. Try again.",
+            });
+
+            return;
+        }
+        delivery_address = delivery_address_modal;
+        delivery_address_input.value = delivery_address.address;
+
+        $("#googleMapDeliveryModal").modal('hide');
+    });
+
+</script>
 <script>
 
     $('#postSubmitButtonId').click(function() {

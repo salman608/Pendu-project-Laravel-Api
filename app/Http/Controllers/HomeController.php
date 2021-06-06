@@ -17,10 +17,10 @@ class HomeController extends Controller
      * @return void
      */
 
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
+    // public function __construct()
+    // {
+    //     $this->middleware('auth');
+    // }
 
     /**
      * Show the application dashboard.
@@ -49,9 +49,9 @@ class HomeController extends Controller
                 "source" => $request->stripeToken,
                 "description" => "This payment is testing purpose of Pendu Service",
         ]);
-   
+
         Session::flash('success', 'Payment Successful !');
-           
+
         return back();
     }
 

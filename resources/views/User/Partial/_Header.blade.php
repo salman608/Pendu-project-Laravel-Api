@@ -1,3 +1,17 @@
+  <style>
+      #refar_btn{
+          background: #5ee39a;
+          border: #5ee39a;
+
+      }
+      .refer a{
+          color: white !important;
+      }
+      #track_btn{
+          border: 1px solid orange !important;
+      }
+
+  </style>
   <!-- ===================== Navbar ================= -->
   <section class="navmanu_main">
     <div class="container">
@@ -31,8 +45,12 @@
                       </li>
                     @else
                       <li class="nav-item refer">
-                          <a class="nav-link" href="{{ url('review') }}">Refer & earn</a>
+                          <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;">Refer & earn</a>
                       </li>
+
+                      <li class="nav-item refer">
+                        <a class="nav-link" id="track_btn" href="{{url('track')}}" style="color: white;background:orange;width: 179px;">Traking Order</a>
+                    </li>
                     @endif
                 </ul>
             </div>

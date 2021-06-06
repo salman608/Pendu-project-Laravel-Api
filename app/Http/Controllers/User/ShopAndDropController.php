@@ -19,6 +19,11 @@ class ShopAndDropController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function __construct()
+    {
+        $this->middleware('auth');
+    }
     public function index()
     {
         $data = [];
@@ -46,7 +51,7 @@ class ShopAndDropController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
 
         DB::beginTransaction();
 
@@ -54,7 +59,7 @@ class ShopAndDropController extends Controller
             $shop_address       =  json_decode($request->shop_address);
             $delivery_address   =  json_decode($request->delivery_address);
             $products           =  json_decode($request->products, true);
-    
+
             $data = [];
 
             $data['title']              = $request->title;
@@ -67,7 +72,7 @@ class ShopAndDropController extends Controller
             $data['to_latlng']['lng']   = $delivery_address->lng;
 
             $data['notes']              = $request->additional_note;
-            $data['total_cost']         = $request->product_cost;  
+            $data['total_cost']         = $request->product_cost;
             $data['delivery_time_id']   = $request->delivery_time;
             $data['service_category_id']   = 1;
 
@@ -78,13 +83,13 @@ class ShopAndDropController extends Controller
 
             DB::commit();
 
-            Session::flash('success', 'Your task request is submitted!'); 
+            Session::flash('success', 'Your task request is submitted!');
             return redirect()->route('shop_n_drop');
-            
+
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            Session::flash('error', 'Your task request is failed!'); 
+            Session::flash('error', 'Your task request is failed!');
             return redirect()->route('shop_n_drop');
         }
     }

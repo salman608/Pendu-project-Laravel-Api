@@ -159,6 +159,7 @@ Route::group(["middleware" => 'auth'], function () {
 
     Route::get('payment', [App\Http\Controllers\User\PaymentController::class, 'index']);
     Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);
+    Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking']);
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 
     // "middleware" => 'driver'

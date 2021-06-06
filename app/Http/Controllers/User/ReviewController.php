@@ -22,7 +22,7 @@ class ReviewController extends Controller
     {
         return view("User.review.review_sent");
     }
-    
+
 
     /**
      * Show the form for creating a new resource.
@@ -32,6 +32,10 @@ class ReviewController extends Controller
     public function create()
     {
         //
+    }
+
+    public function orderTraking(){
+        return view('User.review.track_order');
     }
 
     /**
@@ -50,10 +54,10 @@ class ReviewController extends Controller
             'delivery_address' => 'required',
             'delivery_fee' => 'required',
             'driver_id' => 'required',
-           
-            
+
+
         ]);
-        
+
         Quote::create([
             'categories' => $req->categories,
             'product' => $req->product,

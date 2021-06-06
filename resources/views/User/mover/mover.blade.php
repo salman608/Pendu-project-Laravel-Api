@@ -91,6 +91,13 @@ span.cc{ color:#6d84b4 }
     margin-left: 23px;
     margin-top: -32px;
 }
+.qty{
+    text-align: center !important;
+}
+.plus-button{
+    font-weight: bold;
+    width: 70px;
+}
 
 
 </style>
@@ -155,7 +162,7 @@ span.cc{ color:#6d84b4 }
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Products</label>&ensp;
-                    <small style="color: #ffdaa5">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
+                    <small style="color: #56cd93">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
                     <div class="products-box">
                         <table class="table table-borderless border-top-0">
                             <tbody>

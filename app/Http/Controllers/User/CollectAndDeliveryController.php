@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryTime;
 use App\Models\Dropper;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Session;
 
@@ -16,8 +18,11 @@ class CollectAndDeliveryController extends Controller
      */
     public function index(Dropper $dropper)
     {
+        $data = [];
+        $data['product_cats']=ProductCategory::all();
+        $data['delivery_times']=DeliveryTime::all();
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
-        return view('User.collect_n_deliver.collect_n_deliver');
+        return view('User.collect_n_deliver.collect_n_deliver',$data);
     }
 
     /**
