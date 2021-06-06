@@ -262,9 +262,7 @@ select.select-box {
     </div><br><br>
 </section>
 
-
-
-
+{{-- map modal include --}}
 
 @include("User.component.googleMap_pickup_modal")
 @include("User.component.googleMap_delivery_modal")
@@ -273,7 +271,6 @@ select.select-box {
 <script>
 
     $(document).ready(function(){
-
 
         // Add another Product field
         $('#add_btn').on('click',function(){

@@ -99,8 +99,8 @@ span.cc{ color:#6d84b4 }
     width: 70px;
 }
 
-
 </style>
+
 <section class="">
     <div style="height: 120px; background: #5bdb98"></div>
     <div class="container" style="margin-top: -60px;">
@@ -129,8 +129,6 @@ span.cc{ color:#6d84b4 }
     <div class="container" style="border-radius: 10px; bacground: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
         <form enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="category_id" value="3">
-
             <div id="task-details">
                 <div class="form-row">
                     <div class="float-left"><label for="exampleInputEmail1" class="label-title mr-5">Vahicle Type-</label></div>
@@ -156,6 +154,16 @@ span.cc{ color:#6d84b4 }
                         </div>
                     </div>
                 </div>
+
+                <div class="form-group">
+                    <label for="procat_id" class="label-title">Categories</label>
+                    <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
+                        @foreach ($product_cats as $p_cat)
+                            <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
+                        @endforeach
+                    </select><!-- End -->
+                  </div>
+
                   <div class="form-group">
                     <label for="taskTitle" class="label-title">Task title</label>
                     <input type="text" class="form-control" id="title" placeholder="Enter your title here" style="outline: none" name="title">
@@ -258,64 +266,20 @@ span.cc{ color:#6d84b4 }
 
             <div id="timeFrameDiv" style="">
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title mt-3">Deliver Time</label>
+                    <label for="exampleInputEmail1" class="label-title">Delivery Time</label>
                     <div class="row">
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" id="asap" value="ASAP" checked>
-                                <div>
+                        @foreach ($delivery_times as $d_time)
+                        <div class="pr-2" >
+                            <label >
+                                <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
+                                <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
+                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
+                        @endforeach
 
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="4 HRS" id="hrs4">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/4hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs4">4Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="6 HRS" id="hrs6">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/6hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">6Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="Same Day" id="sameDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/same day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="sameDay">Same<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time" value="Next Day" id="nextDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/next day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="nextDay">Next<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-0">
-                            <label>
-                                <input type="radio" name="delivery_time" value="Set Later" id="setLater">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/set latter.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="setLater">Set<br>later</label>
-                                </div>
-                            </label>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -359,64 +323,19 @@ span.cc{ color:#6d84b4 }
                 </div>
 
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title">Deliver Time</label>
+                    <label for="exampleInputEmail1" class="label-title mt-3">Delivery Time</label>
                     <div class="row">
+                        @foreach ($delivery_times as $d_time )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" name="delivery_time_review" id="asap" value="ASAP" checked>
-                                <div>
+                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
+                                <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">ASAP</label>
+                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="4 HRS" id="hrs4">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/4hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs4">4Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="6 HRS" id="hrs6">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/6hours.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="hrs6">6Hrs</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="Same Day" id="sameDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/same day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="sameDay">Same<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-2">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="Next Day" id="nextDay">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/next day.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="nextDay">Next<br>day</label>
-                                </div>
-                            </label>
-                        </div>
-                        <div class="pr-0">
-                            <label>
-                                <input type="radio" name="delivery_time_review" value="Set Later" id="setLater">
-                                <div>
-                                    <img src="{{ asset('frontend/assets/images/Icons/set latter.svg') }}" height="30" width="80" style="margin-bottom: 22px;">
-                                    <label class="radio-btn-text" for="setLater">Set<br>later</label>
-                                </div>
-                            </label>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -442,11 +361,290 @@ span.cc{ color:#6d84b4 }
 @include("User.component.googleMap_delivery_modal")
 @include("User.component.post_mover")
 
-<script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9wIv3EiEy0aH3YTSRRZP8eRNbitATDo&libraries=places"></script>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<!-- (Optional) Latest compiled and minified JavaScript translation files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+
+{{-- map script start here --}}
+<script>
+    // Maps
+
+    let options = {
+        // types: ['(cities)',],
+        componentRestrictions: { country: "bd" },
+    }
+    centeredLatLng = { lat: 23.810332, lng: 90.4125181 }
+
+    let shop_address_marker;
+    var shop_address = { address: '', lat: '', lng: '' };
+    var shop_address_modal = { address: '', lat: '', lng: '' };
+    let shop_address_input = document.getElementById("shop_address");
+    let auto_shop_address = new google.maps.places.Autocomplete(shop_address_input, options);
+    let shop_address2_input = document.getElementById("shop_address2");
+
+    let delivery_address_marker;
+    var delivery_address = { address: '', lat: '', lng: '' };
+    var delivery_address_modal = { address: '', lat: '', lng: '' };
+    let delivery_address_input = document.getElementById("delivery_address");
+    let auto_delivery_address = new google.maps.places.Autocomplete(delivery_address_input, options);
+    let delivery_address2_input = document.getElementById("delivery_address2");
+
+    auto_shop_address.addListener("place_changed", () => {
+        shop_address.address = shop_address_input.value;
+
+        let place = auto_shop_address.getPlace();
+        shop_address.lat = place.geometry.location.lat();
+        shop_address.lng = place.geometry.location.lng();
+    });
+
+    auto_delivery_address.addListener("place_changed", () => {
+        delivery_address.address = delivery_address_input.value;
+
+        let place = auto_delivery_address.getPlace();
+        delivery_address.lat = place.geometry.location.lat();
+        delivery_address.lng = place.geometry.location.lng();
+    });
+
+    $(".pickupModal").click(function() {
+
+// New map
+let map = new google.maps.Map(document.getElementById("googleMap"), {
+    zoom: 7,
+    center: centeredLatLng,
+    disableDefaultUI: true,
+    // mapTypeId: google.maps.MapTypeId.ROADMAP,
+});
+
+let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
+
+auto_shop_address2.addListener("place_changed", () => {
+    let place = auto_shop_address2.getPlace();
+    let latitude = place.geometry.location.lat();
+    let longitude = place.geometry.location.lng();
+
+    shop_address_modal.address = shop_address2_input.value;
+    shop_address_modal.lat = latitude;
+    shop_address_modal.lng = longitude;
+
+    // ShowLocationOnTheMap(
+    //     map,
+    //     place.geometry.location.lat(),
+    //     place.geometry.location.lng()
+    // );
+
+    // Remove old marker
+    if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+        shop_address_marker.setMap(null);
+    }
+
+    // Add Marker
+    shop_address_marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        map: map,
+    });
+
+    if (place.geometry.viewport) {
+       map.fitBounds(place.geometry.viewport);
+    }
+});
+});
+
+$("#picupModalBtn").click(function() {
+
+if(
+    shop_address2_input.value == '' ||
+    typeof shop_address_modal == 'undefined' ||
+    shop_address_modal.address == '' ||
+    shop_address_modal.lng == '' ||
+    shop_address_modal.lat == ''
+) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Shop/Pickup address is invalid. Try again.",
+    });
+
+    return;
+}
+shop_address = shop_address_modal;
+shop_address_input.value = shop_address.address;
+$("#googleMapPicupModal").modal('hide');
+});
+
+$(".deliveryModal").click(function() {
+        // New map
+        let map = new google.maps.Map(document.getElementById("googleMapDelivery"), {
+            zoom: 7,
+            center: centeredLatLng,
+            disableDefaultUI: true,
+            // mapTypeId: google.maps.MapTypeId.ROADMAP,
+        });
+
+        let auto_delivery_address2 = new google.maps.places.Autocomplete(delivery_address2_input, options);
+
+        auto_delivery_address2.addListener("place_changed", () => {
+            let place = auto_delivery_address2.getPlace();
+            let latitude = place.geometry.location.lat();
+            let longitude = place.geometry.location.lng();
+
+            delivery_address_modal.address = delivery_address2_input.value;
+            delivery_address_modal.lat = latitude;
+            delivery_address_modal.lng = longitude;
+
+            // ShowLocationOnTheMap(
+            //     map,
+            //     place.geometry.location.lat(),
+            //     place.geometry.location.lng()
+            // );
+
+            // Remove old marker
+            if(typeof delivery_address_marker !== 'undefined' && delivery_address_marker !== null) {
+                delivery_address_marker.setMap(null);
+            }
+
+            // Add Marker
+            delivery_address_marker = new google.maps.Marker({
+                position: new google.maps.LatLng(latitude, longitude),
+                map: map,
+            });
+
+            if (place.geometry.viewport) {
+               map.fitBounds(place.geometry.viewport);
+            }
+        });
+    });
+
+
+    $("#deliveryModalBtn").click(function() {
+
+        if(
+            delivery_address2_input.value == '' ||
+            typeof delivery_address_modal == 'undefined' ||
+            delivery_address_modal.address == '' ||
+            delivery_address_modal.lng == '' ||
+            delivery_address_modal.lat == ''
+        ) {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is invalid. Try again.",
+            });
+
+            return;
+        }
+        delivery_address = delivery_address_modal;
+        delivery_address_input.value = delivery_address.address;
+
+        $("#googleMapDeliveryModal").modal('hide');
+    });
+
+ // next button
+
+    // Next Step
+    $('#nextButton').click(function(){
+
+if ($('#procat_id').val().length == 0) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Category is required.",
+    })
+}
+
+// Check title is empty
+else if ($('#title').val() == '') {
+
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Title is required.",
+    })
+}
+else if ($('#additional_note').val() == '') {
+
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Additional note is required.",
+    })
+}
+else if ($('#product_cost').val() == '') {
+
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Product cost is required.",
+    })
+}
+else if ($('#shop_address').val() == '') {
+
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Shop address is required.",
+    })
+}
+else if(
+    shop_address.address == '' ||
+    shop_address.lng == '' ||
+    shop_address.lat == ''
+) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Shop/Pickup address is invalid. Try again.",
+    });
+}
+else if ($('#delivery_address').val() == '') {
+
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Delivery address is required.",
+    })
+}
+
+else if(
+    delivery_address.address == '' ||
+    delivery_address.lng == '' ||
+    delivery_address.lat == ''
+) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Delivery address is invalid. Try again.",
+    });
+
+    return;
+}
+else {
+    $('#nextButton').hide();
+    $('#task-details').hide();
+    $('#postButtonId').show();
+    // $('#titleId').text('Review');
+    $('#timeFrameDiv').hide();
+    $('#taskDetails').show();
+
+    let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+
+    $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+    // $('#product_cost').val() ==
+    $('#ItemCost').val($('#product_cost').val());
+    $('#shopAddress').text($('#shop_address').val());
+    $('#deliveryAddress').text($('#delivery_address').val());
+
+}
+});
+
+</script>
+
+<script>
 //======product and price ======
 $(document).ready(function(){
-
 
 // Add another Product field
 $('#add_btn').on('click',function(){
@@ -493,112 +691,59 @@ $(document).ready(function(){
         });
  });
 
-    $('#nextButton').click(function(){
-        if ($('#title').val() == '') {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Title is required.",
-            })
-        }
-        else if ($('#shop_address').val() == '') {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Shop address is required.",
-            })
-        }
-        else if ($('#delivery_address').val() == '') {
-            swal({
-                icon: 'error',
-                title: 'Oops...',
-                text: "Delivery address is required.",
-            })
-        }
-        else {
-            $('#nextButton').hide();
-            $('#task-details').hide();
-            $('#postButtonId').show();
-            // $('#titleId').text('Review');
-            $('#timeFrameDiv').hide();
-            $('#taskDetails').show();
-
-            // myMap()
-
-        var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
-        $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-        $('#ItemCost').val($('#item_cost').val());
-        $('#shopAddress').text($('#shop_address').val());
-        $('#deliveryAddress').text($('#delivery_address').val());
-
-        }
-    });
-
 </script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
-{{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC2oTSGJA5OrDmMtcxaS7aP8HjZITxaYx0&callback=myMap"></script> --}}
+
 <script>
-
+    // Submission Button
     $('#postSubmitButtonId').click(function() {
-        $('form').submit();
-    })
-
-    $('form').submit(function (event) {
         event.preventDefault();
-        $('#postSubmitButtonId').attr('disabled', 'disabled');
 
-        $.ajax({
-                url: "{{ route('task.add') }}",
-                type: 'POST',
-                dataType: 'json',
-                contentType: false,
-                processData: false,
-                data: new FormData(this),
-            })
-            .done(function (response) {
+        // Form
+        var form = document.getElementById('shop-n-drop-form');
 
-                if (response.alertType == 'error') {
-                    swal({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                    });
+        var p_names  = $("input[name='pro_name[]']")
+            .map(function(){return $(this).val();}).get();
 
-                } else {
+        var p_prices  = $("input[name='pro_price[]']")
+            .map(function(){return $(this).val();}).get();
 
-                    $('#postMoverModal').modal('show');
-                    $('form').trigger("reset");
+        // "products"      : [
+        //         {"name": "Pepsi 2L", "price": 150, "qty": 4},
+        //         {"name": "Cake 2p", "price": 350, "qty": 2}
+        // ]
 
-                    setTimeout(function () {
-                        window.location = './'
-                    }, 3000);
-                }
+        var products = p_names.map(function(name, index){
+            let product = {name: name, price: p_prices[index], qty: 1};
+            return product;
+        });
 
-                $('#postSubmitButtonId').prop('disabled', false);
+        // hiddenProductsInput
+        var hiddenProductsInput = document.createElement('input');
+        hiddenProductsInput.setAttribute('type', 'hidden');
+        hiddenProductsInput.setAttribute('name', 'products');
+        hiddenProductsInput.setAttribute('value', JSON.stringify(products));
+        form.appendChild(hiddenProductsInput);
 
-            })
-            .fail(function (error) {
 
-                if (error.responseJSON) {
-                    let errorText = ''
-                    for (const [key, value] of Object.entries(error.responseJSON.errors)) {
-                        errorText += value + '. ';
-                    }
+        // hiddenShopAddressInput
+        var hiddenShopAddressInput = document.createElement('input');
+        hiddenShopAddressInput.setAttribute('type', 'hidden');
+        hiddenShopAddressInput.setAttribute('name', 'shop_address');
+        hiddenShopAddressInput.setAttribute('value', JSON.stringify(shop_address));
+        form.appendChild(hiddenShopAddressInput);
 
-                    swal({
-                        icon: 'info',
-                        title: 'Oops...',
-                        text: errorText,
-                    });
-                }
+        // hiddenDeliveryAddressInput
+        var hiddenDeliveryAddressInput = document.createElement('input');
+        hiddenDeliveryAddressInput.setAttribute('type', 'hidden');
+        hiddenDeliveryAddressInput.setAttribute('name', 'delivery_address');
+        hiddenDeliveryAddressInput.setAttribute('value', JSON.stringify(delivery_address));
+        form.appendChild(hiddenDeliveryAddressInput);
 
-                $('#postSubmitButtonId').prop('disabled', false);
-            })
-            .always(function () {
-                console.log("complete");
-            });
+        // Submit the form
+        form.submit();
+
     });
+
 
 </script>
 @endsection

@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\DeliveryTime;
 use App\Models\Dropper;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Session;
 
@@ -17,7 +19,10 @@ class MoverController extends Controller
     public function index(Dropper $dropper)
     {
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
-        return view('User.mover.mover');
+        $data = [];
+        $data['product_cats']=ProductCategory::all();
+        $data['delivery_times']=DeliveryTime::all();
+        return view('User.mover.mover',$data);
     }
 
     /**
@@ -27,7 +32,7 @@ class MoverController extends Controller
      */
     public function create()
     {
-        return view('User.Dropper.Add_Dropper');
+
     }
 
     /**
