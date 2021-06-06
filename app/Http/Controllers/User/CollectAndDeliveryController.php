@@ -8,6 +8,11 @@ use App\Models\Dropper;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Session;
+use App\Repositories\TaskRepository;
+use Exception;
+use DB;
+use Illuminate\Support\Facades\Log;
+
 
 class CollectAndDeliveryController extends Controller
 {
@@ -43,52 +48,47 @@ class CollectAndDeliveryController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
 
-        $validated = $request->validate([
-            'first_name'         => 'required|max:255',
-            'last_name'          => 'required|max:255',
-            'email'              => 'required|unique:droppers|max:255',
-            'phone'              => 'required|unique:droppers',
-            'password'           => 'required|string|min:8',
-            'abn'                => 'required',
-            'vehicle_type'       => 'required',
-            'category'           => 'required',
-            'license_front_side' => 'required',
-            'licensef_back_side' => 'required',
-            'profile_image'      => 'required',
-        ]);
+        try {
+            $shop_address       =  json_decode($request->shop_address);
+            $delivery_address   =  json_decode($request->delivery_address);
+            $products           =  json_decode($request->products, true);
 
-        //profile iamge part
-        if ($request->hasFile('profile_image')) {
-            $path = $request->profile_image->store('uploads/dropper/photos');
+            $data = [];
 
+            $data['title']              = $request->title;
+            $data['from']               = $shop_address->address;
+            $data['from_latlng']['lat'] = $shop_address->lat;
+            $data['from_latlng']['lng'] = $shop_address->lng;
+
+            $data['to']                 = $delivery_address->address;
+            $data['to_latlng']['lat']   = $delivery_address->lat;
+            $data['to_latlng']['lng']   = $delivery_address->lng;
+
+            $data['notes']              = $request->additional_note;
+            $data['total_cost']         = $request->product_cost;
+            $data['delivery_time_id']   = $request->delivery_time;
+            $data['service_category_id']   = 1;
+
+            $task = TaskRepository::saveTaskData($data);
+
+            $task->products()->createMany($products);
+            $task->productCategories()->attach($request-> product_cats);
+
+            DB::commit();
+
+            Session::flash('success', 'Your task request is submitted!');
+            return redirect()->route('collect_n_drop');
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            Session::flash('error', 'Your task request is failed!');
+            return redirect()->route('collect_n_drop');
         }
 
-        //licensef_front_side iamge part
-        if ($request->hasFile('license_front_side')) {
-            $path = $request->license_front_side->store('uploads/dropper/photos');
-        }
 
-        //licensef_back_side iamge part
-        if ($request->hasFile('licensef_back_side')) {
-            $path = $request->licensef_back_side->store('uploads/dropper/photos');
-        }
-
-        Dropper::create([
-            'first_name'         => $request->first_name,
-            'last_name'          => $request->last_name,
-            'email'              => $request->email,
-            'phone'              => $request->phone,
-            'password'           => $request->password,
-            'abn'                => $request->abn,
-            'vehicle_type'       => $request->vehicle_type,
-            'category_id'        => $request->category_id,
-            'licensef_ront_side' => json_encode($licensef_ront_side),
-            'licensef_back_side' => json_encode($licensef_back_side),
-            'profile_image'      => json_encode($profile_image),
-        ]);
-        Session::flash('insert', 'Added Sucessfully...');
-        return back();
     }
 
     /**

@@ -129,7 +129,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
 
 Route::group(["middleware" => 'auth'], function () {
     // Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
-    Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    // Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
     // "middleware" => 'admin'
     Route::group(["prefix" => 'admin'], function () {

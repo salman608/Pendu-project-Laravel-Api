@@ -39,9 +39,19 @@
             </div>
         </div>
     </div>
+    <div class="container">
 
+        @if (session()->has('error'))
+            <div class="alert alert-danger mt-4" style="font-size: 22px;" role="alert">{{ session()->get('error') }}</div>
+        @endif
+
+        @if (session()->has('success'))
+            <div class="alert alert-success mt-4" style="font-size: 22px;" role="alert">{{ session()->get('success') }}</div>
+        @endif
+
+    </div>
     <div class="container" style="border-radius: 10px; bacground: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
-        <form id="collectDeliveryForm">
+        <form method="POST" id="collect-n-drop-form" action="{{route('collect_n_drop.store')}}">
         @csrf
         <input type="hidden" name="category_id" value="2">
         <input type="hidden" name="vahicle_type" value="car">
@@ -226,7 +236,7 @@
         <a class="button text-white reviewButtonCls" id="reviewButtonId">Review</a>
     </div>
     <div class="text-center" id="postButtonId" style="display: none">
-        <a class="button text-white" id="postSubmitButtonId">Post Delivery Request</a>
+        <button class="button text-white" id="postSubmitButtonId">Post Delivery Request</button>
     </div><br><br>
 </section>
 
@@ -335,7 +345,7 @@ $(document).ready(function(){
 
 </script>
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<script src="https://maps.googleapis.com/maps/api/js"></script>
+{{-- <script src="https://maps.googleapis.com/maps/api/js"></script> --}}
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9wIv3EiEy0aH3YTSRRZP8eRNbitATDo&libraries=places"></script>
 <script>
         // Maps
@@ -511,64 +521,56 @@ $(".deliveryModal").click(function() {
 
 </script>
 <script>
-
+    // Submission Button
     $('#postSubmitButtonId').click(function() {
-        $('form').submit();
-    })
-
-    $('form').submit(function (event) {
         event.preventDefault();
-        $('#postSubmitButtonId').attr('disabled', 'disabled');
 
-        $.ajax({
-                url: "{{ route('task.add') }}",
-                type: 'POST',
-                dataType: 'json',
-                data: $('form').serialize(),
-            })
-            .done(function (response) {
+        // Form
+        var form = document.getElementById('collect-n-drop-form');
 
-                if (response.alertType == 'error') {
-                    swal({
-                        icon: 'error',
-                        title: 'Oops...',
-                        text: response.message,
-                    });
+        var p_names  = $("input[name='pro_name[]']")
+            .map(function(){return $(this).val();}).get();
 
-                } else {
+        var p_prices  = $("input[name='pro_price[]']")
+            .map(function(){return $(this).val();}).get();
 
-                    $('#deliveryProcessModal').modal('show');
-                    $('form').trigger("reset");
+        // "products"      : [
+        //         {"name": "Pepsi 2L", "price": 150, "qty": 4},
+        //         {"name": "Cake 2p", "price": 350, "qty": 2}
+        // ]
 
-                    setTimeout(function () {
-                        window.location = './'
-                    }, 3000);
-                }
+        var products = p_names.map(function(name, index){
+            let product = {name: name, price: p_prices[index], qty: 1};
+            return product;
+        });
 
-                $('#postSubmitButtonId').prop('disabled', false);
+        // hiddenProductsInput
+        var hiddenProductsInput = document.createElement('input');
+        hiddenProductsInput.setAttribute('type', 'hidden');
+        hiddenProductsInput.setAttribute('name', 'products');
+        hiddenProductsInput.setAttribute('value', JSON.stringify(products));
+        form.appendChild(hiddenProductsInput);
 
-            })
-            .fail(function (error) {
 
-                if (error.responseJSON) {
-                    let errorText = ''
-                    for (const [key, value] of Object.entries(error.responseJSON.errors)) {
-                        errorText += value + '. ';
-                    }
+        // hiddenShopAddressInput
+        var hiddenShopAddressInput = document.createElement('input');
+        hiddenShopAddressInput.setAttribute('type', 'hidden');
+        hiddenShopAddressInput.setAttribute('name', 'shop_address');
+        hiddenShopAddressInput.setAttribute('value', JSON.stringify(shop_address));
+        form.appendChild(hiddenShopAddressInput);
 
-                    swal({
-                        icon: 'info',
-                        title: 'Oops...',
-                        text: errorText,
-                    });
-                }
+        // hiddenDeliveryAddressInput
+        var hiddenDeliveryAddressInput = document.createElement('input');
+        hiddenDeliveryAddressInput.setAttribute('type', 'hidden');
+        hiddenDeliveryAddressInput.setAttribute('name', 'delivery_address');
+        hiddenDeliveryAddressInput.setAttribute('value', JSON.stringify(delivery_address));
+        form.appendChild(hiddenDeliveryAddressInput);
 
-                $('#postSubmitButtonId').prop('disabled', false);
-            })
-            .always(function () {
-                console.log("complete");
-            });
+        // Submit the form
+        form.submit();
+
     });
+
 
 </script>
 @endsection
