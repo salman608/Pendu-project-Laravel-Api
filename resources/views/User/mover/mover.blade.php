@@ -125,9 +125,20 @@ span.cc{ color:#6d84b4 }
             </div>
         </div>
     </div>
+    <div class="container">
+
+        @if (session()->has('error'))
+            <div class="alert alert-danger mt-4" style="font-size: 22px;" role="alert">{{ session()->get('error') }}</div>
+        @endif
+
+        @if (session()->has('success'))
+            <div class="alert alert-success mt-4" style="font-size: 22px;" role="alert">{{ session()->get('success') }}</div>
+        @endif
+
+    </div>
 
     <div class="container" style="border-radius: 10px; bacground: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
-        <form enctype="multipart/form-data">
+        <form enctype="multipart/form-data" method="POST" id="mover-form" action="{{route('mover.store')}}">
             @csrf
             <div id="task-details">
                 <div class="form-row">
@@ -259,7 +270,7 @@ span.cc{ color:#6d84b4 }
                                   </svg>
                             </div>
                         </div>
-                          <input type="file" name="task_image" id="task_image" class="d-none">
+                          {{-- <input type="file" name="task_image" id="task_image" class="d-none"> --}}
                       </label>
                   </div>
             </div>
@@ -699,7 +710,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         // Form
-        var form = document.getElementById('shop-n-drop-form');
+        var form = document.getElementById('mover-form');
 
         var p_names  = $("input[name='pro_name[]']")
             .map(function(){return $(this).val();}).get();

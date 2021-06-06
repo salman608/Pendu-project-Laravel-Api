@@ -46,8 +46,10 @@ Route::post('shop_n_drop', [ShopAndDropController::class, 'store'])->name('shop_
 
 
 
-Route::get('collect_n_delivery', [CollectAndDeliveryController::class, 'index']);
-Route::get('mover', [MoverController::class, 'index']);
+Route::get('collect_n_delivery', [CollectAndDeliveryController::class, 'index'])->name('collect_n_drop');
+Route::post('collect_n_drop', [CollectAndDeliveryController::class, 'store'])->name('collect_n_drop.store');
+Route::get('mover', [MoverController::class, 'index'])->name('mover');
+Route::post('movers', [MoverController::class, 'store'])->name('mover.store');
 
 
 /**
