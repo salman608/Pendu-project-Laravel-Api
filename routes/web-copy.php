@@ -104,7 +104,7 @@ Route::group(["as" => 'admin.', "prefix" => 'admin'], function () {
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/post', [App\Http\Controllers\User\PostController::class, 'index'])->name('post');
 // Route::get('/post/create', [App\Http\Controllers\User\PostController::class, 'create']);
@@ -129,7 +129,7 @@ Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
 
 Route::group(["middleware" => 'auth'], function () {
     // Route::get('/', [App\Http\Controllers\Auth\LoginController::class, 'index']);
-    Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
+    // Route::get('/logout', [App\Http\Controllers\Auth\LoginController::class, 'logout'])->name('logout');
 
     // "middleware" => 'admin'
     Route::group(["prefix" => 'admin'], function () {
