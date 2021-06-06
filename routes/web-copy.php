@@ -104,7 +104,7 @@ Route::group(["as" => 'admin.', "prefix" => 'admin'], function () {
 
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/post', [App\Http\Controllers\User\PostController::class, 'index'])->name('post');
 // Route::get('/post/create', [App\Http\Controllers\User\PostController::class, 'create']);
