@@ -1,9 +1,9 @@
 <style>
-    .model-header{
+    #OtpModal .model-header{
         padding: none !important;
         border-bottom: 1px solid #fcfdfd;
     }
-.card {
+.card-otp {
     width: 400px;
     padding: 10px;
     border-radius: 20px;
@@ -17,16 +17,16 @@
     height: 100vh
 } */
 
-body {
+/* body {
     background: #eee
-}
+} */
 
 .mobile-text {
     color: #989696b8;
     font-size: 15px
 }
 
-.form-.card {
+.form-.card-otp {
     width: 400px;
     padding: 10px;
     border-radius: 20px;
@@ -40,15 +40,15 @@ body {
     height: 100vh
 } */
 
-body {
+/* body {
     background: #eee
-}
+} */
 
 .mobcontrol {
     margin-right: 12px
 }
 
-.form-control:focus {
+.otp-input:focus {
     color: #495057;
     background-color: #fff;
     border-color: #ff8880;
@@ -64,7 +64,7 @@ body {
 .cursor {
     cursor: pointer
 }
-p{
+.card-otp p{
     font-size: 11px;
     font-weight: bold;
 }
@@ -97,7 +97,7 @@ p{
                 </button>
             </div>
             <div class="d-flex justify-content-center align-items-center container">
-                <div class="card">
+                <div class="card card-otp">
                     <img src="{{asset('frontend/images/otp.png')}}" alt="" style="width:265px;margin:auto;">
                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
                     <div class="d-flex flex-row mt-1" style="width: 295px;margin:auto;"><input type="text" class="form-control otp-input" autofocus=""> <input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"></div>
