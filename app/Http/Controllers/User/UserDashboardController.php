@@ -9,14 +9,14 @@ use App\Models\Dropper;
 use Auth;
 
 class UserDashboardController extends Controller
-{   
+{
     public function __construct()
-    {   
+    {
         $this->middleware('auth');
     }
     public function index()
     {
-        return view('User.Profile.delivery');
+        return view('User.Profile.term_n_condition');
     }
 
     public function index2()
