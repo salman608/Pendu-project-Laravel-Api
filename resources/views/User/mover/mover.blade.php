@@ -12,7 +12,6 @@ select {
     -moz-appearance: none;
 }
 
-
 select.select-box {
     background-image:
         linear-gradient(45deg, transparent 50%, #8f8f8f 50%),
@@ -71,7 +70,7 @@ select.select-box {
        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
             filter: brightness(1.8) grayscale(1) opacity(.7);
 }
-.drinkcard-cc:hover{
+.car-selected, .drinkcard-cc:hover{
     -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
             filter: brightness(1.2) grayscale(.5) opacity(.9);
@@ -149,7 +148,7 @@ span.cc{ color:#6d84b4 }
                         @foreach ($vehicles as $vehicle)
                         <label class="drinkcard-cc" for="checboxStrip">
                            <div class="col form-check">
-                                <input id="checboxStrip" type="checkbox" name="vahicle_type" value="car"/>
+                                <input id="checboxStrip@php echo $vehicle->id @endphp" type="checkbox" name="vahicle_type" value="{{$vehicle->title}}"/>
                                <img src="{{ asset('frontend/assets/images/Icons/truck.svg') }}" alt="">
                             </div>
                         </label>
@@ -700,6 +699,20 @@ $(document).ready(function(){
             }
         });
  });
+
+
+  // Car selection
+
+  
+  $(document).on('click','.drinkcard-cc',function(){
+
+        $('.drinkcard-cc').removeClass("car-selected");
+
+        $(this).toggleClass("car-selected");
+        let inputCar = $(this).find("input");        
+        inputCar.prop( "checked", true );
+  });
+
 
 </script>
 
