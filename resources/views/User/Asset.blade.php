@@ -50,27 +50,6 @@
 @include('User.Partial._Header')
 
 
-  <!-- ============ Breadcrumb ============ -->
-  <section class="breadcrumb_main">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="bread_area">
-                    <nav aria-label="breadcrumb bread_item">
-                        <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Library</li>
-                        </ol>
-                      </nav>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-
-
-
-
 @yield('user_content')
 
 
