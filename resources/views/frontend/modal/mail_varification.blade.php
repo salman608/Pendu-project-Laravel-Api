@@ -88,7 +88,7 @@
     }
 </style>
 <!-- Modal -->
-<div class="modal fade" id="tModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="OtpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header" style="border-bottom: 0px solid #dee2e6;padding:0px !important">
@@ -98,8 +98,8 @@
             </div>
             <div class="d-flex justify-content-center align-items-center container">
                 <div class="card card-otp">
-                    <img src="{{asset('frontend/images/otp.png')}}" alt="" style="width:265px;margin:auto;">
-                   <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
+                    <img src="{{asset('frontend/assets/images/Icons/mail.png')}}" alt="" style="width:265px;margin:auto;">
+                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
                     <div class="d-flex flex-row mt-1" style="width: 295px;margin:auto;"><input type="text" class="form-control otp-input" autofocus=""> <input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"></div>
                     <a href="" class="btn mt-3 button-cm">Confirm</a>
                     <div class="text-center mt-2 mb-5" style="font-size: 9px"> <span>Not received? Send again in</span> <strong> 0:59s</strong></div>

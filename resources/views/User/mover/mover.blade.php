@@ -39,7 +39,7 @@ select.select-box {
     z-index:999;
 }
 
-.car{
+/* .car{
     background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
 }
 .ute{
@@ -50,7 +50,7 @@ select.select-box {
 }
 .truck{
     background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
-}
+} */
 
 .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
 .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
@@ -141,30 +141,29 @@ span.cc{ color:#6d84b4 }
         <form enctype="multipart/form-data" method="POST" id="mover-form" action="{{route('mover.store')}}">
             @csrf
             <div id="task-details">
-                <div class="form-row">
-                    <div class="float-left"><label for="exampleInputEmail1" class="label-title mr-5">Vahicle Type-</label></div>
+                <div class="form-group">
+                <div class="form-row" style="margin-top: -18px;">
+                    <div class="float-left"><label for="exampleInputEmail1" class="label-title mr-5" style="margin-top: 20px;">Vahicle Type-</label></div>
                     <div class="cc-selector">
                         <div class="row">
-                            <div class="col">
-                                <input id="car" type="radio" name="vahicle_type" value="car" checked />
-                                <label class="drinkcard-cc car" for="car"></label>
+                        @foreach ($vehicles as $vehicle)
+                        <label class="drinkcard-cc" for="checboxStrip">
+                           <div class="col form-check">
+                                <input id="checboxStrip" type="checkbox" name="vahicle_type" value="car"/>
+                               <img src="{{ asset('frontend/assets/images/Icons/truck.svg') }}" alt="">
                             </div>
-                            <div class="col">
-                                <input id="ute" type="radio" name="vahicle_type" value="ute" />
-                                <label class="drinkcard-cc ute" for="ute"></label>
-                            </div>
-                            <div class="col">
-                                <input id="van" type="radio" name="vahicle_type" value="van" />
-                                <label class="drinkcard-cc van" for="van"></label>
-                            </div>
+                        </label>
 
-                            <div class="col">
-                                <input id="truck" type="radio" name="vahicle_type" value="truck" />
-                                <label class="drinkcard-cc truck" for="truck"></label>
-                            </div>
+                        @endforeach
+                            {{-- <div class="col form-check">
+                                <input id="car" type="radio" name="vahicle_type" value="car"  />
+                                <label class="drinkcard-cc" for="car"><img src="{{ asset('frontend/assets/images/Icons/car.svg') }}" alt=""></label>
+                            </div> --}}
+
                         </div>
                     </div>
                 </div>
+            </div>
 
                 <div class="form-group">
                     <label for="procat_id" class="label-title">Categories</label>

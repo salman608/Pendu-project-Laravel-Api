@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\DeliveryTime;
 use App\Models\Dropper;
 use App\Models\ProductCategory;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Session;
 use App\Repositories\TaskRepository;
@@ -24,8 +25,9 @@ class MoverController extends Controller
     {
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
         $data = [];
-        $data['product_cats']=ProductCategory::all();
-        $data['delivery_times']=DeliveryTime::all();
+        $data['product_cats']   =ProductCategory::all();
+        $data['delivery_times'] =DeliveryTime::all();
+        $data['vehicles']       =Vehicle::all();
         return view('User.mover.mover',$data);
     }
 

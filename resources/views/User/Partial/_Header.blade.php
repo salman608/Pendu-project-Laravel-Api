@@ -274,5 +274,5 @@
 
         </nav>
     </div>
-@include('frontend.modal.otp_modal')
+@include('frontend.modal.mail_varification')
 </section>
