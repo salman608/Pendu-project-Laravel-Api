@@ -16,7 +16,7 @@ class UserDashboardController extends Controller
     }
     public function index()
     {
-        return view('User.Profile.tasks');
+        return view('User.Profile.support');
     }
 
     public function index2()
