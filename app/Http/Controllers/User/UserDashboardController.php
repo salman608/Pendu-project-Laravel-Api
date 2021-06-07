@@ -16,10 +16,7 @@ class UserDashboardController extends Controller
     }
     public function index()
     {
-        // return auth()->user();
-
-        return view('home');
-        // return view('home', compact('droppers', 'posts'));
+        return view('User.Profile.index');
     }
 
     public function index1()

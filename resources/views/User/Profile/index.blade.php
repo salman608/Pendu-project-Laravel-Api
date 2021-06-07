@@ -10,6 +10,13 @@
         .reg_image_input{
             border: none!important;
         }
+
+        @media (min-width: 1501px) {
+          .modal-content.login_page_modal_content {
+              margin-top: 0 !important;
+          }
+        }
+        
     </style>
 
 
