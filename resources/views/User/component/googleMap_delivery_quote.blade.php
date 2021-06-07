@@ -1,4 +1,8 @@
-
+<style>
+    .modal { z-index: 1001 !important;}
+    .modal-backdrop {z-index: 1000 !important;}
+    .pac-container {z-index: 1055 !important;}
+</style>
 {{-- google map modal --}}
 <div class="modal fade bd-example-modal-lg" id="googleMapDeliveryModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true" style="">
     <div class="modal-dialog modal-dialog-centered modal-lg" role="document" style="width:600px;left:0;top:0;">
