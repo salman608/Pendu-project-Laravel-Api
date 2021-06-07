@@ -16,11 +16,11 @@ class UserDashboardController extends Controller
     }
     public function index()
     {
-        return view('User.Profile.index');
+        return view('User.Profile.delivery');
     }
 
-    public function index1()
+    public function index2()
     {
-        return "hi i am user";
+        return view('User.Profile.index2');
     }
 }
