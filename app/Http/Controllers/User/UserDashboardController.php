@@ -16,7 +16,7 @@ class UserDashboardController extends Controller
     }
     public function index()
     {
-        return view('User.Profile.term_n_condition');
+        return view('User.Profile.tasks');
     }
 
     public function index2()

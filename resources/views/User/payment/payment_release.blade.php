@@ -72,7 +72,6 @@
 <div class="modal fade" id="paymentReleaseModalId" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
-
             <div style="background: #60e99c;height: 8px;">
                 <div class="modal-header">
 

@@ -66,7 +66,8 @@
 }
 .card-otp p{
     font-size: 11px;
-    font-weight: bold;
+    text-align: center;
+    font-weight: 400;
 }
 .button-cm {
         background-color: #60e99c !important;
@@ -79,7 +80,7 @@
         border-radius: 5px;
         font-weight: bold;
         color: white;
-        width: 248px;
+        width: 151px;
         margin: auto;
     }
     .button-cm:hover{
@@ -91,26 +92,24 @@
 <div class="modal fade" id="OtpModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
+            <div style="background: #60e99c;height: 7px;">
             <div class="modal-header" style="border-bottom: 0px solid #dee2e6;padding:0px !important">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <input type="button" aria-hidden="true" class="modal-cross-btn" value="x"></input>
                 </button>
             </div>
+        </div>
             <div class="d-flex justify-content-center align-items-center container">
                 <div class="card card-otp">
                     <img src="{{asset('frontend/assets/images/Icons/mail.png')}}" alt="" style="width:265px;margin:auto;">
-                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
-                    <div class="d-flex flex-row mt-1" style="width: 295px;margin:auto;"><input type="text" class="form-control otp-input" autofocus=""> <input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"></div>
-                    <a href="" class="btn mt-3 button-cm">Confirm</a>
-                    <div class="text-center mt-2 mb-5" style="font-size: 9px"> <span>Not received? Send again in</span> <strong> 0:59s</strong></div>
+                    <h3 class="mt-2" style="font-size: 15px;font-weight:bold;text-align: center;">Confirmation Email has been sent!</h3>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Maxime mollitia,
+                        molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+                        numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium</p>
+                    <a href="" class="btn btn-sm mt-3 button-cm mb-3"><i class="fa fa-home"></i> Home</a>
+
                 </div>
             </div>
        </div>
     </div>
 </div>
-
-
-
-  <script>
-
-  </script>
