@@ -2,101 +2,101 @@
 @section('user_content')
 <style>
     input[type="text"] {
-    background: #f1f1f1;
-    border:none;
-    outline: none;
-}
-select {
-    background-color: #f1f1f1!important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
+        background: #f1f1f1;
+        border:none;
+        outline: none;
+    }
+    select {
+        background-color: #f1f1f1!important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
 
-select.select-box {
-    background-image:
-        linear-gradient(45deg, transparent 50%, #8f8f8f 50%),
-        linear-gradient(135deg, #8f8f8f 50%, transparent 50%);
-    background-position:
-        calc(100% - 20px) calc(1em + 2px),
-        calc(100% - 15px) calc(1em + 2px),
-        100% 0;
-    background-size:
-        5px 5px,
-        5px 5px,
-        2.5em 2.5em;
-    background-repeat: no-repeat;
-}
-.cc-selector input{
-    margin:0;padding:0;
-    -webkit-appearance:none;
-       -moz-appearance:none;
-            appearance:none;
-}
+    select.select-box {
+        background-image:
+            linear-gradient(45deg, transparent 50%, #8f8f8f 50%),
+            linear-gradient(135deg, #8f8f8f 50%, transparent 50%);
+        background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            100% 0;
+        background-size:
+            5px 5px,
+            5px 5px,
+            2.5em 2.5em;
+        background-repeat: no-repeat;
+    }
+    .cc-selector input{
+        margin:0;padding:0;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+                appearance:none;
+    }
 
-.cc-selector-2 input{
-    position:absolute;
-    z-index:999;
-}
+    .cc-selector-2 input{
+        position:absolute;
+        z-index:999;
+    }
 
-/* .car{
-    background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
-}
-.ute{
-    background-image:url({{ asset('frontend/assets/images/Icons/ute.svg') }});
-}
-.van{
-    background-image:url({{ asset('frontend/assets/images/Icons/van.svg') }});
-}
-.truck{
-    background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
-} */
+    /* .car{
+        background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
+    }
+    .ute{
+        background-image:url({{ asset('frontend/assets/images/Icons/ute.svg') }});
+    }
+    .van{
+        background-image:url({{ asset('frontend/assets/images/Icons/van.svg') }});
+    }
+    .truck{
+        background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
+    } */
 
-.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
-.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
-    -webkit-filter: none;
-       -moz-filter: none;
-            filter: none;
-}
-.drinkcard-cc{
-    cursor:pointer;
-    background-size:contain;
-    background-repeat:no-repeat;
-    display:inline-block;
-    width:100px;height:70px;
-    -webkit-transition: all 100ms ease-in;
-       -moz-transition: all 100ms ease-in;
-            transition: all 100ms ease-in;
-    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-            filter: brightness(1.8) grayscale(1) opacity(.7);
-}
-.car-selected, .drinkcard-cc:hover{
-    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-            filter: brightness(1.2) grayscale(.5) opacity(.9);
-}
+    .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+    .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+        -webkit-filter: none;
+        -moz-filter: none;
+                filter: none;
+    }
+    .drinkcard-cc{
+        cursor:pointer;
+        background-size:contain;
+        background-repeat:no-repeat;
+        display:inline-block;
+        width:100px;height:70px;
+        -webkit-transition: all 100ms ease-in;
+        -moz-transition: all 100ms ease-in;
+                transition: all 100ms ease-in;
+        -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+                filter: brightness(1.8) grayscale(1) opacity(.7);
+    }
+    .car-selected, .drinkcard-cc:hover{
+        -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+                filter: brightness(1.2) grayscale(.5) opacity(.9);
+    }
 
-/* Extras */
-a:visited{color:#888}
-a{color:#444;text-decoration:none;}
-p{margin-bottom:.3em;}
-/* * { font-family:monospace; } */
-.cc-selector-2 input{ margin: 5px 0 0 12px; }
-.cc-selector-2 label{ margin-left: 7px; }
-span.cc{ color:#6d84b4 }
+    /* Extras */
+    a:visited{color:#888}
+    a{color:#444;text-decoration:none;}
+    p{margin-bottom:.3em;}
+    /* * { font-family:monospace; } */
+    .cc-selector-2 input{ margin: 5px 0 0 12px; }
+    .cc-selector-2 label{ margin-left: 7px; }
+    span.cc{ color:#6d84b4 }
 
 
-.mover-from-address {
-    margin-left: 23px;
-    margin-top: -32px;
-}
-.qty{
-    text-align: center !important;
-}
-.plus-button{
-    font-weight: bold;
-    width: 70px;
-}
+    .mover-from-address {
+        margin-left: 23px;
+        margin-top: -32px;
+    }
+    .qty{
+        text-align: center !important;
+    }
+    .plus-button{
+        font-weight: bold;
+        width: 70px;
+    }
 
 </style>
 
