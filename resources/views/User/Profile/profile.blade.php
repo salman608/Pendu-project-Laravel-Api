@@ -27,7 +27,7 @@
    <div class="row">
       @include('User.Partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
-        <div>             <!-- ------------- profile tab info  ------------- -->      
+        <div>             <!-- ------------- profile tab info  ------------- -->
             <div class="profile_tab_title">
                   <h2>Profile info</h2>
                </div>
@@ -56,11 +56,18 @@
                               </div>
                               <div class="form-group">
                                  <div class="col-8">
-                                    <input type="file" class="form-control form-control-lg " name="profile_image" style="width:100% !important;">
+                                    {{-- <input type="file" class="form-control form-control-lg " name="profile_image" style="width:100% !important;">
                                  </div>
-                                 <label class='reg_image' for="" style="top: 268px !important;left: 49px">Image</label>
+                                 <label class='reg_image' for="" style="top: 268px !important;left: 49px">Image</label> --}}
+                                 <div id="profile-container">
+                                    <img id="profileImage" src="http://lorempixel.com/100/100" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: block;"/>
+
+
+                                 </div>
+                                 <input id="imageUpload" type="file"
+                                        name="profile_photo" placeholder="Photo" required="" capture>
                               </div>
-                              {{-- 
+                              {{--
                               <div class="col-4 mt-4">
                                  <img style="height: 50px;width: 50px;border-radius: 25px;" src="{{Auth::user()->profile_image}}" alt="">
                               </div>
@@ -73,8 +80,8 @@
                      </div>
                   </div>
                </div>
-           
-        </div>        
+
+        </div>
       </div>
    </div>
 </div>
@@ -82,5 +89,22 @@
 
 @include("User.component.task_process")
 @include("User.payment.payment_release")
+
+<script>
+    $("#profileImage").click(function(e) {
+    $("#imageUpload").click();
+});
+
+function fasterPreview( uploader ) {
+    if ( uploader.files && uploader.files[0] ){
+          $('#profileImage').attr('src',
+             window.URL.createObjectURL(uploader.files[0]) );
+    }
+}
+
+$("#imageUpload").change(function(){
+    fasterPreview( this );
+});
+</script>
 @endsection
 

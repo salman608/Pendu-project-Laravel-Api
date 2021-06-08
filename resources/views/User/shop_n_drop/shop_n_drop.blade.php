@@ -631,29 +631,14 @@ select.select-box {
 
         let selectParent = $(this).parent();
         
-        let selectUncle = $(selectParent).prev();
+        // let selectUncle = selectParent.prev();
 
-
-        $(selectUncle).prop('checked',true);
-
-        // selectUncle.css("background-color", "blue")
-
-        // console.log(selectUncle);
-
-        // $(this).css("background-color", "blue");
+        console.log(selectParent);
         // selectUncle.prop('checked', true)
 
         // let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
 
         // $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-
-
-//         [type="radio"]:checked + div {
-//     border: 0px;
-//     padding: 0px;
-//     background: #5bdb98;
-//     border-radius: 10px;
-// }
         
     });
 
