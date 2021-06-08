@@ -16,7 +16,7 @@ class UserDashboardController extends Controller
     }
     public function index()
     {
-        return view('User.Profile.support');
+        return view('User.Profile.offer');
     }
 
     public function index2()
