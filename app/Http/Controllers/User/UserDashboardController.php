@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Dropper;
+use App\Models\Task;
 use Auth;
 
 class UserDashboardController extends Controller
@@ -15,12 +16,32 @@ class UserDashboardController extends Controller
         $this->middleware('auth');
     }
     public function index()
-    {
-        return view('User.Profile.offer');
+    {   
+
+        $data = [];
+        $data['tasks'] = Task::where('user_id', auth()->id())->get()
+            ->groupBy(function($task){ 
+                return $task->created_at->format('j F Y'); 
+            })->toArray();
+
+        // return $data;
+
+        return view('user.profile.tasks', $data);
     }
 
-    public function index2()
+    public function profile()
     {
-        return view('User.Profile.index2');
+        return view('User.Profile.profile');
     }
+
+    // Currently index
+    public function tasks()
+    {       
+        return "Currently index";
+        return auth()->user();
+        //return view('User.Profile.tasks');
+    }
+
+
+
 }

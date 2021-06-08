@@ -56,15 +56,27 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(User::class, 'referrer_id', 'id');
     }
 
-/**
- * A user has many referrals.
- *
- * @return \Illuminate\Database\Eloquent\Relations\HasMany
- */
+    /**
+     * A user has many referrals.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function referrals()
     {
         return $this->hasMany(User::class, 'referrer_id', 'id');
     }
+
+    
+    /**
+     * A user has many taks.
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function tasks()
+    {
+        return $this->hasMany(Task::class)->groupBy('created_at');
+    }
+
 
       /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -95,4 +107,5 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->referral_link = route('register', ['ref' => $this->id,mt_rand(1000,9999)]);
     }
+
 }

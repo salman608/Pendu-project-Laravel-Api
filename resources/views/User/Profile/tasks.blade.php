@@ -11,7 +11,7 @@
                     <nav aria-label="breadcrumb bread_item">
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Library</li>
+                          <li class="breadcrumb-item active" aria-current="page">Tasks</li>
                         </ol>
                       </nav>
                 </div>
@@ -49,31 +49,33 @@
                </div>
             </div>
 
-
+@foreach($tasks as $task)
             <div class="order_number">
-                     <div class="order_cat_date_area mt-3">
-                        <div class="order_cat_date">
-                           <p></p>
-                           <h6>15 Nov 2020</h6>
-                        </div>
-                     </div>
 
-                     <div class="order_details_area">
-                        <div class="order_details">
-                           <div class="order_id_coast">
-                                 <h5>Order ID- <span class='id_num' ></span> </h5>
-                                 <p>Item cost- <span class='coast'></span> </p>
-                                 <h6>Proccessing</h6>
-                           </div>
-                        </div>
-                        <div class="view_order float-right">
-                           <button type="button" class="btn " data-toggle="modal" data-target=".profile-example-modal-lg">View offers</button>
-                        </div>
-                        <div class="order_track">
-                           <p>Buy some groceries for me-</p>
-                           <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5>
-                        </div>
-                     </div>
+
+                <div class="order_cat_date_area mt-3">
+                  <div class="order_cat_date">
+                      <p></p>
+                      <h6>15 Nov 2020</h6>
+                  </div>
+                </div>
+
+                <div class="order_details_area">
+                  <div class="order_details">
+                      <div class="order_id_coast">
+                            <h5>Order ID- <span class='id_num' ></span> </h5>
+                            <p>Item cost- <span class='coast'></span> </p>
+                            <h6>Proccessing</h6>
+                      </div>
+                  </div>
+                  <div class="view_order float-right">
+                      <button type="button" class="btn " data-toggle="modal" data-target=".profile-example-modal-lg">View offers</button>
+                  </div>
+                  <div class="order_track">
+                      <p>Buy some groceries for me-</p>
+                      <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5>
+                  </div>
+                </div>
 
 
                <div class="order_details_area mt-2">
@@ -106,6 +108,9 @@
                      </div>
                </div>
             </div>
+
+@endforeach
+
 
         </div>        
       </div>

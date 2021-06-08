@@ -2,16 +2,15 @@
            <div class="profile_tab_area">
 
             <div class="nav flex-column nav-pills profile_tab_item" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                <a class="nav-link @if(isset($_GET['profile'])) active @endif" id="v-pills-profile-info-tab" data-toggle="pill" href="#v-pills-profile-info" role="tab" aria-controls="v-pills-profile-info" aria-selected="true"> <span>
-                  <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 129.25 148.64">
-                    <g id="profile_green" data-name="profile green" transform="translate(-10.38 -0.68)">
-                      <path id="Path_23" data-name="Path 23" d="M75,65.31a32.315,32.315,0,1,1,32.31-32.32A32.309,32.309,0,0,1,75,65.31ZM75,13.6A19.39,19.39,0,1,0,94.39,32.99,19.388,19.388,0,0,0,75,13.6Z" fill="#5bdb98"/>
-                      <path id="Path_24" data-name="Path 24" d="M133.16,149.32H16.84a6.457,6.457,0,0,1-6.46-6.46V123.47a51.7,51.7,0,0,1,51.7-51.7H87.93a51.7,51.7,0,0,1,51.7,51.7v19.39A6.466,6.466,0,0,1,133.16,149.32ZM23.3,136.4H126.7V123.47A38.777,38.777,0,0,0,87.92,84.69H62.07a38.777,38.777,0,0,0-38.78,38.78V136.4Z" fill="#5bdb98"/>
-                    </g>
-                  </svg>
-                </span> Profile info</a>
 
-                <a class="nav-link " id="v-pills-task-tab" data-toggle="pill" href="#v-pills-task" role="tab" aria-controls="v-pills-task" aria-selected="true"> <span>
+                <a class="nav-link  @if(Route::is('user.dashboard') ) active @endif" href="{{ route('user.dashboard') }}">
+                  
+                <!-- 
+                  <a class="nav-link @if(Route::is('user.tasks') ) active @endif" href="{{ route('user.tasks') }}">
+                   -->
+                  
+                
+                <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 150 151.25">
                     <g id="task_green" data-name="task green" transform="translate(0 0.62)">
                       <path id="Path_18" data-name="Path 18" d="M150,128.43V45.09c0-12.23-10.84-22.19-24.18-22.19H119.2V21.57C119.2,9.33,108.36-.62,95.02-.62H24.18C10.85-.63,0,9.33,0,21.57v83.35c0,12.23,10.85,22.19,24.18,22.19H30.8v1.33c0,12.24,10.85,22.19,24.18,22.19h70.83C139.16,150.63,150,140.67,150,128.43Zm-33.11,14.93H54.98c-8.99,0-16.27-6.68-16.27-14.93V45.09c0-8.24,7.28-14.93,16.27-14.93h70.83c8.99,0,16.27,6.68,16.27,14.93v83.35c0,8.24-7.28,14.93-16.27,14.93h-8.92Z" fill="#5bdb98"/>
@@ -23,6 +22,26 @@
                   </svg>
 
                 </span> My tasks</a>
+
+                
+
+
+
+                <a class="nav-link @if(Route::is('user.profile') ) active @endif" href="{{ route('user.profile') }}" > <span>
+                  <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 129.25 148.64">
+                    <g id="profile_green" data-name="profile green" transform="translate(-10.38 -0.68)">
+                      <path id="Path_23" data-name="Path 23" d="M75,65.31a32.315,32.315,0,1,1,32.31-32.32A32.309,32.309,0,0,1,75,65.31ZM75,13.6A19.39,19.39,0,1,0,94.39,32.99,19.388,19.388,0,0,0,75,13.6Z" fill="#5bdb98"/>
+                      <path id="Path_24" data-name="Path 24" d="M133.16,149.32H16.84a6.457,6.457,0,0,1-6.46-6.46V123.47a51.7,51.7,0,0,1,51.7-51.7H87.93a51.7,51.7,0,0,1,51.7,51.7v19.39A6.466,6.466,0,0,1,133.16,149.32ZM23.3,136.4H126.7V123.47A38.777,38.777,0,0,0,87.92,84.69H62.07a38.777,38.777,0,0,0-38.78,38.78V136.4Z" fill="#5bdb98"/>
+                    </g>
+                  </svg>
+                </span> Profile info</a>
+
+
+
+
+
+
+
                 <a class="nav-link @if(isset($_GET['message'])) active @endif" id="v-pills-inbox-tab" data-toggle="pill" href="#v-pills-inbox" role="tab" aria-controls="v-pills-inbox" aria-selected="true"> <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 191.86 134.18">
                     <g id="Layer_6" transform="translate(-4.07 -32.91)">

@@ -57,7 +57,10 @@ Route::post('movers', [MoverController::class, 'store'])->name('mover.store');
  */
 Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
-    Route::get('dashboard2', [App\Http\Controllers\User\UserDashboardController::class, 'index2'])->name('dashboard2');
+    
+    Route::get('profile', [App\Http\Controllers\User\UserDashboardController::class, 'profile'])->name('profile');
+
+    Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
 
 });
 
