@@ -74,7 +74,6 @@
         <div class="modal-content">
             <div style="background: #60e99c;height: 8px;">
                 <div class="modal-header">
-
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
                     </button>
