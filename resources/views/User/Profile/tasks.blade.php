@@ -1,5 +1,28 @@
 @extends('User.Asset')
 @section('user_content')
+
+
+  <!-- ============ Breadcrumb ============ -->
+  <section class="breadcrumb_main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="bread_area">
+                    <nav aria-label="breadcrumb bread_item">
+                        <ol class="breadcrumb">
+                          <li class="breadcrumb-item"><a href="#">Home</a></li>
+                          <li class="breadcrumb-item active" aria-current="page">Library</li>
+                        </ol>
+                      </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
 <div class="container profile_tab_main_area">
    <div class="row">
       @include('User.Partial._Sidebar')
@@ -89,6 +112,165 @@
    </div>
 </div>
 <!-- ---- end  tab ------ -->
+
+
+
+
+  <!-- ================= Offers from driverstab ============ -->
+  <div class="modal fade profile-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg  ">
+      <div class="modal-content offer_modal_contetn">
+          <div class="modal-header offer_modal_title">
+              <h5 class="modal-title" id="exampleModalLongTitle">Offers from drivers</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <section class=" offer_main_area" >
+                  <ul>
+
+                      <li class='offer_inter_item mt-1' >
+                        <div class="container">
+
+
+                        <div class="row">
+
+                      <div class="col-md-2 ">
+
+
+                          <div class="offer_image">
+                              <img src="{{asset('frontend')}}/assets/images/member/men_pic10_copy.jpg" alt="">
+                              <h5>Kal M.</h5>
+                              <h6><i class="fas fa-star"></i> <span>4.5</span> </h6>
+                          </div>
+                        </div>
+                        <div class="col-md-6 offer_middle_row">
+
+
+                          <div class="circle_offer">
+                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
+                              <h6>Average accuracy</h6>
+                            </div>
+                          </div>
+                          <div class="circle_offer">
+                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
+                              <h6>Success rate</h6>
+                            </div>
+                          </div>
+
+                          <div class="Vehicle_offer">
+                            <img src="{{asset('frontend')}}/assets/images/Illustrations/car.png" alt="">
+                            <h6>Vehicle type</h6>
+
+                          </div>
+
+
+                        </div>
+                        <div class="col-md-3 ">
+
+
+
+                          <div class="accept_offer_cost">
+                            <div class="circle_curve">
+                              <h1></h1>
+                                <h4>$200</h4>
+
+                            </div>
+                            <a href="{{ url('payment') }}" type="button" class="btn">Accept Offer</a>
+                            {{-- <button type="button" class="btn ">Accept Offer</button> --}}
+
+                          </div>
+
+                        </div>
+
+                        </div>
+                      </div>
+
+                     <span class="close1 offer_close">&times;</span>
+
+                      </li>
+
+                      <li class='offer_inter_item mt-1' >
+                        <div class="container">
+
+
+                        <div class="row">
+
+                      <div class="col-md-2 ">
+
+
+                          <div class="offer_image">
+                              <img src="{{asset('frontend')}}/assets/images/member/men_pic10_copy.jpg" alt="">
+                              <h5>Kal M.</h5>
+                              <h6><i class="fas fa-star"></i> <span>4.5</span> </h6>
+                          </div>
+                        </div>
+                        <div class="col-md-6 offer_middle_row">
+
+
+                          <div class="circle_offer">
+                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
+                              <h6>Average accuracy</h6>
+                            </div>
+                          </div>
+                          <div class="circle_offer">
+                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
+                              <h6>Success rate</h6>
+                            </div>
+                          </div>
+
+                          <div class="Vehicle_offer">
+                            <img src="{{asset('frontend')}}/assets/images/Illustrations/car.png" alt="">
+                            <h6>Vehicle type</h6>
+
+                          </div>
+
+
+                        </div>
+                        <div class="col-md-3 ">
+
+
+
+                          <div class="accept_offer_cost">
+                            <div class="circle_curve">
+                              <h1></h1>
+                                <h4>$200</h4>
+
+                            </div>
+                            <button type="button" class="btn ">Accept Offer</button>
+
+                          </div>
+
+                        </div>
+
+                        </div>
+                      </div>
+
+                     <span class="close1 offer_close">&times;</span>
+
+                      </li>
+
+
+                    </ul>
+
+              </section>
+
+
+
+            </div>
+
+
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
 
 @include("User.component.task_process")
 @include("User.payment.payment_release")

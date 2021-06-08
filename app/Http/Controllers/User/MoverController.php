@@ -25,9 +25,9 @@ class MoverController extends Controller
     {
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
         $data = [];
-        $data['product_cats']   =ProductCategory::all();
-        $data['delivery_times'] =DeliveryTime::all();
-        $data['vehicles']       =Vehicle::all();
+        $data['product_cats']   =   ProductCategory::all();
+        $data['delivery_times'] =   DeliveryTime::all();
+        $data['vehicles']       =   Vehicle::all();
         return view('User.mover.mover',$data);
     }
 
@@ -48,7 +48,10 @@ class MoverController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    {   
+
+        // return $request->all();
+
         DB::beginTransaction();
 
         try {
@@ -70,7 +73,7 @@ class MoverController extends Controller
             $data['notes']              = $request->additional_note;
             $data['total_cost']         = $request->product_cost;
             $data['delivery_time_id']   = $request->delivery_time;
-            $data['service_category_id']   = 1;
+            $data['service_category_id']   = 3;
 
             $task = TaskRepository::saveTaskData($data);
 
@@ -85,7 +88,7 @@ class MoverController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            Session::flash('error', 'Your task request is failed!');
+            Session::flash('error', $e->getMessage());
             return redirect()->route('mover');
         }
 

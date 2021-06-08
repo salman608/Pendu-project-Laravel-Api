@@ -81,8 +81,8 @@
 
                 </span> Refer & earn</a>
 
-                <a class="nav-link " id="v-pills-Supssort-tab" data-toggle="pill" href="#v-pills-Susspport" role="tab" aria-controls="v-pills-Susspport" aria-selected="true"> <span>
-                  <img class='profile_img_tab' src="{{asset('frontend')}}/assets/images/Icons/Icons.png" alt="">
+                <a class="nav-link" id="v-pills-Supssort-tab" data-toggle="pill" href="#v-pills-Susspport" role="tab" aria-controls="v-pills-Susspport" aria-selected="false"> <span>
+                  <img class="profile_img_tab" src="http://pendu-office.mr/frontend/assets/images/Icons/Icons.png" alt="">
 
                 </span> Settings</a>
 
