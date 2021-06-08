@@ -129,7 +129,7 @@ select.select-box {
                   </div>
                     <div class="form-group">
                         <label for="additional_note" class="label-title">Additional notes</label>
-                        <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note" title="Enter your total cost of the items" placeholder="Enter your total cost of the items" required ></textarea>
+                        <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note"  placeholder="Enter additional notes" required ></textarea>
                     </div>
 
 
@@ -186,7 +186,7 @@ select.select-box {
 
             <div id="timeFrameDiv" >
                 <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title">Delivery Time</label>
+                    <label  class="label-title">Delivery Time</label>
                     <div class="row">
                         @foreach ($delivery_times as $d_time)
                         <div class="pr-2" >
@@ -194,7 +194,7 @@ select.select-box {
                                 <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
                                 <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
-                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
+                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;"  >{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -621,6 +621,42 @@ select.select-box {
 
         }
     });
+
+
+
+    // delivery_time_checker
+    $('.delivery_time_checker').click(function(){
+
+        // event.stopPropagation();
+
+        let selectParent = $(this).parent();
+        
+        let selectUncle = $(selectParent).prev();
+
+
+        $(selectUncle).prop('checked',true);
+
+        // selectUncle.css("background-color", "blue")
+
+        // console.log(selectUncle);
+
+        // $(this).css("background-color", "blue");
+        // selectUncle.prop('checked', true)
+
+        // let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+
+        // $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+
+
+//         [type="radio"]:checked + div {
+//     border: 0px;
+//     padding: 0px;
+//     background: #5bdb98;
+//     border-radius: 10px;
+// }
+        
+    });
+
 </script>
 
 

@@ -236,15 +236,15 @@ function myFunctions() {
 
 // ============= deliver time active class ============
 
-var delivery_header = document.getElementById("shop_time");
-var delivery_btns = delivery_header.getElementsByClassName("delivery_time_list");
-for (var i = 0; i < delivery_btns.length; i++) {
-    delivery_btns[i].addEventListener("click", function() {
-  var delviery_current = document.getElementsByClassName("delivery_list_active");
-  delviery_current[0].className = delviery_current[0].className.replace(" delivery_list_active", "");
-  this.className += " delivery_list_active";
-  });
-}
+// var delivery_header = document.getElementById("shop_time");
+// var delivery_btns = delivery_header.getElementsByClassName("delivery_time_list");
+// for (var i = 0; i < delivery_btns.length; i++) {
+//     delivery_btns[i].addEventListener("click", function() {
+//   var delviery_current = document.getElementsByClassName("delivery_list_active");
+//   delviery_current[0].className = delviery_current[0].className.replace(" delivery_list_active", "");
+//   this.className += " delivery_list_active";
+//   });
+// }
 // ============= Mover active class ============
 
 // var mover = document.getElementById("test");

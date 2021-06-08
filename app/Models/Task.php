@@ -9,6 +9,19 @@ class Task extends Model
 {
     use HasFactory;
 
+    // Task Type
+    public const TASK_SIMPLE       = 'simple';
+    public const TASK_QUOTE        = 'quote';
+    
+    // Task Request Status
+    public const  REQUEST_RECEIVED        = 'received';
+    public const  REQUEST_REVIEW          = 'review';
+    public const  REQUEST_ONLINE          = 'online';
+    public const  REQUEST_PROCESSING      = 'processing';
+    public const  REQUEST_COMPLETED       = 'completed';
+
+
+
     protected $table = 'tasks';
 
     protected $guarded = [];

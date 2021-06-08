@@ -5,14 +5,100 @@
         border:none;
         outline: none;
     }
+    select {
+        background-color: #f1f1f1!important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
+
+    select.select-box {
+        background-image:
+            linear-gradient(45deg, transparent 50%, #8f8f8f 50%),
+            linear-gradient(135deg, #8f8f8f 50%, transparent 50%);
+        background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            100% 0;
+        background-size:
+            5px 5px,
+            5px 5px,
+            2.5em 2.5em;
+        background-repeat: no-repeat;
+    }
+    .cc-selector input{
+        margin:0;padding:0;
+        -webkit-appearance:none;
+        -moz-appearance:none;
+                appearance:none;
+    }
+
+    .cc-selector-2 input{
+        position:absolute;
+        z-index:999;
+    }
+
+    /* .car{
+        background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
+    }
+    .ute{
+        background-image:url({{ asset('frontend/assets/images/Icons/ute.svg') }});
+    }
+    .van{
+        background-image:url({{ asset('frontend/assets/images/Icons/van.svg') }});
+    }
+    .truck{
+        background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
+    } */
+
+    .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+    .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+        -webkit-filter: none;
+        -moz-filter: none;
+                filter: none;
+    }
+    .drinkcard-cc{
+        cursor:pointer;
+        background-size:contain;
+        background-repeat:no-repeat;
+        display:inline-block;
+        width:100px;height:70px;
+        -webkit-transition: all 100ms ease-in;
+        -moz-transition: all 100ms ease-in;
+                transition: all 100ms ease-in;
+        -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+                filter: brightness(1.8) grayscale(1) opacity(.7);
+    }
+    .car-selected, .drinkcard-cc:hover{
+        -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+                filter: brightness(1.2) grayscale(.5) opacity(.9);
+    }
+
+    /* Extras */
+    a:visited{color:#888}
+    a{color:#444;text-decoration:none;}
+    p{margin-bottom:.3em;}
+    /* * { font-family:monospace; } */
+    .cc-selector-2 input{ margin: 5px 0 0 12px; }
+    .cc-selector-2 label{ margin-left: 7px; }
+    span.cc{ color:#6d84b4 }
+
+
+    .mover-from-address {
+        margin-left: 23px;
+        margin-top: -32px;
+    }
     .qty{
-    text-align: center !important;
-   }
-  .plus-button{
-    font-weight: bold;
-    width: 70px;
-   }
+        text-align: center !important;
+    }
+    .plus-button{
+        font-weight: bold;
+        width: 70px;
+    }
+
 </style>
+
 
 @section('user_content')
 <section class="">
@@ -57,28 +143,43 @@
         <input type="hidden" name="vahicle_type" value="car">
 
             <div id="task-details">
-                <div class="form-group">
-                    <label for="exampleInputEmail1" class="label-title mr-5" >Vahicle Type-</label>
-                    <svg id="Group_2933" data-name="Group 2933" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="64.418" height="39.833" viewBox="0 0 64.418 39.833">
-                        <defs>
-                          <clipPath id="clip-path">
-                            <rect id="Rectangle_2484" data-name="Rectangle 2484" width="64.418" height="39.833" fill="none"/>
-                          </clipPath>
-                        </defs>
-                        <g id="Group_1403" data-name="Group 1403" clip-path="url(#clip-path)">
-                          <path id="Path_5901" data-name="Path 5901" d="M64.418,193.123c0,1.169-14.42,2.117-32.209,2.117S0,194.292,0,193.123s14.42-2.117,32.209-2.117,32.209.948,32.209,2.117" transform="translate(0 -155.406)" fill="#e6e7e8"/>
-                          <path id="Path_5902" data-name="Path 5902" d="M37.109,139.577H31.823A1.331,1.331,0,0,0,30.5,140.9v9.624a1.331,1.331,0,0,0,1.327,1.327h5.285a1.331,1.331,0,0,0,1.327-1.327V140.9a1.331,1.331,0,0,0-1.327-1.327" transform="translate(-24.812 -113.563)"/>
-                          <path id="Path_5903" data-name="Path 5903" d="M279.145,139.577h-5.285a1.331,1.331,0,0,0-1.327,1.327v9.624a1.331,1.331,0,0,0,1.327,1.327h5.285a1.331,1.331,0,0,0,1.327-1.327V140.9a1.331,1.331,0,0,0-1.327-1.327" transform="translate(-221.737 -113.563)"/>
-                          <path id="Path_5904" data-name="Path 5904" d="M77.605,28.16V21.515c0-5.293-3.9-8.4-6.23-9.782l.8-.854a2.231,2.231,0,0,0,1.726.557c1.849,0,3.348-.94,3.348-2.1s-1.5-2.1-3.348-2.1c-1.677,0-2.1.775-2.165,1.784a4.134,4.134,0,0,1-1.261,2.216c-.255-.129-.462-.226-.6-.287A32.68,32.68,0,0,0,62.648.525a182.089,182.089,0,0,0-27.225,0C31.961,2.79,29.671,8.26,28.706,10.976c-.136.061-.319.147-.54.259a4.134,4.134,0,0,1-1.261-2.216c-.064-1.009-.488-1.784-2.165-1.784-1.849,0-3.348.94-3.348,2.1s1.5,2.1,3.348,2.1a2.23,2.23,0,0,0,1.726-.557l.8.854c-2.335,1.386-6.23,4.49-6.23,9.782V28.16s-.387,4.456,6.2,4.456H71.406c6.587,0,6.2-4.456,6.2-4.456" transform="translate(-17.111 0)" fill="#56cd93"/>
-                          <path id="Path_5905" data-name="Path 5905" d="M73.695,17.654c1.037-2.523,2.8-6.028,5.142-7.735,1.43-.107,7.016-.492,13.856-.492,4.453,0,8.591.161,12.309.477a32.027,32.027,0,0,1,5.641,7.75Z" transform="translate(-59.96 -7.67)"/>
-                          <path id="Path_5906" data-name="Path 5906" d="M128.452,9.629l8.028,8.028h8.727l-8.226-8.226c-3.24,0-6.187.094-8.529.2" transform="translate(-104.511 -7.673)" fill="#24323a"/>
-                          <path id="Path_5907" data-name="Path 5907" d="M45.35,95.72a3.058,3.058,0,1,1-3.058-3.058A3.058,3.058,0,0,1,45.35,95.72" transform="translate(-31.921 -75.392)" fill="#eef0f3"/>
-                          <path id="Path_5908" data-name="Path 5908" d="M279.694,95.72a3.058,3.058,0,1,1-3.058-3.058,3.058,3.058,0,0,1,3.058,3.058" transform="translate(-222.588 -75.392)" fill="#eef0f3"/>
-                          <path id="Path_5909" data-name="Path 5909" d="M99.877,104.451H127.05s.538,5.2-4.932,5.2H104.9s-5.022-.179-5.022-5.2" transform="translate(-81.262 -84.983)"/>
-                          <path id="Path_5910" data-name="Path 5910" d="M77.605,116.857v-6.645c0-.344-.022-.676-.053-1a14.7,14.7,0,0,1-12,6.41h-32.3a14.751,14.751,0,0,1-12.14-6.6,10.316,10.316,0,0,0-.073,1.2v6.645s-.387,4.456,6.2,4.456H71.406c6.587,0,6.2-4.456,6.2-4.456" transform="translate(-17.111 -88.698)" fill="#4cb08a"/>
-                        </g>
-                      </svg>
+
+
+
+
+
+
+
+
+            <div class="form-group">
+                <div class="form-row" style="margin-top: -18px;">
+                    <div class="float-left"><label for="exampleInputEmail1" class="label-title mr-5" style="margin-top: 20px;">Vahicle Type-</label></div>
+                    <div class="cc-selector">
+                        <div class="row">
+                        @foreach ($vehicles as $vehicle)
+                        <label class="drinkcard-cc" for="checboxStrip">
+                           <div class="col form-check">
+                                <input id="checboxStrip@php echo $vehicle->id @endphp" type="checkbox" name="vahicle_id" value="{{$vehicle->id}}"/>
+                               <img src="{{ asset('frontend/assets/images/Icons/truck.svg') }}" alt="">
+                            </div>
+                        </label>
+
+                        @endforeach
+
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+
+
+
+
+
+
+
+
+
                 <div class="form-group">
                     <label for="procat_id" class="label-title">Categories</label>
                     <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
@@ -123,11 +224,11 @@
                     </div>
                   </div>
 
-                  <div class="form-group">
+                  <!-- <div class="form-group">
                     <label for="additional_note" class="label-title">Additional notes</label>
 
-                    <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note" title="Enter your total cost of the items" placeholder="Enter your total cost of the items" required ></textarea>
-                </div>
+                    <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note"  placeholder="Enter additional notes" required ></textarea>
+                </div> -->
 
                     <div class="form-group">
                         <label for="productCost" class="label-title">Product cost</label>
@@ -518,6 +619,19 @@ $(".deliveryModal").click(function() {
 
         $("#googleMapDeliveryModal").modal('hide');
     });
+
+
+    
+    // Car selection
+    $(document).on('click','.drinkcard-cc',function(){
+
+        $('.drinkcard-cc').removeClass("car-selected");
+
+        $(this).toggleClass("car-selected");
+        let inputCar = $(this).find("input");        
+        inputCar.prop( "checked", true );
+    });
+
 
 </script>
 <script>

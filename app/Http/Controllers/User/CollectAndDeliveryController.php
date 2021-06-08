@@ -50,6 +50,7 @@ class CollectAndDeliveryController extends Controller
      */
     public function store(Request $request)
     {
+
         DB::beginTransaction();
 
         try {
@@ -68,10 +69,11 @@ class CollectAndDeliveryController extends Controller
             $data['to_latlng']['lat']   = $delivery_address->lat;
             $data['to_latlng']['lng']   = $delivery_address->lng;
 
-            $data['notes']              = $request->additional_note;
+            $data['notes']              = $request->additional_note ?? null;
             $data['total_cost']         = $request->product_cost;
             $data['delivery_time_id']   = $request->delivery_time;
-            $data['service_category_id']   = 1;
+            $data['vehicle_id']         = $request->vahicle_id;
+            $data['service_category_id']   = 2;
 
             $task = TaskRepository::saveTaskData($data);
 
