@@ -61,6 +61,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('profile', [App\Http\Controllers\User\UserDashboardController::class, 'profile'])->name('profile');
 
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
+    Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
 
 });
 

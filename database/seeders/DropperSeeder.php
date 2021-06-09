@@ -22,7 +22,7 @@ class DropperSeeder extends Seeder
             "email"=>'dropper@gmail.com',
             "phone" => '01638173361',
             "abn" => 'suburb',
-            "vehicle_id" => 123456,
+            "vehicle_id" => 1,
             "password"=>bcrypt('password'),
             'created_at'        => now(),
             'updated_at'        => now()

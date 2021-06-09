@@ -83,7 +83,7 @@
                       </div>
                   </div>
                   <div class="view_order float-right">
-                      <button type="button" class="btn " data-toggle="modal" data-target=".profile-example-modal-lg">View offers</button>
+                      <button type="button " class="btn view-offer-btn" data-id="{{$task->id}}">View offers</button>
                   </div>
                   <div class="order_track">
                       <p>Buy some groceries for me-</p>
@@ -142,163 +142,110 @@
 
 
 
-  <!-- ================= Offers from driverstab ============ -->
-  <div class="modal fade profile-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg  ">
+
+
+
+
+
+
+<!-- ================= Offers from driverstab ============ -->
+<div id="offer_show_modal" class="modal fade profile-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+   <div class="modal-dialog modal-lg  ">
       <div class="modal-content offer_modal_contetn">
-          <div class="modal-header offer_modal_title">
-              <h5 class="modal-title" id="exampleModalLongTitle">Offers from drivers</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body">
-              <section class=" offer_main_area" >
-                  <ul>
-
-                      <li class='offer_inter_item mt-1' >
-                        <div class="container">
-
-
-                        <div class="row">
-
-                      <div class="col-md-2 ">
-
-
-                          <div class="offer_image">
-                              <img src="{{asset('frontend')}}/assets/images/member/men_pic10_copy.jpg" alt="">
-                              <h5>Kal M.</h5>
-                              <h6><i class="fas fa-star"></i> <span>4.5</span> </h6>
-                          </div>
-                        </div>
-                        <div class="col-md-6 offer_middle_row">
-
-
-                          <div class="circle_offer">
-                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
-                              <h6>Average accuracy</h6>
-                            </div>
-                          </div>
-                          <div class="circle_offer">
-                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
-                              <h6>Success rate</h6>
-                            </div>
-                          </div>
-
-                          <div class="Vehicle_offer">
-                            <img src="{{asset('frontend')}}/assets/images/Illustrations/car.png" alt="">
-                            <h6>Vehicle type</h6>
-
-                          </div>
-
-
-                        </div>
-                        <div class="col-md-3 ">
-
-
-
-                          <div class="accept_offer_cost">
-                            <div class="circle_curve">
-                              <h1></h1>
-                                <h4>$200</h4>
-
-                            </div>
-                            <a href="{{ url('payment') }}" type="button" class="btn">Accept Offer</a>
-                            {{-- <button type="button" class="btn ">Accept Offer</button> --}}
-
-                          </div>
-
-                        </div>
-
-                        </div>
-                      </div>
-
-                     <span class="close1 offer_close">&times;</span>
-
-                      </li>
-
-                      <li class='offer_inter_item mt-1' >
-                        <div class="container">
-
-
-                        <div class="row">
-
-                      <div class="col-md-2 ">
-
-
-                          <div class="offer_image">
-                              <img src="{{asset('frontend')}}/assets/images/member/men_pic10_copy.jpg" alt="">
-                              <h5>Kal M.</h5>
-                              <h6><i class="fas fa-star"></i> <span>4.5</span> </h6>
-                          </div>
-                        </div>
-                        <div class="col-md-6 offer_middle_row">
-
-
-                          <div class="circle_offer">
-                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
-                              <h6>Average accuracy</h6>
-                            </div>
-                          </div>
-                          <div class="circle_offer">
-                            <div class="chart" data-percent="73" data-scale-color="#ffb400">73%
-                              <h6>Success rate</h6>
-                            </div>
-                          </div>
-
-                          <div class="Vehicle_offer">
-                            <img src="{{asset('frontend')}}/assets/images/Illustrations/car.png" alt="">
-                            <h6>Vehicle type</h6>
-
-                          </div>
-
-
-                        </div>
-                        <div class="col-md-3 ">
-
-
-
-                          <div class="accept_offer_cost">
-                            <div class="circle_curve">
-                              <h1></h1>
-                                <h4>$200</h4>
-
-                            </div>
-                            <button type="button" class="btn ">Accept Offer</button>
-
-                          </div>
-
-                        </div>
-
-                        </div>
-                      </div>
-
-                     <span class="close1 offer_close">&times;</span>
-
-                      </li>
-
-
-                    </ul>
-
-              </section>
-
-
-
-            </div>
-
-
+         <div class="modal-header offer_modal_title">
+            <h5 class="modal-title" id="exampleModalLongTitle">Offers from drivers</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <section class=" offer_main_area" >
+               <ul class="offer_show_modal_ul">
+               
+               </ul>
+            </section>
+         </div>
       </div>
-    </div>
-  </div>
-
-
-
-
+   </div>
+</div>
 
 
 
 
 @include("User.component.task_process")
 @include("User.payment.payment_release")
-@endsection
 
+
+<script>
+
+$(document).ready(function(){
+
+  function driverOfferItem(offerData){
+
+      let offerItem = '<li class="offer_inter_item mt-1">';
+      offerItem += '<div class="container">';
+      offerItem += '<div class="row">';
+
+      offerItem += '<div class="col-md-2 "><div class="offer_image"><img src="#" alt=""><h5>Kal M.</h5><h6><i class="fas fa-star"></i> <span>4.5</span> </h6></div></div>';
+
+
+      offerItem += '<div class="col-md-6 offer_middle_row"><div class="circle_offer"><div class="chart" data-percent="73" data-scale-color="#ffb400">73%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="73" data-scale-color="#ffb400">73%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="#" alt=""><h6>Vehicle type</h6></div></div>';
+
+      offerItem += '<div class="col-md-3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="#" type="button" class="btn">Accept Offer</a></div></div>';
+      // offerItem += '';
+      offerItem += '</div>';
+      offerItem += '</div>';
+      // offerItem += '<span class="close1 offer_close">&times;</span>';
+      offerItem += '</li>';
+                      
+      return offerItem;
+
+  };
+
+
+
+
+
+  // Add another Product field
+  $('.view-offer-btn').on('click',function(){
+
+    let taskId = $(this).attr("data-id");
+
+    let url = '{{ route("user.task_offer_json", ":id") }}';
+      url = url.replace(':id', taskId);
+
+    $.ajax({
+						url: url,
+						data: {id:taskId},
+						type: "GET",
+						dataType: "JSON",
+						success: function(data){
+							if($.isEmptyObject(data) != null){
+                
+                // empty the container
+                $('.offer_show_modal_ul').empty();
+              
+                data.offers.forEach(offer => {
+                    let offerLi = driverOfferItem(offer);
+                    $('.offer_show_modal_ul').append(offerLi);
+                });      
+
+                $('#offer_show_modal').modal('toggle');
+							}
+						}
+		});
+
+
+    // $('#offer_show_modal').modal('toggle');
+    // let offerLi = driverOfferItem();
+    // $('.offer_show_modal_ul').append(offerLi);
+
+
+  });
+});
+
+
+</script>
+
+
+@endsection

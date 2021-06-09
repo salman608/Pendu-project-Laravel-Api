@@ -15,4 +15,9 @@ class TaskOffer extends Model
     public const STATUS_COMPLETED    = 'Completed';
 
     protected $guarded = [];
+
+    public function dropper(){
+        return $this->belongsTo(Dropper::class);
+    }
+
 }
