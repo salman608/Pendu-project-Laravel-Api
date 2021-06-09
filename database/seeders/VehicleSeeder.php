@@ -17,12 +17,13 @@ class VehicleSeeder extends Seeder
     {
         // Vehicle Dummy Data
         \DB::table('vehicles')->truncate();
+
+        // $url = url('/frontend/assets/images/Icons/')
         $vehicles = collect([
-            ['title' => 'Bike','icon' => 'bike.png','status'=>1],
-            ['title' => 'car','icon' => 'car.png','status'=>1],
-            ['title' => 'Track','icon' => 'track.png','status'=>1],
-            ['title' => 'Ute','icon' => 'utte.png','status'=>1],
-            ['title' => 'Van','icon' => 'van.png','status'=>1],
+            ['title' => 'car','icon' => 'vehicle_car.svg','status'=>1],
+            ['title' => 'Truck','icon' => 'vehicle_truck.svg','status'=>1],
+            ['title' => 'Ute','icon' => 'vehicle_ute.svg','status'=>1],
+            ['title' => 'Van','icon' => 'vehicle_van.svg','status'=>1],
         ]);
 
         $vehicles->each(function($vehicle){

@@ -27,10 +27,19 @@ Auth::routes();
 /**
  *
  * Frontend  Routes
- *
+ *http://pendu-office.mr/frontend/assets/images/Icons/truck.svg
  */
 Route::get('/hello', function(){
-    return Carbon::tomorrow();
+    // return Carbon::tomorrow();
+    // asset(), url(), 
+    // <img src="{{url('/images/myimage.jpg')}}" alt="Image"/>
+    // return URL::to(Config::get('assets.' . $type) . '/' . $file);
+
+
+    // <img src=public_path().'/images/imagename.jpg' >
+    // https://stackoverflow.com/questions/26286175/access-images-inside-public-folder-in-laravel
+
+    return url('/frontend/assets/images/Icons/');
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -13,19 +13,26 @@ class DropperSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
+    {   
+
         //this is admin area
         DB::table('droppers')->truncate();
-        DB::table('droppers')->insert([
-            "first_name"=>'mr.',
-            "last_name"=>'dropper',
-            "email"=>'dropper@gmail.com',
-            "phone" => '01638173361',
-            "abn" => 'suburb',
-            "vehicle_id" => 1,
-            "password"=>bcrypt('password'),
-            'created_at'        => now(),
-            'updated_at'        => now()
-        ]);
+
+        for($i = 1; $i <= 10; $i++){
+            DB::table('droppers')->insert([
+                "first_name"=>'mr.',
+                "last_name"=>'dropper'.$i,
+                "email"=>'user'.$i.'@gmail.com',
+                "phone" => '018855443'.rand(10,50),
+                "abn" => 'suburb',
+                "vehicle_id" => rand(1,4),
+                "password"=>bcrypt('password'),
+                "rating"=>rand(2,5),
+                "average_accuracy"=>rand(30,90),
+                "success_rate"=> rand(30,90),
+                'created_at'        => now(),
+                'updated_at'        => now()
+            ]);
+        }
     }
 }

@@ -9,4 +9,10 @@ class Vehicle extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+
+    public function getIconAttribute($value)
+    {
+        return url('/frontend/assets/images/Icons').'/'.$value;
+    }
 }
