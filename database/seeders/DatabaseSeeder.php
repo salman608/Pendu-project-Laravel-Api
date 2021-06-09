@@ -22,7 +22,12 @@ class DatabaseSeeder extends Seeder
         // $this->call(UsersTableSeeder::class);
         $this->call(DropperSeeder::class);
         $this->call(UserSeeder::class);
+
         $this->call(ServiceCategorySeeder::class);
+        $this->call(TaskShopDropSeeder::class);
+        // $this->call(TaskCollectDeliverySeeder::class);
+        // $this->call(TaskCollectDeliverySeeder::class);
+
         $this->call(CouponSeeder::class);
         $this->call(DeliveryTimeSeeder::class);
         $this->call(ProductCategorySeeder::class);
@@ -30,6 +35,7 @@ class DatabaseSeeder extends Seeder
         $this->call(VehicleSeeder::class);
         $this->call(DropperGroupSeeder::class);
         $this->call(PostSeeder::class);
+        $this->call(TaskPaymentMethodSeeder::class);
         
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 

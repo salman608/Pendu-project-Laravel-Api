@@ -1,6 +1,15 @@
 @extends('User.Asset')
 @section('user_content')
+<style>
+  
+.add-comma-except span:after {
+    content: ", ";
+}
+.add-comma-except span:last-child:after {
+    content: "";
+}
 
+</style>
 
   <!-- ============ Breadcrumb ============ -->
   <section class="breadcrumb_main">
@@ -49,23 +58,28 @@
                </div>
             </div>
 
-@foreach($tasks as $task)
+@foreach($tasks as $key => $value)
             <div class="order_number">
 
 
                 <div class="order_cat_date_area mt-3">
                   <div class="order_cat_date">
                       <p></p>
-                      <h6>15 Nov 2020</h6>
+                      <h6>{{ $key }}</h6>
                   </div>
                 </div>
 
-                <div class="order_details_area">
+        @foreach($value as $task)
+
+ <!-- @php var_dump($task);   @endphp    -->
+             {{--  @if($task->task_type == "simple")   --}}   
+                <div class="order_details_area mt-2">
                   <div class="order_details">
                       <div class="order_id_coast">
                             <h5>Order ID- <span class='id_num' ></span> </h5>
                             <p>Item cost- <span class='coast'></span> </p>
-                            <h6>Proccessing</h6>
+                            <h6>{{$task->request_status}}</h6>
+                            <!-- <h6>Proccessing</h6> -->
                       </div>
                   </div>
                   <div class="view_order float-right">
@@ -73,11 +87,15 @@
                   </div>
                   <div class="order_track">
                       <p>Buy some groceries for me-</p>
-                      <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5>
+                      <h5 class="add-comma-except">
+                          @foreach($task->products as $product)
+                              <span>{{$product->name}}({{$product->qty}}X)</span>
+                          @endforeach
+                      </h5>
+                      <!-- <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5> -->
                   </div>
                 </div>
-
-
+                {{--  @else --}}
                <div class="order_details_area mt-2">
                      <div class="row">
                         <div class="col-md-2">
@@ -107,6 +125,9 @@
                         </div>
                      </div>
                </div>
+              {{-- @endif --}}
+        @endforeach
+
             </div>
 
 @endforeach

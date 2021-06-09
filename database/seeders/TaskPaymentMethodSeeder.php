@@ -13,8 +13,6 @@ class TaskPaymentMethodSeeder extends Seeder
      */
     public function run()
     {
-        task_payment_methods
-
         \DB::table('task_payment_methods')->truncate();
         $payment_methods = collect([
             ['title' => 'Paypal'],

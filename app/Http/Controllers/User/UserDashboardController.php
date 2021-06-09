@@ -19,12 +19,12 @@ class UserDashboardController extends Controller
     {   
 
         $data = [];
-        $data['tasks'] = Task::where('user_id', auth()->id())->get()
+        $data['tasks'] = Task::with('products')->where('user_id', auth()->id())->latest()->get()
             ->groupBy(function($task){ 
                 return $task->created_at->format('j F Y'); 
-            })->toArray();
+            });
 
-        // return $data;
+        // return $data['tasks']->toArray();
 
         return view('user.profile.tasks', $data);
     }
