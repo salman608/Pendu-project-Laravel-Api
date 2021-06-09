@@ -186,10 +186,10 @@ $(document).ready(function(){
       offerItem += '<div class="container">';
       offerItem += '<div class="row">';
 
-      offerItem += '<div class="col-md-2 "><div class="offer_image"><img src="#" alt=""><h5>Kal M.</h5><h6><i class="fas fa-star"></i> <span>4.5</span> </h6></div></div>';
+      offerItem += '<div class="col-md-2 "><div class="offer_image"><img src="'+ offerData['dropper']['profile_image'] +'" alt=""><h5>'+ offerData['dropper']['last_name'] +'</h5><h6><i class="fas fa-star"></i> <span>'+ offerData['dropper']['rating']  +'</span> </h6></div></div>';
 
 
-      offerItem += '<div class="col-md-6 offer_middle_row"><div class="circle_offer"><div class="chart" data-percent="73" data-scale-color="#ffb400">73%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="73" data-scale-color="#ffb400">73%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="#" alt=""><h6>Vehicle type</h6></div></div>';
+      offerItem += '<div class="col-md-6 offer_middle_row"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
 
       offerItem += '<div class="col-md-3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="#" type="button" class="btn">Accept Offer</a></div></div>';
       // offerItem += '';

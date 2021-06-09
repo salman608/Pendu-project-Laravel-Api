@@ -7,6 +7,7 @@ use App\Models\Task;
 use App\Models\TaskProduct;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
+use DB;
 
 class TaskShopDropSeeder extends Seeder
 {
@@ -102,6 +103,22 @@ class TaskShopDropSeeder extends Seeder
             ]));
         });
 
+
+            // "amount": 90,
+            // "task_id": 2,
+            // "dropper_id": 1,
+            // "status": "Pending",
+            // "accepted_at": null,
+
+            DB::table('task_offers')->truncate();
+
+            for($i = 1; $i <= 10; $i++){
+                DB::table('task_offers')->insert([
+                    'task_id' => rand(1,3),
+                    'dropper_id' => rand(1,10),
+                    'amount'=>rand(100, 600)
+                ]);
+            }
 
         // Collect & Delivery
         // Movers

@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ShopAndDropController;
 use App\Http\Controllers\User\CollectAndDeliveryController;
 use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\MoverController;
+use App\Models\TaskOffer;
 use Carbon\Carbon;
 
 /*
@@ -39,7 +40,9 @@ Route::get('/hello', function(){
     // <img src=public_path().'/images/imagename.jpg' >
     // https://stackoverflow.com/questions/26286175/access-images-inside-public-folder-in-laravel
 
-    return url('/frontend/assets/images/Icons/');
+    // return url('/frontend/assets/images/Icons/');
+
+    return TaskOffer::all();
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

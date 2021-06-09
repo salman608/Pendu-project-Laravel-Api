@@ -45,7 +45,7 @@ class UserDashboardController extends Controller
     }
 
     public function TaskOfferJson($id){
-        $offers =  TaskOffer::with('dropper')->where('task_id',$id)->latest()->get();
+        $offers =  TaskOffer::with(['dropper', 'dropper.vehicle'])->where('task_id',$id)->latest()->get();
         return response()->json(['offers' => $offers->toArray()]);
     }
 
