@@ -20,4 +20,10 @@ class TaskOffer extends Model
         return $this->belongsTo(Dropper::class);
     }
 
+    public function task(){
+        return $this->belongsTo(Task::class);
+    }
+
+
+
 }

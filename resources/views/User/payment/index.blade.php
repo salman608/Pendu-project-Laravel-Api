@@ -103,22 +103,13 @@
                             <div class="">
                                 <table class="table">
                                     <tbody>
+
+                                    @foreach($data->task->products as $product)
                                         <tr>
-                                            <td>Toothpaster(2X)</td>
-                                            <td class="text-right">$99.99</td>
+                                            <td>{{$product->name}}({{$product->qty}}X)</td>
+                                            <td class="text-right">${{$product->price}}</td>
                                         </tr>
-                                        <tr>
-                                            <td>Toothpaster(2X)</td>
-                                            <td class="text-right">$99.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toothpaster(2X)</td>
-                                            <td class="text-right">$99.99</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Toothpaster(2X)</td>
-                                            <td class="text-right">$99.99</td>
-                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
@@ -131,13 +122,13 @@
                                     <div>
                                         <img src="{{ asset('frontend/assets/images/Icons/location green.svg') }}" alt="" height="39" width="30">
                                     </div>
-                                    <div class="col-md-11 col-sm-11 deliver-info-text">3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka</div>
+                                    <div class="col-md-11 col-sm-11 deliver-info-text">{{$data->task->from}}</div>
                                 </div>
                                 <div class="vertical-dotted-line" style="margin-left: 14px;margin-top: -5px;"></div>
                                 <div style="margin-left: 22px;margin-top: 10px;">
                                     <div class="row">
                                         <div class="circle-div"></div>
-                                        <div class="col-md-11 col-sm-11 deliver-info-dest">2103 N Main St, Highlands, TX, 77562</div>
+                                        <div class="col-md-11 col-sm-11 deliver-info-dest">{{$data->task->to}}</div>
                                     </div>
                                 </div>
                             </div>
@@ -186,19 +177,21 @@
                     <table class="table table-borderless border-0">
                         <tr>
                             <td class="text-left">Subtotal</td>
-                            <td class="text-right">$180</td>
+                            <td class="text-right">${{$data->task->total_cost}}</td>
                         </tr>
                         <tr>
                             <td class="text-left">Delivery fee offer</td>
-                            <td class="text-right">$180</td>
+                            <td class="text-right">${{$data->amount}}</td>
                         </tr>
                         <tr>
-                            <td class="text-left">Service fee(3%)</td>
-                            <td class="text-right">$180</td>
+                            <td class="text-left">Service fee({{$service_fee}}%)</td>
+                            <!-- <td class="text-right">${{ number_format((($data->task->total_cost/100) * $service_fee), 2) }}</td> -->
+
+                            <td class="text-right">${{$service_fee_amount}}</td>
                         </tr>
                         <tr>
                             <td class="text-left">Promo code</td>
-                            <td class="text-right">$180</td>
+                            <td class="text-right">$18df0</td>
                         </tr>
                     </table>
                 </div>

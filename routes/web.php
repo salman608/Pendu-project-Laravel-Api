@@ -75,6 +75,16 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
     Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
 
+    Route::get('payment/{offerId}', [App\Http\Controllers\User\PaymentController::class, 'index'])->name('payment');
+
+
+
+    // Checked........
+
+    Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);
+    Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking']);
+    Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
+
 });
 
 

@@ -76,8 +76,9 @@
                 <div class="order_details_area mt-2">
                   <div class="order_details">
                       <div class="order_id_coast">
-                            <h5>Order ID- <span class='id_num' ></span> </h5>
-                            <p>Item cost- <span class='coast'></span> </p>
+                            <!-- <h5>Order ID- <span class='id_num' ></span> </h5> -->
+                            <h5>Task ID- <span class='id_num' >{{$task->task_id}}</span> </h5>
+                            <p>Item cost- <span class='coast'>${{$task->total_cost}}</span> </p>
                             <h6>{{$task->request_status}}</h6>
                             <!-- <h6>Proccessing</h6> -->
                       </div>
@@ -86,7 +87,7 @@
                       <button type="button " class="btn view-offer-btn" data-id="{{$task->id}}">View offers</button>
                   </div>
                   <div class="order_track">
-                      <p>Buy some groceries for me-</p>
+                      <p>{{$task->title}}-</p>
                       <h5 class="add-comma-except">
                           @foreach($task->products as $product)
                               <span>{{$product->name}}({{$product->qty}}X)</span>
@@ -182,6 +183,9 @@ $(document).ready(function(){
 
   function driverOfferItem(offerData){
 
+      let url = '{{ route("user.payment", ":id") }}';
+      url = url.replace(':id', offerData['id']);
+
       let offerItem = '<li class="offer_inter_item mt-1">';
       offerItem += '<div class="container">';
       offerItem += '<div class="row">';
@@ -191,7 +195,7 @@ $(document).ready(function(){
 
       offerItem += '<div class="col-md-6 offer_middle_row"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
 
-      offerItem += '<div class="col-md-3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="#" type="button" class="btn">Accept Offer</a></div></div>';
+      offerItem += '<div class="col-md-3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="'+ url +'" type="button" class="btn">Accept Offer</a></div></div>';
       // offerItem += '';
       offerItem += '</div>';
       offerItem += '</div>';
