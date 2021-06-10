@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://pendu-office.mr'),
+    'url' => env('APP_URL', 'http://pendu.sr'),
 
     'asset_url' => env('ASSET_URL', null),
 
