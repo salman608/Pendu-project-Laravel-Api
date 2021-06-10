@@ -87,6 +87,35 @@
         margin-left: 3px;
         color: #8f8f8f;
     }
+    #checboxPendu-coming {
+        position: relative;
+    }
+
+    #checboxPendu-coming:after {
+        content: "Coming Soon";
+        display: inline-block;
+        position: absolute;
+        text-align: center;
+        margin: auto;
+        width: inherit;
+        margin-top: -58px;
+        background: #60e99c;
+        padding: 0px 8px;
+        border-radius: 5px;
+        top: 44%;
+        left: 20%;
+        color: #fff;
+        font-weight: 700;
+    }
+
+    #coupon-apply-btn{
+        cursor:pointer;
+        border: 1px solid #60e99c;
+        background: #60e99c !important;
+        color: #fff;
+        font-weight: 700;
+    }
+
 
 </style>
 @section('user_content')
@@ -152,7 +181,7 @@
                                         </div>
                                     </label>
 
-                                    <label for="checboxPendu" class="d-flex justify-content-between align-items-center">
+                                    <label for="checboxPendu" id="checboxPendu-coming" class="d-flex justify-content-between align-items-center">
                                         <input type="checkbox" name="test" value="small" style="position: absolute; margin-left: 25px;" id="checboxPendu" title="Comming Soon" disabled>
                                         <div class="payment-checkbox" style="padding-left: 50px" title="Comming Soon">
                                             <img src="{{ asset('frontend/assets/images/Icons/pandupay.png') }}" alt=""   style="margin-top: 30px;padding-left: 8px;height: 34px;">
@@ -197,12 +226,13 @@
                 </div>
 
                 <div class="input-group">
-                    <input type="text" class="form-control bg-white border-right-0 promo-code-field" id="taskTitle" placeholder="Enter promo code">
+                    <input type="text" id="coupon-apply-input" class="form-control bg-white border-right-0 promo-code-field" id="taskTitle" placeholder="Enter promo code">
                     <div class="input-group-append">
-                        <span class="input-group-text bg-transparent border-left-0" style="border: 1px solid #60e99c;">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="9.749" height="15.114" viewBox="0 0 9.749 15.114">
+                        <span id="coupon-apply-btn" class="input-group-text bg-transparent border-left-0" style="border: 1px solid #60e99c;">
+                            <!-- <svg xmlns="http://www.w3.org/2000/svg" width="9.749" height="15.114" viewBox="0 0 9.749 15.114">
                             <path id="Path_7539" data-name="Path 7539" d="M7077.18,886l8.1,6.8-8.1,7.178" transform="translate(-7076.682 -885.426)" fill="none" stroke="#90a0b2" stroke-width="1.5"/>
-                            </svg>
+                            </svg> -->
+                            Apply
                         </span>
                     </div>
                 </div>
@@ -247,4 +277,58 @@
         }
     });
 </script>
+
+
+
+<script>
+
+$(document).ready(function(){
+
+
+  $('#coupon-apply-btn').on('click',function(){
+
+        let coupon = $('#coupon-apply-input').val();
+        alert(coupon);
+
+        // let taskId = $(this).attr("data-id");
+
+        // let url = '{{ route("user.task_offer_json", ":id") }}';
+        // url = url.replace(':id', taskId);
+
+        // $.ajax({
+        //     url: url,
+        //     data: {id:taskId},
+        //     type: "GET",
+        //     dataType: "JSON",
+        //     success: function(data){
+        //         if($.isEmptyObject(data) != null){
+
+        //             // empty the container
+        //             $('.offer_show_modal_ul').empty();
+
+        //             data.offers.forEach(offer => {
+        //             let offerLi = driverOfferItem(offer);
+        //             $('.offer_show_modal_ul').append(offerLi);
+        //             });      
+
+        //             $('#offer_show_modal').modal('toggle');
+        //             }
+        //     }
+		// });
+
+
+    // $('#offer_show_modal').modal('toggle');
+    // let offerLi = driverOfferItem();
+    // $('.offer_show_modal_ul').append(offerLi);
+
+
+  });
+});
+
+
+</script>
+
+
+
+
 @endsection
