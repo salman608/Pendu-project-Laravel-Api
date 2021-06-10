@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Image;
 
 
 class RegisterController extends Controller
@@ -113,22 +114,23 @@ class RegisterController extends Controller
         ]);
 
 
-        // Profile image
-        if ($request->hasFile('profile_image')) {
-            $profile_image = $request->profile_image->store('uploads/dropper/photos');
+            // Profile image
+            $image = $request->file('profile_image');
+            $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(270,270)->save('uploads/dropper/photos/'.$name_gen);
+            $profile_image = 'uploads/dropper/photos/'.$name_gen;
 
-        }
+            // ===License front side===
+            $image = $request->file('license_front');
+            $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(270,270)->save('uploads/dropper/photos/'.$name_gen);
+            $license_front = 'uploads/dropper/photos/'.$name_gen;
 
-        //licensef_front_side iamge part
-        if ($request->hasFile('license_front')) {
-            $license_front = $request->license_front->store('uploads/dropper/photos');
-        }
-
-        //licensef_back_side iamge part
-        if ($request->hasFile('license_back')) {
-            $license_back = $request->license_back->store('uploads/dropper/photos');
-        }
-
+            // ===License front side===
+            $image = $request->file('license_back');
+            $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
+            Image::make($image)->resize(270,270)->save('uploads/dropper/photos/'.$name_gen);
+            $license_back = 'uploads/dropper/photos/'.$name_gen;
 
             $dropper=Dropper::create([
                 'first_name'         => $request->first_name,
@@ -138,9 +140,9 @@ class RegisterController extends Controller
                 'password'           => Hash::make($request['password']),
                 'abn'                => $request->abn,
                 'vehicle_id'         => $request->vehicle_id,
-                'license_front'      => $request->license_front,
-                'license_back'       => $request->license_back,
-                'profile_image'      => $request->profile_image,
+                'license_front'      => $license_front,
+                'license_back'       => $license_back,
+                'profile_image'      => $profile_image ,
             ]);
             $dropper->services()->attach($request->services);
 

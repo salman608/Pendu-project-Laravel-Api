@@ -302,7 +302,7 @@
                     </g>
                     <text id="Task_received" data-name="Task received" transform="translate(566 351)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-46.434" y="0">Task received</tspan></text>
                     <text id="Task_in_Review_" data-name="Task in Review " transform="translate(758 353)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-52.242" y="0">Task in Review </tspan></text>
-                    <text id="Going_to_the_network_for_offers" data-name="Going to the 
+                    <text id="Going_to_the_network_for_offers" data-name="Going to the
                   network for offers" transform="translate(968 353)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-46.746" y="0">Going to the </tspan><tspan x="-63.059" y="21">network for offers</tspan></text>
                     <g id="Group_2730" data-name="Group 2730" transform="translate(483 336.042)">
                       <circle id="Ellipse_158" data-name="Ellipse 158" cx="11" cy="11" r="11" transform="translate(0 -0.042)" fill="#5bdb98"/>
@@ -342,8 +342,8 @@
                     </g>
                     </a>
                   </svg>
-                  
-                  
+
+
             </div>
         </div>
     </div>

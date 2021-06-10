@@ -19,7 +19,7 @@
         color: #90A0B2 !important;
         opacity: 1 !important;
         text-align: left;
-        height: 156px;
+        /* height: 156px; */
         font-size: 15px;
     }
     .promo a{
@@ -62,6 +62,13 @@
         font-weight: 500;
         cursor: pointer;
 
+    }
+
+    .promo-details button{
+        border: none;
+        background: no-repeat;
+        color: #56cd93;
+        padding-right: 31px;
     }
 
     .percent-circle{
@@ -112,21 +119,24 @@
              </div>
             <div class="container profile_tab_main_area">
                 <div class="row mt-5">
-                  <div class="col-md-4 promo-card">
-                    <div class="card " style="border-radius: 10px;">
-                        <div class="card-header promo-chead">
-                            <p style="font-size:16px; margin-bottom:1px; font-weight:500">Promo</p>
-                            <h5 style="font-size: 20px;color:white;margin-bottom:1px;" >RENOVATION</h5>
-                            <h5 style="font-size: 20px;color:white;" >4% off</h5>
-                        </div>
-                        <div class="card-body promo">
-                          <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam nonu my eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
-                          <h4><i class="far fa-hourglass"></i> <span>Validity: 1 Feb- 30 Jun</span></h4>
-                          <div class="row promo-details mt-4"><span>View details</span><a href="#" class="btn btn-sm">Apply</a></div>
-                        </div>
+                    @foreach ($offers as $offer)
+                    <div class="col-md-4 promo-card">
+                        <div class="card " style="border-radius: 10px;">
+                            <div class="card-header promo-chead">
+                                <p style="font-size:16px; margin-bottom:1px; font-weight:500">Promo</p>
+                                <h5 style="font-size: 20px;color:white;margin-bottom:1px;" >{{$offer->promo_code}}</h5>
+                                <h5 style="font-size: 20px;color:white;" >{{$offer->discount_percentage}}% off</h5>
+                            </div>
+                            <div class="card-body promo">
+                              <p class="card-text">{{Str::limit($offer->details,140)}}</p>
+                              <h4><i class="far fa-hourglass"></i> <span>Validity: {{$offer->created_at->format('j F')}}-{{$offer->updated_at->format('j F')}}</span></h4>
+                              <div class="row promo-details mt-4"><button data-dismiss="modal" data-toggle="modal"  data-target="#detailsModal">View details</button><a href="#" class="btn btn-sm">Apply</a></div>
+                            </div>
+                          </div>
                       </div>
-                  </div>
-                  <div class="col-md-4">
+                    @endforeach
+
+                  {{-- <div class="col-md-4">
                     <div class="card promo-card">
                         <div class="card-header bg-pendu">
                             <p style="font-size:16px; margin-bottom:1px;font-weight:500">Promo</p>
@@ -140,8 +150,8 @@
 
                         </div>
                       </div>
-                  </div>
-                  <div class="col-md-4">
+                  </div> --}}
+                  {{-- <div class="col-md-4">
                     <div class="card promo-card">
                         <div class="card-header promo-chead">
                             <p style="font-size:16px; margin-bottom:1px;font-weight:500">Promo</p>
@@ -154,7 +164,7 @@
                           <div class="row promo-details mt-4"><span>View details</span><a href="#" data-toggle="modal" data-target="#detailsModal" class="btn btn-sm">Apply</a></div>
                         </div>
                       </div>
-                  </div>
+                  </div> --}}
                 </div>
             </div>
 

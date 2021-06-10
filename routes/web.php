@@ -34,7 +34,7 @@ Auth::routes();
  */
 Route::get('/hello', function(){
     // return Carbon::tomorrow();
-    // asset(), url(), 
+    // asset(), url(),
     // <img src="{{url('/images/myimage.jpg')}}" alt="Image"/>
     // return URL::to(Config::get('assets.' . $type) . '/' . $file);
 
@@ -94,11 +94,14 @@ Route::post('movers', [MoverController::class, 'store'])->name('mover.store');
  */
 Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
-    
+
     Route::get('profile', [App\Http\Controllers\User\UserDashboardController::class, 'profile'])->name('profile');
 
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
     Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
+
+
+    Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
 
 
     Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'index'])->name('payment');
