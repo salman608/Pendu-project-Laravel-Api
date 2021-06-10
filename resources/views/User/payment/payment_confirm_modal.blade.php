@@ -176,8 +176,4 @@
         </div>
     </div>
 </div>
-<script>
-    $('#taskProcessModal').click(function() {
-       $('#paymentConfirmModalId').modal('hide');
-   })
-</script>
+

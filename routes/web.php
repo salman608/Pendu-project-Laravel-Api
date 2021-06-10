@@ -10,7 +10,9 @@ use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\MoverController;
 use App\Models\TaskOffer;
 use Carbon\Carbon;
+use Illuminate\Http\Request;
 
+use Twilio\Rest\Client;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -45,6 +47,29 @@ Route::get('/hello', function(){
     return TaskOffer::all();
 });
 
+Route::get('/sms/', function(){
+
+    $receiverNumber = '+8801885544345';
+    $message = "This is testing from Pendu";
+
+    try {
+
+        $account_sid = getenv("TWILIO_SID");
+        $auth_token = getenv("TWILIO_TOKEN");
+        $twilio_number = getenv("TWILIO_FROM");
+
+        $client = new Client($account_sid, $auth_token);
+        $client->messages->create($receiverNumber, [
+            'from' => $twilio_number, 
+            'body' => $message]);
+
+        dd('SMS Sent Successfully.');
+
+    } catch (Exception $e) {
+        dd("Error: ". $e->getMessage());
+    }
+});
+
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -75,8 +100,10 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
     Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
 
-    Route::get('payment/{offerId}', [App\Http\Controllers\User\PaymentController::class, 'index'])->name('payment');
 
+    Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'index'])->name('payment');
+
+    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\PaymentController::class, 'applyCoupon'])->name('apply-coupon');
 
 
     // Checked........

@@ -3,140 +3,75 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Dropper;
 use App\Models\TaskOffer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Session;
+use Exception;
+use DB;
 
 class PaymentController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($offerId)
+    public function index($offerId, $taskId)
     {   
         // return $offerId;
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
-        $data = [];
-        $data['data'] = TaskOffer::with(['task', 'task.products'])->findOrFail($offerId);
+        try {
+            $data = [];
+           
+            $data['data'] = TaskOffer::with(['task', 'task.products'])
+                    ->where([
+                        ['id', $offerId],
+                        ['task_id', $taskId]
+                    ])->first();
+                    
+            $data['service_fee'] = 4;
+            $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
 
+            $data['grand_total'] = ($data['data']['task']['total_cost'] + $data['service_fee_amount']  + $data['data']['amount']);
 
-        $data['service_fee'] = 4;
-        $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
+            return view('user.payment.shop_n_drop', $data);
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
 
-        return view('user.payment.index', $data);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('User.Dropper.Add_Dropper');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-
-        $validated = $request->validate([
-            'first_name'         => 'required|max:255',
-            'last_name'          => 'required|max:255',
-            'email'              => 'required|unique:droppers|max:255',
-            'phone'              => 'required|unique:droppers',
-            'password'           => 'required|string|min:8',
-            'abn'                => 'required',
-            'vehicle_type'       => 'required',
-            'category'           => 'required',
-            'license_front_side' => 'required',
-            'licensef_back_side' => 'required',
-            'profile_image'      => 'required',
-        ]);
-
-        //profile iamge part
-        if ($request->hasFile('profile_image')) {
-            $path = $request->profile_image->store('uploads/dropper/photos');
-
+            return abort(404, 'Page not found.');
+            // return abort(403, 'Unauthorized action.');
         }
+    }
 
-        //licensef_front_side iamge part
-        if ($request->hasFile('license_front_side')) {
-            $path = $request->license_front_side->store('uploads/dropper/photos');
+    public function applyCoupon($coupon){
+
+        try {
+
+            $coupon = Coupon::where('promo_code', $coupon);
+
+            if ($coupon->exists()) {
+
+                $validCoupon = $coupon->where('started_at', '<=', now())
+                    ->where('expired_at', '>=', now())
+                    ->first();
+
+                if($validCoupon){
+                    return response()->json(['status'=> true,'promo' => $validCoupon]);  
+                }
+                
+                return response()->json(['status'=> false,'msg' => 'Promo code is expired.']);  
+             } else{
+                return response()->json(['status'=> false,'msg' => 'Invalid promo code.']);  
+             }
+       
+        } catch (Exception $e) {
+            Log::info($e->getMessage());
+
+            return response()->json(['status'=> false,'msg' => 'Something is wrong. Try again.']);  
         }
-
-        //licensef_back_side iamge part
-        if ($request->hasFile('licensef_back_side')) {
-            $path = $request->licensef_back_side->store('uploads/dropper/photos');
-        }
-
-        Dropper::create([
-            'first_name'         => $request->first_name,
-            'last_name'          => $request->last_name,
-            'email'              => $request->email,
-            'phone'              => $request->phone,
-            'password'           => $request->password,
-            'abn'                => $request->abn,
-            'vehicle_type'       => $request->vehicle_type,
-            'category_id'        => $request->category_id,
-            'licensef_ront_side' => json_encode($licensef_ront_side),
-            'licensef_back_side' => json_encode($licensef_back_side),
-            'profile_image'      => json_encode($profile_image),
-        ]);
-        Session::flash('insert', 'Added Sucessfully...');
-        return back();
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
     }
 }

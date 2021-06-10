@@ -54,11 +54,11 @@ class CheckoutController extends Controller
 
             Session::flash('success', 'Payment Successful !'); 
 
-            return back();
+            // return back();
 
         } catch (Exception $e) {
             session()->flash('error', 'Invalid card details: ' . $e->getMessage());
-            return back()->withInput();
+            // return back()->withInput();
         }
     }
     

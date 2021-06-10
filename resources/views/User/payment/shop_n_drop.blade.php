@@ -116,6 +116,10 @@
         font-weight: 700;
     }
 
+    /* #promo-code-tr{
+        display: none;
+    } */
+
 
 </style>
 @section('user_content')
@@ -168,14 +172,14 @@
                             <div class="row pl-3 paymentCls">
 
                                     {{-- <label for="checboxVisa" class="d-flex justify-content-between align-items-center">
-                                        <input type="checkbox" name="test" value="small" style="position: absolute; margin-left: 25px;" id="checboxVisa">
+                                        <input type="checkbox"  name="test" value="small" style="position: absolute; margin-left: 25px;" id="checboxVisa">
                                         <div class="payment-checkbox" style="padding-left: 50px">
                                             <img src="{{ asset('frontend/assets/images/Icons/stripe.svg') }}" alt="" width="100" height="auto" style="margin-top: 10px">
                                         </div>
                                     </label> --}}
 
                                     <label for="checboxStrip" class="d-flex justify-content-between align-items-center">
-                                        <input type="checkbox" name="test" value="small" style="position: absolute; margin-left: 25px;" id="checboxStrip">
+                                        <input type="checkbox" checked name="test" value="small" style="position: absolute; margin-left: 25px;" id="checboxStrip">
                                         <div class="payment-checkbox" style="padding-left: 50px">
                                             <img src="{{ asset('frontend/assets/images/Icons/stripe.svg') }}" alt="" width="100" height="auto" style="margin-top: 10px">
                                         </div>
@@ -218,9 +222,9 @@
 
                             <td class="text-right">${{$service_fee_amount}}</td>
                         </tr>
-                        <tr>
+                        <tr id="promo-code-tr">
                             <td class="text-left">Promo code</td>
-                            <td class="text-right">$18df0</td>
+                            <td id="promo-code-td" class="text-right">$0</td>
                         </tr>
                     </table>
                 </div>
@@ -234,11 +238,13 @@
                             </svg> -->
                             Apply
                         </span>
+                        
                     </div>
+                    <span id="coupon-apply-msg"></span>
                 </div>
                 <div>
-                    <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: 15px;width: 100%;" style="padding-bottom: 15px" data-toggle="modal" data-target="#paymentConfirmModalId">Procced</button>
-                    <h5 class="text-center mt-4 pb-4">$3652.59</h5>
+                    <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: 15px;width: 100%;" style="padding-bottom: 15px" data-toggle="modal" data-target="#paymentMethodTransaction">Procced</button>
+                    <h5 class="text-center mt-4 pb-4">${{ $grand_total }}</h5>
                 </div>
                 <div class="payment-procced-nb mt-3">
                     Your funds will be securely held in "Pendu Pay" until the task is done.
@@ -247,14 +253,77 @@
         </div>
     </div>
 </section>
+
+
+
+{{-- payment method transaction modal --}}
+<div class="modal fade" id="paymentMethodTransaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div style="background: #60e99c;height: 8px;">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
+                    </button>
+                </div>
+            </div>
+       
+            <div class="d-flex justify-content-center">
+                <h5 class="payment-done">Stripe</h5>
+            </div>
+            
+            <div class="" style="padding: 25px;">
+            <form action="/stripe3" method="post" id="payment-form">
+
+                <div class="row form-group">
+                        <div class="col-md-12">
+                            <!-- Display errors returned by createToken -->
+                            <label>Card Number</label>
+                            <div id="paymentResponse" class="text-danger font-italic"></div>
+                            <div id="card_number" class="field form-control"></div>
+                        </div>
+                    </div>
+                    <div class="row form-group d-flex justify-content-center">
+                        <div class="col-md-3">
+                            <label>Expiry Date</label>
+                            <div id="card_expiry" class="field form-control"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>CVC Code</label>
+                            <div id="card_cvc" class="field form-control"></div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <input type="submit" style="width: 200px;" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
+                        </div>
+                    </div>
+
+
+                <!-- Used to display Element errors. -->
+                <div id="card-errors" style="color: red;" role="alert"></div>
+                @csrf
+                </form>
+
+
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+
 @include('User.payment.payment_confirm_modal')
 @include('User.component.task_process')
 
 @include("User.payment.payment_release")
 <script>
-     $('#taskProcessModal').click(function() {
-        $('#paymentConfirmModalId').modal('hide');
-    })
+    //  $('#taskProcessModal').click(function() {
+        // $('#paymentConfirmModalId').modal('hide');
+    // })
 </script>
 <script>
     // $('.payment-checkbox"]').click(function(e) {
@@ -280,49 +349,142 @@
 
 
 
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+
+    var stripe = Stripe('{{ env("STRIPE_KEY") }}');
+    var elements = stripe.elements();
+
+
+    var style = {
+        base: {
+            fontWeight: 400,
+            fontFamily: '"DM Sans", Roboto, Open Sans, Segoe UI, sans-serif',
+            fontSize: '16px',
+            lineHeight: '1.4',
+            color: '#1b1642',
+            padding: '.75rem 1.25rem',
+            '::placeholder': {
+                color: '#ccc',
+            },
+        },
+        invalid: {
+            color: '#dc3545',
+        }
+    };
+
+    var cardElement = elements.create('cardNumber', {
+        style: style
+    });
+    cardElement.mount('#card_number');
+
+
+
+    var exp = elements.create('cardExpiry', {
+        'style': style
+    });
+    exp.mount('#card_expiry');
+
+    var cvc = elements.create('cardCvc', {
+        'style': style
+    });
+    cvc.mount('#card_cvc');
+
+
+
+    
+    // Create a token or display an error when the form is submitted.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        stripe.createToken(cardElement ).then(function(result) {
+            if (result.error) {
+                // Inform the customer that there was an error.
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server.
+                stripeTokenHandler(result.token);
+            }
+        });
+    });
+
+
+    function stripeTokenHandler(token) {
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+
+        // Submit the form
+        form.submit();
+
+        $('#paymentMethodTransaction').modal('hide');
+        $('#paymentConfirmModalId').modal('show');
+    }
+    
+</script>
+
+
+
+
 <script>
 
 $(document).ready(function(){
 
 
-  $('#coupon-apply-btn').on('click',function(){
+    $('#coupon-apply-btn').on('click',function(){
 
         let coupon = $('#coupon-apply-input').val();
-        alert(coupon);
 
-        // let taskId = $(this).attr("data-id");
+        let url = '{{ route("user.apply-coupon", ":coupon") }}';
+        url = url.replace(':coupon', coupon);
+        if(coupon != ''){
 
-        // let url = '{{ route("user.task_offer_json", ":id") }}';
-        // url = url.replace(':id', taskId);
+        
+            $.ajax({
+                url: url,
+                type: "GET",
+                dataType: "JSON",
+                success: function(data){
+                    if($.isEmptyObject(data) != null){
 
-        // $.ajax({
-        //     url: url,
-        //     data: {id:taskId},
-        //     type: "GET",
-        //     dataType: "JSON",
-        //     success: function(data){
-        //         if($.isEmptyObject(data) != null){
+                        if(data.status){
+                            // alert('Coupon is applied. WIll work after done admin panel')
+                            $('#coupon-apply-msg').text('Promo code is applied. It will work after complete admin panel');
+                            $('#coupon-apply-msg').css("color", "green");
 
-        //             // empty the container
-        //             $('.offer_show_modal_ul').empty();
+                            setTimeout(function(){
+                                $('#coupon-apply-msg').empty();
+                                $('#coupon-apply-input').val('');
+                            }, 5000)
+                        }else{
 
-        //             data.offers.forEach(offer => {
-        //             let offerLi = driverOfferItem(offer);
-        //             $('.offer_show_modal_ul').append(offerLi);
-        //             });      
+                            $('#coupon-apply-msg').empty();
+                            $('#coupon-apply-msg').text('Promo code is invalid.');
+                            $('#coupon-apply-msg').css("color", "red");
 
-        //             $('#offer_show_modal').modal('toggle');
-        //             }
-        //     }
-		// });
-
-
-    // $('#offer_show_modal').modal('toggle');
-    // let offerLi = driverOfferItem();
-    // $('.offer_show_modal_ul').append(offerLi);
-
-
-  });
+                            setTimeout(function(){
+                                $('#coupon-apply-msg').empty();
+                                $('#coupon-apply-input').val('');
+                            }, 3000)
+                        }
+                        
+                    }
+                }
+            });
+        } else {
+            alert('Promo code is empty');
+        }
+        // $('#offer_show_modal').modal('toggle');
+        // let offerLi = driverOfferItem();
+        // $('.offer_show_modal_ul').append(offerLi);
+    });
 });
 
 

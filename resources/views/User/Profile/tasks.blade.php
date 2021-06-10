@@ -183,8 +183,12 @@ $(document).ready(function(){
 
   function driverOfferItem(offerData){
 
-      let url = '{{ route("user.payment", ":id") }}';
-      url = url.replace(':id', offerData['id']);
+  
+      let url = '{{ route("user.payment", ["offerId" => ":offerId", "taskId" => ":taskId"]) }}';
+      url = url.replace(':offerId', offerData['id']);
+      url = url.replace(':taskId', offerData['task_id']);
+
+
 
       let offerItem = '<li class="offer_inter_item mt-1">';
       offerItem += '<div class="container">';
@@ -210,7 +214,7 @@ $(document).ready(function(){
 
 
 
-  // Add another Product field
+  // Show offer Modal
   $('.view-offer-btn').on('click',function(){
 
     let taskId = $(this).attr("data-id");
