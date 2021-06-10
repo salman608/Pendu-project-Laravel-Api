@@ -32,7 +32,7 @@ class Task extends Model
     }
 
     public function products(){
-        return $this->hasMany(TaskProducts::class);
+        return $this->hasMany(TaskProduct::class);
     }
 
     public function offers(){

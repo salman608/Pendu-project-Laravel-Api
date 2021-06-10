@@ -7,7 +7,9 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Dropper;
 use App\Models\Task;
+use App\Models\TaskOffer;
 use Auth;
+use Illuminate\Support\Facades\Request;
 
 class UserDashboardController extends Controller
 {
@@ -19,12 +21,12 @@ class UserDashboardController extends Controller
     {   
 
         $data = [];
-        $data['tasks'] = Task::where('user_id', auth()->id())->get()
+        $data['tasks'] = Task::with('products')->where('user_id', auth()->id())->latest()->get()
             ->groupBy(function($task){ 
                 return $task->created_at->format('j F Y'); 
-            })->toArray();
+            });
 
-        // return $data;
+        // return $data['tasks']->toArray();
 
         return view('user.profile.tasks', $data);
     }
@@ -42,6 +44,10 @@ class UserDashboardController extends Controller
         //return view('User.Profile.tasks');
     }
 
+    public function TaskOfferJson($id){
+        $offers =  TaskOffer::with(['dropper', 'dropper.vehicle'])->where('task_id',$id)->latest()->get();
+        return response()->json(['offers' => $offers->toArray()]);
+    }
 
 
 }

@@ -160,7 +160,7 @@
                         <label class="drinkcard-cc" for="checboxStrip">
                            <div class="col form-check">
                                 <input id="checboxStrip@php echo $vehicle->id @endphp" type="checkbox" name="vahicle_id" value="{{$vehicle->id}}"/>
-                               <img src="{{ asset('frontend/assets/images/Icons/truck.svg') }}" alt="">
+                               <img src="{{ $vehicle->icon }}" alt="">
                             </div>
                         </label>
 

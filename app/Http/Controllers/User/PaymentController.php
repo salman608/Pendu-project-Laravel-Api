@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Dropper;
+use App\Models\TaskOffer;
 use Illuminate\Http\Request;
 use Session;
 
@@ -14,10 +15,18 @@ class PaymentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Dropper $dropper)
-    {
+    public function index($offerId)
+    {   
+        // return $offerId;
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
-        return view('User.payment.payment');
+        $data = [];
+        $data['data'] = TaskOffer::with(['task', 'task.products'])->findOrFail($offerId);
+
+
+        $data['service_fee'] = 4;
+        $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
+
+        return view('user.payment.index', $data);
     }
 
     /**

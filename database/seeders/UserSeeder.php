@@ -16,14 +16,17 @@ class UserSeeder extends Seeder
     {
         //this is admin area
         DB::table('users')->truncate();
-        DB::table('users')->insert([
-            "name"=>'user',
-            "email"=>'user@gmail.com',
-            "phone" => '01638173361',
-            "suburb" => 'suburb',
-            "password"=>bcrypt('password'),
-            'created_at'        => now(),
-            'updated_at'        => now()
-        ]);
+
+        for($i = 1; $i <= 10; $i++){
+            DB::table('users')->insert([
+                "name"=>'user'.$i,
+                "email"=>'user'.$i.'@gmail.com',
+                "phone" => '018855443'.rand(10,50),
+                "suburb" => 'suburb',
+                "password"=>bcrypt('password'),
+                'created_at'        => now(),
+                'updated_at'        => now()
+            ]);
+        }
     }
 }

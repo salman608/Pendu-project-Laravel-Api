@@ -27,6 +27,10 @@ class CreateDroppersTable extends Migration
             $table->string('license_front')->nullable();
             $table->string('license_back')->nullable();
             $table->string('profile_image')->nullable();
+            $table->double('rating')->nullable();
+            $table->integer('average_accuracy')->nullable();
+            $table->integer('success_rate')->nullable();
+
             $table->timestamps();
         });
     }
