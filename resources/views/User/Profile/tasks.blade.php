@@ -27,8 +27,8 @@
    <div class="row">
       @include('User.Partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
-        <div>             <!-- ------------- profile tab info  ------------- -->      
-             
+        <div>             <!-- ------------- profile tab info  ------------- -->
+
     <!-- ------------- mytask tab ------------- -->
          <div class="profile_tab_title">
             <h2>My task</h2>
@@ -112,7 +112,7 @@
 @endforeach
 
 
-        </div>        
+        </div>
       </div>
    </div>
 </div>

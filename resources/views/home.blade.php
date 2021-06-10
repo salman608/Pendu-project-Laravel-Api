@@ -641,6 +641,9 @@ input:disabled{
                     </form>
                   </div>
                 </div>
+
+                {{-- collect and drop --}}
+
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                     <div class="shop_tab_content">
                         <form method="POST" action="{{route('quote.store')}}">
@@ -661,7 +664,7 @@ input:disabled{
                             <div class="col-sm-10">
                                 <table class="table table-borderless border-top-0">
                                     <tbody>
-                                        <tr class="top border-bottom border-light" id="tableRow_1">
+                                        <tr class="top border-bottom border-light">
                                             <td><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>
                                             <td class="qty">
                                                 <span class="minus" style="background: #8f8f8f">-</span>
@@ -669,7 +672,7 @@ input:disabled{
                                                 <span class="plus" style="background: #8f8f8f">+</span>
                                            </td>
                                             <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
-                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
+                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="addCollectButton">+</button></td>
                                         </tr>
                                     </tbody>
                                     {{-- <tfoot >
@@ -699,7 +702,7 @@ input:disabled{
                                        title="Enter your pickup address"
                                        placeholder="Enter your pickup address" required/>
                                     <div class="input-group-append cursor-pointer">
-                                        <span class="input-group-text border-0 pickupModal" data-toggle="modal" data-target="#googleMapPicupModal" id="pickupSpanId">
+                                        <span class="input-group-text border-0 pickupCollectModal" data-toggle="modal" data-target="#googleMapPicupCollectModal" id="pickupSpanId">
                                             <img src="{{ asset('frontend/assets/images/Icons/location.svg') }}" alt="" width="20" height="auto">
                                         </span>
                                     </div>
@@ -714,7 +717,7 @@ input:disabled{
                                        title="Enter your delivery address"
                                        placeholder="Enter your delivery address" required/>
                                     <div class="input-group-append cursor-pointer">
-                                        <span class="input-group-text border-0 deliveryModal" data-toggle="modal" data-target="#googleMapDeliveryModal" id="deliverySpanId">
+                                        <span class="input-group-text border-0 deliveryCollectModal" data-toggle="modal" data-target="#googleMapDeliveryCollectModal" id="deliverySpanId">
                                             <img src="{{ asset('frontend/assets/images/Icons/location green.svg') }}" alt="" width="20" height="auto">
                                         </span>
                                     </div>
@@ -1317,6 +1320,8 @@ input:disabled{
 
         @include("User.component.googleMap_pickup_quote")
         @include("User.component.googleMap_delivery_quote")
+        @include("User.component.googleMap_pickup_collect")
+        @include("User.component.googleMap_delivery_collect_modal")
         @include("User.component.post_delivery")
 
        <!-- ================ Footer  ============= -->
@@ -1360,9 +1365,7 @@ input:disabled{
                      <a href="#" class='fb' > <img src={{asset('frontend')}}/assets/images/Icons/c_facebook.svg  class="custom_icon" alt=""></a>
                      <a href="#" class='ins'> <img src={{asset('frontend')}}/assets/images/Icons/c_insta.svg class="custom_icon"  alt=""></a>
                     </div>
-
                   </form>
-                </div>
              </div>
            </div>
          </div>
@@ -1458,6 +1461,7 @@ auto_shop_address2.addListener("place_changed", () => {
     }
  });
 });
+
 $("#picupModalBtn").click(function() {
 
 if(
@@ -1479,6 +1483,78 @@ if(
     shop_address_input.value = shop_address.address;
     $("#googleMapPicupModal").modal('hide');
 });
+
+// collect and delivery
+
+
+$(".pickupCollectModal").click(function() {
+
+// New map
+let map = new google.maps.Map(document.getElementById("googleMap"), {
+    zoom: 7,
+    center: centeredLatLng,
+    disableDefaultUI: true,
+    // mapTypeId: google.maps.MapTypeId.ROADMAP,
+});
+
+let auto_shop_address2 = new google.maps.places.Autocomplete(shop_address2_input, options);
+// console.log(auto_shop_address2.val());
+
+auto_shop_address2.addListener("place_changed", () => {
+    let place = auto_shop_address2.getPlace();
+    let latitude = place.geometry.location.lat();
+    let longitude = place.geometry.location.lng();
+
+    shop_address_modal.address = shop_address2_input.value;
+    shop_address_modal.lat = latitude;
+    shop_address_modal.lng = longitude;
+
+    // ShowLocationOnTheMap(
+    //     map,
+    //     place.geometry.location.lat(),
+    //     place.geometry.location.lng()
+    // );
+
+    // Remove old marker
+    if(typeof shop_address_marker !== 'undefined' && shop_address_marker !== null) {
+        shop_address_marker.setMap(null);
+    }
+
+    // Add Marker
+    shop_address_marker = new google.maps.Marker({
+        position: new google.maps.LatLng(latitude, longitude),
+        map: map,
+    });
+
+    if (place.geometry.viewport) {
+       map.fitBounds(place.geometry.viewport);
+    }
+ });
+});
+
+$("#picupCollectModalBtn").click(function() {
+
+if(
+    shop_address2_input.value == '' ||
+    typeof shop_address_modal == 'undefined' ||
+    shop_address_modal.address == '' ||
+    shop_address_modal.lng == '' ||
+    shop_address_modal.lat == ''
+) {
+    swal({
+        icon: 'error',
+        title: 'Oops...',
+        text: "Shop/Pickup address is invalid. Try again.",
+    });
+
+    return;
+}
+    shop_address = shop_address_modal;
+    shop_address_input.value = shop_address.address;
+    $("#googleMapPicupCollectModal").modal('hide');
+});
+
+
 
 $(".deliveryModal").click(function() {
         // New map
@@ -1557,6 +1633,19 @@ $(document).ready(function(){
 
 // Add another Product field
 $('#add_btn').on('click',function(){
+    let html='';
+    html+='<tr id="tableRow_1">';
+    // html+='<td><div class="circle"></div></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
+    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
+    html+='</tr>';
+    $('tbody').append(html);
+});
+
+// Add another Product field
+$('#addCollectButton').on('click',function(){
     let html='';
     html+='<tr>';
     // html+='<td><div class="circle"></div></td>';
