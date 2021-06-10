@@ -4,12 +4,12 @@
             <div class="nav flex-column nav-pills profile_tab_item" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 
                 <a class="nav-link  @if(Route::is('user.dashboard') ) active @endif" href="{{ route('user.dashboard') }}">
-                  
-                <!-- 
+
+                <!--
                   <a class="nav-link @if(Route::is('user.tasks') ) active @endif" href="{{ route('user.tasks') }}">
                    -->
-                  
-                
+
+
                 <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 150 151.25">
                     <g id="task_green" data-name="task green" transform="translate(0 0.62)">
@@ -23,7 +23,7 @@
 
                 </span> My tasks</a>
 
-                
+
 
 
 
@@ -77,7 +77,7 @@
 
                 </span> Payment</a>
 
-                <a class="nav-link " id="v-pills-Payment-tab" data-toggle="pill" href="#v-pills-Payment" role="tab" aria-controls="v-pills-Payment" aria-selected="true"> <span>
+                <a class="nav-link @if(Route::is('user.promo-offer') ) active @endif" href="{{ route('user.promo-offer') }}"> <span>
                     <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 183.69 134.7">
                       <g id="Layer_x0020_1_1_" transform="translate(59.84 -64.65)">
                         <path id="Path_1" data-name="Path 1" d="M96.03,64.65H-32.64a6.12,6.12,0,0,0-6.12,6.12,6.12,6.12,0,0,0,6.12,6.12H96.03A15.59,15.59,0,0,1,111.6,92.47v.58H-32.64a6.12,6.12,0,0,0-6.12,6.12,6.116,6.116,0,0,0,6.12,6.13H111.6v66.26a15.586,15.586,0,0,1-15.57,15.56H-32.03A15.586,15.586,0,0,1-47.6,171.56V91.87a6.131,6.131,0,0,0-6.13-6.13,6.126,6.126,0,0,0-6.11,6.13v79.68a27.841,27.841,0,0,0,27.82,27.8H96.03a27.841,27.841,0,0,0,27.82-27.8V92.47A27.845,27.845,0,0,0,96.03,64.65ZM15.82,167.16a6.17,6.17,0,0,0,3.43-1.05l53.74-36.5a6.116,6.116,0,1,0-6.87-10.12l-49.3,33.47L-.98,132.99a6.094,6.094,0,0,0-8.64-.49,6.112,6.112,0,0,0-.49,8.64l21.36,23.97A6.074,6.074,0,0,0,15.82,167.16Z" fill="#5bdb98"/>

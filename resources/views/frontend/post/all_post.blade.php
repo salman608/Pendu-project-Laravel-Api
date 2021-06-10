@@ -24,7 +24,25 @@
 </section>
 
 
+<!-- ============== Blog header =============== -->
+<div class="blog_header_section">
+    <div class="row">
+        <div class="container">
+            <div class="blog_header_content_area">
+                <div class="blog_header_content">
+                    <h4>Pendu blogs</h4>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Placeat consequuntur ducimus quasi </p>
 
+                </div>
+                <div class="blog_header_img">
+                    <img src="{{asset('frontend')}}/assets/images/Illustrations/blog.png" alt="">
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
 
 
 

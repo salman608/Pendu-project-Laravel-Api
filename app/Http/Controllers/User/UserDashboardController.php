@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Coupon;
 use App\Models\Post;
 use App\Models\User;
 use App\Models\Dropper;
@@ -18,12 +19,12 @@ class UserDashboardController extends Controller
         $this->middleware('auth');
     }
     public function index()
-    {   
+    {
 
         $data = [];
         $data['tasks'] = Task::with('products')->where('user_id', auth()->id())->latest()->get()
-            ->groupBy(function($task){ 
-                return $task->created_at->format('j F Y'); 
+            ->groupBy(function($task){
+                return $task->created_at->format('j F Y');
             });
 
         // return $data['tasks']->toArray();
@@ -38,7 +39,7 @@ class UserDashboardController extends Controller
 
     // Currently index
     public function tasks()
-    {       
+    {
         return "Currently index";
         return auth()->user();
         //return view('User.Profile.tasks');
@@ -49,5 +50,11 @@ class UserDashboardController extends Controller
         return response()->json(['offers' => $offers->toArray()]);
     }
 
+    // ==============Promo offer===========
+
+    public function promoOffer(){
+        $offers=Coupon::latest()->get();
+        return view('User.Profile.offer',compact('offers'));
+    }
 
 }
