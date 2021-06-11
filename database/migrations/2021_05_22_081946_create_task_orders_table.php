@@ -21,20 +21,20 @@ class CreateTaskOrdersTable extends Migration
             $table->unsignedBigInteger('coupon_id')->nullable();
             $table->unsignedBigInteger('payment_method_id');
             $table->double('sub_total')->default(0);
-            $table->double('delivery_fee')->default(0);
+            // $table->double('delivery_fee')->default(0);
             $table->double('service_fee')->default(0);
             $table->double('promo_discount')->default(0);
             $table->double('total')->default(0);
-            
-            
+
+
             $table->enum('status', [
                 TaskOrder::STATUS_ASSIGNED,
                 TaskOrder::STATUS_IN_PROGRESS,
                 TaskOrder::STATUS_COLLECTED,
                 TaskOrder::STATUS_DELIVERED,
             ])->default(TaskOrder::STATUS_ASSIGNED);
-            
-            
+
+
             $table->timestamps();
         });
     }
