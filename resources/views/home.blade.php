@@ -648,16 +648,7 @@ input:disabled{
                     <div class="shop_tab_content">
                         <form method="POST" action="{{route('quote.store')}}">
                             @csrf
-                          <div class="form-group row">
-                            <label for="input_text" class="col-sm-2 col-form-label">Categories</label>
-                            <div class="col-sm-10">
-                                <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
-                                    @foreach ($product_cats as $p_cat)
-                                        <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                          </div>
+
                           <input type="hidden" name="driver_id" value="" id="">
                           <div class="form-group row">
                             <label for="input_category" class="col-sm-2 col-form-label">Products</label>
@@ -671,7 +662,7 @@ input:disabled{
                                                 <input type="number" class="count" name="qty[]" value="1">
                                                 <span class="plus" style="background: #8f8f8f">+</span>
                                            </td>
-                                            <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                            {{-- <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td> --}}
                                             <td class="text-right"><button type="button" class="btn btn-success plus-button" id="addCollectButton">+</button></td>
                                         </tr>
                                     </tbody>
@@ -759,6 +750,7 @@ input:disabled{
                         </form>
                       </div>
                 </div>
+                {{-- mover section --}}
                 <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
                     <div class="shop_tab_content">
                         <form method="POST" action="{{route('quote.store')}}">
@@ -767,23 +759,23 @@ input:disabled{
                             <label for="input_text" class="col-sm-2 col-form-label">Vehicle Type</label>
                             <div class="col-sm-10">
                                 <div class="cc-selector">
-                                    <div class="row">
-                                        <div class="col">
-                                            <input id="car" type="radio" name="vahicle_type" value="car" checked />
-                                            <label class="drinkcard-cc car" for="car"></label>
-                                        </div>
-                                        <div class="col">
-                                            <input id="ute" type="radio" name="vahicle_type" value="ute" />
-                                            <label class="drinkcard-cc ute" for="ute"></label>
-                                        </div>
-                                        <div class="col">
-                                            <input id="van" type="radio" name="vahicle_type" value="van" />
-                                            <label class="drinkcard-cc van" for="van"></label>
-                                        </div>
+                                    <div class="form-group">
+                                        <div class="form-row" style="margin-top: -18px;">
 
-                                        <div class="col">
-                                            <input id="truck" type="radio" name="vahicle_type" value="truck" />
-                                            <label class="drinkcard-cc truck" for="truck"></label>
+                                            <div class="cc-selector">
+                                                <div class="row">
+                                                @foreach ($vehicles as $vehicle)
+                                                <label class="drinkcard-cc" for="checboxStrip">
+                                                   <div class="col form-check">
+                                                        <input id="checboxStrip@php echo $vehicle->id @endphp" type="checkbox" name="vahicle_id" value="{{$vehicle->id}}"/>
+                                                       <img src="{{ $vehicle->icon }}" alt="">
+                                                    </div>
+                                                </label>
+
+                                                @endforeach
+
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -802,8 +794,8 @@ input:disabled{
                                                 <input type="number" class="count" name="qty[]" value="1">
                                                 <span class="plus" style="background: #8f8f8f">+</span>
                                            </td>
-                                            <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
-                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="add_btn">+</button></td>
+                                            {{-- <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td> --}}
+                                            <td class="text-right"><button type="button" class="btn btn-success plus-button" id="addMoverButton">+</button></td>
                                         </tr>
                                     </tbody>
                                     {{-- <tfoot >
@@ -1379,6 +1371,15 @@ input:disabled{
        <!-- (Optional) Latest compiled and minified JavaScript translation files -->
        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 <script>
+        // Car selection
+$(document).on('click','.drinkcard-cc',function(){
+
+$('.drinkcard-cc').removeClass("car-selected");
+
+$(this).toggleClass("car-selected");
+let inputCar = $(this).find("input");
+inputCar.prop( "checked", true );
+});
         // Maps
 let options = {
         // types: ['(cities)',],
@@ -1631,12 +1632,12 @@ $(".deliveryModal").click(function() {
 $(document).ready(function(){
 
 
-// Add another Product field
+// Add another Product field for Shop and Drop
 $('#add_btn').on('click',function(){
     let html='';
     html+='<tr id="tableRow_1">';
     // html+='<td><div class="circle"></div></td>';
-    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]"  placeholder="Enter Product Name..."></td>';
     html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
     html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
     html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
@@ -1644,14 +1645,27 @@ $('#add_btn').on('click',function(){
     $('tbody').append(html);
 });
 
-// Add another Product field
+// Add another Product field for Collect and drop
 $('#addCollectButton').on('click',function(){
     let html='';
     html+='<tr>';
     // html+='<td><div class="circle"></div></td>';
-    html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]" placeholder="Enter Product Name..."></td>';
     html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
-    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    // html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
+    html+='</tr>';
+    $('tbody').append(html);
+});
+
+// Add another Product field for Mover
+$('#addMoverButton').on('click',function(){
+    let html='';
+    html+='<tr>';
+    // html+='<td><div class="circle"></div></td>';
+    html+=' <td><input class="form-control" type="text" name="pro_name[]" placeholder="Enter Product Name..."></td>';
+    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
+    // html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
     html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
     html+='</tr>';
     $('tbody').append(html);
@@ -1688,6 +1702,16 @@ $(document).ready(function(){
             }
         });
  });
+
+    // Car selection
+$(document).on('click','.drinkcard-cc',function(){
+
+    $('.drinkcard-cc').removeClass("car-selected");
+
+    $(this).toggleClass("car-selected");
+    let inputCar = $(this).find("input");
+    inputCar.prop( "checked", true );
+});
 </script>
 
 @endsection

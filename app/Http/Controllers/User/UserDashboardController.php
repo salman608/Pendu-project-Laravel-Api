@@ -61,4 +61,34 @@ class UserDashboardController extends Controller
         $offerDetails=Coupon::find($id);
         return response()->json(['offerDetails' => $offerDetails]);
     }
+
+    public function history(){
+        return view('User.Profile.history');
+    }
+
+    public function delivery(){
+        return view('User.Profile.delivery');
+    }
+
+    public function payment(){
+        return view('User.Profile.payment');
+    }
+    public function notifications(){
+        return view('User.Profile.notification');
+    }
+    public function refarAndEarn(){
+        return view('User.Profile.refer_n_earn');
+    }
+
+    public function support(){
+        return view('User.Profile.support');
+    }
+
+    public function faq(){
+        return view('User.Profile.faq');
+    }
+
+    public function termAndCondition(){
+        return view('User.Profile.term_n_condition');
+    }
 }
