@@ -103,6 +103,14 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
     Route::get('offers/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'offerDetails'])->name('offer-details');
+    Route::get('history', [App\Http\Controllers\User\UserDashboardController::class, 'history'])->name('history');
+    Route::get('delivery', [App\Http\Controllers\User\UserDashboardController::class, 'delivery'])->name('delivery');
+    Route::get('payments', [App\Http\Controllers\User\UserDashboardController::class, 'payment'])->name('payment');
+    Route::get('notifications', [App\Http\Controllers\User\UserDashboardController::class, 'notifications'])->name('notifications');
+    Route::get('refar-n-earn', [App\Http\Controllers\User\UserDashboardController::class, 'refarAndEarn'])->name('refar-n-earn');
+    Route::get('supports', [App\Http\Controllers\User\UserDashboardController::class, 'support'])->name('support');
+    Route::get('faq', [App\Http\Controllers\User\UserDashboardController::class, 'faq'])->name('faq');
+    Route::get('term-n-conditions', [App\Http\Controllers\User\UserDashboardController::class, 'termAndCondition'])->name('term-n-conditions');
 
     Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\PaymentController::class, 'applyCoupon'])->name('apply-coupon');
 
@@ -116,7 +124,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     // Checked........
 
     Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);
-    Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking']);
+    Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking'])->name('order_track');
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 
 });

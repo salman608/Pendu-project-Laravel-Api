@@ -45,11 +45,11 @@
                       </li>
                     @else
                       <li class="nav-item refer">
-                          <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;" data-toggle="modal" data-target="#OtpModal">Refer & earn</a>
+                          <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;">Refer & earn</a>
                       </li>
 
                       <li class="nav-item refer">
-                        <a class="nav-link" id="track_btn" href="{{url('track')}}" style="color: white;background:orange;width: 179px;">Traking Order</a>
+                        <a class="nav-link" id="track_btn" href="{{route('user.order_track')}}" style="color: white;background:orange;width: 179px;">Traking Order</a>
                     </li>
                     @endif
                 </ul>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\DeliveryTime;
 use App\Models\Post;
 use App\Models\ProductCategory;
+use App\Models\Vehicle;
 use Illuminate\Http\Request;
 
 use Session;
@@ -31,8 +32,9 @@ class HomeController extends Controller
     {
         $product_cats=ProductCategory::all();
         $delivery_times=DeliveryTime::all();
+        $vehicles=Vehicle::all();
         $posts=Post::latest()->take(3)->get();
-        return view('home',compact('posts','product_cats','delivery_times'));
+        return view('home',compact('posts','product_cats','delivery_times','vehicles'));
     }
 
     public function stripe()

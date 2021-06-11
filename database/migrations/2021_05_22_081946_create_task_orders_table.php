@@ -32,8 +32,8 @@ class CreateTaskOrdersTable extends Migration
                 TaskOrder::STATUS_COLLECTED,
                 TaskOrder::STATUS_DELIVERED,
             ])->default(TaskOrder::STATUS_ASSIGNED);
-            
-            
+
+
             $table->timestamps();
         });
     }
