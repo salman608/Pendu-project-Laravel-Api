@@ -130,27 +130,11 @@
                             <div class="card-body promo">
                               <p class="card-text">{{Str::limit($offer->details,140)}}</p>
                               <h4><i class="far fa-hourglass"></i> <span>Validity: {{$offer->created_at->format('j F')}}-{{$offer->updated_at->format('j F')}}</span></h4>
-                              <div class="row promo-details mt-4"><button data-dismiss="modal" data-toggle="modal"  data-target="#detailsModal">View details</button><a href="#" class="btn btn-sm">Apply</a></div>
+                              <div class="row promo-details mt-4"><button href="{{route('user.offer-details',$offer->id)}}" id="detailsModal">View details</button><a href="{{route('user.offer-details',$offer->id)}}" id="detailsModal" class="btn btn-sm">Apply</a></div>
                             </div>
                           </div>
                       </div>
                     @endforeach
-
-                  {{-- <div class="col-md-4">
-                    <div class="card promo-card">
-                        <div class="card-header bg-pendu">
-                            <p style="font-size:16px; margin-bottom:1px;font-weight:500">Promo</p>
-                            <h5 style="font-size: 20px;color:white;margin-bottom:1px;" >RENOVATION</h5>
-                            <h5 style="font-size: 20px;color:white;" >4% off</h5>
-                        </div>
-                        <div class="card-body promo">
-                          <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam nonu my eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
-                          <h4><i class="far fa-hourglass"></i>  <span>Validity: 1 Feb- 30 Jun</span></h4>
-                          <div class="row promo-details mt-4"><span>View details</span><a href="#" class="btn btn-sm">Apply</a></div>
-
-                        </div>
-                      </div>
-                  </div> --}}
                   {{-- <div class="col-md-4">
                     <div class="card promo-card">
                         <div class="card-header promo-chead">
@@ -184,7 +168,7 @@
 
             </div>
            </div>
-           <div class="modal-body">
+           <div class="modal-body" id="details-offer-body">
             <div class="row mb-3">
                 <div class="col-md-7 ">
                      <p style="padding-bottom: 1px;">Promo</p>
@@ -218,5 +202,7 @@
 
 @include("User.component.task_process")
 @include("User.payment.payment_release")
+
+
 @endsection
 

@@ -102,6 +102,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
 
     Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
+    Route::get('offers/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'offerDetails'])->name('offer-details');
 
     Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\PaymentController::class, 'applyCoupon'])->name('apply-coupon');
 

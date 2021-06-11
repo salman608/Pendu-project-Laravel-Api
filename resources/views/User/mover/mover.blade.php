@@ -97,6 +97,10 @@
         font-weight: bold;
         width: 70px;
     }
+    #pname{
+        width:100% !important;
+
+    }
 
 </style>
 
@@ -164,14 +168,15 @@
                 </div>
             </div>
 
-                <div class="form-group">
+                {{-- <div class="form-group">
                     <label for="procat_id" class="label-title">Categories</label>
                     <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
                         @foreach ($product_cats as $p_cat)
                             <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
                         @endforeach
-                    </select><!-- End -->
-                  </div>
+                    </select>
+                    <!-- End -->
+                  </div> --}}
 
                   <div class="form-group">
                     <label for="taskTitle" class="label-title">Task title</label>
@@ -191,7 +196,7 @@
                                            <input type="number" class="count" name="qty[]" value="1">
                                            <span class="plus" style="background: #8f8f8f">+</span>
                                       </td>
-                                    <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>
+                                    {{-- <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td> --}}
                                     <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
                                 </tr>
                             </tbody>
@@ -662,7 +667,7 @@ $('#add_btn').on('click',function(){
     html+='<td><div class="circle"></div></td>';
     html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
     html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
-    html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+    // html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
     html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
     html+='</tr>';
     $('tbody').append(html);
@@ -703,13 +708,13 @@ $(document).ready(function(){
 
   // Car selection
 
-  
+
   $(document).on('click','.drinkcard-cc',function(){
 
         $('.drinkcard-cc').removeClass("car-selected");
 
         $(this).toggleClass("car-selected");
-        let inputCar = $(this).find("input");        
+        let inputCar = $(this).find("input");
         inputCar.prop( "checked", true );
   });
 
