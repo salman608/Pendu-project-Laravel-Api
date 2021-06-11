@@ -103,10 +103,13 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
 
+    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\PaymentController::class, 'applyCoupon'])->name('apply-coupon');
 
     Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'index'])->name('payment');
 
-    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\PaymentController::class, 'applyCoupon'])->name('apply-coupon');
+    Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'checkOutProcess'])->name('payment-process');
+
+ 
 
 
     // Checked........

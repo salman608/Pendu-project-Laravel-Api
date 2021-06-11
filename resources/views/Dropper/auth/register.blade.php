@@ -12,6 +12,23 @@
         border-radius: 10px !important;
     }
 
+    
+    
+    .service-cat-container {
+        margin-top: 32px;
+    }
+
+    .service-cat-label {
+        display: inline-block;
+        margin-bottom: .5rem;
+        z-index: 999999 !important;
+        position: absolute;
+        top: -36px;
+        background: white;
+        left: 23;
+        font-weight: 600;
+        padding: 0 12px;
+    }
 </style>
 @section('user_content')
 
@@ -133,10 +150,10 @@
                     </div>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="form-group col-md-6 service-cat-container">
 
                     <div class="service_area">
-                        <label name="service" for="inputEmail11" class='dropfnm'>Select category</label>
+                        <label name="service" for="inputEmail11" class='dropfnm service-cat-label'>Select category</label>
                         <select multiple class="selectpicker w-100 from-controll service_drop" name="services[]" id="dropperselect">
                             @foreach ($services as $data)
                             <option value="{{$data->id}}">{{$data->title}}</option>

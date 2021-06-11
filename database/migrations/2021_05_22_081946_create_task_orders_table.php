@@ -20,11 +20,10 @@ class CreateTaskOrdersTable extends Migration
             $table->unsignedBigInteger('task_offer_id');
             $table->unsignedBigInteger('coupon_id')->nullable();
             $table->unsignedBigInteger('payment_method_id');
-            $table->double('sub_total')->default(0);
-            $table->double('delivery_fee')->default(0);
+            $table->unsignedBigInteger('user_id');
             $table->double('service_fee')->default(0);
-            $table->double('promo_discount')->default(0);
-            $table->double('total')->default(0);
+            $table->double('promo_amount')->nullable();
+            $table->double('grand_total')->default(0);
             
             
             $table->enum('status', [

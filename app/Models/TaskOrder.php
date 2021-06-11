@@ -15,4 +15,9 @@ class TaskOrder extends Model
     public const STATUS_DELIVERED      = 'Delivered';
 
     protected $guarded = [];
+
+
+    public function transaction(){
+        return $this->hasOne(TaskOrderTransaction::class);
+    }
 }
