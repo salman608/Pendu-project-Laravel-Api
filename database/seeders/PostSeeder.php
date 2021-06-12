@@ -63,6 +63,20 @@ class PostSeeder extends Seeder
              'updated_at'=>now(),
            ],
 
+           [
+            'title' => 'graphic design, Lorem ipsum In publishing and  ',
+            'service_category_id'=>'3',
+            'featured_image' => 'uploads/images/post/6Yu3Q0526202103322060adc14412293.jpg',
+            'body'=>'Maxime mollitia,
+            Impedit sit sunt quaerat molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
+             numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
+             optio, eaque rerum! Provident similique accusantium nemo autem. Veritatis
+             obcaecati tenetur iure eius earum ut molestias architecto voluptate aliquam
+             nihil, eveniet aliquid culpa officia aut! , odit',
+             'created_at'=>now(),
+             'updated_at'=>now(),
+           ],
+
         ]);
 
         $posts->each(function($post){

@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->foreign('referrer_id')->references('id')->on('users');
             $table->string('suburb');
             $table->string('phone');
-            $table->string('profile_image')->nullable();
+            $table->string('profile_photo')->default("profile.png");
             $table->string('role_id')->default(2);
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();

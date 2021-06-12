@@ -59,7 +59,7 @@ class MoverController extends Controller
                 $image = $request->file('task_image');
                 $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
                 Image::make($image)->resize(270,270)->save('uploads/images/tasks/'.$name_gen);
-                $task_image = 'uploads/images/tasks/photos/'.$name_gen;
+                $task_image = 'uploads/images/tasks/'.$name_gen;
             }
 
 

@@ -171,7 +171,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 //profile section
 Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
     // Route::get('/index', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('index');
-    Route::post('/update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update']);
+    Route::post('/update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('profile_update');
     Route::post('/sendMail', [App\Http\Controllers\User\ProfileController::class, 'sendInvitationMail'])->name('invitation');
     Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
 });

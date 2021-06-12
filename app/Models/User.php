@@ -24,6 +24,7 @@ class User extends Authenticatable implements JWTSubject
         'email',
         'suburb',
         'phone',
+        'profile_photo',
         'role_id',
         'password',
         'balance'
@@ -67,7 +68,7 @@ class User extends Authenticatable implements JWTSubject
         return $this->hasMany(User::class, 'referrer_id', 'id');
     }
 
-    
+
     /**
      * A user has many tasks.
      *
