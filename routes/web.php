@@ -105,7 +105,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('offers/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'offerDetails'])->name('offer-details');
     Route::get('history', [App\Http\Controllers\User\UserDashboardController::class, 'history'])->name('history');
     Route::get('delivery', [App\Http\Controllers\User\UserDashboardController::class, 'delivery'])->name('delivery');
-    Route::get('payments', [App\Http\Controllers\User\UserDashboardController::class, 'payment'])->name('payment');
+    Route::get('payments', [App\Http\Controllers\User\UserDashboardController::class, 'payment'])->name('payment-page');
     Route::get('notifications', [App\Http\Controllers\User\UserDashboardController::class, 'notifications'])->name('notifications');
     Route::get('refar-n-earn', [App\Http\Controllers\User\UserDashboardController::class, 'refarAndEarn'])->name('refar-n-earn');
     Route::get('supports', [App\Http\Controllers\User\UserDashboardController::class, 'support'])->name('support');
