@@ -34,7 +34,7 @@ class UserDashboardController extends Controller
 
     public function profile()
     {
-        return view('User.Profile.profile');
+        return view('user.profile.profile');
     }
 
     // Currently index
@@ -42,7 +42,7 @@ class UserDashboardController extends Controller
     {
         return "Currently index";
         return auth()->user();
-        //return view('User.Profile.tasks');
+        //return view('user.profile.tasks');
     }
 
     public function TaskOfferJson($id){
@@ -54,7 +54,7 @@ class UserDashboardController extends Controller
 
     public function promoOffer(){
         $offers=Coupon::latest()->get();
-        return view('User.Profile.offer',compact('offers'));
+        return view('user.profile.offer',compact('offers'));
     }
 
     public function offerDetails($id){
@@ -63,32 +63,40 @@ class UserDashboardController extends Controller
     }
 
     public function history(){
-        return view('User.Profile.history');
+        return view('user.profile.history');
     }
 
     public function delivery(){
-        return view('User.Profile.delivery');
+        return view('user.profile.delivery');
     }
 
+    
+
     public function payment(){
-        return view('User.Profile.payment');
+        return view('user.profile.payment');
     }
+
+
+    public function penduPay(){
+        return view('user.profile.pendu-pay');
+    }
+
     public function notifications(){
-        return view('User.Profile.notification');
+        return view('user.profile.notification');
     }
     public function refarAndEarn(){
-        return view('User.Profile.refer_n_earn');
+        return view('user.profile.refer_n_earn');
     }
 
     public function support(){
-        return view('User.Profile.support');
+        return view('user.profile.support');
     }
 
     public function faq(){
-        return view('User.Profile.faq');
+        return view('user.profile.faq');
     }
 
     public function termAndCondition(){
-        return view('User.Profile.term_n_condition');
+        return view('user.profile.term_n_condition');
     }
 }

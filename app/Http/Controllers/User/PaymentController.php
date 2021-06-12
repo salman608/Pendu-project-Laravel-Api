@@ -175,8 +175,8 @@ class PaymentController extends Controller
 
                 DB::commit();
                 
-                Session::flash('success', 'Payment is done successfully.'); 
-                return redirect()->back();
+                Session::flash('payment-success', 'Payment is done successfully.'); 
+                return redirect()->route('user.dashboard');
             }
             
             DB::rollBack();

@@ -61,7 +61,7 @@
                   </svg>
 
                 </span> Deliveries</a>
-                <a class="nav-link " > <span>
+                <a class="nav-link @if(Route::is('user.pendu-pay') ) active @endif" href="{{ route('user.pendu-pay') }} " > <span>
 
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 75.123 145.475">
                     <path id="pendu_pay" data-name="pendu pay" d="M102.45,6.36,82.42,51.79a1.809,1.809,0,0,0,1.66,2.54h.02l21.88-.17L56.03,132.52,74.6,75.32a1.947,1.947,0,0,0-1.85-2.55H42.9L68.36,6.36h34.09M67,2.26a2.11,2.11,0,0,0-1.97,1.36L39.07,71.3l-1.55,4.04a1.121,1.121,0,0,0,1.05,1.52H69.78L52.13,131.24l-4.37,13.48a2.291,2.291,0,0,0,4.11,1.94l7.62-11.95,49.95-78.36,2.95-4.62a1.118,1.118,0,0,0-.95-1.72l-5.48.04-17.1.14a.8.8,0,0,1-.74-1.12L107.45,5.22a2.107,2.107,0,0,0-1.93-2.96H67Z" transform="translate(-37.445 -2.26)" fill="#5bdb98"/>

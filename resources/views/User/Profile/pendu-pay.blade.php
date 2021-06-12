@@ -39,7 +39,7 @@
 
             <div class="pendu_pay_area">
             <p>Your balance</p>
-            <h4>AUD <span>15</span> </h4>
+            <h4>AUD <span>{{auth()->user()->balance}}</span> </h4>
             </div>
 
 
