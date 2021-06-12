@@ -48,7 +48,7 @@
     }
 
     .container-box {
-        background: #fff; 
+        background: #fff;
         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.16);
         border-radius: 10px;
     }
@@ -93,7 +93,7 @@
         border:none;
         outline: none;
     }
-  
+
 </style>
 @section('user_content')
 <section class="">
@@ -104,7 +104,14 @@
             <div class="col-md-8 col-sm-12 container-box float-left">
                 <div class="d-flex justify-content-center checkout-products align-items-center">
                     <div class="w-100">
-                        <div class="form-group w-100">
+                        <div class="from-group w-100 mb-3">
+
+                            <label for="exampleInputPassword1" class="label-title">Tasks</label>&ensp;
+                            <div class="task-details-timeframe"  style="padding-left: 30px;padding-top: 8px;">
+                            <p style="font-size: 16px;letter-spacing: 0px;color: #90A0B2;opacity: 1;">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Numquam accusantium voluptatibus fuga excepturi</p>
+                        </div>
+                        </div>
+                        {{-- <div class="form-group w-100">
                             <label for="exampleInputPassword1" class="label-title">Products</label>&ensp;
                             <div class="">
                                 <table class="table">
@@ -129,7 +136,7 @@
                                 </table>
                             </div>
                         </div>
-                        
+                         --}}
                         <div class="form-group w-100">
                             <label for="exampleInputEmail1" class="label-title">Deliver Info</label>
                             <div class="task-details-timeframe" style="padding-left: 30px;padding-top: 8px;">
@@ -219,7 +226,7 @@
                         </tr>
                     </table>
                 </div>
-                
+
                 <div class="input-group">
                     <input type="text" class="form-control bg-white border-right-0 promo-code-field" id="taskTitle" placeholder="Enter promo code">
                     <div class="input-group-append">
@@ -228,7 +235,7 @@
                             <path id="Path_7539" data-name="Path 7539" d="M7077.18,886l8.1,6.8-8.1,7.178" transform="translate(-7076.682 -885.426)" fill="none" stroke="#90a0b2" stroke-width="1.5"/>
                             </svg>
                         </span>
-                    </div>  
+                    </div>
                 </div>
                 <div>
                     <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: 15px;width: 100%;" style="padding-bottom: 15px" data-toggle="modal" data-target="#paymentConfirmModalId">Procced</button>
