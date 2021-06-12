@@ -50,7 +50,7 @@ class TaskRepository
         $task->total_cost   = $data['total_cost'];
         $task->user_id      = request()->user()->id;
         $task->delivery_time_id      = $data['delivery_time_id'];
-        $task->service_category_id   = 1;
+        $task->service_category_id   = $data['service_category_id'];
 
         if(!empty($data['vehicle_id'])){
             $task->vehicle_id   = $data['vehicle_id'];

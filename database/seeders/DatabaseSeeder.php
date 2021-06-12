@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call(ServiceCategorySeeder::class);
         $this->call(TaskShopDropSeeder::class);
-        // $this->call(TaskCollectDeliverySeeder::class);
-        // $this->call(TaskCollectDeliverySeeder::class);
+        $this->call(TaskCollectDropSeeder::class);
+        
 
         $this->call(CouponSeeder::class);
         $this->call(DeliveryTimeSeeder::class);

@@ -16,8 +16,8 @@ class CreateTaskProductsTable extends Migration
         Schema::create('task_products', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->double('price');
-            $table->integer('qty');
+            $table->double('price')->nullable();
+            $table->integer('qty')->nullable();
             $table->unsignedBigInteger('task_id');
             $table->timestamps();
         });

@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ShopAndDropController;
 use App\Http\Controllers\User\CollectAndDeliveryController;
 use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\MoverController;
+use App\Models\Task;
 use App\Models\TaskOffer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,7 +45,7 @@ Route::get('/hello', function(){
 
     // return url('/frontend/assets/images/Icons/');
 
-    return TaskOffer::all();
+    return Task::latest()->get();
 });
 
 Route::get('/sms/', function(){
