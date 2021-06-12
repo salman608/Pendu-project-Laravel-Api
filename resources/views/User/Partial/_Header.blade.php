@@ -45,7 +45,8 @@
                       </li>
                     @else
                       <li class="nav-item refer">
-                          <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;">Refer & earn</a>
+                          <a class="nav-link" id="refar_btn" href="#" style="color: white;">Refer & earn</a>
+                          {{-- <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;">Refer & earn</a> --}}
                       </li>
 
                       <li class="nav-item refer">
@@ -215,7 +216,7 @@
 
 
                             <form id="logout-form" action="{{ url('logout') }}" method="POST">
-                                            {{ csrf_field() }}  
+                                            {{ csrf_field() }}
                             </form>
 
                         @else

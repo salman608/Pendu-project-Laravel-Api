@@ -50,7 +50,7 @@ Route::get('/hello', function(){
     $coupon = \App\Models\Coupon::where('promo_code', $couponCode);
 
     if (!$coupon->exists()) {
-        return response()->json(['status'=> false,'msg' => 'Invalid promo code.']);  
+        return response()->json(['status'=> false,'msg' => 'Invalid promo code.']);
     }
 
     // Auth User
@@ -58,7 +58,7 @@ Route::get('/hello', function(){
     $couponId = App\Models\Coupon::select('id as hello')->where('promo_code', $couponCode)->get();
 
     // if ($user->appliedCoupons()->where('id', $couponId )->exists()) {
-    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);  
+    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);
     // }
 
     return $user->whereHas('appliedCoupons', function($c) use($couponCode){
@@ -69,7 +69,7 @@ Route::get('/hello', function(){
 
 
     // if ($user->appliedCoupons()->where('coupon_id', $couponId->id)) {
-    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);  
+    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);
     // }
 
 
@@ -78,6 +78,8 @@ Route::get('/hello', function(){
 
 
 });
+
+
 
 Route::get('/sms/', function(){
 
@@ -92,7 +94,7 @@ Route::get('/sms/', function(){
 
         $client = new Client($account_sid, $auth_token);
         $client->messages->create($receiverNumber, [
-            'from' => $twilio_number, 
+            'from' => $twilio_number,
             'body' => $message]);
 
         dd('SMS Sent Successfully.');
@@ -154,7 +156,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'checkOutProcess'])->name('payment-process');
 
- 
+
 
 
     // Checked........
