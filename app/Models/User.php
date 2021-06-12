@@ -69,13 +69,18 @@ class User extends Authenticatable implements JWTSubject
 
     
     /**
-     * A user has many taks.
+     * A user has many tasks.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function tasks()
     {
         return $this->hasMany(Task::class)->groupBy('created_at');
+    }
+
+    public function appliedCoupons()
+    {
+        return $this->belongsToMany(Coupon::class);
     }
 
 

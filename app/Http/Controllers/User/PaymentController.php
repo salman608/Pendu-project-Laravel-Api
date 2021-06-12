@@ -57,14 +57,25 @@ class PaymentController extends Controller
         }
     }
 
-    public function applyCoupon($coupon){
+    public function applyCoupon($couponCode){
 
         try {
 
-            $coupon = Coupon::where('promo_code', $coupon);
+            $coupon = Coupon::where('promo_code', $couponCode);
 
             if (!$coupon->exists()) {
                 return response()->json(['status'=> false,'msg' => 'Invalid promo code.']);  
+            }
+
+            // Auth User
+            $user = Auth::user();
+            $checkApplied = $user->whereHas('appliedCoupons', function($c) use($couponCode){
+                $c->where('promo_code', $couponCode);
+            });
+
+
+            if ($checkApplied->exists()) {
+                return response()->json(['status'=> false,'msg' => 'This code already used.']);  
             }
 
             $validCoupon = $coupon->where('started_at', '<=', now())
@@ -97,7 +108,7 @@ class PaymentController extends Controller
         } catch (Exception $e) {
             Log::info($e->getMessage());
 
-            return response()->json(['status'=> false,'msg' => 'Something is wrong. Try again.']);  
+            return response()->json(['status'=> false,'msg' => $e->getMessage()]);  
         }
     }
 
@@ -172,6 +183,8 @@ class PaymentController extends Controller
                 $user->update([
                     'balance' => $user->balance + $amount
                 ]);
+
+                $user->appliedCoupons()->attach(session('promo_code_id'));
 
                 DB::commit();
                 

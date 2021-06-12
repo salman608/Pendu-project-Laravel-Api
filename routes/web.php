@@ -8,6 +8,7 @@ use App\Http\Controllers\User\ShopAndDropController;
 use App\Http\Controllers\User\CollectAndDeliveryController;
 use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\MoverController;
+use App\Models\Task;
 use App\Models\TaskOffer;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -44,7 +45,38 @@ Route::get('/hello', function(){
 
     // return url('/frontend/assets/images/Icons/');
 
-    return TaskOffer::all();
+    $couponCode = '5z8UboDT';
+
+    $coupon = \App\Models\Coupon::where('promo_code', $couponCode);
+
+    if (!$coupon->exists()) {
+        return response()->json(['status'=> false,'msg' => 'Invalid promo code.']);  
+    }
+
+    // Auth User
+    $user = auth()->user();
+    $couponId = App\Models\Coupon::select('id as hello')->where('promo_code', $couponCode)->get();
+
+    // if ($user->appliedCoupons()->where('id', $couponId )->exists()) {
+    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);  
+    // }
+
+    return $user->whereHas('appliedCoupons', function($c) use($couponCode){
+        $c->where('promo_code', $couponCode);
+    })->exists();
+    // appliedCoupons->where('promo_code', $couponCode );
+
+
+
+    // if ($user->appliedCoupons()->where('coupon_id', $couponId->id)) {
+    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);  
+    // }
+
+
+
+
+
+
 });
 
 Route::get('/sms/', function(){

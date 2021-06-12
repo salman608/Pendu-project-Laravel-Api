@@ -28,7 +28,7 @@ class CreateTasksTable extends Migration
             $table->string('to_lng');
             $table->string('notes')->nullable();
             
-            $table->double('total_cost');
+            $table->double('total_cost')->nullable();
             
             
             $table->unsignedBigInteger('user_id');

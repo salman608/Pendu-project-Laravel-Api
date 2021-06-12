@@ -78,7 +78,7 @@ class CollectAndDeliveryController extends Controller
             $task = TaskRepository::saveTaskData($data);
 
             $task->products()->createMany($products);
-            $task->productCategories()->attach($request-> product_cats);
+            // $task->productCategories()->attach($request-> product_cats);
 
             DB::commit();
 
@@ -88,7 +88,7 @@ class CollectAndDeliveryController extends Controller
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            Session::flash('error', 'Your task request is failed!');
+            Session::flash('error', $e->getMessage());
             return redirect()->route('collect_n_drop');
         }
 
