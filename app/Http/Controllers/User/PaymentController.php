@@ -60,7 +60,35 @@ class PaymentController extends Controller
                 // return abort(403, 'Unauthorized action.');
             }
         }else {
-            return view('user.payment.collect_n_drop_payment');
+            
+
+            try {
+                $data = [];
+            
+                $data['data'] = TaskOffer::with(['task'])
+                        ->where([
+                            ['id', $offerId],
+                            ['task_id', $taskId]
+                        ])->first();
+                
+                $data['service_fee'] = 4;
+
+                $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
+
+                $data['grand_total'] = ($data['data']['task']['total_cost'] + $data['service_fee_amount']  + $data['data']['amount']);
+
+                session(['service_fee_amount' => $data['service_fee_amount']]);
+                session(['total_cost'         => $data['data']->task->total_cost ]);
+                session(['grand_total'         => $data['grand_total'] ]);
+                
+        
+                return view('user.payment.collect_n_mover_payment', $data);
+            } catch (Exception $e) {
+                Log::info($e->getMessage());
+
+                return abort(404, $e->getMessage());
+                // return abort(403, 'Unauthorized action.');
+            }
         }
 
     }
@@ -154,6 +182,7 @@ class PaymentController extends Controller
                 // Safe Task Order
                 $taskOrder = new TaskOrder();
 
+                $taskOrder->order_id	    = rand(100000000,999999999);
                 $taskOrder->task_id	        = $taskId;
                 $taskOrder->task_offer_id	= $offerId;
                 $taskOrder->coupon_id	    = session('promo_code_id') ?? null;
@@ -193,6 +222,12 @@ class PaymentController extends Controller
                 ]);
 
                 $user->appliedCoupons()->attach(session('promo_code_id'));
+
+                $task = Task::findOrFail($taskId);
+                $task->update([
+                    'request_status' => Task::REQUEST_ACCEPTED,
+                    'offer_id' => $offerId
+                ]);
 
                 DB::commit();
                 

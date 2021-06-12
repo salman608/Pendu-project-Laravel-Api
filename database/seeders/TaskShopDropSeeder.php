@@ -38,7 +38,7 @@ class TaskShopDropSeeder extends Seeder
                 "delivery_time_id" => 3, 
                 "service_category_id" => 1, 
                 "task_type" =>  Task::TASK_SIMPLE,
-                "request_status" => Task::REQUEST_ONLINE,
+                "request_status" => Task::REQUEST_PROCESSING,
                 "created_at" => now(), 
                 "updated_at" => now()
             ],
@@ -58,7 +58,7 @@ class TaskShopDropSeeder extends Seeder
                 "delivery_time_id" => 2, 
                 "service_category_id" => 1, 
                 "task_type" =>  Task::TASK_SIMPLE,
-                "request_status" => Task::REQUEST_ONLINE,
+                "request_status" => Task::REQUEST_PROCESSING,
                 "created_at" => now(), 
                 "updated_at" => now()
             ],
@@ -77,7 +77,7 @@ class TaskShopDropSeeder extends Seeder
                 "delivery_time_id" => 2, 
                 "service_category_id" => 1, 
                 "task_type" =>  Task::TASK_SIMPLE,
-                "request_status" => Task::REQUEST_ONLINE,
+                "request_status" => Task::REQUEST_PROCESSING,
                 "created_at" => now(), 
                 "updated_at" => now()
             ]      
