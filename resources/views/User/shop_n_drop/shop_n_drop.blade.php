@@ -41,12 +41,12 @@ select.select-box {
 .hello-salman-modal {
     width: 50%;
     margin: auto;
-    border: 1px solid green;
-    border-radius: 9px;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: .3rem;
     position: absolute;
     z-index: 9999999999999;
-  top: 50%; right: 50%;
-  transform: translate(50%,-50%);
+   top: 50%; right: 50%;
+   transform: translate(50%,-50%);
 
 }
 
@@ -82,12 +82,7 @@ select.select-box {
 
 
 <section class="" style="position: relative;">
-
-
-
-
-
-@if (session()->has('success'))
+  @if (session()->has('success'))
         <div class="hello-salman-modal-block">
             <div class="hello-salman-modal">
                 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1122 593">
@@ -389,7 +384,7 @@ select.select-box {
                     </g>
                     <text id="Task_received" data-name="Task received" transform="translate(566 351)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-46.434" y="0">Task received</tspan></text>
                     <text id="Task_in_Review_" data-name="Task in Review " transform="translate(758 353)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-52.242" y="0">Task in Review </tspan></text>
-                    <text id="Going_to_the_network_for_offers" data-name="Going to the 
+                    <text id="Going_to_the_network_for_offers" data-name="Going to the
                   network for offers" transform="translate(968 353)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-46.746" y="0">Going to the </tspan><tspan x="-63.059" y="21">network for offers</tspan></text>
                     <g id="Group_2730" data-name="Group 2730" transform="translate(483 336.042)">
                       <circle id="Ellipse_158" data-name="Ellipse 158" cx="11" cy="11" r="11" transform="translate(0 -0.042)" fill="#5bdb98"/>
@@ -429,25 +424,10 @@ select.select-box {
                     </g>
                     </a>
                   </svg>
-                  
-                  
+
             </div>
         </div>
-@endif
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+   @endif
 
 
 
@@ -1043,7 +1023,7 @@ select.select-box {
         // event.stopPropagation();
 
         let selectParent = $(this).parent();
-        
+
         // let selectUncle = selectParent.prev();
 
         console.log(selectParent);
@@ -1052,7 +1032,7 @@ select.select-box {
         // let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
 
         // $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-        
+
     });
 
 

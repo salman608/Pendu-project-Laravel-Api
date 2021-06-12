@@ -101,7 +101,7 @@
                     @if(Auth::user()->role_id==3)
                       <a href="{{route('driver.quote.user-quote')}}">User Quote</a>
                     @endif
-                    <li><a href="{{route('user.dashboard')}}?profile=1"><span>My profile</span> <svg xmlns="http://www.w3.org/2000/svg"
+                    <li><a href="{{route('user.dashboard')}}"><span>My profile</span> <svg xmlns="http://www.w3.org/2000/svg"
                                     viewBox="0 0 129.25 148.64" style='width: 18px; height: 21px;'>
                                     <g id="profile_green" data-name="profile green"
                                         transform="translate(-10.38 -0.68)">
@@ -115,7 +115,7 @@
                                 </svg>
                       </a></li>
 
-                        <li><a href="#"><span>Offers</span>
+                        <li><a href="{{route('user.promo-offer')}}"><span>Offers</span>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 339.6 159.9"
                                     style=' width: 35px; height: 17px;'>
@@ -142,7 +142,7 @@
 
                             </a></li>
 
-                        <li><a href="#"><span>Tasks</span>
+                        <li><a href="{{ route('user.dashboard') }}"><span>Tasks</span>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 167.06 168.47"
                                     style=' width: 23px; height: 23px;'>
