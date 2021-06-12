@@ -187,7 +187,7 @@
 
 
 
-                        <li><a href="{{ route('logout')}}"><span>Log out</span>
+                        <li><a href="{{ route('logout')}}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><span>Log out</span>
 
                                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 175.923 175.93"
                                     style='    width: 23px; height: 23px;'>
@@ -212,6 +212,12 @@
 
 
                             </a></li>
+
+
+                            <form id="logout-form" action="{{ url('logout') }}" method="POST">
+                                            {{ csrf_field() }}  
+                            </form>
+
                         @else
                         <li><a href="{{route('login')}}"><span>Login</span>
 
