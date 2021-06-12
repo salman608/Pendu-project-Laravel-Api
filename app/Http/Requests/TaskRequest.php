@@ -30,7 +30,7 @@ class TaskRequest extends FormRequest
             // "product_cost"     => 'required',
             "shop_address"     => 'required',
             "delivery_address" => 'required',
-            // "deliver_time"     => "required",
+            "deliver_time"     => "required",
             // "item_cost"        => 'required',
         ];
     }

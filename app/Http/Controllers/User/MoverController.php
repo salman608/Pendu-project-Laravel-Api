@@ -48,7 +48,7 @@ class MoverController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
 
         // return $request->all();
 
@@ -70,15 +70,15 @@ class MoverController extends Controller
             $data['to_latlng']['lat']   = $delivery_address->lat;
             $data['to_latlng']['lng']   = $delivery_address->lng;
 
-            $data['notes']              = $request->additional_note;
-            $data['total_cost']         = $request->product_cost;
+            // $data['notes']              = $request->additional_note;
+            // $data['total_cost']         = $request->product_cost;
             $data['delivery_time_id']   = $request->delivery_time;
             $data['service_category_id']   = 3;
 
             $task = TaskRepository::saveTaskData($data);
 
             $task->products()->createMany($products);
-            $task->productCategories()->attach($request-> product_cats);
+            // $task->productCategories()->attach($request-> product_cats);
 
             DB::commit();
 

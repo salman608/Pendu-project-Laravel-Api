@@ -285,7 +285,7 @@
                         @foreach ($delivery_times as $d_time)
                         <div class="pr-2" >
                             <label >
-                                <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
+                                <input type="radio" name="delivery_time" id="delivery_time"  value="{{$d_time->id}}" >
                                 <div style="width: 180px;">
                                     <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
                                     <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
@@ -559,100 +559,100 @@ $(".deliveryModal").click(function() {
  // next button
 
     // Next Step
-    $('#nextButton').click(function(){
+// $('#nextButton').click(function(){
 
-if ($('#procat_id').val().length == 0) {
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Category is required.",
-    })
-}
+//     if ($('#procat_id').val().length == 0) {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Category is required.",
+//         })
+//     }
 
-// Check title is empty
-else if ($('#title').val() == '') {
+//     // Check title is empty
+//     else if ($('#title').val() == '') {
 
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Title is required.",
-    })
-}
-else if ($('#additional_note').val() == '') {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Title is required.",
+//         })
+//     }
+//     else if ($('#additional_note').val() == '') {
 
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Additional note is required.",
-    })
-}
-else if ($('#product_cost').val() == '') {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Additional note is required.",
+//         })
+//     }
+//     else if ($('#product_cost').val() == '') {
 
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Product cost is required.",
-    })
-}
-else if ($('#shop_address').val() == '') {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Product cost is required.",
+//         })
+//     }
+//     else if ($('#shop_address').val() == '') {
 
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Shop address is required.",
-    })
-}
-else if(
-    shop_address.address == '' ||
-    shop_address.lng == '' ||
-    shop_address.lat == ''
-) {
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Shop/Pickup address is invalid. Try again.",
-    });
-}
-else if ($('#delivery_address').val() == '') {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Shop address is required.",
+//         })
+//     }
+//     else if(
+//         shop_address.address == '' ||
+//         shop_address.lng == '' ||
+//         shop_address.lat == ''
+//     ) {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Shop/Pickup address is invalid. Try again.",
+//         });
+//     }
+//     else if ($('#delivery_address').val() == '') {
 
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Delivery address is required.",
-    })
-}
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Delivery address is required.",
+//         })
+//     }
 
-else if(
-    delivery_address.address == '' ||
-    delivery_address.lng == '' ||
-    delivery_address.lat == ''
-) {
-    swal({
-        icon: 'error',
-        title: 'Oops...',
-        text: "Delivery address is invalid. Try again.",
-    });
+//     else if(
+//         delivery_address.address == '' ||
+//         delivery_address.lng == '' ||
+//         delivery_address.lat == ''
+//     ) {
+//         swal({
+//             icon: 'error',
+//             title: 'Oops...',
+//             text: "Delivery address is invalid. Try again.",
+//         });
 
-    return;
-}
-else {
-    $('#nextButton').hide();
-    $('#task-details').hide();
-    $('#postButtonId').show();
-    // $('#titleId').text('Review');
-    $('#timeFrameDiv').hide();
-    $('#taskDetails').show();
+//         return;
+//     }
+//     else {
+//         $('#nextButton').hide();
+//         $('#task-details').hide();
+//         $('#postButtonId').show();
+//         // $('#titleId').text('Review');
+//         $('#timeFrameDiv').hide();
+//         $('#taskDetails').show();
 
-    let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+//         let deliverTime = $('input:radio[name="delivery_time"]:checked').val();
 
-    $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
-    // $('#product_cost').val() ==
-    $('#ItemCost').val($('#product_cost').val());
-    $('#shopAddress').text($('#shop_address').val());
-    $('#deliveryAddress').text($('#delivery_address').val());
+//         $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+//         // $('#product_cost').val() ==
+//         $('#ItemCost').val($('#product_cost').val());
+//         $('#shopAddress').text($('#shop_address').val());
+//         $('#deliveryAddress').text($('#delivery_address').val());
 
-}
-});
+//     }
+// });
 
 </script>
 
@@ -717,6 +717,69 @@ $(document).ready(function(){
         let inputCar = $(this).find("input");
         inputCar.prop( "checked", true );
   });
+
+  $('#nextButton').click(function(){
+    if ($('#checboxStrip').val() == '') {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Vehicle is required.",
+            })
+        }
+       else if ($('#title').val() == '') {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Title is required.",
+            })
+        }
+        else if ($('#product_cost').val() == '') {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Product cost is required.",
+            })
+        }
+        else if ($('#shop_address').val() == '') {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Shop address is required.",
+            })
+        }
+        else if ($('#delivery_address').val() == '') {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery address is required.",
+            })
+
+        }
+
+        else if ($('#delivery_time').val() == '') {
+            swal({
+                icon: 'error',
+                title: 'Oops...',
+                text: "Delivery Time is required.",
+            })
+
+        }
+        else {
+            $('#nextButton').hide();
+            $('#task-details').hide();
+            $('#postButtonId').show();
+            // $('#titleId').text('Review');
+            $('#timeFrameDiv').hide();
+            $('#taskDetails').show();
+            // myMap()
+
+        var deliverTime = $('input:radio[name="delivery_time"]:checked').val();
+        $("input:radio[name=delivery_time_review][value='" + deliverTime + "']").prop('checked', true);
+        $('#ItemCost').val($('#item_cost').val());
+        $('#shopAddress').text($('#shop_address').val());
+        $('#deliveryAddress').text($('#delivery_address').val());
+        }
+    });
 
 
 </script>
