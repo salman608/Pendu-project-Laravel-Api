@@ -4,7 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Coupon;
-use App\Models\Dropper;
+use App\Models\Task;
 use App\Models\TaskOffer;
 use App\Models\TaskOrder;
 use App\Models\TaskOrderTransaction;
@@ -26,35 +26,71 @@ class PaymentController extends Controller
      */
     public function index($offerId, $taskId)
     {   
+        $serviceCategoryId = Task::select('service_category_id')->where('id', $taskId)->first();
 
         // Remove all session about coupon
         session()->forget(['promo_code_id','promo_amount','grandTotalPromo']);
-        try {
-            $data = [];
-           
-            $data['data'] = TaskOffer::with(['task', 'task.products'])
-                    ->where([
-                        ['id', $offerId],
-                        ['task_id', $taskId]
-                    ])->first();
+        
+        if($serviceCategoryId->service_category_id == 1){ 
+
+            try {
+                $data = [];
             
-            $data['service_fee'] = 4;
+                $data['data'] = TaskOffer::with(['task', 'task.products'])
+                        ->where([
+                            ['id', $offerId],
+                            ['task_id', $taskId]
+                        ])->first();
+                
+                $data['service_fee'] = 4;
 
-            $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
+                $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
 
-            $data['grand_total'] = ($data['data']['task']['total_cost'] + $data['service_fee_amount']  + $data['data']['amount']);
+                $data['grand_total'] = ($data['data']['task']['total_cost'] + $data['service_fee_amount']  + $data['data']['amount']);
 
-            session(['service_fee_amount'         => $data['service_fee_amount']]);
-            session(['total_cost'         => $data['data']->task->total_cost ]);
-            session(['grand_total'         => $data['grand_total'] ]);
+                session(['service_fee_amount'         => $data['service_fee_amount']]);
+                session(['total_cost'         => $data['data']->task->total_cost ]);
+                session(['grand_total'         => $data['grand_total'] ]);
 
-            return view('user.payment.shop_n_drop', $data);
-        } catch (Exception $e) {
-            Log::info($e->getMessage());
+                return view('user.payment.shop_n_drop', $data);
+            } catch (Exception $e) {
+                Log::info($e->getMessage());
 
-            return abort(404, 'Page not found.');
-            // return abort(403, 'Unauthorized action.');
+                return abort(404, 'Page not found.');
+                // return abort(403, 'Unauthorized action.');
+            }
+        }else {
+            
+
+            try {
+                $data = [];
+            
+                $data['data'] = TaskOffer::with(['task'])
+                        ->where([
+                            ['id', $offerId],
+                            ['task_id', $taskId]
+                        ])->first();
+                
+                $data['service_fee'] = 4;
+
+                $data['service_fee_amount'] = ceil(($data['data']->task->total_cost/100) * $data['service_fee']);
+
+                $data['grand_total'] = ($data['data']['task']['total_cost'] + $data['service_fee_amount']  + $data['data']['amount']);
+
+                session(['service_fee_amount' => $data['service_fee_amount']]);
+                session(['total_cost'         => $data['data']->task->total_cost ]);
+                session(['grand_total'         => $data['grand_total'] ]);
+                
+        
+                return view('user.payment.collect_n_mover_payment', $data);
+            } catch (Exception $e) {
+                Log::info($e->getMessage());
+
+                return abort(404, $e->getMessage());
+                // return abort(403, 'Unauthorized action.');
+            }
         }
+
     }
 
     public function applyCoupon($couponCode){
@@ -146,6 +182,7 @@ class PaymentController extends Controller
                 // Safe Task Order
                 $taskOrder = new TaskOrder();
 
+                $taskOrder->order_id	    = rand(100000000,999999999);
                 $taskOrder->task_id	        = $taskId;
                 $taskOrder->task_offer_id	= $offerId;
                 $taskOrder->coupon_id	    = session('promo_code_id') ?? null;
@@ -185,6 +222,12 @@ class PaymentController extends Controller
                 ]);
 
                 $user->appliedCoupons()->attach(session('promo_code_id'));
+
+                $task = Task::findOrFail($taskId);
+                $task->update([
+                    'request_status' => Task::REQUEST_ACCEPTED,
+                    'offer_id' => $offerId
+                ]);
 
                 DB::commit();
                 

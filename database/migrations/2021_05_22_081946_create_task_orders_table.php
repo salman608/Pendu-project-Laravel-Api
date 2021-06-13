@@ -16,6 +16,7 @@ class CreateTaskOrdersTable extends Migration
     {
         Schema::create('task_orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('task_id');
             $table->unsignedBigInteger('task_offer_id');
             $table->unsignedBigInteger('coupon_id')->nullable();

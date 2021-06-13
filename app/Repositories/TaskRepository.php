@@ -38,7 +38,7 @@ class TaskRepository
 
         // 1 = shop & drop, 2 = collect & delivery, 3 = movers
         $task   = new Task();
-        $task->task_id      = Str::random(12);
+        $task->task_id      = rand(100000000,999999999);
         $task->title        = $data['title'];
         $task->from         = $data['from'];
         $task->from_lat     = $data['from_latlng']['lat'];

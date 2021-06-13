@@ -10,15 +10,16 @@ class Task extends Model
     use HasFactory;
 
     // Task Type
-    public const TASK_SIMPLE       = 'simple';
-    public const TASK_QUOTE        = 'quote';
+    public const TASK_SIMPLE       = 'Simple';
+    public const TASK_QUOTE        = 'Quote';
     
     // Task Request Status
-    public const  REQUEST_RECEIVED        = 'received';
-    public const  REQUEST_REVIEW          = 'review';
-    public const  REQUEST_ONLINE          = 'online';
-    public const  REQUEST_PROCESSING      = 'processing';
-    public const  REQUEST_COMPLETED       = 'completed';
+    public const  REQUEST_RECEIVED        = 'Received';
+    public const  REQUEST_REVIEW          = 'Review';
+    public const  REQUEST_ONLINE          = 'Online';
+    public const  REQUEST_PROCESSING      = 'Processing';
+    public const  REQUEST_ACCEPTED        = 'Accepted';
+    public const  REQUEST_COMPLETED       = 'Completed';
 
 
 
@@ -42,6 +43,17 @@ class Task extends Model
     public function vehicle(){
         return $this->belongsTo(Vehicle::class);
     }
+    public function acceptedOffer(){
+        return $this->belongsTo(TaskOffer::class,'offer_id');
+    }
+    public function order(){
+        return $this->hasOne(TaskOrder::class);
+    }
+
+    public function serviceCategory(){
+        return $this->belongsTo(ServiceCategory::class);
+    }
+
     public function deliveryTime(){
         return $this->belongsTo(DeliveryTime::class);
     }

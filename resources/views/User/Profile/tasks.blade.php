@@ -33,6 +33,27 @@
         transform: translate(50%,-50%);
     }
 
+    .order_id_coast h6 {
+      color: var(--white-color);
+      font-family: var(--montserrat-font);
+      font-size: 0.8rem;
+      background: var(--glodBG-color-ffb44a);
+      padding: 5px 11px;
+      border-radius: 20px;
+  }
+
+    .service-category-show {
+      border: 1px solid #000;
+      padding: 1px 5px;
+      border-radius: 5px;
+    }
+
+  li.no-offer-found {
+    list-style: none;
+      text-align: center;
+      font-size: 21px;
+  }
+
 </style>
 
   <!-- ============ Breadcrumb ============ -->
@@ -264,7 +285,7 @@
          <div class="profile_tab_title">
             <h2>My task</h2>
          </div>
-
+<!-- 
             <div class="row short_order">
                <div class="select_label">
                      <label for=" ">Sort orders</label>
@@ -278,7 +299,7 @@
                         <option value="Order 03">Order 03</option>
                      </select>
                </div>
-            </div>
+            </div> -->
 
 @forelse($tasks as $key => $value)
             <div class="order_number">
@@ -294,13 +315,17 @@
         @foreach($value as $task)
 
  <!-- @php var_dump($task);   @endphp    -->
-             {{--  @if($task->task_type == "simple")   --}}   
+             @if($task->request_status == "Processing") 
                 <div class="order_details_area mt-2">
                   <div class="order_details">
                       <div class="order_id_coast">
                             <!-- <h5>Order ID- <span class='id_num' ></span> </h5> -->
                             <h5>Task ID- <span class='id_num' >{{$task->task_id}}</span> </h5>
+
+                            @if($task->total_cost)
                             <p>Item cost- <span class='coast'>${{$task->total_cost}}</span> </p>
+                            @endif
+                            <p class="service-category-show">{{$task->serviceCategory->title}}</p>
                             <h6>{{$task->request_status}}</h6>
                             <!-- <h6>Proccessing</h6> -->
                       </div>
@@ -318,37 +343,54 @@
                       <!-- <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5> -->
                   </div>
                 </div>
-                {{--  @else --}}
+                @else
                <div class="order_details_area mt-2">
                      <div class="row">
                         <div class="col-md-2">
                            <div class="accept_offer_image">
-                                 <img src="{{asset('frontend')}}/assets/images/member/men_pic10_copy.jpg" alt="">
-                                 <h5>Kal M.</h5>
-                                 <h6><i class="fas fa-star"></i> <span>4.5</span> </h6>
+                                 <img src="{{$task->acceptedOffer->dropper->profile_image}}" alt="">
+                                 <h5>{{$task->acceptedOffer->dropper->last_name}}</h5>
+                                 <h6><i class="fas fa-star"></i> <span>{{$task->acceptedOffer->dropper->rating}}</span> </h6>
                            </div>
                         </div>
 
                         <div class="col-md-10">
                            <div class="order_details">
                                  <div class="order_id_coast">
-                                    <h5>Order ID- <span class='id_num' >251226566</span> </h5>
-                                    <p>Delivery charge- <span class='coast'>$26</span> </p>
-                                    <h6 class='accepted' >Accepted</h6>
+                                    <h5>Order ID- <span class='id_num' >{{$task->order->order_id}}</span> </h5>
+
+                                    <p>Delivery charge- <span class='coast'>${{$task->acceptedOffer->amount}}</span> </p>
+                                    <span class="service-category-show" style="
+                                      position: absolute;
+                                      top: 30%;
+                                      right: 32%;
+                                    ">{{$task->serviceCategory->title}}</span>
+                                        <h6 class='accepted' >{{$task->request_status}}</h6>
                                  </div>
 
+
+
+                              
+                           
+
                            </div>
+                         
                            <div class="view_order float-right">
                                  <button type="button" class="btn track_status" data-toggle="modal" data-target="#taskProcessModal">Track status</button>
                            </div>
                            <div class="order_track">
-                                 <p>Buy some groceries for me-</p>
-                                 <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5>
-                           </div>
+                              <p>{{$task->title}}-</p>
+                              <h5 class="add-comma-except">
+                                  @foreach($task->products as $product)
+                                      <span>{{$product->name}}({{$product->qty}}X)</span>
+                                  @endforeach
+                              </h5>
+                              <!-- <h5>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h5> -->
+                          </div>
                         </div>
                      </div>
                </div>
-              {{-- @endif --}}
+              @endif
         @endforeach
 
             </div>
@@ -386,7 +428,7 @@
          <div class="modal-body">
             <section class=" offer_main_area" >
                <ul class="offer_show_modal_ul">
-               
+                  
                </ul>
             </section>
          </div>
@@ -466,16 +508,26 @@ $(document).ready(function(){
                 
                 // empty the container
                 $('.offer_show_modal_ul').empty();
-              
-                data.offers.forEach(offer => {
+
+                if(data.offers.length <=0){
+
+                  let offerLi = '<li class="no-offer-found">No offer placed yet. Please try again later.</li>';
+                  $('.offer_show_modal_ul').append(offerLi);
+
+                }else{
+                  data.offers.forEach(offer => {
                     let offerLi = driverOfferItem(offer);
                     $('.offer_show_modal_ul').append(offerLi);
-                });      
+                  });   
+                }
+              
+          
 
                 $('#offer_show_modal').modal('toggle');
 							}
 						}
 		});
+    $('#offer_show_modal').modal('toggle');
 
 
     // $('#offer_show_modal').modal('toggle');

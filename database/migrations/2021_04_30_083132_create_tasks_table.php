@@ -37,7 +37,8 @@ class CreateTasksTable extends Migration
             // 1 = shop & drop, 2 = collect & delivery, 3 = movers
             $table->unsignedBigInteger('service_category_id');
             $table->unsignedBigInteger('vehicle_id')->nullable();
-            $table->unsignedBigInteger('dropper_id')->nullable();
+            $table->unsignedBigInteger('quote_dropper_id')->nullable();
+            $table->unsignedBigInteger('offer_id')->nullable();
             
             $table->enum('task_type', [
                 Task::TASK_SIMPLE,
@@ -48,8 +49,10 @@ class CreateTasksTable extends Migration
                 Task::REQUEST_RECEIVED,
                 Task::REQUEST_REVIEW,
                 Task::REQUEST_ONLINE,
+                Task::REQUEST_ACCEPTED,
                 Task::REQUEST_PROCESSING,
-            ])->default(Task::REQUEST_ONLINE);
+                Task::REQUEST_COMPLETED,
+            ])->default(Task::REQUEST_PROCESSING);
 
             $table->timestamps();
         });
