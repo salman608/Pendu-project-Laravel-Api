@@ -79,9 +79,9 @@
             <div class="blog-dat blog_content_date_cat ">
                 <ul>
                     <li style='list-style: none;'><a
-                            href="#">{{$single_post->serviceCategory->title}}</a></li>
+                            href="">{{$single_post->serviceCategory->title}}</a></li>
                     <li style='    margin-left: 34px;'><span><a
-                                href="#">{{$single_post->created_at->format('F j, Y')}}</a></span></li>
+                                href="">{{$single_post->created_at->format('F j, Y')}}</a></span></li>
                 </ul>
             </div>
         </div>
@@ -105,7 +105,7 @@
                     <span>Share:-</span>
                     <a href="#" class='twiter' id="twr-btn" target="_blank"> <i class="fab fa-twitter-square"></i></a>
                     <a href="#" class='fb' id="fb-btn" target="_blank"> <i class="fab fa-facebook-square"></i></a>
-                    <a href="#" class='ins' id="ins-btn" target="_blank"> <i class="fab fa-instagram-square"></i></a>
+                    {{-- <a href="#" class='ins' id="ins-btn" target="_blank"> <i class="fas fa-link"></i></a> --}}
                 </div>
             </div>
         </div>
@@ -132,8 +132,8 @@
                 <div class="blog-dat mt-4">
                     <ul>
                         <li style='list-style: none;'><a
-                                href="#">{{$v_post->serviceCategory->title}}</a></li>
-                        <li><span><a href="#">{{$v_post->created_at->format('F j, Y')}}</a></span></li>
+                                href="">{{$v_post->serviceCategory->title}}</a></li>
+                        <li><span><a href="">{{$v_post->created_at->format('F j, Y')}}</a></span></li>
                     </ul>
                 </div>
                 <div class="card-body blog_home_title">
