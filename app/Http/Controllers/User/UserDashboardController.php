@@ -28,7 +28,7 @@ class UserDashboardController extends Controller
             });
 
         // return $data['tasks'];
-        
+
 
         return view('user.profile.tasks', $data);
     }
@@ -71,7 +71,7 @@ class UserDashboardController extends Controller
         return view('user.profile.delivery');
     }
 
-    
+
 
     public function payment(){
         return view('user.profile.payment');

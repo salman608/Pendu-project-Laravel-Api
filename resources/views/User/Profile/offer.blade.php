@@ -93,7 +93,7 @@
                 <div class="bread_area">
                     <nav aria-label="breadcrumb bread_item">
                         <ol class="breadcrumb">
-                          <li class="breadcrumb-item"><a href="#">Home</a></li>
+                          <li class="breadcrumb-item"><a href="">Home</a></li>
                           <li class="breadcrumb-item active" aria-current="page">Library</li>
                         </ol>
                       </nav>
@@ -129,8 +129,8 @@
                             </div>
                             <div class="card-body promo">
                               <p class="card-text">{{Str::limit($offer->details,140)}}</p>
-                              <h4><i class="far fa-hourglass"></i> <span>Validity: {{$offer->created_at->format('j F')}}-{{$offer->updated_at->format('j F')}}</span></h4>
-                              <div class="row promo-details mt-4"><button href="{{route('user.offer-details',$offer->id)}}" id="detailsModal">View details</button><a href="{{route('user.offer-details',$offer->id)}}" id="detailsModal" class="btn btn-sm">Apply</a></div>
+                              <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->created_at->format('j F')}}-{{$offer->updated_at->format('j F')}}</span></h4>
+                              <div class="row promo-details mt-4"><button data-attr="{{route('user.offer-details',$offer->id)}}" data-toggle="modal" id="smallButton" data-target="#smallModal">View details</button><a  class="btn btn-sm text-white">Apply</a></div>
                             </div>
                           </div>
                       </div>
@@ -154,7 +154,7 @@
 
 
           <!-- Modal -->
-<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="background: #60e99c;">
@@ -172,7 +172,7 @@
             <div class="row mb-3">
                 <div class="col-md-7 ">
                      <p style="padding-bottom: 1px;">Promo</p>
-                     <h5 style="font-size: 20px;font-weight:500;margin-top: -15px">RENOVATION</h5>
+                     <h5 style="font-size: 20px;font-weight:500;margin-top: -15px">{{$offer->promo_code}}</h5>
                 </div>
                 <div class="col-md-5">
                      <p>Validity</p>
@@ -202,7 +202,33 @@
 
 @include("User.component.task_process")
 @include("User.payment.payment_release")
-
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script>
+      // display a modal (small modal)
+      $(document).on('click', '#smallButton', function(event) {
+            event.preventDefault();
+            let href = $(this).attr('data-attr');
+            $.ajax({
+                url: href,
+                beforeSend: function() {
+                    $('#loader').show();
+                },
+                // return the result
+                success: function(result) {
+                    $('#smallModal').modal("show");
+                    $('#smallBody').html(result).show();
+                },
+                complete: function() {
+                    $('#loader').hide();
+                },
+                error: function(jqXHR, testStatus, error) {
+                    console.log(error);
+                    alert("Page " + href + " cannot open. Error:" + error);
+                    $('#loader').hide();
+                },
+                timeout: 8000
+            })
+        });
+</script>
 @endsection
 
