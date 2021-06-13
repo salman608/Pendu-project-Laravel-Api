@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\Dropper;
 use App\Models\Task;
 use App\Models\TaskOffer;
+use App\Models\TaskOrder;
 use Auth;
 use Illuminate\Support\Facades\Request;
 
@@ -49,6 +50,16 @@ class UserDashboardController extends Controller
     public function TaskOfferJson($id){
         $offers =  TaskOffer::with(['dropper', 'dropper.vehicle'])->where('task_id',$id)->latest()->get();
         return response()->json(['offers' => $offers->toArray()]);
+    }
+
+    public function TaskOrderJson($orderId){
+
+        $taskOrder = TaskOrder::select('status')->where('order_id', $orderId)->first();
+
+        $orderStatuses = ['Assigned' => 0,'In Progress' => 1,'Collected' => 2, 'Delivered' => 3];
+
+        
+        return response()->json(['order_status' => $orderStatuses[$taskOrder->status] ]);
     }
 
     // ==============Promo offer===========

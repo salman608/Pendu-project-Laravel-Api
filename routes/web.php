@@ -10,6 +10,7 @@ use App\Http\Controllers\User\TaskController;
 use App\Http\Controllers\User\MoverController;
 use App\Models\Task;
 use App\Models\TaskOffer;
+use App\Models\TaskOrder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -45,37 +46,15 @@ Route::get('/hello', function(){
 
     // return url('/frontend/assets/images/Icons/');
 
-    $couponCode = '5z8UboDT';
+ 
+    // $orderID = 201437374;
 
-    $coupon = \App\Models\Coupon::where('promo_code', $couponCode);
+    // $taskOrder = TaskOrder::where('order_id', $orderID)->first();
+    // $taskOrder->update([
+    //     "status"=> TaskOrder::STATUS_DELIVERED,
+    // ]);
 
-    if (!$coupon->exists()) {
-        return response()->json(['status'=> false,'msg' => 'Invalid promo code.']);
-    }
-
-    // Auth User
-    $user = auth()->user();
-    $couponId = App\Models\Coupon::select('id as hello')->where('promo_code', $couponCode)->get();
-
-    // if ($user->appliedCoupons()->where('id', $couponId )->exists()) {
-    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);
-    // }
-
-    return $user->whereHas('appliedCoupons', function($c) use($couponCode){
-        $c->where('promo_code', $couponCode);
-    })->exists();
-    // appliedCoupons->where('promo_code', $couponCode );
-
-
-
-    // if ($user->appliedCoupons()->where('coupon_id', $couponId->id)) {
-    //     return response()->json(['status'=> false,'msg' => 'Promo code already used.']);
-    // }
-
-
-
-
-
+    // return $taskOrder;
 
 });
 
@@ -133,6 +112,8 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
     Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
+
+    Route::get('task_order_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOrderJson'])->name('task_order_json');
 
 
     Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
