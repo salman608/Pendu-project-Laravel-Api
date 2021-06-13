@@ -142,7 +142,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     // Checked........
 
-    Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index']);
+    Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('review');
     Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking'])->name('order_track');
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 

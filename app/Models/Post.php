@@ -21,4 +21,10 @@ class Post extends Model
     public function serviceCategory(){
         return $this->belongsTo(ServiceCategory::class);
     }
+
+
+    public function getFeturedImageAttribute($value)
+    {
+        return url('uploads/images/posts').'/'.$value;
+    }
 }

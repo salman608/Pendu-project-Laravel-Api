@@ -243,7 +243,7 @@
 
                         </div>
 
-                        <a class="btn btn-success mt-3 mb-3 button-review" href="{{ url('review') }}"  id="submitReview">Submit</a>
+                        <a class="btn btn-success mt-3 mb-3 button-review" href="{{ route('user.review') }}"  id="submitReview">Submit</a>
                     {{-- </form> --}}
                     </div>
 

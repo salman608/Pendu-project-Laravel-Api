@@ -22,7 +22,7 @@ class PostSeeder extends Seeder
             [
             'title' => 'Lorem ipsum dolor sit amet consectetur adipisicing elit',
             'service_category_id'=>'1',
-            'featured_image' => 'uploads/images/post/0m10E0522202112512760a8fe4f8abab.jpg',
+            'featured_image' => 'post1.jpg',
             'body'=>'Maxime mollitia,
              molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
@@ -37,7 +37,7 @@ class PostSeeder extends Seeder
             'title' => 'Provident similique accusantium nemo autem. Veritatis
             obcaecati tenetur iure eius ',
             'service_category_id'=>'2',
-            'featured_image' => 'uploads/images/post/02xJc0525202115300860ad1800ccb04.jpg',
+            'featured_image' => 'post2.jpg',
             'body'=>'Maxime mollitia,
              molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
@@ -52,7 +52,7 @@ class PostSeeder extends Seeder
            [
             'title' => 'In publishing and graphic design, Lorem ipsum ',
             'service_category_id'=>'3',
-            'featured_image' => 'uploads/images/post/6Yu3Q0526202103322060adc14412293.jpg',
+            'featured_image' => 'post3.jpg',
             'body'=>'Maxime mollitia,
              molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium
@@ -66,7 +66,7 @@ class PostSeeder extends Seeder
            [
             'title' => 'graphic design, Lorem ipsum In publishing and  ',
             'service_category_id'=>'3',
-            'featured_image' => 'uploads/images/post/6Yu3Q0526202103322060adc14412293.jpg',
+            'featured_image' => 'post4.jpg',
             'body'=>'Maxime mollitia,
             Impedit sit sunt quaerat molestiae quas vel sint commodi repudiandae consequuntur voluptatum laborum
              numquam blanditiis harum quisquam eius sed odit fugiat iusto fuga praesentium

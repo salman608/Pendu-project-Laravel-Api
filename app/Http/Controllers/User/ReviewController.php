@@ -15,12 +15,12 @@ class ReviewController extends Controller
      */
     public function index()
     {
-        return view("User.review.review");
+        return view("user.review.review");
     }
 
     public function sent()
     {
-        return view("User.review.review_sent");
+        return view("user.review.review_sent");
     }
 
 
