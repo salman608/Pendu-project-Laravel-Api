@@ -110,6 +110,37 @@ input::-webkit-inner-spin-button {
 input:disabled{
     background-color:white;
 }
+
+
+
+
+output {
+  position: absolute;
+  background-image: linear-gradient(#444444, #999999);
+  width: 40px;
+  height: 30px;
+  text-align: center;
+  color: white;
+  border-radius: 10px;
+  display: inline-block;
+  font: bold 15px/30px Georgia;
+  bottom: 175%;
+  left: 0;
+}
+output:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #999999;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
+}
+form { position: relative; margin: 50px; width: 1200px; }
 </style>
 
 <!-- ------  login Modal ----- -->
@@ -1338,6 +1369,15 @@ input:disabled{
                     </div>
 
                     <p class='more_way' >More way to invite</p>
+
+
+                    <form>
+                        <input type="range" name="foo" min="0" max="100">
+                        <output for="foo" onforminput="value = foo.valueAsNumber;"></output>
+                        </form>
+
+
+
                     <div class="section_tooltipss">
 
 
@@ -1712,6 +1752,54 @@ $(document).on('click','.drinkcard-cc',function(){
     let inputCar = $(this).find("input");
     inputCar.prop( "checked", true );
 });
+
+
+
+
+
+
+function modifyOffset() {
+  var el, newPoint, newPlace, offset, siblings, k;
+  width    = this.offsetWidth;
+  newPoint = (this.value - this.getAttribute("min")) / (this.getAttribute("max") - this.getAttribute("min"));
+  offset   = -1;
+  if (newPoint < 0) { newPlace = 0;  }
+  else if (newPoint > 1) { newPlace = width; }
+  else { newPlace = width * newPoint + offset; offset -= newPoint;}
+  siblings = this.parentNode.childNodes;
+  for (var i = 0; i < siblings.length; i++) {
+    sibling = siblings[i];
+    if (sibling.id == this.id) { k = true; }
+    if ((k == true) && (sibling.nodeName == "OUTPUT")) {
+      outputTag = sibling;
+    }
+  }
+  outputTag.style.left       = newPlace + "px";
+  outputTag.style.marginLeft = offset + "%";
+  outputTag.innerHTML        = this.value;
+}
+
+function modifyInputs() {
+
+  var inputs = document.getElementsByTagName("input");
+  for (var i = 0; i < inputs.length; i++) {
+    if (inputs[i].getAttribute("type") == "range") {
+      inputs[i].onchange = modifyOffset;
+
+      // the following taken from http://stackoverflow.com/questions/2856513/trigger-onchange-event-manually
+      if ("fireEvent" in inputs[i]) {
+          inputs[i].fireEvent("onchange");
+      } else {
+          var evt = document.createEvent("HTMLEvents");
+          evt.initEvent("change", false, true);
+          inputs[i].dispatchEvent(evt);
+      }
+    }
+  }
+}
+
+modifyInputs();
+
 </script>
 
 @endsection

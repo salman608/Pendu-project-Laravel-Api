@@ -1,7 +1,7 @@
 @extends('User.Asset')
 @section('user_content')
 <style>
-  
+
 .add-comma-except span:after {
     content: ", ";
 }
@@ -43,9 +43,8 @@
   }
 
     .service-category-show {
-      border: 1px solid #000;
-      padding: 1px 5px;
-      border-radius: 5px;
+      font-weight: bold;
+      color: #60e99c !important;
     }
 
   li.no-offer-found {
@@ -75,7 +74,7 @@
 </section>
 
 <section style="position: relative;">
-  
+
 
 
 
@@ -285,7 +284,7 @@
          <div class="profile_tab_title">
             <h2>My task</h2>
          </div>
-<!-- 
+<!--
             <div class="row short_order">
                <div class="select_label">
                      <label for=" ">Sort orders</label>
@@ -315,7 +314,7 @@
         @foreach($value as $task)
 
  <!-- @php var_dump($task);   @endphp    -->
-             @if($task->request_status == "Processing") 
+             @if($task->request_status == "Processing")
                 <div class="order_details_area mt-2">
                   <div class="order_details">
                       <div class="order_id_coast">
@@ -370,11 +369,11 @@
 
 
 
-                              
-                           
+
+
 
                            </div>
-                         
+
                            <div class="view_order float-right">
                                  <button type="button" class="btn track_status" data-toggle="modal" data-target="#taskProcessModal">Track status</button>
                            </div>
@@ -428,7 +427,7 @@
          <div class="modal-body">
             <section class=" offer_main_area" >
                <ul class="offer_show_modal_ul">
-                  
+
                </ul>
             </section>
          </div>
@@ -449,7 +448,7 @@ $(document).ready(function(){
 
   function driverOfferItem(offerData){
 
-  
+
       let url = '{{ route("user.payment", ["offerId" => ":offerId", "taskId" => ":taskId"]) }}';
       url = url.replace(':offerId', offerData['id']);
       url = url.replace(':taskId', offerData['task_id']);
@@ -471,7 +470,7 @@ $(document).ready(function(){
       offerItem += '</div>';
       // offerItem += '<span class="close1 offer_close">&times;</span>';
       offerItem += '</li>';
-                      
+
       return offerItem;
 
   };
@@ -505,7 +504,7 @@ $(document).ready(function(){
 						dataType: "JSON",
 						success: function(data){
 							if($.isEmptyObject(data) != null){
-                
+
                 // empty the container
                 $('.offer_show_modal_ul').empty();
 
@@ -518,10 +517,10 @@ $(document).ready(function(){
                   data.offers.forEach(offer => {
                     let offerLi = driverOfferItem(offer);
                     $('.offer_show_modal_ul').append(offerLi);
-                  });   
+                  });
                 }
-              
-          
+
+
 
                 $('#offer_show_modal').modal('toggle');
 							}

@@ -65,6 +65,33 @@
 	background: #0eca46;
 }
 
+/* .range-wrap {
+  position: relative;
+  margin: 0 auto 3rem;
+} */
+.range {
+    width: 38%;
+    margin-left: 162px;
+    margin-top: -21px;
+}
+/* .bubble {
+  background: red;
+  color: white;
+  padding: 4px 12px;
+  position: absolute;
+  border-radius: 4px;
+  left: 50%;
+  transform: translateX(-50%);
+} */
+/* .bubble::after {
+  content: "";
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: red;
+  top: -1px;
+  left: 50%;
+} */
 
 
 </style>
@@ -205,9 +232,9 @@
                                 <input type="radio" id="star1" name="rate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                               </div>
-                              <div class="accurancy" style="margin: auto;">
-                                  <label class="accurancy-lebel" for="" style="font-size: 13px">Order accurancy</label>
-                                  <input type="range" class="form-range">
+                              <div class="accurancy" style="margin: auto;margin-left: 77px;">
+                                  <label class="accurancy-lebel" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
+                                    <input type="range" class="range">
                               </div>
                               <div class="text-review">
                                   <textarea class="form-control input-group-lg bg-input-orange" name="" id="" cols="36" rows="4" placeholder="Write your experience here"></textarea>
@@ -225,7 +252,7 @@
 
 {{-- </div> --}}
 
-
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
     $('#releasePaymentId').click(function() {
         $('#taskProcessModal').modal('hide');
@@ -235,5 +262,28 @@
     $('#taskProcessModal').click(function() {
        $('#paymentConfirmModalId').modal('hide');
    });
+
+   const allRanges = document.querySelectorAll(".range-wrap");
+allRanges.forEach(wrap => {
+  const range = wrap.querySelector(".range");
+  const bubble = wrap.querySelector(".bubble");
+
+  range.addEventListener("input", () => {
+    setBubble(range, bubble);
+  });
+  setBubble(range, bubble);
+});
+
+function setBubble(range, bubble) {
+  const val = range.value;
+  const min = range.min ? range.min : 0;
+  const max = range.max ? range.max : 100;
+  const newVal = Number(((val - min) * 100) / (max - min));
+  bubble.innerHTML = val;
+
+  // Sorta magic numbers based on size of the native UI thumb
+  bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+}
+ }
 </script>
 
