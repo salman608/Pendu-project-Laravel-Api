@@ -65,12 +65,16 @@ class UserDashboardController extends Controller
     // ==============Promo offer===========
 
     public function promoOffer(){
-        $offers=Coupon::latest()->get();
+
+
+        $offers=Coupon::with(['appliedCoupons'])->latest()->get();
+
         return view('user.profile.offer',compact('offers'));
     }
 
     public function offerDetailsJson($id){
         $offerDetails=Coupon::find($id);
+
         return response()->json(['offerDetails' => $offerDetails]);
     }
 
