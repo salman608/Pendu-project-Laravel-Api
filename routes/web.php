@@ -118,9 +118,12 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::post('review-submit/', [App\Http\Controllers\User\ReviewController::class, 'reviewSubmit'])->name('review_submit');
 
 
-
+    // Offers
     Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
-    Route::get('offers/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'offerDetails'])->name('offer-details');
+    Route::get('offers/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'offerDetailsJson'])->name('offer-details');
+
+
+
     Route::get('history', [App\Http\Controllers\User\UserDashboardController::class, 'history'])->name('history');
     Route::get('delivery', [App\Http\Controllers\User\UserDashboardController::class, 'delivery'])->name('delivery');
 

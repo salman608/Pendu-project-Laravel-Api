@@ -119,7 +119,7 @@
              </div>
             <div class="container profile_tab_main_area">
                 <div class="row mt-5">
-                    @foreach ($offers as $offer)
+                    @forelse ($offers as $offer)
                     <div class="col-md-4 promo-card">
                         <div class="card " style="border-radius: 10px;">
                             <div class="card-header promo-chead">
@@ -128,15 +128,22 @@
                                 <h5 style="font-size: 20px;color:white;" >{{$offer->discount_percentage}}% off</h5>
                             </div>
                             <div class="card-body promo">
+                                {{-- isoFormat('MMM Do YY')  --}}
+                                {{-- ->format('j F') --}}
                               <p class="card-text">{{Str::limit($offer->details,140)}}</p>
-                              <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->created_at->format('j F')}}-{{$offer->updated_at->format('j F')}}</span></h4>
+                              <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->started_at->format('j M')}}-{{$offer->expired_at->format('j M')}}</span></h4>
                               <div class="row promo-details mt-4">
                                 <button id="show-offer" data-toggle="modal" data-id="{{ $offer->id }}">View details</button>
                                 <a class="btn btn-sm text-white">Apply</a></div>
                             </div>
                           </div>
                       </div>
-                    @endforeach
+                    @empty
+                        <div class="col-md-12 promo-card">
+                            <h4>No offer found. Check again later.</h4>
+                      </div>
+                    @endforelse
+
                   {{-- <div class="col-md-4">
                     <div class="card promo-card">
                         <div class="card-header promo-chead">
@@ -174,7 +181,7 @@
             <div class="row mb-3">
                 <div class="col-md-7 ">
                      <p style="padding-bottom: 1px;">Promo</p>
-                     <h5 style="font-size: 20px;font-weight:500;margin-top: -15px">{{$offer->promo_code}}</h5>
+                     <h5 style="font-size: 20px;font-weight:500;margin-top: -15px"></h5>
                 </div>
                 <div class="col-md-5">
                      <p>Validity</p>

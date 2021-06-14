@@ -10,4 +10,9 @@ class Coupon extends Model
     use HasFactory;
 
     protected $guarded = [];
+
+    protected $dates = [
+        'started_at','expired_at'
+    ];
+
 }

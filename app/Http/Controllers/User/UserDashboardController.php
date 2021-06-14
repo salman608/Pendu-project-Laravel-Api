@@ -69,7 +69,7 @@ class UserDashboardController extends Controller
         return view('user.profile.offer',compact('offers'));
     }
 
-    public function offerDetails($id){
+    public function offerDetailsJson($id){
         $offerDetails=Coupon::find($id);
         return response()->json(['offerDetails' => $offerDetails]);
     }
