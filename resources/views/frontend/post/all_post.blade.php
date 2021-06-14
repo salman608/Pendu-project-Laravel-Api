@@ -126,13 +126,14 @@
 
         </div>
         @endforeach
+    </div>
 
-        <!-- ---------- pagination section ------------ -->
-        <div class="pagination_section mt-3">
+      <!-- ---------- pagination section ------------ -->
+         {{-- <div class="pagination_section mt-3">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end" style="margin:20px 0">
-                    {{ $all_post->links()}}
-                    {{-- <li class="page-item">
+
+                    <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                             <span class="sr-only">Previous</span>
@@ -146,10 +147,10 @@
                         </a>
                     </li>
 
-                    <li class="page-item active"><a class="page-link" href="#"> </a></li> --}}
-                    {{-- <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li> --}}
-                    {{-- <li class="page-item">
+                    <li class="page-item active"><a class="page-link" href="#">1 </a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                  <li class="page-item">
                         <a class="page-link left_icon_pagi" href="#" aria-label="Previous">
                             <i class="fas fa-chevron-right"></i>
 
@@ -160,11 +161,12 @@
                             <span aria-hidden="true">&raquo;</span>
                             <span class="sr-only">Next</span>
                         </a>
-                    </li> --}}
+                    </li>
                 </ul>
             </nav>
-        </div>
-    </div>
+        </div> --}}
+ {{ $all_post->links('vendor.pagination.custom')}}
+
 
 </div>
 

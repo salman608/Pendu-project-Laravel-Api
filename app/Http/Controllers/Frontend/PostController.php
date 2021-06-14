@@ -11,7 +11,7 @@ class PostController extends Controller
     public function allPost(){
         $posts     = Post::inRandomOrder()->where('status', 1)->latest()->take(1)->get();
         $side_post = Post::inRandomOrder()->where('status', 1)->latest()->take(3)->get();
-        $all_post = Post::where('status', 1)->latest()->paginate(3);
+        $all_post = Post::where('status', 1)->latest()->paginate(1);
         return view('frontend.post.all_post',compact('posts','side_post','all_post'));
     }
 
