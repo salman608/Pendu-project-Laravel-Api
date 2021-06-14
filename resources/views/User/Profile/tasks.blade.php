@@ -55,7 +55,7 @@
 
 </style>
 
-{{-- Payment Release Modal --}}
+{{--  Task StatusModal --}}
 <style>
   .track-row{
       margin-top: -217px;
@@ -122,7 +122,6 @@
   }
   
 </style>
-  
   
 
   <!-- ============ Breadcrumb ============ -->
@@ -499,8 +498,6 @@
 
 
 {{-- User.component.task_process --}}
-
-{{-- payment confirm modal --}}
 <div class="modal fade" id="taskProcessModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -754,9 +751,6 @@
 
 
 
-
-
-
 @include("User.payment.payment_release")
 
 
@@ -861,7 +855,7 @@ $(document).ready(function(){
 
 
 
-    let orderId = $(this).attr("data-id");
+    window.orderId = $(this).attr("data-id");
 
     $('#show-order-id').text("ID#"+orderId);
 

@@ -215,7 +215,9 @@
 
                     </svg>
 
-                    {{-- <form action=""> --}}
+                    <form action="{{ route('user.review_submit') }}" id="submitReviewForm" method="POST">
+
+                      @csrf
                     <div class="row review-row">
 
 
@@ -234,17 +236,17 @@
                               </div>
                               <div class="accurancy" style="margin: auto;margin-left: 77px;">
                                   <label class="accurancy-lebel" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
-                                    <input type="range" class="range">
+                                    <input type="range" name="range" class="range">
                               </div>
                               <div class="text-review">
-                                  <textarea class="form-control input-group-lg bg-input-orange" name="" id="" cols="36" rows="4" placeholder="Write your experience here"></textarea>
+                                  <textarea class="form-control input-group-lg bg-input-orange" name="experience" id="" cols="36" rows="4" placeholder="Write your experience here"></textarea>
                               </div>
                               <br>
 
                         </div>
 
-                        <a class="btn btn-success mt-3 mb-3 button-review" href="{{ route('user.review') }}"  id="submitReview">Submit</a>
-                    {{-- </form> --}}
+                        <button class="btn btn-success mt-3 mb-3 button-review"   id="submitReview">Submit</button>
+                    </form>
                     </div>
 
             </div>
@@ -255,35 +257,64 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
     $('#releasePaymentId').click(function() {
+
         $('#taskProcessModal').modal('hide');
     })
+</script>
+
+// Review Submission
+<script>
+   $('#submitReview').click(function() {
+        event.preventDefault();
+
+        // submitReviewForm
+        let form = document.getElementById('submitReviewForm');
+
+        // Add Task Order ID
+        var hiddenProductsInput = document.createElement('input');
+        hiddenProductsInput.setAttribute('type', 'hidden');
+        hiddenProductsInput.setAttribute('name', 'task_order_id');
+        hiddenProductsInput.setAttribute('value', window.orderId);
+        form.appendChild(hiddenProductsInput);
+
+        // Submit the form
+        form.submit();
+    });
+
 </script>
 <script>
     $('#taskProcessModal').click(function() {
        $('#paymentConfirmModalId').modal('hide');
    });
 
-   const allRanges = document.querySelectorAll(".range-wrap");
-allRanges.forEach(wrap => {
-  const range = wrap.querySelector(".range");
-  const bubble = wrap.querySelector(".bubble");
 
-  range.addEventListener("input", () => {
-    setBubble(range, bubble);
-  });
-  setBubble(range, bubble);
-});
 
-function setBubble(range, bubble) {
-  const val = range.value;
-  const min = range.min ? range.min : 0;
-  const max = range.max ? range.max : 100;
-  const newVal = Number(((val - min) * 100) / (max - min));
-  bubble.innerHTML = val;
 
-  // Sorta magic numbers based on size of the native UI thumb
-  bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-}
- }
+
+   
+
+    const allRanges = document.querySelectorAll(".range-wrap");
+    allRanges.forEach(wrap => {
+      const range = wrap.querySelector(".range");
+      const bubble = wrap.querySelector(".bubble");
+
+      range.addEventListener("input", () => {
+        setBubble(range, bubble);
+      });
+      setBubble(range, bubble);
+    });
+
+    function setBubble(range, bubble) {
+      const val = range.value;
+      const min = range.min ? range.min : 0;
+      const max = range.max ? range.max : 100;
+      const newVal = Number(((val - min) * 100) / (max - min));
+      bubble.innerHTML = val;
+
+      // Sorta magic numbers based on size of the native UI thumb
+      bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+    }
+ 
+
 </script>
 

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\TaskOrder;
+use App\Models\TaskOrderReview;
+use App\Models\TaskOrderTip;
 use Illuminate\Http\Request;
-use App\Models\Quote;
 
 class ReviewController extends Controller
 {
@@ -13,9 +15,9 @@ class ReviewController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        return view("user.review.review");
+    public function index($orderId)
+    {   
+        return view("user.review.review", ['orderId' => $orderId]);
     }
 
     public function sent()
@@ -24,95 +26,39 @@ class ReviewController extends Controller
     }
 
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
     public function orderTraking(){
         return view('User.review.track_order');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $req)
-    {
-        $req->validate([
-            'categories' => 'required',
-            'product' => 'required',
-            'product_cost' => 'required',
-            'pick_address' => 'required',
-            'delivery_address' => 'required',
-            'delivery_fee' => 'required',
-            'driver_id' => 'required',
+    public function reviewSubmit(Request $request){
+
+        $taskOrder = TaskOrder::where('order_id', $request->task_order_id)->first();
 
 
-        ]);
+        $orderReview = new TaskOrderReview();
+        $orderReview->task_order_id = $taskOrder->id;
+        $orderReview->review_by = $request->user()->id;
+        $orderReview->rating = $request->rate;
+        $orderReview->accuracy = $request->range;
+        $orderReview->review = $request->experience;
 
-        Quote::create([
-            'categories' => $req->categories,
-            'product' => $req->product,
-            'product_cost' => $req->product_cost,
-            'pick_address' => $req->pick_address,
-            'delivery_address' => $req->delivery_address,
-            'delivery_fee' => $req->delivery_fee,
-            'driver_id' => $req->driver_id,
-        ]);
+        $orderReview->save();
 
-        return back();
+
+        return redirect()->route('user.order-tips', ['orderId' => $request->task_order_id]);
+
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+    public function sumbitTips(Request $request, $orderId){
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
+        // return $request->all();
+        // $orderTip = new TaskOrderTip();
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+        // $orderTip->tip_amount = $request->tips_amount;
+        // $orderTip->task_order_id = $orderId;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        // $orderTip->save();
+
+        // redirect()
     }
 }

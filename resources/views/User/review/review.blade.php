@@ -128,6 +128,10 @@
    .tooltip22 {
        padding-left: 20px;
     }
+
+    .trips-success-show{
+        display: none;
+    }
 </style>
 <section class="">
     <div style="height: 120px; background: #5bdb98"></div>
@@ -232,19 +236,21 @@
                 <p>Review sent successfully!</p>
             </div>
 
-            <div class="col-md-12 col-sm-12 col-lg-12 text-center border-top pt-2" style="font-family: Montserrat;
-            font-weight: 600;
-            font-size: 20px;
-            color: #60e99c;
-            ">
+            <div class="trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center border-top pt-2" 
+                style="font-family: Montserrat;
+                font-weight: 600;
+                font-size: 20px;
+                color: #60e99c;
+                ">
                 <p>Want to give a tip!</p>
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class=" trips-success-hide  col-md-12 col-sm-12 col-lg-12">
                 <div class="row text-center">
-
+                    <form style="display: flex;" id="order-tips-form" action="{{route('user.order-tips', $orderId)}}" method="POST">
+                        @csrf
                     <div class="pr-2" style=" margin-left: 394px;">
                         <label>
-                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <input type="radio" name="tips_amount" id="" value="5" checked>
                             <div>
                                 <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$5</label>
                             </div>
@@ -252,7 +258,7 @@
                     </div>
                     <div class="pr-2">
                         <label>
-                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <input type="radio" name="tips_amount" id="" value="10" checked>
                             <div>
                                 <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$10</label>
                             </div>
@@ -260,7 +266,7 @@
                     </div>
                     <div class="pr-2">
                         <label>
-                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <input type="radio" name="tips_amount" id="" value="15" checked>
                             <div>
                                 <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$15</label>
                             </div>
@@ -268,21 +274,13 @@
                     </div>
                     <div class="pr-2">
                         <label>
-                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
+                            <input type="radio" name="tips_amount" id="" value="20" checked>
                             <div>
-                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$25</label>
+                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$20</label>
                             </div>
                         </label>
                     </div>
-                    {{-- <div class="pr-2">
-                        <label>
-                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
-                            <div>
-                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$5</label>
-                            </div>
-                        </label>
-                    </div> --}}
-
+                </form>
             </div>
 
 
@@ -311,18 +309,26 @@
                 </svg> --}}
             </div>
 
-            <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-4">
+            <div  class=" trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center mt-4">
                 <svg xmlns="http://www.w3.org/2000/svg" width="410" height="45" viewBox="0 0 410 45">
                     <g id="Group_3158" data-name="Group 3158" transform="translate(7410 -2859)">
                     <rect id="Rectangle_4311" data-name="Rectangle 4311" width="194" height="45" rx="5" transform="translate(-7410 2859)" fill="#ffebcf"/>
-                    <rect id="Rectangle_4508" data-name="Rectangle 4508" width="194" height="45" rx="5" transform="translate(-7194 2859)" fill="#e7f8ef"/>
+                    <rect style="cursor: pointer" id="Rectangle_4508" data-name="Rectangle 4508" width="194" height="45" rx="5" transform="translate(-7194 2859)" fill="#e7f8ef"/>
+
+                    <a href="{{ route('user.dashboard')}}">
                     <text id="Not_now" data-name="Not now" transform="translate(-7313 2887)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-30.57" y="0">Not now</tspan></text>
-                    <a href="{{ url('review_sent') }}">
+                    </a>
+
+                    <a style="cursor: pointer"  id="submit-order-tips">
                         <text id="Confirm" transform="translate(-7097 2887)" fill="#60e99c" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-28.281" y="0">Confirm</tspan></text>
                     </a>
                     </g>
                 </svg>
             </div>
+            <div  class=" trips-success-show col-md-12 col-sm-12 col-lg-12 text-center mt-4">
+                <h1 style="color: #60e99c">Congratulations.</h1>
+            </div>
+
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-5" style="font-family: Montserrat;
             font-size: 11px;
             color: #90a0b2;
@@ -401,7 +407,167 @@
         </div>
     </div>
 </section>
+
+
+
+{{-- payment method transaction modal --}}
+<div class="modal fade" id="paymentMethodTransaction" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+
+            <div style="background: #60e99c;height: 8px;">
+                <div class="modal-header">
+
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
+                    </button>
+                </div>
+            </div>
+       
+            <div class="d-flex justify-content-center">
+                <h5 class="payment-done">Stripe</h5>
+            </div>
+            
+            <div class="" style="padding: 25px;">
+            <form action="" method="post" id="payment-form">
+
+                <div class="row form-group">
+                        <div class="col-md-12">
+                            <!-- Display errors returned by createToken -->
+                            <label>Card Number</label>
+                            <div id="paymentResponse" class="text-danger font-italic"></div>
+                            <div id="card_number" class="field form-control"></div>
+                        </div>
+                    </div>
+                    <div class="row form-group d-flex justify-content-center">
+                        <div class="col-md-3">
+                            <label>Expiry Date</label>
+                            <div id="card_expiry" class="field form-control"></div>
+                        </div>
+                        <div class="col-md-3">
+                            <label>CVC Code</label>
+                            <div id="card_cvc" class="field form-control"></div>
+                        </div>
+                    </div>
+
+                    <div class="row form-group d-flex justify-content-center">
+                        <div class="col-md-6">
+                            <input type="submit" style="width: 200px;" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
+                        </div>
+                    </div>
+
+
+                <!-- Used to display Element errors. -->
+                <div id="card-errors" style="color: red;" role="alert"></div>
+                @csrf
+                </form>
+
+
+            </div>
+            <br><br>
+        </div>
+    </div>
+</div>
+
+
 <script>
+    $('#Rectangle_4508, #submit-order-tips').click(function(){
+
+        // alert('Hello');
+
+        let form = document.getElementById('order-tips-form');
+        // form.submit();
+        $('#paymentMethodTransaction').modal('show');
+
+    });
+</script>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+
+    var stripe = Stripe('{{ env("STRIPE_KEY") }}');
+    var elements = stripe.elements();
+
+
+    var style = {
+        base: {
+            fontWeight: 400,
+            fontFamily: '"DM Sans", Roboto, Open Sans, Segoe UI, sans-serif',
+            fontSize: '16px',
+            lineHeight: '1.4',
+            color: '#1b1642',
+            padding: '.75rem 1.25rem',
+            '::placeholder': {
+                color: '#ccc',
+            },
+        },
+        invalid: {
+            color: '#dc3545',
+        }
+    };
+
+    var cardElement = elements.create('cardNumber', {
+        style: style
+    });
+    cardElement.mount('#card_number');
+
+
+
+    var exp = elements.create('cardExpiry', {
+        'style': style
+    });
+    exp.mount('#card_expiry');
+
+    var cvc = elements.create('cardCvc', {
+        'style': style
+    });
+    cvc.mount('#card_cvc');
+
+
+
+    
+    // Create a token or display an error when the form is submitted.
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        stripe.createToken(cardElement ).then(function(result) {
+            if (result.error) {
+                // Inform the customer that there was an error.
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
+            } else {
+                // Send the token to your server.
+                stripeTokenHandler(result.token);
+            }
+        });
+    });
+
+
+    function stripeTokenHandler(token) {
+        // Insert the token ID into the form so it gets submitted to the server
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
+
+        // Submit the form
+        // form.submit();
+
+        $('.trips-success-hide').css('display','none');
+        $('.trips-success-show').css('display','block');
+
+        $('#paymentMethodTransaction').modal('hide');
+        // $('#paymentConfirmModalId').modal('show');
+    }
+    
+
+
+
+</script>
+
 
 
 @endsection

@@ -47,14 +47,14 @@ Route::get('/hello', function(){
     // return url('/frontend/assets/images/Icons/');
 
  
-    // $orderID = 201437374;
+    $orderID = 523590133;
 
-    // $taskOrder = TaskOrder::where('order_id', $orderID)->first();
-    // $taskOrder->update([
-    //     "status"=> TaskOrder::STATUS_DELIVERED,
-    // ]);
+    $taskOrder = TaskOrder::where('order_id', $orderID)->first();
+    $taskOrder->update([
+        "status"=> TaskOrder::STATUS_DELIVERED,
+    ]);
 
-    // return $taskOrder;
+    return TaskOrder::STATUS_DELIVERED;
 
 });
 
@@ -115,6 +115,9 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     Route::get('task_order_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOrderJson'])->name('task_order_json');
 
+    Route::post('review-submit/', [App\Http\Controllers\User\ReviewController::class, 'reviewSubmit'])->name('review_submit');
+
+
 
     Route::get('offers', [App\Http\Controllers\User\UserDashboardController::class, 'promoOffer'])->name('promo-offer');
     Route::get('offers/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'offerDetails'])->name('offer-details');
@@ -138,11 +141,12 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'checkOutProcess'])->name('payment-process');
 
 
-
-
     // Checked........
 
-    Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('review');
+    // Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('review');
+    Route::get('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('order-tips');
+    Route::post('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'sumbitTips']);
+
     Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking'])->name('order_track');
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 
