@@ -130,7 +130,9 @@
                             <div class="card-body promo">
                               <p class="card-text">{{Str::limit($offer->details,140)}}</p>
                               <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->created_at->format('j F')}}-{{$offer->updated_at->format('j F')}}</span></h4>
-                              <div class="row promo-details mt-4"><button data-attr="{{route('user.offer-details',$offer->id)}}" data-toggle="modal" id="smallButton" data-target="#smallModal">View details</button><a  class="btn btn-sm text-white">Apply</a></div>
+                              <div class="row promo-details mt-4">
+                                <button id="show-offer" data-toggle="modal" data-id="{{ $offer->id }}">View details</button>
+                                <a class="btn btn-sm text-white">Apply</a></div>
                             </div>
                           </div>
                       </div>
@@ -204,31 +206,10 @@
 @include("User.payment.payment_release")
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
-      // display a modal (small modal)
-      $(document).on('click', '#smallButton', function(event) {
-            event.preventDefault();
-            let href = $(this).attr('data-attr');
-            $.ajax({
-                url: href,
-                beforeSend: function() {
-                    $('#loader').show();
-                },
-                // return the result
-                success: function(result) {
-                    $('#smallModal').modal("show");
-                    $('#smallBody').html(result).show();
-                },
-                complete: function() {
-                    $('#loader').hide();
-                },
-                error: function(jqXHR, testStatus, error) {
-                    console.log(error);
-                    alert("Page " + href + " cannot open. Error:" + error);
-                    $('#loader').hide();
-                },
-                timeout: 8000
-            })
-        });
+    $('body').on('click', '#show-offer', function() {
+        // $('#customerCrudModal-show').html("Customer Details");
+        $('#smallModal').modal('show');
+    });
 </script>
 @endsection
 

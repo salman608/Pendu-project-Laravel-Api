@@ -126,12 +126,13 @@
 
         </div>
         @endforeach
+    </div>
 
-        <!-- ---------- pagination section ------------ -->
-        <div class="pagination_section mt-3">
+      <!-- ---------- pagination section ------------ -->
+         {{-- <div class="pagination_section mt-3">
             <nav aria-label="Page navigation example">
                 <ul class="pagination justify-content-end" style="margin:20px 0">
-                    {{-- {{ $all_post->links()}} --}}
+
                     <li class="page-item">
                         <a class="page-link" href="#" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
@@ -163,8 +164,9 @@
                     </li>
                 </ul>
             </nav>
-        </div>
-    </div>
+        </div> --}}
+ {{ $all_post->links('vendor.pagination.custom')}}
+
 
 </div>
 

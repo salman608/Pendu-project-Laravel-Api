@@ -274,41 +274,13 @@
                             </div>
                         </label>
                     </div>
-                    {{-- <div class="pr-2">
-                        <label>
-                            <input type="radio" name="delivery_time" id="" value="ASAP" checked>
-                            <div>
-                                <label class="radio-btn-text" style="margin-top: 16px;" for="asap">$5</label>
-                            </div>
-                        </label>
-                    </div> --}}
 
             </div>
 
 
 
 
-                {{-- <svg xmlns="http://www.w3.org/2000/svg" width="336" height="50" viewBox="0 0 336 50">
-                    <g id="Group_2866" data-name="Group 2866" transform="translate(-22048 -2195)">
-                    <rect id="Rectangle_4307" data-name="Rectangle 4307" width="72" height="50" rx="5" transform="translate(22048 2195)" fill="#ffebcf"/>
-                    <g id="Rectangle_4308" data-name="Rectangle 4308" transform="translate(22136 2195)" fill="none" stroke="#90a0b2" stroke-width="1">
-                        <rect width="72" height="50" rx="5" stroke="none"/>
-                        <rect x="0.5" y="0.5" width="71" height="49" rx="4.5" fill="none"/>
-                    </g>
-                    <g id="Rectangle_4309" data-name="Rectangle 4309" transform="translate(22224 2195)" fill="none" stroke="#90a0b2" stroke-width="1">
-                        <rect width="72" height="50" rx="5" stroke="none"/>
-                        <rect x="0.5" y="0.5" width="71" height="49" rx="4.5" fill="none"/>
-                    </g>
-                    <g id="Rectangle_4310" data-name="Rectangle 4310" transform="translate(22312 2195)" fill="none" stroke="#90a0b2" stroke-width="1">
-                        <rect width="72" height="50" rx="5" stroke="none"/>
-                        <rect x="0.5" y="0.5" width="71" height="49" rx="4.5" fill="none"/>
-                    </g>
-                    <text id="_5" data-name="$5" transform="translate(22080 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-8.625" y="0">$5</tspan></text>
-                    <text id="_10" data-name="$10" transform="translate(22173 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$10</tspan></text>
-                    <text id="_15" data-name="$15" transform="translate(22260 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$15</tspan></text>
-                    <text id="_20" data-name="$20" transform="translate(22348 2225.487)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-12.938" y="0">$20</tspan></text>
-                    </g>
-                </svg> --}}
+
             </div>
 
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-4">
