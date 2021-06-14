@@ -47,14 +47,17 @@ Route::get('/hello', function(){
     // return url('/frontend/assets/images/Icons/');
 
  
-    $orderID = 523590133;
+    // $orderID = 523590133;
 
-    $taskOrder = TaskOrder::where('order_id', $orderID)->first();
-    $taskOrder->update([
-        "status"=> TaskOrder::STATUS_DELIVERED,
-    ]);
+    // $taskOrder = TaskOrder::where('order_id', $orderID)->first();
+    // $taskOrder->update([
+    //     "status"=> TaskOrder::STATUS_DELIVERED,
+    // ]);
 
-    return TaskOrder::STATUS_DELIVERED;
+    // return TaskOrder::STATUS_DELIVERED;
+
+
+    return auth()->user()->profile_photo;
 
 });
 
