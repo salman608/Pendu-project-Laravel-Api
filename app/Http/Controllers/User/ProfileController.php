@@ -96,7 +96,7 @@ class ProfileController extends Controller
             $image = $request->file('profile_photo');
             $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
             Image::make($image)->resize(270,270)->save('uploads/user/photos/'.$name_gen);
-            $profile_photo = 'uploads/user/photos/'.$name_gen;
+            $profile_photo = $name_gen;
         }
 
         $user['name']           = $request->name;

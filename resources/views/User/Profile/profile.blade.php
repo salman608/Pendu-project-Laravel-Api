@@ -56,7 +56,7 @@
                                 <div class="col-12 mb-3">
 
                                 <div id="profile-container" style="text-align: center;">
-                                   <img id="profileImage" src="{{Auth::user()->profile_photo}}" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;"/>
+                                   <img id="profileImage" src="{{auth()->user()->profile_photo}}" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;"/>
 
 
                                    <i class="fa fa-pencil" style="margin: right" id="porImage"></i>

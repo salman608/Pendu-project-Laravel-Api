@@ -85,6 +85,14 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
+    public function getProfilePhotoAttribute($value)
+    {   
+        // if(is_null($value) || $value){  
+        //     return url('uploads/user.png');
+        // }
+        return url('uploads/user/photos/').'/'.$value;  
+    }
+
       /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
