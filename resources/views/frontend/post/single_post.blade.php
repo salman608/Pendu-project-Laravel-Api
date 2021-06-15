@@ -103,9 +103,9 @@
             <div class="blog_content_share_section ">
                 <div class="share_invite">
                     <span>Share:-</span>
-
-                <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_inline_share_toolbox"></div>
+
 
                     {{-- <a href="#" class='twiter' id="twr-btn" target="_blank"> <i class="fab fa-twitter-square"></i></a>
                     <a href="#" class='fb' id="fb-btn" target="_blank"> <i class="fab fa-facebook-square"></i></a> --}}

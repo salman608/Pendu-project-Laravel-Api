@@ -1079,7 +1079,7 @@ $(".deliveryModal").click(function() {
         event.preventDefault();
 
         // Form
-        var form = document.getElementById('shop-n-drop-form');
+        var form = document.getElementById('collect-n-drop-form');
 
         var p_names  = $("input[name='pro_name[]']")
             .map(function(){return $(this).val();}).get();

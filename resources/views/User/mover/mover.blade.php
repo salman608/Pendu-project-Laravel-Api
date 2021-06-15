@@ -910,7 +910,7 @@ $(document).ready(function(){
         event.preventDefault();
 
         // Form
-        var form = document.getElementById('shop-n-drop-form');
+        var form = document.getElementById('mover-form');
 
         var p_names  = $("input[name='pro_name[]']")
             .map(function(){return $(this).val();}).get();
