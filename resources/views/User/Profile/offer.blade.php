@@ -68,7 +68,7 @@
         border: none;
         background: no-repeat;
         color: #56cd93;
-        padding-right: 31px;
+        padding-right: 30px;
     }
 
     .percent-circle{
@@ -82,6 +82,9 @@
         background: #52d089;
         margin-right: 212px;
         color: white;
+    }
+    .bg-pendu-color{
+        background-color: #60e99c;
     }
 </style>
 
@@ -125,7 +128,7 @@
                             <div class="card-header promo-chead
 
                             @php if ($offer->appliedCoupons->contains(auth()->user()->id))
-                                echo "bg-success";
+                                echo "bg-pendu-color";
                             @endphp
 
                             ">
@@ -142,7 +145,7 @@
                                 <button id="show-offer" data-toggle="modal" data-id="{{ $offer->id }}">View details</button>
 
                                 @if ($offer->appliedCoupons->contains(auth()->user()->id))
-                                    <a disabled class="btn btn-sm text-white">Applied</a></div>
+                                    <a disabled class="btn btn-sm" style="background:none;color:gray;">Applied</a></div>
                                 @else
                                 <a class="btn btn-sm text-white">Apply</a></div>
                                 @endif

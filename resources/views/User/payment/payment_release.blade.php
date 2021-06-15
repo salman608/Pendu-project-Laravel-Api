@@ -262,8 +262,9 @@
     })
 </script>
 
-// Review Submission
+
 <script>
+    // Review Submission
    $('#submitReview').click(function() {
         event.preventDefault();
 
@@ -291,7 +292,7 @@
 
 
 
-   
+
 
     const allRanges = document.querySelectorAll(".range-wrap");
     allRanges.forEach(wrap => {
@@ -314,7 +315,7 @@
       // Sorta magic numbers based on size of the native UI thumb
       bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
     }
- 
+
 
 </script>
 
