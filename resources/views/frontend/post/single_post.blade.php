@@ -103,8 +103,12 @@
             <div class="blog_content_share_section ">
                 <div class="share_invite">
                     <span>Share:-</span>
-                    <a href="#" class='twiter' id="twr-btn" target="_blank"> <i class="fab fa-twitter-square"></i></a>
-                    <a href="#" class='fb' id="fb-btn" target="_blank"> <i class="fab fa-facebook-square"></i></a>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_inline_share_toolbox"></div>
+
+
+                    {{-- <a href="#" class='twiter' id="twr-btn" target="_blank"> <i class="fab fa-twitter-square"></i></a>
+                    <a href="#" class='fb' id="fb-btn" target="_blank"> <i class="fab fa-facebook-square"></i></a> --}}
                     {{-- <a href="#" class='ins' id="ins-btn" target="_blank"> <i class="fas fa-link"></i></a> --}}
                 </div>
             </div>
@@ -151,16 +155,16 @@
 <script>
     // social share button
 
-    const twiterBtn=document.getElementById('twr-btn');
-    const facebookBtn=document.getElementById('fb-btn');
-    const instagramBtn=document.getElementById('ins-btn');
+    // const twiterBtn=document.getElementById('twr-btn');
+    // const facebookBtn=document.getElementById('fb-btn');
+    // const instagramBtn=document.getElementById('ins-btn');
 
-    let postUrl=encodeURI(document.location.href);
-    let postTitle=encodeURI('{{$single_post->title}}');
+    // let postUrl=encodeURI(document.location.href);
+    // let postTitle=encodeURI('{{$single_post->title}}');
 
-    twiterBtn.setAttribute("href",`https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
-    // instagramBtn.setAttribute("href",`https://www.instagram.com/sharer.php?u=${postUrl}`);
-    facebookBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUrl}`);
+    // twiterBtn.setAttribute("href",`https://twitter.com/share?url=${postUrl}&text=${postTitle}`);
+    // // instagramBtn.setAttribute("href",`https://www.instagram.com/sharer.php?u=${postUrl}`);
+    // facebookBtn.setAttribute("href",`https://www.facebook.com/sharer.php?u=${postUrl}`);
 
 </script>
 

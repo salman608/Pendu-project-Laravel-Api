@@ -105,6 +105,11 @@
        });
   </script>
 
+
+{{-- social share code --}}
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60c885337d86bf2f"></script>
+
 </body>
 
 </html>

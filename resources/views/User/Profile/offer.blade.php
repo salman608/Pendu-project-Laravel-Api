@@ -200,11 +200,11 @@
             <div class="row mb-3">
                 <div class="col-md-7 ">
                      <p style="padding-bottom: 1px;">Promo</p>
-                     <h6 style="font-size: 20px;font-weight:500;margin-top: -15px" id="promo-code-show"></h6>
+                     <h6 style="font-size: 18px;font-weight:500;margin-top: -15px" id="promo-code-show"></h6>
                 </div>
                 <div class="col-md-5">
                      <p>Validity</p>
-                     <h6 style="font-size: 20px;font-weight:500;margin-top: -15px" id="promo-code-range">1 FEB-1 JUN 2021</h6>
+                     <h6 style="font-size: 17px;font-weight:500;margin-top: -15px" id="promo-code-range">1 FEB-1 JUN 2021</h6>
                 </div>
                 <div class="col-md-12 mt-2" id="promo-code-ul-container">
                 </div>
@@ -242,7 +242,7 @@
     $('body').on('click', '#show-offer', function() {
 
         let couponId = $(this).attr("data-id");
-     
+
         let url = '{{ route("user.offer-details", ":id") }}';
         url = url.replace(':id', couponId);
 
@@ -255,13 +255,13 @@
             success: function(data){
                 if($.isEmptyObject(data) != null){
                     console.log(data);
-                    
-                    
+
+
                     $('#promo-code-show').text(data.coupon.promo_code);
                     $('#promo-code-range').text(data.coupon.valid_range_year);
                     $('#promo-code-percentage').text(data.coupon.discount_percentage+"%");
 
-                    
+
 
                     $("#promo-code-ul-container").empty();
 
@@ -272,7 +272,7 @@
                 }
 		    }
 		});
-            
+
     });
 </script>
 @endsection
