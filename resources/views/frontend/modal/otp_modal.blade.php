@@ -100,7 +100,7 @@
                 <div class="card card-otp">
                     <img src="{{asset('frontend/images/otp.png')}}" alt="" style="width:265px;margin:auto;">
                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
-                    <div class="d-flex flex-row mt-1" style="width: 295px;margin:auto;"><input type="text" class="form-control otp-input" autofocus=""> <input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"></div>
+                   <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2"> <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" /> <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" /></div>
                     <a href="" class="btn mt-3 button-cm">Confirm</a>
                     <div class="text-center mt-2 mb-5" style="font-size: 9px"> <span>Not received? Send again in</span> <strong> 0:59s</strong></div>
                 </div>
@@ -111,6 +111,21 @@
 
 
 
-  <script>
+<script>
+ document.addEventListener("DOMContentLoaded", function(event) {
+
+function OTPInput() {
+const inputs = document.querySelectorAll('#otp > *[id]');
+for (let i = 0; i < inputs.length; i++)
+{ inputs[i].addEventListener('keydown', function(event)
+{ if (event.key==="Backspace" )
+{ inputs[i].value='' ; if (i !==0) inputs[i - 1].focus();
+ } else { if (i===inputs.length - 1 && inputs[i].value !=='' ) { return true;
+ } else if (event.keyCode> 47 && event.keyCode < 58) { inputs[i].value=event.key;
+ if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault();
+ } else if (event.keyCode> 64 && event.keyCode < 91)
+ { inputs[i].value=String.fromCharCode(event.keyCode);
+ if (i !==inputs.length - 1) inputs[i + 1].focus(); event.preventDefault(); } } }); } }
+ OTPInput(); });
 
   </script>

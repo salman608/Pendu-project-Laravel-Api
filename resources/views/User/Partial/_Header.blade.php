@@ -50,7 +50,7 @@
                       </li>
 
                       <li class="nav-item refer">
-                        <a class="nav-link" id="track_btn" href="{{route('user.order_track')}}" style="color: white;background:orange;width: 179px;">Traking Order</a>
+                        <a class="nav-link" id="track_btn" data-toggle="modal" data-target="#tModal" href="" style="color: white;background:orange;width: 179px;">Traking Order</a>
                     </li>
                     @endif
                 </ul>
@@ -281,5 +281,5 @@
 
         </nav>
     </div>
-@include('frontend.modal.mail_varification')
+@include('frontend.modal.otp_modal')
 </section>
