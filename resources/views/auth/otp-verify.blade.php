@@ -1,3 +1,7 @@
+@extends('User.Asset')
+@section('user_content')
+
+
 <style>
     #OtpModal .model-header{
         padding: none !important;
@@ -86,10 +90,22 @@
         color: white;
         border: 1px solid #3acf71;
     }
+
+
+
+
+
+
+
+    
 </style>
+
+
+
+
+
 <!-- Modal -->
-<div class="modal fade" id="tModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
+
         <div class="modal-content">
             <div class="modal-header" style="border-bottom: 0px solid #dee2e6;padding:0px !important">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -97,20 +113,33 @@
                 </button>
             </div>
             <div class="d-flex justify-content-center align-items-center container">
+
+                <form action="{{route('verify-phone')}}" method="post">
+                    @csrf 
                 <div class="card card-otp">
                     <img src="{{asset('frontend/images/otp.png')}}" alt="" style="width:265px;margin:auto;">
                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
-                    <div class="d-flex flex-row mt-1" style="width: 295px;margin:auto;"><input type="text" class="form-control otp-input" autofocus=""> <input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"><input type="text" class="form-control otp-input"></div>
-                    <a href="" class="btn mt-3 button-cm">Confirm</a>
+                   <p class="mt-2" style="font-size: 15px"> Defaul is : 1234</p>
+                   @if (session()->has('error')) {
+
+                        <p class="mt-2" style="font-size: 15px; color:red">{{ session('error') }}</p>
+                    @endif
+                   <div class="d-flex flex-row mt-1" style="width: 295px;margin:auto;">
+                        
+                        <input type="text" name="num1" class="form-control otp-input"  value="1" maxlength="1"> 
+                        <input type="text" name="num2" class="form-control otp-input" value="2" maxlength="1">
+                        <input type="text" name="num3" class="form-control otp-input" value="3" maxlength="1">
+                        <input type="text" name="num4" class="form-control otp-input" value="4" maxlength="1">
+                    </div>
+                    <button type="submit" class="btn mt-3 button-cm">Confirm</button>
                     <div class="text-center mt-2 mb-5" style="font-size: 9px"> <span>Not received? Send again in</span> <strong> 0:59s</strong></div>
                 </div>
+
+            </form> 
             </div>
        </div>
-    </div>
-</div>
 
 
 
-  <script>
+       @endsection
 
-  </script>

@@ -9,6 +9,7 @@ use App\Models\TaskOrderReview;
 use App\Models\TaskOrderTip;
 use Illuminate\Http\Request;
 use Session;
+use DB;
 
 class ReviewController extends Controller
 {
@@ -19,6 +20,7 @@ class ReviewController extends Controller
      */
     public function index($orderId)
     {   
+
         return view("user.review.review", ['orderId' => $orderId]);
     }
 
@@ -34,7 +36,7 @@ class ReviewController extends Controller
 
     public function trackOrderStatus(Request $request){
 
-        return $request->all();
+        // return $request->all();
         // return $order = TaskOrder::where('order_id', $orderId)->first();
 
         return view('User.review.track_order');
@@ -61,15 +63,27 @@ class ReviewController extends Controller
 
     public function submitTips(Request $request, $orderId){
 
-        $task = TaskOrder::with('task')->where('order_id', $orderId)->first()
-             ->task
-             ->update(['request_status'=> Task::REQUEST_COMPLETED]);
 
+        DB::beginTransaction();
 
-        Session::flash('success', 'Your request is submitted!');
-        return redirect()->route('user.order-tips', $orderId);
+        try {
 
+                
+            $task = TaskOrder::with('task')->where('order_id', $orderId)->first();
+            $task->task->update(['request_status'=> Task::REQUEST_COMPLETED]);
+            $task->user->update(['balance'=> $task->user->balance - $task->taskOffer->amount]);
 
+            Session::flash('success', 'Your request is submitted!');
+            return redirect()->route('user.order-tips', $orderId);
+        
+            DB::commit();
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            Session::flash('error', "Something is wrong try again..");
+            return redirect()->route('collect_n_drop');
+        }
         // return $request->all();
         // $orderTip = new TaskOrderTip();
 
