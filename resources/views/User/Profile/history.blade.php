@@ -33,6 +33,10 @@
    </div>
    <div class="inbox_list_area history_section">
       <ul>
+         @forelse ($tasks as $task)
+             
+         
+
          <p class='mt-1 history_date_time_section'><span class='history_time' >16:40</span>
             <span class='history_date'>15 Nov 2020</span>
          </p>
@@ -51,15 +55,29 @@
                         <i class="fas fa-star"></i>
                         <span>5.00</span>
                      </div>
-                     <div class="history_client_img">
+                     {{-- <div class="history_client_img">
                         <img src="{{asset('frontend')}}/assets/images/member/men_pic8.jpg" alt="">
                         <img src="{{asset('frontend')}}/assets/images/member/girl_pic5.jpg" alt="">
                         <img src="{{asset('frontend')}}/assets/images/member/men_pic10_copy.jpg" alt="">
-                     </div>
+                     </div> --}}
                   </div>
                </div>
             </div>
          </li>
+
+         @empty
+   
+            <div 
+               style="display: flex;    display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100%;"> 
+               <p style="font-size: 18px;">There are no records found.</p>
+            </div>
+       
+         @endforelse
+
+
       </ul>
    </div>
 

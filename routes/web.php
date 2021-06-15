@@ -34,7 +34,7 @@ Auth::routes();
  * Frontend  Routes
  *http://pendu-office.mr/frontend/assets/images/Icons/truck.svg
  */
-Route::get('/hello', function(){
+Route::get('/hello/{orderId}', function($orderId){
     // return Carbon::tomorrow();
     // asset(), url(),
     // <img src="{{url('/images/myimage.jpg')}}" alt="Image"/>
@@ -47,14 +47,14 @@ Route::get('/hello', function(){
     // return url('/frontend/assets/images/Icons/');
 
 
-    $orderID = 523590133;
+    // $orderID = 523590133;
 
-    $taskOrder = TaskOrder::where('order_id', $orderID)->first();
+    $taskOrder = TaskOrder::where('order_id', $orderId)->first();
     $taskOrder->update([
-        "status"=> TaskOrder::STATUS_DELIVERED,
+        "status"=> TaskOrder::STATUS_IN_PROGRESS,
     ]);
 
-    return TaskOrder::STATUS_DELIVERED;
+    return TaskOrder::STATUS_IN_PROGRESS;
 
 
     return auth()->user()->profile_photo;

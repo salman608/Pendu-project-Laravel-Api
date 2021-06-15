@@ -41,22 +41,35 @@
         <div class="payment_section">
           <div class="payment_card_area">
             <ul>
+              @forelse ($cards as $card)
+                  
+              
+
               <li>
                 <div class="payment_card">
                   <img src="{{asset('frontend')}}/assets/images/Banner/Card.png" alt="" width="50px" height="auto">
-                  {{-- <p>2652 66262 642 ***</p>
-                  <h4>John Doe</h4> --}}
+                  <p>2652 66262 642 ***</p>
+                  <h4>John Doe</h4>
                   <span class="close test_cls">&times;</span>
                 </div>
               </li>
               <li>
                 <div class="payment_card">
                   <img src="{{asset('frontend')}}/assets/images/Banner/Card.png" alt="" width="50px" height="auto">
-                  {{-- <p>2652 66262 642 ***</p>
-                  <h4>John Doe</h4> --}}
+                   <p>2652 66262 642 ***</p>
+                  <h4>John Doe</h4> 
                   <span class="close test_cls ">&times;</span>
                 </div>
               </li>
+              @empty
+                  
+              <div style="margin: auto;
+              margin-top: 130px;" > 
+              <p style="font-size: 18px;">There are no cards found.</p>
+           </div>
+         
+              @endforelse
+
             </ul>
           </div>
         </div>

@@ -36,6 +36,10 @@
    </div>
    <div class="inbox_list_area history_section deliveries_section">
       <ul>
+
+         @forelse ($tasks as $task)
+             
+      
          <li class='mt-2' >
             <div class="deliveries_item_area">
                <div class="history_item_name">
@@ -56,6 +60,17 @@
                </div>
             </div>
          </li>
+         
+         @empty
+            <div 
+               style="display: flex;    display: flex;
+               justify-content: center;
+               align-items: center;
+               height: 100%;"> 
+               <p style="font-size: 18px;">There are no records found.</p>
+            </div>
+       
+         @endforelse
       </ul>
    </div>
 
