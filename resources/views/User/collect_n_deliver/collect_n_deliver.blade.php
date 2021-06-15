@@ -747,7 +747,7 @@ $('#add_btn').on('click',function(){
     html+='<tr>';
     html+='<td><div class="circle"></div></td>';
     html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
+    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty[]" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
     // html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
     html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
     html+='</tr>';
@@ -1079,7 +1079,7 @@ $(".deliveryModal").click(function() {
         event.preventDefault();
 
         // Form
-        var form = document.getElementById('collect-n-drop-form');
+        var form = document.getElementById('shop-n-drop-form');
 
         var p_names  = $("input[name='pro_name[]']")
             .map(function(){return $(this).val();}).get();
@@ -1087,13 +1087,17 @@ $(".deliveryModal").click(function() {
         var p_prices  = $("input[name='pro_price[]']")
             .map(function(){return $(this).val();}).get();
 
+        var p_qtys  = $("input[name='qty[]']")
+        .map(function(){return $(this).val();}).get();
+
+
         // "products"      : [
         //         {"name": "Pepsi 2L", "price": 150, "qty": 4},
         //         {"name": "Cake 2p", "price": 350, "qty": 2}
         // ]
 
         var products = p_names.map(function(name, index){
-            let product = {name: name, price: p_prices[index], qty: 1};
+            let product = {name: name, price: p_prices[index], qty: p_qtys[index]};
             return product;
         });
 

@@ -497,7 +497,7 @@ select.select-box {
                                   <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
                                   <td class="qty">
                                          <span class="minus" style="background: #8f8f8f">-</span>
-                                         <input type="number" class="count" name="qty[]" value="1">
+                                         <input type="number" class="count" name="qty[]">
                                          <span class="plus" style="background: #8f8f8f">+</span>
                                     </td>
                                   <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."><div id="result"></div> </td>
@@ -671,7 +671,7 @@ select.select-box {
             html+='<tr>';
             html+='<td><div class="circle"></div></td>';
             html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-            html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
+            html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty[]" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
             html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
             html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
             html+='</tr>';
@@ -695,19 +695,22 @@ select.select-box {
     // quantity count
     $(document).ready(function(){
 		    $('.count').prop('disabled', true);
+
+
    			$(document).on('click','.plus',function(){
                 //    console.log($(this).siblings('input').val());
-               var countInput = $(this).siblings('input');
-				$(countInput).val(parseInt(countInput.val()) + 1 );
+          var countInput = $(this).siblings('input');
+				  $(countInput).val(parseInt(countInput.val()) + 1 );
     		});
-        	$(document).on('click','.minus',function(){
-                // console.log($(this).siblings('input').val());
-                var countMinus = $(this).siblings('input');
+
+        $(document).on('click','.minus',function(){
+          // console.log($(this).siblings('input').val());
+          var countMinus = $(this).siblings('input');
     			$(countMinus).val(parseInt(countMinus.val()) - 1 );
     				if ($(countMinus).val() == 0) {
 						$(countMinus).val(1);
 					}
-    	    	});
+    	  });
  		});
 
 </script>
@@ -1058,13 +1061,17 @@ select.select-box {
         var p_prices  = $("input[name='pro_price[]']")
             .map(function(){return $(this).val();}).get();
 
+        var p_qtys  = $("input[name='qty[]']")
+        .map(function(){return $(this).val();}).get();
+
+
         // "products"      : [
         //         {"name": "Pepsi 2L", "price": 150, "qty": 4},
         //         {"name": "Cake 2p", "price": 350, "qty": 2}
         // ]
 
         var products = p_names.map(function(name, index){
-            let product = {name: name, price: p_prices[index], qty: 1};
+            let product = {name: name, price: p_prices[index], qty: p_qtys[index]};
             return product;
         });
 
