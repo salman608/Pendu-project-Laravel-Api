@@ -411,8 +411,8 @@
                       <label for="task_image" style="width: 100%">
                         <div class="row" style="position: relative;">
                             <div class="col-md-6 col-12 col-sm-6 col-lg-12" style="padding-top: 8px;">
-                                <small>Add photos to the task (Optional)<span id="task_image_show" style="font-size: 15px; font-weight: 600; color: #60e99c;"></span></small> 
-                                
+                                <small>Add photos to the task (Optional)<span id="task_image_show" style="font-size: 15px; font-weight: 600; color: #60e99c;"></span></small>
+
                             </div>
                             <div class="col-md-6 col-6 col-sm-6 col-lg-6 d-flex justify-content-end" style="position: absolute; right: 14px;">
                                 <svg style="height: 30px;width: 30px;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="34.025" height="38.645" viewBox="0 0 34.025 38.645">
@@ -454,7 +454,7 @@
                             <label >
                                 <input type="radio" name="delivery_time" id="delivery_time"  value="{{$d_time->id}}" >
                                 <div style="width: 180px;">
-                                    <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
+                                    <img src="{{$d_time->icon}}" height="30" width="80">
                                     <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
                                 </div>
                             </label>
@@ -468,7 +468,7 @@
             <div id="taskDetails" style="display: none;">
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title mr-5" >Vehicle Type-</label>
-                    
+
                     <img src="" id="vehicle-icon-show" style="height: 70;" alt="">
                 </div>
 
@@ -494,7 +494,7 @@
                             <label>
                                 <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
                                 <div style="width: 180px;">
-                                    <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
+                                    <img src="{{$d_time->icon}}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
@@ -776,9 +776,9 @@ $(document).ready(function(){
 
   // Task Image Show
 
-  
+
   $('#task_image').change(function(e){
-      
+
       if( name = e.target.files[0].name){
         $('#task_image_show').text(" " +name + " has been selected.")
       }
@@ -790,7 +790,7 @@ $(document).ready(function(){
       let vehicleSelected = $('.vehicle_id_cl').is(':checked');
       let timeSelected =  $('input:radio[name="delivery_time"]').is(':checked');
 
-      
+
 
       if (!vehicleSelected) {
             swal({

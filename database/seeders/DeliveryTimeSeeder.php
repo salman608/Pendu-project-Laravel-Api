@@ -19,19 +19,20 @@ class DeliveryTimeSeeder extends Seeder
 
         \DB::table('delivery_times')->truncate();
         $delivery_times = collect([
-            ['title' => 'ASAP', 'time' => Carbon::now()],
-            ['title' => '4Hrs', 'time' => Carbon::now()->addHours(4)],
-            ['title' => '6Hrs', 'time' => Carbon::now()->addHours(6)],
-            ['title' => 'Same Day', 'time' => Carbon::now()->today()],
-            ['title' => 'Next Day', 'time' => Carbon::now()->tomorrow()],
-            ['title' => 'Set Later', 'time' => null],
+            ['title' => 'ASAP', 'icon'=>'ASAP.svg','time' => Carbon::now()],
+            ['title' => '4Hrs', 'icon'=>'4hours.svg','time' => Carbon::now()->addHours(4)],
+            ['title' => '6Hrs', 'icon'=>'6hours.svg','time' => Carbon::now()->addHours(6)],
+            ['title' => 'Same Day', 'icon'=>'same day.svg','time' => Carbon::now()->today()],
+            ['title' => 'Next Day', 'icon'=>'next day.svg','time' => Carbon::now()->tomorrow()],
+            ['title' => 'Set Later', 'icon'=>'set latter.svg','time' => null],
         ]);
-    
+
         $delivery_times->each(function($delivery_time){
             \DB::table('delivery_times')->insert([
                 'title' => $delivery_time['title'],
                 'slug' => Str::slug($delivery_time['title']),
                 'time' => $delivery_time['time'],
+                'icon' => $delivery_time['icon'],
                 'created_at'        => now(),
                 'updated_at'        => now()
             ]);
