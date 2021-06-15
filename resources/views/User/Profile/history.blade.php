@@ -1,6 +1,16 @@
 @extends('User.Asset')
 @section('user_content')
+<style>
 
+   .add-comma-except span:after {
+      content: ", ";
+   }
+   .add-comma-except span:last-child:after {
+      content: "";
+   }
+
+
+</style>
 
   <!-- ============ Breadcrumb ============ -->
   <section class="breadcrumb_main">
@@ -37,23 +47,28 @@
              
          
 
-         <p class='mt-1 history_date_time_section'><span class='history_time' >16:40</span>
-            <span class='history_date'>15 Nov 2020</span>
+         <p class='mt-1 history_date_time_section'><span class='history_time' >{{ $task->created_at->format('g:i')}}</span>
+            <span class='history_date'>{{ $task->created_at->format('j M Y')}}</span>
          </p>
          <li >
             <div class="history_item_area">
                <div class="history_item_name">
-                  <p>Collect & deliver</p>
+                  <p>{{$task->serviceCategory->title}}</p>
                </div>
                <div class="history_details_inner_area">
                   <div class="history_name">
-                     <p>Buy some groceries for me-</p>
-                     <h4>Toothpaste(1X), Apples(1KG), Chips(1Pack).</h4>
+                     <p>{{ $task->title }}-</p>
+                     <h4 class="add-comma-except">
+                        @foreach($task->products as $product)
+                            <span>{{$product->name}}({{$product->qty}}X)</span>
+                        @endforeach
+                        .
+                    </h4>
                   </div>
                   <div class="history_rating_area">
                      <div class="history_ratting">
                         <i class="fas fa-star"></i>
-                        <span>5.00</span>
+                        <span>{{$task->order->review->rating}}</span>
                      </div>
                      {{-- <div class="history_client_img">
                         <img src="{{asset('frontend')}}/assets/images/member/men_pic8.jpg" alt="">

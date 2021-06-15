@@ -86,13 +86,17 @@ class UserDashboardController extends Controller
 
     public function history(){
         $data = [];
-        $data['tasks'] = Task::with('products','order','serviceCategory','acceptedOffer','acceptedOffer.dropper')->where('request_status', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+        $data['tasks'] = Task::with('products','order','order.review','serviceCategory')->where('request_status', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+
+
         return view('user.profile.history', $data);
     }
 
     public function delivery(){
         $data = [];
-        $data['tasks'] = Task::with('products','order','serviceCategory','acceptedOffer','acceptedOffer.dropper')->where('request_status', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+        $data['tasks'] = Task::with('products','order','order.review','order','serviceCategory', 'acceptedOffer.dropper')->where('request_status', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+
+        // return $data['tasks'];
         return view('user.profile.delivery', $data);
     }
 
