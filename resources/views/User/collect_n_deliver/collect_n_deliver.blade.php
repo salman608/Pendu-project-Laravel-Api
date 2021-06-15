@@ -669,7 +669,7 @@
                             <label >
                                 <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
                                 <div style="width: 180px;">
-                                    <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
+                                    <img src="{{$d_time->icon}}" height="30" width="80">
                                     <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
                                 </div>
                             </label>
@@ -705,7 +705,7 @@
                             <label>
                                 <input type="radio" value="{{$d_time->id}}" name="delivery_time_review"  disabled>
                                 <div style="width: 180px;">
-                                    <img src="{{ asset('frontend/assets/images/Icons/ASAP Black.svg') }}" height="30" width="80">
+                                    <img src="{{$d_time->icon}}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
@@ -790,7 +790,7 @@ $(document).ready(function(){
 
       let vehicleSelected = $('.vehicle_id_cl').is(':checked');
       let timeSelected =  $('input:radio[name="delivery_time"]').is(':checked');
-      
+
       if (!vehicleSelected) {
             swal({
                 icon: 'error',

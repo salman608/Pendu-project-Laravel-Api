@@ -9,4 +9,9 @@ class DeliveryTime extends Model
 {
     use HasFactory;
     protected $guarded=[];
+
+    public function getIconAttribute($value)
+    {
+        return url('/frontend/images/icons').'/'.$value;
+    }
 }
