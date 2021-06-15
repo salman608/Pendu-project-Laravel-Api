@@ -361,20 +361,17 @@
                </div>
             </div> -->
 
-@forelse($tasks as $key => $value)
+@forelse($tasks as $task)
             <div class="order_number">
 
 
                 <div class="order_cat_date_area mt-3">
                   <div class="order_cat_date">
-                      <p></p>
-                      <h6>{{ $key }}</h6>
+                      <p>{{$task->serviceCategory->title}}</p>
+                      <h6>{{ $task->created_at->format('j M Y')}}</h6>
                   </div>
                 </div>
 
-        @foreach($value as $task)
-
- <!-- @php var_dump($task);   @endphp    -->
              @if($task->request_status == "Processing")
                 <div class="order_details_area mt-2">
                   <div class="order_details">
@@ -386,7 +383,7 @@
                             <p>Item cost- <span class='coast'>${{$task->total_cost}}</span> </p>
                             @endif
                             <p class="service-category-show">{{$task->serviceCategory->title}}</p>
-                            <h6>{{$task->request_status}}</h6>
+                            {{-- <h6>{{$task->request_status}}</h6> --}}
                             <!-- <h6>Proccessing</h6> -->
                       </div>
                   </div>
@@ -420,11 +417,11 @@
                                     <h5>Order ID- <span class='id_num' >{{$task->order->order_id}}</span> </h5>
 
                                     <p>Delivery charge- <span class='coast'>${{$task->acceptedOffer->amount}}</span> </p>
-                                    <span class="service-category-show" style="
+                                    {{-- <span class="service-category-show" style="
                                       position: absolute;
                                       top: 30%;
                                       right: 32%;
-                                    ">{{$task->serviceCategory->title}}</span>
+                                    ">{{$task->serviceCategory->title}}</span> --}}
                                         <h6 class='accepted' >{{$task->request_status}}</h6>
                                  </div>
 
@@ -451,7 +448,7 @@
                      </div>
                </div>
               @endif
-        @endforeach
+    
 
             </div>
 @empty

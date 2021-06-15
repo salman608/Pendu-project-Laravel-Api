@@ -19,7 +19,7 @@ class CreateTaskOrderReviewsTable extends Migration
             $table->integer('review_by')->default(1); // 1 user, 2 dropper
             $table->integer('rating');
             $table->integer('accuracy');
-            $table->string('review');
+            $table->string('review')->nullable();
             $table->timestamps();
         });
     }

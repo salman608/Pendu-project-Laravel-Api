@@ -30,7 +30,7 @@ class CouponSeeder extends Seeder
                 
             DB::table('coupons')->insert([
                 'title'         => $coupon['title'],
-                'promo_code'    => Str::random(8),
+                'promo_code'    => strtoupper(Str::random(8)),
                 'details'       => "Lorem". rand(1,20) ." ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.",
                 'discount_percentage'   => $coupon['discount_percentage'],
                 'started_at'            => now(),

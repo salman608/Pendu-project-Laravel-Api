@@ -223,23 +223,23 @@
 
                             <div class="rate">
 
-                                <input type="radio" id="star5" name="rate" value="5" />
+                                <input type="radio" class="review-name" checked id="star5" name="rate" value="5" />
                                 <label for="star5" title="text">5 stars</label>
-                                <input type="radio" id="star4" name="rate" value="4" />
+                                <input type="radio" class="review-name" checked id="star4" name="rate" value="4" />
                                 <label for="star4" title="text">4 stars</label>
-                                <input type="radio" id="star3" name="rate" value="3" />
+                                <input type="radio" class="review-name" checked id="star3" name="rate" value="3" />
                                 <label for="star3" title="text">3 stars</label>
-                                <input type="radio" id="star2" name="rate" value="2" />
+                                <input type="radio" class="review-name" id="star2" name="rate" value="2" />
                                 <label for="star2" title="text">2 stars</label>
-                                <input type="radio" id="star1" name="rate" value="1" />
+                                <input type="radio" class="review-name" id="star1" name="rate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                               </div>
                               <div class="accurancy" style="margin: auto;margin-left: 77px;">
-                                  <label class="accurancy-lebel" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
+                                  <label class="accurancy-lebel review-accurancy" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
                                     <input type="range" name="range" class="range">
                               </div>
                               <div class="text-review">
-                                  <textarea class="form-control input-group-lg bg-input-orange" name="experience" id="" cols="36" rows="4" placeholder="Write your experience here"></textarea>
+                                  <textarea class="form-control input-group-lg bg-input-orange review-experience" name="experience"  cols="36" rows="4" placeholder="Write your experience here"></textarea>
                               </div>
                               <br>
 
@@ -278,6 +278,9 @@
         hiddenProductsInput.setAttribute('value', window.orderId);
         form.appendChild(hiddenProductsInput);
 
+
+        
+
         // Submit the form
         form.submit();
     });
@@ -287,9 +290,6 @@
     $('#taskProcessModal').click(function() {
        $('#paymentConfirmModalId').modal('hide');
    });
-
-
-
 
 
 

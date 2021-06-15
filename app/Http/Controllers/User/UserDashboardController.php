@@ -12,6 +12,7 @@ use App\Models\TaskOffer;
 use App\Models\TaskOrder;
 use Auth;
 use Illuminate\Support\Facades\Request;
+use PHPUnit\Framework\MockObject\Stub\ReturnReference;
 
 class UserDashboardController extends Controller
 {
@@ -23,14 +24,19 @@ class UserDashboardController extends Controller
     {
 
         $data = [];
-        $data['tasks'] = Task::with('products','order','serviceCategory','acceptedOffer','acceptedOffer.dropper')->where('user_id', auth()->id())->latest()->get()
-            ->groupBy(function($task){
-                return $task->created_at->format('j F Y');
-            });
+   
+        // group by date
+        // $data['tasks'] = Task::with('products','order','serviceCategory','acceptedOffer','acceptedOffer.dropper')->where('user_id', auth()->id())->latest()->get()
+        //     ->groupBy(function($task){
+        //         return $task->created_at->format('j F Y');
+        //     });
 
         // return $data['tasks'];
 
 
+        $data['tasks'] = Task::with('products','order','serviceCategory','acceptedOffer','acceptedOffer.dropper')->where('request_status', '!=', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+
+        // return $data['tasks'];
         return view('user.profile.tasks', $data);
     }
 
@@ -73,9 +79,9 @@ class UserDashboardController extends Controller
     }
 
     public function offerDetailsJson($id){
-        $offerDetails=Coupon::find($id);
+        $coupon=Coupon::with('info')->find($id);
 
-        return response()->json(['offerDetails' => $offerDetails]);
+        return response()->json(['coupon' => $coupon]);
     }
 
     public function history(){

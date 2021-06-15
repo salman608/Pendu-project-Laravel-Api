@@ -137,12 +137,10 @@
                                 <h5 style="font-size: 20px;color:white;" >{{$offer->discount_percentage}}% off</h5>
                             </div>
                             <div class="card-body promo">
-                                {{-- isoFormat('MMM Do YY')  --}}
-                                {{-- ->format('j F') --}}
                               <p class="card-text">{{Str::limit($offer->details,140)}}</p>
-                              <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->started_at->format('j M')}}-{{$offer->expired_at->format('j M')}}</span></h4>
+                              <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->valid_range}}</span></h4>
                               <div class="row promo-details mt-4">
-                                <button id="show-offer" data-toggle="modal" data-id="{{ $offer->id }}">View details</button>
+                                <button id="show-offer" data-id="{{ $offer->id }}">View details</button>
 
                                 @if ($offer->appliedCoupons->contains(auth()->user()->id))
                                     <a disabled class="btn btn-sm" style="background:none;color:gray;">Applied</a></div>
@@ -184,7 +182,7 @@
 
 
           <!-- Modal -->
-<div class="modal fade" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+<div class="modal fade" id="offer-details-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div style="background: #60e99c;">
@@ -193,7 +191,7 @@
                     <input type="button" aria-hidden="true" class="modal-cross-btn" value="x">
                 </button>
                  <div class="row bt-5" style="margin-bottom: 23px">
-                     <div class="percent-circle" style="font-size:69px;text-align:center;">%</div>
+                     <div class="percent-circle" style="font-size:69px;text-align:center;" id="promo-code-percentage">%</div>
                  </div>
 
             </div>
@@ -202,18 +200,13 @@
             <div class="row mb-3">
                 <div class="col-md-7 ">
                      <p style="padding-bottom: 1px;">Promo</p>
-                     <h5 style="font-size: 20px;font-weight:500;margin-top: -15px"></h5>
+                     <h6 style="font-size: 20px;font-weight:500;margin-top: -15px" id="promo-code-show"></h6>
                 </div>
                 <div class="col-md-5">
                      <p>Validity</p>
-                     <h5 style="font-size: 20px;font-weight:500;margin-top: -15px">1 FEB-1 JUN 2021</h5>
+                     <h6 style="font-size: 20px;font-weight:500;margin-top: -15px" id="promo-code-range">1 FEB-1 JUN 2021</h6>
                 </div>
-                <div class="col-md-12 mt-4">
-                    <p style="color:#90A0B2;opacity:1;letter-spacing: 0px;font-size: 13px">It is a long established fact that a reader will be distracted by t
-                        he readable content of a page when looking at its layout. The point of
-                        using Lorem Ipsum is that it has a more-or-less normal distribution of
-                        letters, as opposed to using 'Content here,
-                        content here', making it look like readable English. Many desktop </p>
+                <div class="col-md-12 mt-2" id="promo-code-ul-container">
                 </div>
             </div>
            </div>
@@ -234,9 +227,52 @@
 @include("User.payment.payment_release")
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script>
+
+
+    function liList(couponInfo){
+        let html ="<ul>";
+            couponInfo.forEach(info => {
+                html += "<li>" + info.info + "</li>";
+            });
+        html += "</ul>"
+
+        return html;
+    }
+
     $('body').on('click', '#show-offer', function() {
-        // $('#customerCrudModal-show').html("Customer Details");
-        $('#smallModal').modal('show');
+
+        let couponId = $(this).attr("data-id");
+     
+        let url = '{{ route("user.offer-details", ":id") }}';
+        url = url.replace(':id', couponId);
+
+
+        $.ajax({
+            url: url,
+            data: {id:couponId},
+            type: "GET",
+            dataType: "JSON",
+            success: function(data){
+                if($.isEmptyObject(data) != null){
+                    console.log(data);
+                    
+                    
+                    $('#promo-code-show').text(data.coupon.promo_code);
+                    $('#promo-code-range').text(data.coupon.valid_range_year);
+                    $('#promo-code-percentage').text(data.coupon.discount_percentage+"%");
+
+                    
+
+                    $("#promo-code-ul-container").empty();
+
+                    $("#promo-code-ul-container").append(liList(data.coupon.info));
+
+
+                    $('#offer-details-modal').modal('show');
+                }
+		    }
+		});
+            
     });
 </script>
 @endsection
