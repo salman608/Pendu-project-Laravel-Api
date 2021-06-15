@@ -15,4 +15,9 @@ class Coupon extends Model
         'started_at','expired_at'
     ];
 
+
+    public function appliedCoupons(){
+        return $this->belongsToMany(User::class);
+    }
+
 }

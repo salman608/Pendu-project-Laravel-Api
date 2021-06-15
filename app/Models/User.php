@@ -86,8 +86,11 @@ class User extends Authenticatable implements JWTSubject
 
 
     public function getProfilePhotoAttribute($value)
-    {
-        return url('/').'/'.$value;
+    {   
+        // if(is_null($value) || $value){  
+        //     return url('uploads/user.png');
+        // }
+        return url('uploads/user/photos/').'/'.$value;  
     }
 
       /**

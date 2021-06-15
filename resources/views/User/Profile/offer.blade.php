@@ -122,7 +122,13 @@
                     @forelse ($offers as $offer)
                     <div class="col-md-4 promo-card">
                         <div class="card " style="border-radius: 10px;">
-                            <div class="card-header promo-chead">
+                            <div class="card-header promo-chead
+
+                            @php if ($offer->appliedCoupons->contains(auth()->user()->id))
+                                echo "bg-success";
+                            @endphp
+
+                            ">
                                 <p style="font-size:16px; margin-bottom:1px; font-weight:500">Promo</p>
                                 <h5 style="font-size: 20px;color:white;margin-bottom:1px;" >{{$offer->promo_code}}</h5>
                                 <h5 style="font-size: 20px;color:white;" >{{$offer->discount_percentage}}% off</h5>
@@ -134,7 +140,13 @@
                               <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->started_at->format('j M')}}-{{$offer->expired_at->format('j M')}}</span></h4>
                               <div class="row promo-details mt-4">
                                 <button id="show-offer" data-toggle="modal" data-id="{{ $offer->id }}">View details</button>
+
+                                @if ($offer->appliedCoupons->contains(auth()->user()->id))
+                                    <a disabled class="btn btn-sm text-white">Applied</a></div>
+                                @else
                                 <a class="btn btn-sm text-white">Apply</a></div>
+                                @endif
+
                             </div>
                           </div>
                       </div>
@@ -143,6 +155,27 @@
                             <h4>No offer found. Check again later.</h4>
                       </div>
                     @endforelse
+{{--
+                  <div class="col-md-4">
+                    <div class="card promo-card">
+                        <div class="card-header promo-chead
+
+                        @php if ($offer->appliedCoupons->contains(auth()->user()->id))
+                            bg-success
+                        @endphp
+
+                        ">
+                            <p style="font-size:16px; margin-bottom:1px;font-weight:500">Promo</p>
+                            <h5 style="font-size: 20px;color:white;margin-bottom:1px;" >RENOVATION</h5>
+                            <h5 style="font-size: 20px;color:white;" >4% off</h5>
+                        </div>
+                        <div class="card-body promo">
+                          <p class="card-text">Lorem ipsum dolor sit amet, consetetur sadips cing elitr, sed diam nonu my eirmod tempor invidunt ut labore et dolore magna aliquyam erat.</p>
+                          <h4><i class="far fa-hourglass"></i>  <span>Validity: 1 Feb- 30 Jun</span></h4>
+                          <div class="row promo-details mt-4"><span>View details</span><a href="#" data-toggle="modal" data-target="#detailsModal" class="btn btn-sm">Apply</a></div>
+                        </div>
+                      </div>
+                  </div> --}}
                 </div>
             </div>
 
