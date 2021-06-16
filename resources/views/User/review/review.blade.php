@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 <style>
     .step-line {

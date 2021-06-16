@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 <style>
     table {
         background: transparent;
@@ -362,9 +362,9 @@
 
 
 
-@include('User.component.task_process')
+@include('user.component.task_process')
 
-@include("User.payment.payment_release")
+@include("user.payment.payment_release")
 <script>
     //  $('#taskProcessModal').click(function() {
         // $('#paymentConfirmModalId').modal('hide');

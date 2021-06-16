@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 
 {{-- style start Here --}}
@@ -1341,11 +1341,11 @@ form { position: relative; margin: 50px; width: 1200px; }
           </div>
         </section>
 
-        @include("User.component.googleMap_pickup_quote")
-        @include("User.component.googleMap_delivery_quote")
-        @include("User.component.googleMap_pickup_collect")
-        @include("User.component.googleMap_delivery_collect_modal")
-        @include("User.component.post_delivery")
+        @include("user.component.googleMap_pickup_quote")
+        @include("user.component.googleMap_delivery_quote")
+        @include("user.component.googleMap_pickup_collect")
+        @include("user.component.googleMap_delivery_collect_modal")
+        @include("user.component.post_delivery")
 
        <!-- ================ Footer  ============= -->
 

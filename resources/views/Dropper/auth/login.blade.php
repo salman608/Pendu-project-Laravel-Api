@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
  <h1>I am dropper</h1>
 

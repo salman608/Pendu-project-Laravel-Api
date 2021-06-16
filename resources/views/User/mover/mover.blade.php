@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 <style>
     input[type="text"] {
@@ -521,9 +521,9 @@
 
 {{-- data-toggle="modal" data-target="#postMoverModal" --}}
 
-@include("User.component.googleMap_pickup_modal")
-@include("User.component.googleMap_delivery_modal")
-@include("User.component.post_mover")
+@include("user.component.googleMap_pickup_modal")
+@include("user.component.googleMap_delivery_modal")
+@include("user.component.post_mover")
 
 <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
 <!-- Latest compiled and minified JavaScript -->

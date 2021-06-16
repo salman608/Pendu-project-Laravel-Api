@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 
 <style>
 
@@ -657,9 +657,9 @@ select.select-box {
 
 {{-- map modal include --}}
 
-@include("User.component.googleMap_pickup_modal")
-@include("User.component.googleMap_delivery_modal")
-@include("User.component.post_delivery")
+@include("user.component.googleMap_pickup_modal")
+@include("user.component.googleMap_delivery_modal")
+@include("user.component.post_delivery")
 
 <script>
 

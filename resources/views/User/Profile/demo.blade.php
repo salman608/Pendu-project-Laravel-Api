@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 
   <!-- ============ Breadcrumb ============ -->
@@ -25,7 +25,7 @@
 
 <div class="container profile_tab_main_area">
    <div class="row">
-      @include('User.Partial._Sidebar')
+      @include('user.partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
         <div>             <!-- ------------- profile tab info  ------------- -->      
              
@@ -44,7 +44,7 @@
 </div>
 <!-- ---- end  tab ------ -->
 
-@include("User.component.task_process")
-@include("User.payment.payment_release")
+@include("user.component.task_process")
+@include("user.payment.payment_release")
 @endsection
 

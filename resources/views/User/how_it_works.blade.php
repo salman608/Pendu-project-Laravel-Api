@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 
 <section class="work_home py-5 mt-5" id='how_works'>

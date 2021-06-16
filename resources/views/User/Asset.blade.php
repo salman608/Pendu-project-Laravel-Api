@@ -47,7 +47,7 @@
 
 </head>
 
-@include('User.Partial._Header')
+@include('user.Partial._Header')
 
 
 @yield('user_content')
