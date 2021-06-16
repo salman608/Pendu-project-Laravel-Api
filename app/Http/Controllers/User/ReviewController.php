@@ -31,7 +31,7 @@ class ReviewController extends Controller
 
 
     public function orderTraking(){
-        return view('User.review.track_order');
+        return view('user.review.track_order');
     }
 
     public function trackOrderStatus(Request $request){
@@ -39,7 +39,7 @@ class ReviewController extends Controller
         // return $request->all();
         // return $order = TaskOrder::where('order_id', $orderId)->first();
 
-        return view('User.review.track_order');
+        return view('user.review.track_order');
     }
 
     public function reviewSubmit(Request $request){

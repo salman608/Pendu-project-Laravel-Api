@@ -29,7 +29,7 @@ class MoverController extends Controller
         $data['product_cats']   =   ProductCategory::all();
         $data['delivery_times'] =   DeliveryTime::all();
         $data['vehicles']       =   Vehicle::all();
-        return view('User.mover.mover',$data);
+        return view('user.mover.mover',$data);
     }
 
     /**

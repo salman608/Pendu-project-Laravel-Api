@@ -31,7 +31,7 @@ class DropperController extends Controller
     public function create()
     {
 
-        return view('User.Dropper.Add_Dropper');
+        return view('user.dropper.Add_Dropper');
     }
 
     /**

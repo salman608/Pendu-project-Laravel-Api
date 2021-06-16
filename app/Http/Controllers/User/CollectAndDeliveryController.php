@@ -29,7 +29,7 @@ class CollectAndDeliveryController extends Controller
         $data['delivery_times']=DeliveryTime::all();
         $data['vehicles']      =Vehicle::all();
         // return view('User.collect_n_drop.collect_n_drop', compact('dropper'));
-        return view('User.collect_n_deliver.collect_n_deliver',$data);
+        return view('user.collect_n_deliver.collect_n_deliver',$data);
     }
 
     /**
@@ -39,7 +39,7 @@ class CollectAndDeliveryController extends Controller
      */
     public function create()
     {
-        return view('User.Dropper.Add_Dropper');
+        return view('user.Dropper.Add_Dropper');
     }
 
     /**

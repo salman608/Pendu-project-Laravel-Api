@@ -30,7 +30,7 @@ class ShopAndDropController extends Controller
         $data['product_cats']=ProductCategory::all();
         $data['delivery_times']=DeliveryTime::all();
 
-        return view('User.shop_n_drop.shop_n_drop',$data);
+        return view('user.shop_n_drop.shop_n_drop',$data);
     }
 
     /**
@@ -41,7 +41,7 @@ class ShopAndDropController extends Controller
     public function create()
     {
 
-        return view('User.Dropper.Add_Dropper');
+        return view('user.Dropper.Add_Dropper');
     }
 
     /**
