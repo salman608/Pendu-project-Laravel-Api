@@ -64,7 +64,6 @@ Route::get('/hello/{orderId}', function($orderId){
 
 
 Route::get('/sms/', function(){
-
     $receiverNumber = '+8801885544345';
     $message = "This is testing from Pendu";
 
@@ -108,7 +107,7 @@ Route::post('mover', [MoverController::class, 'store'])->name('mover.store');
 /**
  * User routes
  */
-Route::group(["as" => 'user.', "prefix" => 'user'], function () {
+Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verified'], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('profile', [App\Http\Controllers\User\UserDashboardController::class, 'profile'])->name('profile');
@@ -116,7 +115,7 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
     Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
 
-    Route::get('task_order_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOrderJson'])->name('task_order_json');
+    Route::get('task_order_json/{orderId}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOrderJson'])->name('task_order_json');
 
     Route::post('review-submit/', [App\Http\Controllers\User\ReviewController::class, 'reviewSubmit'])->name('review_submit');
 
@@ -146,18 +145,26 @@ Route::group(["as" => 'user.', "prefix" => 'user'], function () {
 
     Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'checkOutProcess'])->name('payment-process');
 
+    // Order TIps
+    Route::get('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('order-tips');
+    Route::post('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'submitTips']);
+
+
 
     // Checked........
 
     // Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('review');
-    Route::get('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('order-tips');
-    Route::post('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'sumbitTips']);
 
     Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking'])->name('order_track');
+
+    Route::post('track', [App\Http\Controllers\User\ReviewController::class, 'trackOrderStatus']);
+
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 
 });
 
+Route::get('verify-phone', [App\Http\Controllers\Auth\OTPController::class, 'index'])->name('verify-phone');
+Route::post('verify-phone', [App\Http\Controllers\Auth\OTPController::class, 'verifyPhone']);
 
 //profile section
 Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {

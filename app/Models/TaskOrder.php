@@ -20,4 +20,20 @@ class TaskOrder extends Model
     public function transaction(){
         return $this->hasOne(TaskOrderTransaction::class);
     }
+
+    public function task(){
+        return $this->belongsTo(Task::class);
+    }
+
+    public function taskOffer(){
+        return $this->belongsTo(TaskOffer::class);
+    }
+
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
+    public function review(){
+        return $this->hasOne(TaskOrderReview::class);
+    }
 }

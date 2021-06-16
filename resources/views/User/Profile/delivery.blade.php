@@ -1,6 +1,19 @@
 @extends('User.Asset')
 @section('user_content')
 
+<style>
+
+   .add-comma-except span:after {
+      content: ", ";
+   }
+   .add-comma-except span:last-child:after {
+      content: "";
+   }
+
+
+</style>
+
+
   <!-- ============ Breadcrumb ============ -->
   <section class="breadcrumb_main">
     <div class="container">
@@ -43,19 +56,24 @@
          <li class='mt-2' >
             <div class="deliveries_item_area">
                <div class="history_item_name">
-                  <p>Movers</p>
+                  <p>{{$task->serviceCategory->title}}</p>
                </div>
                <div class="deliveries_itam">
                   <div class="deliveries_client_name_area">
                      <img src="{{asset('frontend')}}/assets/images/member/girl_pic5.jpg" alt="">
                      <div class="deliveries_item_content">
-                        <p>Move some furniture-</p>
-                        <h5>Chair, table, beds almirahs</h5>
+                        <p>{{ $task->title }}-</p>
+                        <h5 class="add-comma-except">
+                           @foreach($task->products as $product)
+                               <span>{{$product->name}}({{$product->qty}}X)</span>
+                           @endforeach
+                           .
+                       </h5>
                      </div>
                   </div>
                   <div class="history_ratting">
                      <i class="fas fa-star"></i>
-                     <span>5.00</span>
+                     <span>{{$task->order->review->rating}}</span>
                   </div>
                </div>
             </div>

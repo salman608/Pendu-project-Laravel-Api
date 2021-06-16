@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.Asset')
 @section('user_content')
 
 

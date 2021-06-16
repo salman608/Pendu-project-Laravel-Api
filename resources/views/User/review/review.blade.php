@@ -130,7 +130,7 @@
     }
 
     .trips-success-show{
-        display: none;
+        /* display: none; */
     }
 </style>
 <section class="">
@@ -236,6 +236,8 @@
                 <p>Review sent successfully!</p>
             </div>
 
+            @if (!session()->has('success'))
+
             <div class="trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center border-top pt-2" 
                 style="font-family: Montserrat;
                 font-weight: 600;
@@ -283,10 +285,6 @@
                 </form>
             </div>
 
-
-
-
-
             </div>
 
             <div  class=" trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center mt-4">
@@ -305,9 +303,13 @@
                     </g>
                 </svg>
             </div>
+
+            @else
             <div  class=" trips-success-show col-md-12 col-sm-12 col-lg-12 text-center mt-4">
                 <h1 style="color: #60e99c">Congratulations.</h1>
-            </div>
+            </div>      
+
+            @endif
 
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-5" style="font-family: Montserrat;
             font-size: 11px;
@@ -409,7 +411,7 @@
             </div>
             
             <div class="" style="padding: 25px;">
-            <form action="" method="post" id="payment-form">
+            <form action="{{route('user.order-tips', $orderId)}}" method="post" id="payment-form">
 
                 <div class="row form-group">
                         <div class="col-md-12">
@@ -534,7 +536,7 @@
         form.appendChild(hiddenInput);
 
         // Submit the form
-        // form.submit();
+        form.submit();
 
         $('.trips-success-hide').css('display','none');
         $('.trips-success-show').css('display','block');

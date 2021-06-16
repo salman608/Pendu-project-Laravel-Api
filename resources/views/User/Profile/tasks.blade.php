@@ -308,7 +308,7 @@
                         <path id="Path_5797" data-name="Path 5797" d="M6.494,75.3A.887.887,0,0,1,6.1,75.21a1,1,0,0,1-.543-.9v-3.24a8.012,8.012,0,0,1-5.3-9.73,7.844,7.844,0,0,1,4.107-5.178.909.909,0,0,1,1.264.416,1.026,1.026,0,0,1-.391,1.343.934.934,0,0,1-.105.05A6.12,6.12,0,0,0,2.334,65.86,5.666,5.666,0,0,0,6.625,69.3a.977.977,0,0,1,.8.994v1.928L10.385,69.6a.908.908,0,0,1,.6-.268h2.058a5.4,5.4,0,0,0,4.013-1.809.9.9,0,0,1,1.328-.02,1.043,1.043,0,0,1,.019,1.411,7.274,7.274,0,0,1-5.36,2.405H11.321L7.093,75.071a.9.9,0,0,1-.6.229" transform="translate(0 -47.471)" fill="#fff"/>
                       </g>
                     </g>
-                    <a data-toggle="modal" data-target="#taskProcessModal" style="cursor: pointer;">
+                    <a  id="check-progress-btn" style="cursor: pointer;">
                     <g id="Group_2845" data-name="Group 2845" transform="translate(17334 2120.115)">
                       <g id="Group_1331" data-name="Group 1331" clip-path="url(#clip-path-2)">
                         <path id="Path_5798" data-name="Path 5798" d="M25.923,12.1H24.05a10.4,10.4,0,0,0-8.5-8.5V1.728a1.728,1.728,0,0,0-3.456,0V3.6a10.4,10.4,0,0,0-8.5,8.5H1.728a1.728,1.728,0,1,0,0,3.456H3.6a10.4,10.4,0,0,0,8.5,8.5v1.873a1.728,1.728,0,1,0,3.456,0V24.05a10.4,10.4,0,0,0,8.5-8.5h1.873a1.728,1.728,0,1,0,0-3.456m-12.1,8.641a6.913,6.913,0,1,1,6.913-6.913,6.921,6.921,0,0,1-6.913,6.913" fill="#fff"/>
@@ -796,6 +796,11 @@ $(document).ready(function(){
   //     alert('Outside...');
   // });
 
+  $('#check-progress-btn').on('click',function(e){
+    $('#pay-confirm-model-block').css('display', 'none');
+
+    $('#taskProcessModal').modal('show');
+  });
 
 
   // Show offer Modal
@@ -835,7 +840,7 @@ $(document).ready(function(){
 							}
 						}
 		});
-    $('#offer_show_modal').modal('toggle');
+    // $('#offer_show_modal').modal('toggle');
 
 
     // $('#offer_show_modal').modal('toggle');
@@ -887,7 +892,7 @@ $(document).ready(function(){
 		});
 
     // Toggole
-    $('#taskProcessModal').modal('toggle');
+    // $('#taskProcessModal').modal('toggle');
 
     
 

@@ -27,7 +27,8 @@ class User extends Authenticatable implements JWTSubject
         'profile_photo',
         'role_id',
         'password',
-        'balance'
+        'balance',
+        'phone_verified_at'
     ];
 
     /**
@@ -121,6 +122,12 @@ class User extends Authenticatable implements JWTSubject
     public function getReferralLinkAttribute()
     {
         return $this->referral_link = route('register', ['ref' => $this->id,mt_rand(1000,9999)]);
+    }
+
+
+    public function hasVerifiedPhone()
+    {
+        return ! is_null($this->phone_verified_at);
     }
 
 }
