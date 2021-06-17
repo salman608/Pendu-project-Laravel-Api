@@ -13,6 +13,6 @@ class Vehicle extends Model
 
     public function getIconAttribute($value)
     {
-        return url('/frontend/assets/images/Icons').'/'.$value;
+        return asset('/frontend/assets/images/Icons').'/'.$value;
     }
 }

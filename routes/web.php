@@ -13,7 +13,8 @@ use App\Models\TaskOffer;
 use App\Models\TaskOrder;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\URL;
 use Twilio\Rest\Client;
 /*
 |--------------------------------------------------------------------------
@@ -61,7 +62,29 @@ Route::get('/hello/{orderId}', function($orderId){
 
 });
 
+Route::get('/testing', function(){
+    // return url('hello');
+    // http://pendu-office.mr/hello
 
+    // return asset('/hello');
+    // /public/hello
+
+    // return URL::to('hello');
+    // http://pendu-office.mr/hello
+
+    // return url('/');
+    // http://pendu-office.mr
+
+
+    return Config::get('app.url');
+    // http://localhost
+
+    
+    // return base_url(); // undefined
+    // return pendu_url(); // undefined
+
+
+});
 
 Route::get('/sms/', function(){
     $receiverNumber = '+8801885544345';
