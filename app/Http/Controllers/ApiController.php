@@ -5,12 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 class ApiController extends Controller
-{
+{   
+    // Check the server
     public function ping()
     {
         return 'OK';
     }
 
+    // About Developer info
     public function me()
     {
         return response()->json([
@@ -30,10 +32,6 @@ class ApiController extends Controller
     /**
      *  Response Json Success
      *
-     * @param string $message
-     * @param array $data
-     * @param integer $code
-     * @return void
      */
     protected function respondWithSuccess($message = '', $data = [], $code = 200){
         return response()->json([
@@ -44,12 +42,8 @@ class ApiController extends Controller
     }
 
     /**
-     *  Response Json Fail
+     *  Response Json Success
      *
-     * @param string $message
-     * @param array $data
-     * @param integer $code
-     * @return void
      */
     protected function respondWithError($message = '', $data = [], $code = 200){
         return response()->json([

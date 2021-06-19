@@ -15,10 +15,19 @@ class ReferralController  extends Controller
     {
         $this->middleware('auth');
     }
+
+    /**
+     *  Get refer and earn page
+     *
+     */
     public function index(){
         return view('user.profile.refer_n_earn');
     }
 
+    /**
+     *  Store referral resource
+     *
+     */    
     public function store(Request $request){
 
         $request->validate([

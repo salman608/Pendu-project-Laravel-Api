@@ -110,7 +110,7 @@ Route::group(["as" => 'admin.', "prefix" => 'admin'], function () {
 // Route::get('/post/create', [App\Http\Controllers\User\PostController::class, 'create']);
 // Route::get('/single_post/{id}', [App\Http\Controllers\User\PostController::class, 'show']);
 
-Route::get('/how-it-work', [App\Http\Controllers\User\PostController::class, 'how_it_work'])->name('how-it-work');
+// Route::get('/how-it-work', [App\Http\Controllers\User\PostController::class, 'how_it_work'])->name('how-it-work');
 
 //dropper section
 Route::group(["as" => 'quote.', "prefix" => 'quote'], function () {

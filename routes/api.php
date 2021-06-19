@@ -45,8 +45,10 @@ Route::group([
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/logout', [AuthController::class, 'logout']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
+    Route::put('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);
+    Route::put('/profile', [AuthController::class, 'update']);
+    Route::put('/password/reset', [AuthController::class, 'update']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 });
 

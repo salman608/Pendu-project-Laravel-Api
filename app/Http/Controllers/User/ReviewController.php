@@ -24,16 +24,28 @@ class ReviewController extends Controller
         return view("user.review.review", ['orderId' => $orderId]);
     }
 
+    /**
+     *  Show review sent page
+     *
+     */    
     public function sent()
     {
         return view("user.review.review_sent");
     }
 
-
+    /**
+     *  Show order taking page
+     *
+     */
     public function orderTraking(){
         return view('user.review.track_order');
     }
 
+
+    /**
+     *  Show order taking status page
+     *
+     */
     public function trackOrderStatus(Request $request){
 
         // return $request->all();
@@ -42,6 +54,11 @@ class ReviewController extends Controller
         return view('user.review.track_order');
     }
 
+
+    /**
+     *  Store review 
+     *
+     */
     public function reviewSubmit(Request $request){
 
         $taskOrder = TaskOrder::where('order_id', $request->task_order_id)->first();
@@ -61,6 +78,10 @@ class ReviewController extends Controller
 
     }
 
+    /**
+     *  Store tips
+     *
+     */
     public function submitTips(Request $request, $orderId){
 
 

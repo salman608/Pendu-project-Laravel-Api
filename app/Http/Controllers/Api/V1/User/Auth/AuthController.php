@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\Api\V1\User\Auth;
 
+use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 
-class AuthController extends Controller
+class AuthController extends ApiController
 {
     /**
      * Create a new AuthController instance.
@@ -31,15 +32,26 @@ class AuthController extends Controller
             'password' => 'required|string|min:6',
         ]);
 
-        if ($validator->fails()) {
-            return response()->json($validator->errors(), 422);
+        if($validator->fails()){
+            return $this->respondWithError(
+                'Validation Error',
+                $validator->errors(),
+                422
+            );
         }
 
         if (! $token = auth('api')->attempt($validator->validated())) {
-            return response()->json(['error' => 'Unauthorized'], 401);
+            return $this->respondWithError(
+                'Unauthorized',
+                null, 401
+            );
         }
 
-        return $this->createNewToken($token);
+
+        return $this->respondWithSuccess(
+            'User access token retrieved.',
+            ['access_token' => $token, 'user' => auth('api')->user()  ]
+        );
     }
 
     /**
@@ -57,7 +69,11 @@ class AuthController extends Controller
         ]);
 
         if($validator->fails()){
-            return response()->json($validator->errors()->toJson(), 400);
+            return $this->respondWithError(
+                'Validation Error',
+                $validator->errors(),
+                422
+            );
         }
 
         $user = User::create(array_merge(
@@ -65,10 +81,10 @@ class AuthController extends Controller
                     ['password' => bcrypt($request->password)]
                 ));
 
-        return response()->json([
-            'message' => 'User successfully registered',
-            'user' => $user
-        ], 201);
+        return $this->respondWithSuccess(
+            'New user has been created.',
+            $user
+        );
     }
 
 
@@ -89,7 +105,11 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function refresh() {
-        return $this->createNewToken(auth('api')->refresh());
+
+        return $this->respondWithSuccess(
+            'User access token refreshed.',
+            $this->createNewToken(auth('api')->refresh())
+        );
     }
 
     /**
@@ -98,34 +118,42 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     public function profile() {
-        return response()->json(auth('api')->user());
+
+        return $this->respondWithSuccess(
+            'User data retrieved.',
+            auth('api')->user() 
+        );
     }
 
 
-    // public function update(Request $request ,$id) {
-    //     $validator=User::find($id);
-    //     $validator = Validator::make($request->all(), [
-    //         'name' => 'required|string|between:2,100',
-    //         'email' => 'required|string|email|max:100|unique:users',
-    //         'phone' => 'required|string',
-    //         'suburb' => 'required|string',
-    //         'password' => 'required|string|min:6',
-    //     ]);
+    /**
+     * Update a User.
+     *
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'name' => 'required|string|between:2,100',
+            'phone' => 'required|string',
+            'suburb' => 'required|string',
+        ]);
 
-    //     if($validator->fails()){
-    //         return response()->json($validator->errors()->toJson(), 400);
-    //     }
+        if($validator->fails()){
+            return $this->respondWithError(
+                'Validation Error',
+                $validator->errors(),
+                422
+            );
+        }
 
-    //     $user = User::create(array_merge(
-    //                 $validator->validated(),
-    //                 ['password' => bcrypt($request->password)]
-    //             ));
+        $user = $request->user()->update($validator->validated());
 
-    //     return response()->json([
-    //         'message' => 'User successfully registered',
-    //         'user' => $user
-    //     ], 201);
-    // }
+        return $this->respondWithSuccess(
+            'User profile has been updated.',
+            $request->user()
+        );
+    }
+
 
     /**
      * Get the token array structure.
@@ -135,11 +163,10 @@ class AuthController extends Controller
      * @return \Illuminate\Http\JsonResponse
      */
     protected function createNewToken($token){
-        return response()->json([
+        return [
             'access_token' => $token,
             'token_type' => 'bearer',
-            'expires_in' => auth('api')->factory()->getTTL() * 60,
-            'user' => auth('api')->user()
-        ]);
+            'expires_in' => auth('api')->factory()->getTTL() * 60
+        ];
     }
 }
