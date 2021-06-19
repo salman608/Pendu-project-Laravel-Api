@@ -18,19 +18,20 @@ class User extends Authenticatable implements JWTSubject
      *
      * @var array
      */
-    protected $fillable = [
-        'name',
-        'referrer_id',
-        'email',
-        'suburb',
-        'phone',
-        'profile_photo',
-        'role_id',
-        'password',
-        'balance',
-        'phone_verified_at'
-    ];
+    // protected $fillable = [
+    //     'name',
+    //     'referrer_id',
+    //     'email',
+    //     'suburb',
+    //     'phone',
+    //     'profile_photo',
+    //     'role_id',
+    //     'password',
+    //     'balance',
+    //     'phone_verified_at'
+    // ];
 
+    protected $guarded = [];
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -64,9 +65,10 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
+    
     public function referrals()
     {
-        return $this->hasMany(User::class, 'referrer_id', 'id');
+        return $this->hasMany(Referral::class);
     }
 
 
@@ -112,19 +114,19 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-  protected $appends = ['referral_link'];
+    protected $appends = ['referral_link'];
 
-/**
- * Get the user's referral link.
- *
- * @return string
- */
+    /**
+     * Get the user's referral link.
+     *
+     * @return string
+     */
     public function getReferralLinkAttribute()
     {
-        return $this->referral_link = route('register', ['ref' => $this->id,mt_rand(1000,9999)]);
+        return $this->referral_link = route('register', ['ref' => $this->name]);
     }
 
-
+    
     public function hasVerifiedPhone()
     {
         return ! is_null($this->phone_verified_at);

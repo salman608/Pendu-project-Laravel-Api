@@ -157,7 +157,16 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verifi
 
 
     Route::get('notifications', [App\Http\Controllers\User\UserDashboardController::class, 'notifications'])->name('notifications');
-    Route::get('refar-n-earn', [App\Http\Controllers\User\UserDashboardController::class, 'refarAndEarn'])->name('refar-n-earn');
+
+
+    // Refer & Earn
+    Route::get('refer-n-earn', [App\Http\Controllers\User\ReferralController::class, 'index'])->name('refer-n-earn');
+    Route::post('refer-n-earn', [App\Http\Controllers\User\ReferralController::class, 'store']);
+
+
+    Route::post('/sendMail', [App\Http\Controllers\User\ProfileController::class, 'sendInvitationMail'])->name('invitation');
+
+
     Route::get('supports', [App\Http\Controllers\User\UserDashboardController::class, 'support'])->name('support');
     Route::get('faq', [App\Http\Controllers\User\UserDashboardController::class, 'faq'])->name('faq');
     Route::get('term-n-conditions', [App\Http\Controllers\User\UserDashboardController::class, 'termAndCondition'])->name('term-n-conditions');
@@ -193,7 +202,6 @@ Route::post('verify-phone', [App\Http\Controllers\Auth\OTPController::class, 've
 Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
     // Route::get('/index', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('index');
     Route::post('/update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('profile_update');
-    Route::post('/sendMail', [App\Http\Controllers\User\ProfileController::class, 'sendInvitationMail'])->name('invitation');
     Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
 });
 

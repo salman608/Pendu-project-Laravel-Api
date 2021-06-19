@@ -117,9 +117,6 @@ class UserDashboardController extends Controller
     public function notifications(){
         return view('user.profile.notification');
     }
-    public function refarAndEarn(){
-        return view('user.profile.refer_n_earn');
-    }
 
     public function support(){
         return view('user.profile.support');

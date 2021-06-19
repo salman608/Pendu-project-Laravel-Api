@@ -45,7 +45,7 @@
                       </li>
                     @else
                       <li class="nav-item refer">
-                          <a class="nav-link" id="refar_btn" href="#" style="color: white;">Refer & earn</a>
+                          <a class="nav-link" id="refar_btn" href="{{ route('user.refer-n-earn') }}" style="color: white;">Refer & earn</a>
                           {{-- <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;">Refer & earn</a> --}}
                       </li>
 
