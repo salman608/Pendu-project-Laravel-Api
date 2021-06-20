@@ -18,15 +18,25 @@ class EnsurePhoneIsVerified
      * @return mixed
      */
     public function handle(Request $request, Closure $next)
-    {   
-  
+    {  
+        if($request->expectsJson()){
+            if (! auth('api')->user()->hasVerifiedPhone()) {
 
-        if (! $request->user()->hasVerifiedPhone()) {
+                return response()->json([
+                    'status' => 403,
+                    'message' => 'Your phone address is not verified.',
+                    'error' =>[]
+                ], 403);
+            } 
+        }else {
 
-            return $request->expectsJson()
-                ? abort(403, 'Your phone address is not verified.')
-                : redirect()->route('verify-phone');
+            if (! $request->user()->hasVerifiedPhone()) {
+                return $request->expectsJson()
+                    ? abort(403, 'Your phone address is not verified.')
+                    : redirect()->route('verify-phone');
+            }
         }
+        
         return $next($request);
     }
 }

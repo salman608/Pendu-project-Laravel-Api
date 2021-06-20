@@ -12,6 +12,7 @@ use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
 use App\Http\Controllers\Api\V1\User\AppController;
+use App\Http\Controllers\Api\V1\User\Auth\OTPController;
 use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\V1\User\TaskOrderController;
 use App\Http\Controllers\Api\V1\User\TaskController;
@@ -39,19 +40,29 @@ use App\Models\TaskOffer;
 
 // =========User route Controller==========
 
+
 Route::group([
     'prefix' => 'v1/auth'
-
 ], function () {
     Route::post('/login', [AuthController::class, 'login']);
     Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/password/email', [ResetPasswordController::class, 'index']);
+    Route::post('/password/confirm', [ResetPasswordController::class, 'confirm']);
+    Route::put('/password/reset', [ResetPasswordController::class, 'reset']);
+    // Route::post('/update/{id}', [AuthController::class, 'update']);
+
+    Route::post('/verify-phone', [OTPController::class, 'verifyPhone']);
+});
+
+Route::group([
+    'prefix' => 'v1/auth',
+    "middleware" => 'phone-verified'
+
+], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/profile', [AuthController::class, 'update']);
-    Route::post('/password/email', [ResetPasswordController::class, 'index']);
-    Route::post('/password/confirm', [ResetPasswordController::class, 'confirm']);
-    Route::put('/password/reset', [ResetPasswordController::class, 'reset']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 });
 
