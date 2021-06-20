@@ -13,11 +13,22 @@ class CouponController extends ApiController
     {
     }
 
-    public function applyCoupon($coupon){
+    public function index(){
+        $coupons = Coupon::all();
+
+        return $this->respondWithSuccess(
+            'All coupons are retrieved.',
+            $coupons
+        );
+    }
+
+    public function show($id){
+
+        $coupon = Coupon::with('info')->where('id', $id)->first();
 
         return $this->respondWithSuccess(
             'Coupon details is retrieved.',
-            Coupon::where('coupon_code', $coupon)->get()
+            $coupon
         );
     }
 }
