@@ -278,7 +278,9 @@ form { position: relative; margin: 50px; width: 1200px; }
              <div class="col-md-9  hero_main_content1">
 
               <div class="hero_content">
-                <h1>Get your product <br> DELIVERED! </h1>
+                <h1 style="
+                color: red;
+            ">Get your product <br> DELIVERED! </h1>
                 <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit ultricies tempor. Nascetur iaculis ante erat etiam semper turpis mus eu augue, gravida primis</p>
               </div>
               <div class="hero_button">
