@@ -146,7 +146,7 @@ class RegisterController extends Controller
             ]);
             $dropper->services()->attach($request->services);
 
-            return view('Dropper.auth.login');
+            return view('dropper.auth.login');
 
     }
 
