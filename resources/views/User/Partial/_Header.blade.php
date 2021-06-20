@@ -41,7 +41,7 @@
                     </li>
                     @if (!Auth::check())
                       <li class="nav-item dropper">
-                          <a class="nav-link" href="{{route('dropper.register')}}">Become a dropper</a>
+                          <a class="nav-link" href="{{route('dropper.register')}}">Become a Driver</a>
                       </li>
                     @else
                       <li class="nav-item refer">

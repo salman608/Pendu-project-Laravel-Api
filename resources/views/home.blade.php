@@ -278,14 +278,14 @@ form { position: relative; margin: 50px; width: 1200px; }
              <div class="col-md-9  hero_main_content1">
 
               <div class="hero_content">
-                <h1>Get your products <br> DELIVERY! </h1>
+                <h1>Get your product <br> DELIVERED! </h1>
                 <p>Lorem ipsum dolor sit amet consectetur, adipiscing elit ultricies tempor. Nascetur iaculis ante erat etiam semper turpis mus eu augue, gravida primis</p>
               </div>
               <div class="hero_button">
                <div class="hero_button1">
                  <a href="#" class="btn">read more</a>
                </div>
-               <div class="hero_button2 mt-2">
+               <div class="hero_button2 mt-4">
                  <a href="#" class="btn">download app</a>
                </div>
 
@@ -309,7 +309,7 @@ form { position: relative; margin: 50px; width: 1200px; }
           <div class="container mt-sm-3 hero_service">
             <div class="row">
 
-              <div class="col-xl-3 col-lg-3 col-md-4 col-4">
+              <div class="col-xl-2 col-lg-2 col-md-4 col-4">
                 <a href="{{ url('shop_n_drop') }}">
 
                 <div class="hero_item">
@@ -332,7 +332,7 @@ form { position: relative; margin: 50px; width: 1200px; }
                 </a>
               </div>
 
-              <div class="col-xl-3 col-lg-3 col-md-4 col-4">
+              <div class="col-xl-2 col-lg-2 col-md-4 col-4">
                 <a href="{{ url('collect_n_delivery') }}">
 
                 <div class="hero_item">
@@ -349,7 +349,7 @@ form { position: relative; margin: 50px; width: 1200px; }
                 </a>
               </div>
 
-              <div class="col-xl-3 col-lg-3 col-md-4 col-4">
+              <div class="col-xl-2 col-lg-2 col-md-4 col-4">
                 <a href="{{ url('mover') }}">
 
                 <div class="hero_item">
@@ -1371,10 +1371,7 @@ form { position: relative; margin: 50px; width: 1200px; }
                     <p class='more_way' >More way to invite</p>
 
 
-                    <form>
-                        <input type="range" name="foo" min="0" max="100">
-                        <output for="foo" onforminput="value = foo.valueAsNumber;"></output>
-                        </form>
+                 
 
 
 
