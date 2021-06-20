@@ -497,7 +497,7 @@ select.select-box {
                                   <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
                                   <td class="qty">
                                          <span class="minus" style="background: #8f8f8f">-</span>
-                                         <input type="number" class="count" name="qty[]">
+                                         <input type="number" class="count" value="1" name="qty[]">
                                          <span class="plus" style="background: #8f8f8f">+</span>
                                     </td>
                                   <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."><div id="result"></div> </td>
