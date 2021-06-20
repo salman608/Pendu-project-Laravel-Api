@@ -88,7 +88,7 @@ class Dropper extends Authenticatable implements JWTSubject
             die();
 
         } else {
-            return url('/uploads/dropper/photos/user.svg');
+            return asset('/uploads/dropper/photos/user.svg');
         }
     }
 

@@ -1,5 +1,5 @@
 <?php
-
+// FIXME:: Delete this
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;

@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 
 
@@ -25,7 +25,7 @@
 
 <div class="container profile_tab_main_area">
    <div class="row">
-      @include('User.Partial._Sidebar')
+      @include('user.partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
         <div>             <!-- ------------- profile tab info  ------------- -->
 
@@ -51,19 +51,27 @@
            </div>
 
            <div class="invite_mail">
-             <form method="POST" action="{{ route('profile.invitation') }}">
+             <form method="POST" action="{{ route('user.refer-n-earn') }}">
               @csrf
                <div class="form-group form-inline ">
-                 <input type="email" class="form-control  mail_input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email address" name="email">
+                 <input type="email" class="form-control  mail_input" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email address" value="{{ old('email') }}" name="email">
 
                  <button type="submit" class="btn invite_button">Send invite</button>
                </div>
+              @error('email')
+              <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
+              @enderror 
+
+              @if(session('success'))
+              <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
+              @endif 
+               
               </form>
 
                <p class='more_way more_way_refer' >More way to invite</p>
 
               <div class="section_tooltipss">
-                 <input type="text" class=" link_input" value=" {{ Auth::user()->referral_link }}" id="myInput1">
+                 <input type="text" class=" link_input" value=" {{ auth()->user()->referral_link }}" id="myInput1">
                 <div class="tooltip22">
                  <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">
                    <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
@@ -93,7 +101,7 @@
 </div>
 <!-- ---- end  tab ------ -->
 
-@include("User.component.task_process")
-@include("User.payment.payment_release")
+@include("user.component.task_process")
+@include("user.payment.payment_release")
 @endsection
 

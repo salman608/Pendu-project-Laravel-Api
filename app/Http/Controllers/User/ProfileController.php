@@ -33,7 +33,7 @@ class ProfileController extends Controller
         //     'history' => $history,
         // );
 
-        // return view('User.Profile.index');
+        // return view('user.Profile.index');
     }
 
     /**

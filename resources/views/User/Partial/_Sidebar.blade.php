@@ -94,7 +94,7 @@
                   </svg>
 
                 </span> Notification</a>
-                <a class="nav-link  @if(Route::is('user.refar-n-earn') ) active @endif" href="{{ route('user.refar-n-earn') }}" > <span>
+                <a class="nav-link  @if(Route::is('user.refer-n-earn') ) active @endif" href="{{ route('user.refer-n-earn') }}" > <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 153.32 144.34">
                     <g id="refer_a_friend" data-name="refer a friend" transform="translate(1.66 -2.83)">
                       <g id="Group_3" data-name="Group 3">

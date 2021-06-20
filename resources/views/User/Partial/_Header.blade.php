@@ -45,12 +45,12 @@
                       </li>
                     @else
                       <li class="nav-item refer">
-                          <a class="nav-link" id="refar_btn" href="#" style="color: white;">Refer & earn</a>
+                          <a class="nav-link" id="refar_btn" href="{{ route('user.refer-n-earn') }}" style="color: white;">Refer & earn</a>
                           {{-- <a class="nav-link" id="refar_btn" href="{{ url('review') }}" style="color: white;">Refer & earn</a> --}}
                       </li>
 
                       <li class="nav-item refer">
-                        <a class="nav-link" id="track_btn" data-toggle="modal" data-target="#tModal" href="" style="color: white;background:orange;width: 179px;">Traking Order</a>
+                        <a class="nav-link" id="track_btn"  href="{{ route('user.order_track') }}" style="color: white;background:orange;width: 179px;">Traking Order</a>
                     </li>
                     @endif
                 </ul>
@@ -281,5 +281,5 @@
 
         </nav>
     </div>
-@include('auth.otp-verify')
+{{-- @include('frontend.modal.otp_modal') --}}
 </section>

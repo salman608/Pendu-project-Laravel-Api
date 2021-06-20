@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 @section('user_content')
 <style>
 
@@ -337,7 +337,7 @@
 
 
    <div class="row">
-      @include('User.Partial._Sidebar')
+      @include('user.partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
         <div>             <!-- ------------- profile tab info  ------------- -->
 
@@ -748,7 +748,7 @@
 
 
 
-@include("User.payment.payment_release")
+@include("user.payment.payment_release")
 
 
 <script>

@@ -93,6 +93,10 @@ class PaymentController extends Controller
 
     }
 
+    /**
+     *  Apply Coupon by using promo code
+     */
+
     public function applyCoupon($couponCode){
 
         try {
@@ -148,7 +152,10 @@ class PaymentController extends Controller
         }
     }
 
-
+     /**
+     *  Stripe Checkout
+     *
+     */
     public function checkOutProcess(Request $request, $offerId, $taskId)
     {   
         // we just need Stripe token

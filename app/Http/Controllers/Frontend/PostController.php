@@ -7,7 +7,12 @@ use App\Models\Post;
 use Illuminate\Http\Request;
 
 class PostController extends Controller
-{
+{   
+
+    /**
+     *  Return all Blog posts
+     *
+     */
     public function allPost(){
         $posts     = Post::inRandomOrder()->where('status', 1)->latest()->take(1)->get();
         $side_post = Post::inRandomOrder()->where('status', 1)->latest()->take(3)->get();
@@ -15,6 +20,10 @@ class PostController extends Controller
         return view('frontend.post.all_post',compact('posts','side_post','all_post'));
     }
 
+    /**
+     *  Return single Blog post
+     *
+     */
     public function singlePost($post){
         $header_post = Post::inRandomOrder()->simplePaginate(1);
         $single_post = Post::where('status', 1)->where('id', $post)->first();

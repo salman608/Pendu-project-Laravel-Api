@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 <style>
     input[type="text"] {
         background: #f1f1f1;
@@ -731,9 +731,9 @@
 
 {{-- data-toggle="modal" data-target="#deliveryProcessModal" --}}
 
-@include("User.component.googleMap_pickup_modal")
-@include("User.component.googleMap_delivery_modal")
-@include("User.component.post_delivery")
+@include("user.component.googleMap_pickup_modal")
+@include("user.component.googleMap_delivery_modal")
+@include("user.component.post_delivery")
 
 <script>
 

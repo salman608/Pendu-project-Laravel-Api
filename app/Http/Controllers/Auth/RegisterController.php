@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Referral;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use App\Notifications\ReferralBonus;
@@ -62,6 +63,18 @@ class RegisterController extends Controller
         ]);
     }
 
+    public function showRegistrationForm(Request $request)
+    {   
+        if ($request->has('referral')) {
+            session(['referral' => $request->query('referral')]);
+        }
+        if ($request->has('ref')) {
+            session(['ref' => $request->query('ref')]);
+        }
+
+        return view('auth.register');
+    }
+
     /**
      * Create a new user instance after a valid registration.
      *
@@ -69,12 +82,14 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     public static function create(array $data)
-    {
-        $referrer = User::where('referrer_id',session()->pull('referrer'))->first();
+    {   
+
+        $referral = Referral::where('token',session('referral'))->first();
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
-            'referrer_id' => $referrer ? $referrer->id : null,
+            'referral_id' => $referral ? $referral->id : null,
             'suburb' => $data['suburb'],
             'phone' => $data['phone'],
             'password' => Hash::make($data['password']),
@@ -83,9 +98,9 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
         {
-            if ($user->referrer !== null) {
-                Notification::send($user->referrer, new ReferralBonus($user));
-            }
+            // if ($user->referrer !== null) {
+            //     Notification::send($user->referrer, new ReferralBonus($user));
+            // }
 
             return redirect($this->redirectPath());
         }

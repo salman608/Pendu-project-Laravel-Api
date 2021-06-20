@@ -1,5 +1,5 @@
 <?php
-
+// FIXME: Delete this
 namespace App\Http\Controllers\Driver;
 
 use App\Http\Controllers\Controller;
@@ -17,7 +17,7 @@ class QuoteController extends Controller
     public function user_quote()
     {
         $quotes = Quote::where('driver_id',Auth::id())->get();
-        return view('Driver.quote.all_quote',compact('quotes'));
+        return view('driver.quote.all_quote',compact('quotes'));
     }
     /**
      * Show the form for creating a new resource.

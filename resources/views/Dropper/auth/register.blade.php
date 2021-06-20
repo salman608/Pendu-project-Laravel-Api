@@ -1,4 +1,4 @@
-@extends('User.Asset')
+@extends('user.asset')
 <style>
     p{
         font-family: var(--montserrat-font)!important;

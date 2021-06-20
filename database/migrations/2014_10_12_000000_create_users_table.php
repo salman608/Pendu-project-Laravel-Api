@@ -17,8 +17,6 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->double('balance')->default(0);
-            $table->unsignedBigInteger('referrer_id')->nullable();
-            $table->foreign('referrer_id')->references('id')->on('users');
             $table->string('suburb');
             $table->string('phone');
             $table->string('profile_photo')->default("profile.png");
@@ -26,6 +24,7 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->timestamp('phone_verified_at')->nullable();
             $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedBigInteger('referral_id')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
