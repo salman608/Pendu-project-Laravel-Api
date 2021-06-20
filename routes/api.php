@@ -12,6 +12,7 @@ use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
 use App\Http\Controllers\Api\V1\User\AppController;
+use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\V1\User\TaskOrderController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\ApiController;
@@ -48,7 +49,9 @@ Route::group([
     Route::put('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/profile', [AuthController::class, 'update']);
-    Route::put('/password/reset', [AuthController::class, 'update']);
+    Route::post('/password/email', [ResetPasswordController::class, 'index']);
+    Route::post('/password/confirm', [ResetPasswordController::class, 'confirm']);
+    Route::put('/password/reset', [ResetPasswordController::class, 'reset']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 });
 
