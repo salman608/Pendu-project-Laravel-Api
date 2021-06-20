@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
 
 
-class EnsurePhoneIsVerified
+class EnsurePhoneIsVerifiedInAPI
 {
     /**
      * Handle an incoming request.
@@ -19,13 +19,15 @@ class EnsurePhoneIsVerified
      */
     public function handle(Request $request, Closure $next)
     {  
+        if (! auth('api')->user()->hasVerifiedPhone()) {
 
-        if (! $request->user()->hasVerifiedPhone()) {
-            return $request->expectsJson()
-                ? abort(403, 'Your phone address is not verified.')
-                : redirect()->route('verify-phone');
-        }
-      
+            return response()->json([
+                'status' => 403,
+                'message' => 'Your phone address is not verified.',
+                'error' =>[]
+            ], 403);
+        } 
+        
         return $next($request);
     }
 }

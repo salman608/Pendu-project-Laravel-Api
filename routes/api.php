@@ -56,7 +56,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'v1/auth',
-    "middleware" => 'phone-verified'
+    "middleware" => 'phone-verified-api'
 
 ], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -64,6 +64,7 @@ Route::group([
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/profile', [AuthController::class, 'update']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
+
 });
 
 // Route::prefix('v1')->name('v1.')->group(function () {
@@ -81,7 +82,7 @@ Route::prefix('v1')->group(function () {
 });
 
 
-Route::prefix('v1')->middleware('jwt.verify')->group(function () {
+Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(function () {
 	Route::post('/tasks', [TaskController::class, 'store']);
 
     Route::get('/tasks/{taskId}/offers', function($taskId){
@@ -110,7 +111,8 @@ Route::prefix('v1')->middleware('jwt.verify')->group(function () {
     Route::get('/vehicles', [VehicleController::class, 'index']);
     Route::get('/delivery-times', [DeliveryTimeController::class, 'index']);
 
-    Route::get('/coupons/{coupon}', [CouponController::class, 'applyCoupon']);
+    Route::get('/coupons/', [CouponController::class, 'index']);
+    Route::get('/coupons/{id}', [CouponController::class, 'show']);
 
 
 

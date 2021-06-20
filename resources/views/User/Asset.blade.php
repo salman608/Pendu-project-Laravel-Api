@@ -47,7 +47,7 @@
 
 </head>
 
-@include('user.Partial._Header')
+@include('user.partial._Header')
 
 
 @yield('user_content')
@@ -63,7 +63,7 @@
 
 
 
-@include('user.Partial._Footer')
+@include('user.partial._Footer')
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
