@@ -4,140 +4,187 @@
 {{-- style start Here --}}
 <style>
 
-.modal { overflow-y: auto !important; }
-.car{
-    background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
-}
-.ute{
-    background-image:url({{ asset('frontend/assets/images/Icons/ute.svg') }});
-}
-.van{
-    background-image:url({{ asset('frontend/assets/images/Icons/van.svg') }});
-}
-.truck{
-    background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
-}
+  .modal { overflow-y: auto !important; }
+  .car{
+      background-image:url({{ asset('frontend/assets/images/Icons/car.svg') }});
+  }
+  .ute{
+      background-image:url({{ asset('frontend/assets/images/Icons/ute.svg') }});
+  }
+  .van{
+      background-image:url({{ asset('frontend/assets/images/Icons/van.svg') }});
+  }
+  .truck{
+      background-image:url({{ asset('frontend/assets/images/Icons/truck.svg') }});
+  }
 
-.cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
-.cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
-    -webkit-filter: none;
-       -moz-filter: none;
-            filter: none;
-}
-.drinkcard-cc{
-    cursor:pointer;
-    background-size:contain;
-    background-repeat:no-repeat;
-    display:inline-block;
-    width:100px;height:70px;
-    -webkit-transition: all 100ms ease-in;
-       -moz-transition: all 100ms ease-in;
-            transition: all 100ms ease-in;
-    -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
-       -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
-            filter: brightness(1.8) grayscale(1) opacity(.7);
-}
-.drinkcard-cc:hover{
-    -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
-       -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
-            filter: brightness(1.2) grayscale(.5) opacity(.9);
-}
-#pname{
-    width: 206px !important;
-}
-.qty{
-    width: 128px !important;
-}
-.qty .count {
-    color: #56cd93;
-    display: inline-block;
-    vertical-align: top;
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 30px;
-    padding: 0 2px;
-    min-width: 35px;
-    text-align: center;
+  .cc-selector-2 input:active +.drinkcard-cc, .cc-selector input:active +.drinkcard-cc{opacity: .9;}
+  .cc-selector-2 input:checked +.drinkcard-cc, .cc-selector input:checked +.drinkcard-cc{
+      -webkit-filter: none;
+        -moz-filter: none;
+              filter: none;
+  }
+  .drinkcard-cc{
+      cursor:pointer;
+      background-size:contain;
+      background-repeat:no-repeat;
+      display:inline-block;
+      width:100px;height:70px;
+      -webkit-transition: all 100ms ease-in;
+        -moz-transition: all 100ms ease-in;
+              transition: all 100ms ease-in;
+      -webkit-filter: brightness(1.8) grayscale(1) opacity(.7);
+        -moz-filter: brightness(1.8) grayscale(1) opacity(.7);
+              filter: brightness(1.8) grayscale(1) opacity(.7);
+  }
+  .drinkcard-cc:hover{
+      -webkit-filter: brightness(1.2) grayscale(.5) opacity(.9);
+        -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
+              filter: brightness(1.2) grayscale(.5) opacity(.9);
+  }
+  #pname{
+      width: 206px !important;
+  }
+  .qty{
+      width: 128px !important;
+  }
+  .qty .count {
+      color: #56cd93;
+      display: inline-block;
+      vertical-align: top;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 30px;
+      padding: 0 2px;
+      min-width: 35px;
+      text-align: center;
 
-}
-.qty .plus {
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: top;
-    color: white;
-    width: 30px;
+  }
+  .qty .plus {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: top;
+      color: white;
+      width: 30px;
+      height: 30px;
+      font: 30px/1 Arial,sans-serif;
+      text-align: center;
+      border-radius: 50%;
+      background: gray;
+      }
+  .qty .minus {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: top;
+      color: white;
+      width: 30px;
+      height: 30px;
+      font: 30px/1 Arial,sans-serif;
+      text-align: center;
+      border-radius: 50%;
+      background-clip: padding-box;
+  }
+
+  .minus:hover{
+      background-color: #56cd93 !important;
+  }
+  .plus:hover{
+      background-color: #56cd93 !important;
+  }
+  /*Prevent text selection*/
+  span{
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+  }
+  input{
+      border: 0;
+      width: 2%;
+  }
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+  }
+
+  input:disabled{
+      background-color:white;
+  }
+
+  output {
+    position: absolute;
+    background-image: linear-gradient(#444444, #999999);
+    width: 40px;
     height: 30px;
-    font: 30px/1 Arial,sans-serif;
     text-align: center;
-    border-radius: 50%;
-    background: gray;
+    color: white;
+    border-radius: 10px;
+    display: inline-block;
+    font: bold 15px/30px Georgia;
+    bottom: 175%;
+    left: 0;
+  }
+  output:after {
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 0;
+    border-top: 10px solid #999999;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    margin-top: -1px;
+  }
+  form { 
+    position: relative;
+     margin: 50px; 
+     width: 1200px; 
+  }
+
+  .owl-theme .owl-nav.disabled+.owl-dots {
+      /* margin-top: -22px !important; */
+      margin-bottom: 20px !important;
+  }
+
+  @media only screen and (min-width: 768px) {
+    .mt-n7rem {
+      margin-top: -7.5rem!important;;
     }
-.qty .minus {
-    cursor: pointer;
-    display: inline-block;
-    vertical-align: top;
-    color: white;
-    width: 30px;
-    height: 30px;
-    font: 30px/1 Arial,sans-serif;
-    text-align: center;
-    border-radius: 50%;
-    background-clip: padding-box;
-}
+  }
 
-.minus:hover{
-    background-color: #56cd93 !important;
-}
-.plus:hover{
-    background-color: #56cd93 !important;
-}
-/*Prevent text selection*/
-span{
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-}
-input{
-    border: 0;
-    width: 2%;
-}
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
 
-input:disabled{
-    background-color:white;
-}
 
-output {
-  position: absolute;
-  background-image: linear-gradient(#444444, #999999);
-  width: 40px;
-  height: 30px;
-  text-align: center;
-  color: white;
-  border-radius: 10px;
-  display: inline-block;
-  font: bold 15px/30px Georgia;
-  bottom: 175%;
-  left: 0;
-}
-output:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  height: 0;
-  border-top: 10px solid #999999;
-  border-left: 5px solid transparent;
-  border-right: 5px solid transparent;
-  top: 100%;
-  left: 50%;
-  margin-left: -5px;
-  margin-top: -1px;
-}
-form { position: relative; margin: 50px; width: 1200px; }
+  
+  @media (max-width: 575.98px){
+
+    .service_slider1{
+
+      height: 20vh !important;
+    }
+
+    .member_border {
+      border: none;
+      border-top: 1px solid #90a0b2 !important;
+      border-radius: 0px;
+      margin-bottom: -41px !important;
+    }
+  }
+
+  @media (min-width: 1200px) and (max-width: 1500px) {
+    .tech_right_img img {
+        width: 24rem;
+    }
+    .tech_logo{
+      margin-top: 60px !important;
+    }
+  }
+
+
+
+
+
 </style>
 
 <!-- ------  login Modal ----- -->
@@ -302,7 +349,7 @@ form { position: relative; margin: 50px; width: 1200px; }
           {{-- <br><br> --}}
          </section>
 
-         <section class="hero_service_section mt-n4 mt-md-n5">
+         <section class="hero_service_section mt-n4 mt-md-n5 mt-n7rem">
           <div class="container mt-sm-3 hero_service">
             <div class="row">
 
@@ -322,8 +369,8 @@ form { position: relative; margin: 50px; width: 1200px; }
                     </svg>
 
                   </div>
-                  <div class="hero_item_contetn mt-1">
-                    <h2>shop & Drop</h2>
+                  <div class="hero_item_contetn mt-3">
+                    <h2>Shop & Drop</h2>
                   </div>
                 </div>
                 </a>
@@ -339,7 +386,7 @@ form { position: relative; margin: 50px; width: 1200px; }
                     </svg>
 
                   </div>
-                  <div class="hero_item_contetn mt-1">
+                  <div class="hero_item_contetn mt-3">
                     <h2>Collect & Delivery</h2>
                   </div>
                 </div>
@@ -356,7 +403,7 @@ form { position: relative; margin: 50px; width: 1200px; }
                     </svg>
 
                   </div>
-                  <div class="hero_item_contetn mt-1">
+                  <div class="hero_item_contetn mt-3">
                     <h2>Movers</h2>
                   </div>
                 </div>
@@ -432,9 +479,9 @@ form { position: relative; margin: 50px; width: 1200px; }
         <section class="service_slider ">
 
           <div class="owl-carousel owl-theme">
-            <div class="item service_slider1" style=" background-image: url('{{asset('frontend')}}/assets/images/Others/cup-of-coffee-1280537_1920.jpg');"><h1>2 hours <br> delivery</h1></div>
-            <div class="item service_slider1" style=" background-image: url('{{asset('frontend')}}/assets/images/Others/paper-1100254_1280.jpg');"><h1>Safety <br> Driving</h1></div>
-            <div class="item service_slider1" style=" background-image: url('{{asset('frontend')}}/assets/images/Others/pen-4337524_1280.jpg');"><h1>2 hours <br> delivery</h1></div>
+            <div class="item service_slider1" style=" background-image: url('{{asset('frontend')}}/assets/images/Others/slider_img.png');"><h1>2 hours <br> delivery</h1></div>
+            <div class="item service_slider1" style=" background-image: url('{{asset('frontend')}}/assets/images/Others/slider_img.png');"><h1>Safety <br> Driving</h1></div>
+            <div class="item service_slider1" style=" background-image: url('{{asset('frontend')}}/assets/images/Others/slider_img.png');"><h1>4 hours <br> delivery</h1></div>
 
       </div>
         </section>
@@ -480,12 +527,15 @@ form { position: relative; margin: 50px; width: 1200px; }
               <div class="item">
                 <div class="card member_item" >
 
-                  <img class="card-img-top" src="{{asset('uploads/dropper/photos/' . $dropper->profile_image)}}" alt="Card image cap">
+                  <img class="card-img-top" src=" {{ $dropper->profile_image}}" alt="Card image cap">
 
                   <div class="member_rating">
 
                     <ul>
-                      <li class="ratting_wrapper"><i class="fas fa-star"></i> <span class="rating_point">4.80</span> </li>
+                      <li class="ratting_wrapper"><i class="fas fa-star"></i> <span class="rating_point">
+                        {{-- {{$dropper->rating}} --}}
+                        5
+                      </span> </li>
                       <li class='ml-auto' >
                         <svg xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 199.99 165.27" class="member_rating_svg pr-2">
                           <path id="Movers_black" data-name="Movers black" d="M75,33.03H7.81A7.814,7.814,0,0,1,0,25.22H0a7.814,7.814,0,0,1,7.81-7.81H75a7.814,7.814,0,0,1,7.81,7.81h0A7.814,7.814,0,0,1,75,33.03ZM59.38,48.65H7.81A7.816,7.816,0,0,0,0,56.47H0a7.814,7.814,0,0,0,7.81,7.81H59.37a7.814,7.814,0,0,0,7.81-7.81h0A7.8,7.8,0,0,0,59.38,48.65ZM43.75,79.9H7.81A7.816,7.816,0,0,0,0,87.72H0a7.814,7.814,0,0,0,7.81,7.81H43.75a7.814,7.814,0,0,0,7.81-7.81h0A7.816,7.816,0,0,0,43.75,79.9Zm142.07,87.11H167.41a23.425,23.425,0,0,1-44.18,0H74.83a23.425,23.425,0,0,1-44.18,0h-7.2A23.436,23.436,0,0,1,0,143.57V118.96a7.814,7.814,0,0,1,7.81-7.81h0a7.814,7.814,0,0,1,7.81,7.81v24.61a7.814,7.814,0,0,0,7.81,7.81h7.2a23.425,23.425,0,0,1,44.18,0h47.05V40.8a7.814,7.814,0,0,0-7.81-7.81h-7.81a7.814,7.814,0,0,1-7.81-7.81h0a7.814,7.814,0,0,1,7.81-7.81h7.81a23.441,23.441,0,0,1,23.44,23.44V56.47h15.65a23.444,23.444,0,0,1,18.71,9.32l21.83,28.93a31.258,31.258,0,0,1,6.31,18.82v39.29A14.167,14.167,0,0,1,185.82,167.01ZM137.5,72.09v29.3h41.66L159.39,75.2a7.848,7.848,0,0,0-6.24-3.11ZM60.55,159.2a7.81,7.81,0,1,0-7.81,7.81A7.814,7.814,0,0,0,60.55,159.2Zm92.58,0a7.81,7.81,0,1,0-7.81,7.81A7.814,7.814,0,0,0,153.13,159.2Zm31.25-11.97V117.01H137.5V137.1a23.426,23.426,0,0,1,29.9,14.29h12.82A4.157,4.157,0,0,0,184.38,147.23Z" transform="translate(0 -17.37)"/>
@@ -504,11 +554,11 @@ form { position: relative; margin: 50px; width: 1200px; }
                   <div class="card-body ">
                     <div class="member_details">
                       <p>Success rate</p>
-                      <p>{{$dropper->first_name}}</p>
+                      <p>{{$dropper->success_rate}}</p>
                     </div>
                     <div class="member_details">
                       <p>Accuracy score</p>
-                      <p>96</p>
+                      <p>{{$dropper->average_accuracy}}</p>
                     </div>
                     <div class="member_button">
 
@@ -940,7 +990,7 @@ form { position: relative; margin: 50px; width: 1200px; }
         </section>
 
 
-        
+
 <!-- --------- invite section --------------- -->      
       {{-- 
         // NOTE: For fixing Responsive

@@ -1,15 +1,14 @@
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 575.98px) {
-
     .hero_section {
         background-position: center right 20%;
         height: auto;
-    } 
-    
+    }
+
     .service_slider {
         margin-top: 30px;
     }
-    
+
     .login_reg_nav {
         position: absolute;
         right: 0px;
@@ -22,7 +21,7 @@
         top: 10px;
         display: block;
     }
-    
+
     /* .navbar-brand img {
         margin-right: 0vw;
         position: absolute;
@@ -83,13 +82,13 @@
     .hero_button1 a {
         font-size: 11px;
         padding: 0.2rem 2.6rem;
-        border: 1px solid var(--text-color-black);
+        border: 1px solid var(--text-color-white);
     }
     .hero_button2 a {
         font-size: 11px;
         padding: 0.2rem 1.9rem;
         background-color: var(--icon-color-green);
-        border: 1px solid var(--text-color-black);
+        border: 1px solid #fff;
     }
     img.hero_apple_icon {
         width: 4rem;
@@ -129,7 +128,7 @@
     }
 
     .member_item img {
-        height: 285px;
+        height: 192px;
         width: auto;
     }
 
@@ -503,7 +502,6 @@
         width: calc(83px + 1vw);
     }
 
-
     .tech_right_img img {
         width: 19rem;
     }
@@ -627,7 +625,7 @@
     .tech_right_img img {
         width: 16rem;
     }
-    
+
     /* .service_home {
         margin-top: 3rem!important;
     } */
@@ -649,7 +647,7 @@
         width: 22rem;
     }
 
-    .qr_logo img{
+    .qr_logo img {
         width: 14rem;
         height: auto;
     }
@@ -675,7 +673,6 @@
         margin-top: 10rem!important;
     } */
 
-   
     .card {
         min-height: 275px;
     }

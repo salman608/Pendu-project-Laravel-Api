@@ -30,6 +30,7 @@ class DropperSeeder extends Seeder
                 "rating"=>rand(2,5),
                 "average_accuracy"=>rand(30,90),
                 "success_rate"=> rand(30,90),
+                "profile_image"=> "pro_driver".rand(1,3).".png",
                 'created_at'        => now(),
                 'updated_at'        => now()
             ]);

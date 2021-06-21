@@ -93,7 +93,7 @@ class User extends Authenticatable implements JWTSubject
         // if(is_null($value) || $value){  
         //     return url('uploads/user.png');
         // }
-        return url('uploads/user/photos/').'/'.$value;  
+        return asset('uploads/user/photos/').'/'.$value;  
     }
 
       /**

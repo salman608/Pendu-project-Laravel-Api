@@ -9,11 +9,11 @@
 
                         <div class="hero_download_logo mt-2">
                             <div class="row">
-                                <div class="col-md-3 user_app">
+                                {{-- <div class="col-md-3 user_app">
                                     <p>User app</p>
-                                </div>
+                                </div> --}}
 
-                                <div class=" col-md-4">
+                                <div class=" col-md-4 mr-3">
                                     <a href="">
                                         <img src="{{asset('frontend')}}/assets/images/Icons/apple2.svg"
                                             class="hero_apple_icon" alt="playstore icon">
@@ -36,6 +36,7 @@
                             <li class="ml-sm-0 ml-md-5"><a href="#">Contact Us</a></li>
                             <li class="ml-sm-0 ml-md-5"><a href="#">Blogs</a></li>
                             <li class="ml-sm-0 ml-md-5"><a href="#">Become a dropper</a></li>
+                            <li class="ml-sm-0 ml-md-5"><a href="#">Support</a></li>
                         </ul>
 
                         <div class='footer_share'>
