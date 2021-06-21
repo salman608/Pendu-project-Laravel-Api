@@ -11,9 +11,9 @@
             </button>
             <!-- ----Menu Items --- -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                {{-- <a class="navbar-brand" href="{{url('/')}}"> <img
+                <a class="navbar-brand" href="{{url('/')}}"> <img
                         src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo">
-                  </a> --}}
+                  </a>
 
                 <ul class="navbar-nav ">
                     <li class="nav-item active">

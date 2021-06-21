@@ -61,59 +61,59 @@
 
 <body>
 
-@include('user.partial._Header')
-@yield('user_content')
-@include('user.partial._Footer')
+	@include('user.partial._Header')
+	@yield('user_content')
+	@include('user.partial._Footer')
 
 
 
 
 
 
-<!-- Optional JavaScript -->
-<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
 
-<script src="{{asset('frontend/assets/js/popper.min.js')}}"></script>
-<script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
-<!-- fontawesome -->
-<script src="{{asset('frontend/assets/js/7b2bf5dc68.js')}}"></script>
-<!-- Main/Index js -->
-<script src="{{asset('frontend')}}/assets/js/main.js"></script>
-<!-- OwlCarouse-2.3.4 -->
-<script src="{{asset('frontend/assets/js/owl.carousel.min.js')}}"></script>
+	<script src="{{asset('frontend/assets/js/popper.min.js')}}"></script>
+	<script src="{{asset('frontend/assets/js/bootstrap.min.js')}}"></script>
+	<!-- fontawesome -->
+	<script src="{{asset('frontend/assets/js/7b2bf5dc68.js')}}"></script>
+	<!-- Main/Index js -->
+	<script src="{{asset('frontend')}}/assets/js/main.js"></script>
+	<!-- OwlCarouse-2.3.4 -->
+	<script src="{{asset('frontend/assets/js/owl.carousel.min.js')}}"></script>
 
-<!-- multi select js -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
-
-
-
-<!-- aleart message show -->
-<script src="{{asset('frontend/assets/js/sweetalert.min.js')}}" charset="utf-8"></script>
-<script src="{{asset('frontend/assets/js/bootbox.min.js')}}" charset="utf-8"></script>
-<script src="{{asset('frontend/assets/js/custom.js')}}" charset="utf-8"></script>
+	<!-- multi select js -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
 
 
 
+	<!-- aleart message show -->
+	<script src="{{asset('frontend/assets/js/sweetalert.min.js')}}" charset="utf-8"></script>
+	<script src="{{asset('frontend/assets/js/bootbox.min.js')}}" charset="utf-8"></script>
+	<script src="{{asset('frontend/assets/js/custom.js')}}" charset="utf-8"></script>
 
 
-@if(Session::has('insert'))
-	<script type="text/javascript">
-		swal("Information was collected.","The information you provided was successfully added to our system...","success")
+
+
+
+	@if(Session::has('insert'))
+		<script type="text/javascript">
+			swal("Information was collected.","The information you provided was successfully added to our system...","success")
+		</script>
+	@endif
+	{{-- multi select function --}}
+	<script>
+		$(function () {
+			$('.selectpicker').selectpicker();
+		});
 	</script>
-@endif
-{{-- multi select function --}}
-<script>
-	$(function () {
-		$('.selectpicker').selectpicker();
-	});
-</script>
 
 
-{{-- social share code --}}
-<!-- Go to www.addthis.com/dashboard to customize your tools -->
-<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60c885337d86bf2f"></script>
+	{{-- social share code --}}
+	<!-- Go to www.addthis.com/dashboard to customize your tools -->
+	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60c885337d86bf2f"></script>
 
 </body>
 

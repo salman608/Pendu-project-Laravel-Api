@@ -11,7 +11,6 @@ body {
     background-color: var(--body-color-white) !important;
     width: 100%;
     overflow-x: hidden;
-
 }
 
 /* ========= CSS Variable ======== */
@@ -419,13 +418,9 @@ li.signup_login {
     font-size: 16px;
     font-weight: 600;
 }
-.reg_form .form-group  {
+.reg_form .form-group {
     line-height: 3px !important;
 }
-
-
-
-
 
 .reg_name_input {
     position: relative;
@@ -442,7 +437,6 @@ li.signup_login {
 
 .reg_mail_input {
     position: relative;
-
 }
 .reg_mail {
     /* position: absolute;
@@ -452,7 +446,6 @@ li.signup_login {
     position: relative;
     top: -39px;
     left: 33px;
-
 }
 .reg_sub_input {
     position: relative;
@@ -463,8 +456,8 @@ li.signup_login {
     top: -39px;
     left: 33px;
 }
-.reg_form label .reg_sub{
-   padding-top: 21px !important;
+.reg_form label .reg_sub {
+    padding-top: 21px !important;
 }
 .reg_phn_input {
     position: relative;
@@ -503,8 +496,8 @@ li.signup_login {
     font-weight: 600;
 }
 /* ==============User profile ========== */
-.custom-file{
-    border: 1px solid #5bdb98 ;
+.custom-file {
+    border: 1px solid #5bdb98;
     border-radius: 9px;
 }
 /* ============= Hero Section ========= */
@@ -621,7 +614,7 @@ img.hero_apple_icon {
 .hero_item_icon svg {
     width: 80px;
     height: 60px;
-    margin: 10px auto;
+    margin: 24px auto;
 }
 
 .hero_item_contetn h2 {
@@ -3907,14 +3900,14 @@ button.btn.checkout_payment_btn {
         margin-top: 6rem !important;
     } */
     .card {
-        min-height: 290px!important;
+        min-height: 290px !important;
     }
 
     .dropper_right_content ul li {
         font-weight: 500;
         line-height: 50px;
     }
-    .become_button button{
+    .become_button button {
         width: 435px;
         height: 70px;
         font-size: 28px;
@@ -3933,16 +3926,16 @@ button.btn.checkout_payment_btn {
 }
 
 /* shop & drop , collect mover product qty style */
-#pprice{
-    border:1px solid #2cee8a;
+#pprice {
+    border: 1px solid #2cee8a;
     border-radius: 4px;
     /* margin-left: 60px; */
     width: 150px;
     display: inline-block;
 }
 
-#pname{
-    border:1px solid #2cee8a;
+#pname {
+    border: 1px solid #2cee8a;
     border-radius: 4px;
     display: inline-block;
     width: 356px;
@@ -3957,7 +3950,6 @@ button.btn.checkout_payment_btn {
     padding: 0 2px;
     min-width: 35px;
     text-align: center;
-
 }
 .qty .plus {
     cursor: pointer;
@@ -3966,11 +3958,11 @@ button.btn.checkout_payment_btn {
     color: white;
     width: 30px;
     height: 30px;
-    font: 30px/1 Arial,sans-serif;
+    font: 30px/1 Arial, sans-serif;
     text-align: center;
     border-radius: 50%;
     background: gray;
-    }
+}
 .qty .minus {
     cursor: pointer;
     display: inline-block;
@@ -3978,25 +3970,25 @@ button.btn.checkout_payment_btn {
     color: white;
     width: 30px;
     height: 30px;
-    font: 30px/1 Arial,sans-serif;
+    font: 30px/1 Arial, sans-serif;
     text-align: center;
     border-radius: 50%;
     background-clip: padding-box;
 }
 
-.minus:hover{
+.minus:hover {
     background-color: #56cd93 !important;
 }
-.plus:hover{
+.plus:hover {
     background-color: #56cd93 !important;
 }
 /*Prevent text selection*/
-span{
+span {
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
 }
-input{
+input {
     border: 0;
     width: 2%;
 }
@@ -4005,8 +3997,6 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
 }
-input:disabled{
-    background-color:white;
+input:disabled {
+    background-color: white;
 }
-
-
