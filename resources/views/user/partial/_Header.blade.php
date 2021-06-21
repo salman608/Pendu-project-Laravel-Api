@@ -1,17 +1,3 @@
-  <style>
-      #refar_btn{
-          background: #5ee39a;
-          border: #5ee39a;
-
-      }
-      .refer a{
-          color: white !important;
-      }
-      #track_btn{
-          border: 1px solid orange !important;
-      }
-
-  </style>
   <!-- ===================== Navbar ================= -->
   <section class="navmanu_main">
     <div class="container">
@@ -215,7 +201,7 @@
                             </a></li>
 
 
-                            <form id="logout-form" action="{{ url('logout') }}" method="POST">
+                            <form style="display: none" id="logout-form" action="{{ url('logout') }}" method="POST">
                                             {{ csrf_field() }}
                             </form>
 
