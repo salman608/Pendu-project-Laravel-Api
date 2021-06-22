@@ -28,9 +28,7 @@ class TaskController extends ApiController
             'to' => 'required|string',
             'to_latlng' => 'required',
 
-            'notes' => 'required|string',
-
-            'total_cost' => 'required',
+            // 'total_cost' => 'required',
             'vehicle_id' => 'sometimes|required',
             'delivery_time_id' => 'required',
             'service_category_id' => 'required',
@@ -66,7 +64,8 @@ class TaskController extends ApiController
             }
 
 
-
+            $data['notes']          = $request->notes ?? null;
+            $data['total_cost']     = $request->product_cost ?? null;
 
             $task = TaskRepository::saveTaskData($data);
             $task->products()->createMany($data['products']);

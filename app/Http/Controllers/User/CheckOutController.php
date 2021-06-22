@@ -16,7 +16,7 @@ use DB;
 use Illuminate\Support\Facades\Auth;
 use Stripe;
 
-class PaymentController extends Controller
+class CheckOutController extends Controller
 {
 
     /**

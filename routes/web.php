@@ -171,11 +171,11 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verifi
     Route::get('faq', [App\Http\Controllers\User\UserDashboardController::class, 'faq'])->name('faq');
     Route::get('term-n-conditions', [App\Http\Controllers\User\UserDashboardController::class, 'termAndCondition'])->name('term-n-conditions');
 
-    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\PaymentController::class, 'applyCoupon'])->name('apply-coupon');
+    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 
-    Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'index'])->name('payment');
+    Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'index'])->name('payment');
 
-    Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\PaymentController::class, 'checkOutProcess'])->name('payment-process');
+    Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'checkOutProcess'])->name('payment-process');
 
     // Order TIps
     Route::get('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('order-tips');

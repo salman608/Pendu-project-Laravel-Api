@@ -14,8 +14,9 @@ use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
 use App\Http\Controllers\Api\V1\User\AppController;
 use App\Http\Controllers\Api\V1\User\Auth\OTPController;
 use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
-use App\Http\Controllers\Api\V1\User\TaskOrderController;
+use App\Http\Controllers\Api\V1\User\TaskCheckoutController;
 use App\Http\Controllers\Api\V1\User\TaskController;
+use App\Http\Controllers\Api\V1\User\TaskOfferController;
 use App\Http\Controllers\ApiController;
 use App\Models\Task;
 use App\Models\TaskOffer;
@@ -83,22 +84,35 @@ Route::prefix('v1')->group(function () {
 
 
 Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(function () {
-	Route::post('/tasks', [TaskController::class, 'store']);
+	
+    // Store task request
+    Route::post('/tasks', [TaskController::class, 'store']);
 
-    Route::get('/tasks/{taskId}/offers', function($taskId){
-
-       $task_offers = TaskOffer::where('task_id',$taskId)->get();
-        return $task_offers;
-    });
-
+    // Get task offers
+    Route::get('/tasks/{taskId}/offers',  [TaskOfferController::class, 'index']);
 
 
 
-  
 
-    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskOrderController::class, 'store']);
-    Route::post('/task-order/{taskOrderId}/review',[TaskOrderController::class, 'storeReview']);
-    Route::post('/task-order/{taskOrderId}/tips',[TaskOrderController::class, 'storeTips']);
+    
+
+    Route::get('/task-checkout/{offerId}/task/{taskId}',[TaskCheckoutController::class, 'index']);
+
+    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskCheckoutController::class, 'store']);
+    
+    Route::post('/task-order/{taskOrderId}/review',[TaskCheckoutController::class, 'storeReview']);
+    Route::post('/task-order/{taskOrderId}/tips',[TaskCheckoutController::class, 'storeTips']);
+
+
+
+
+
+    // Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
+
+    // Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'index'])->name('payment');
+
+    // Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'checkOutProcess'])->name('payment-process');
+
 
 
 
