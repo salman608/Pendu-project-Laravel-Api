@@ -1,5 +1,17 @@
 @extends('user.asset')
 @section('user_content')
+<style>
+    @media (max-width: 500px){
+        .blog_header_img img {
+           display: none;
+         }
+        .blog_inner_content_section img {
+         height: 13rem;
+        }
+
+    }
+
+</style>
 
 
 <!-- ============ Breadcrumb ============ -->

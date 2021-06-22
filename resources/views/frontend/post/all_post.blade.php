@@ -1,7 +1,23 @@
 @extends('user.asset')
 @section('user_content')
 
+<style>
+    @media (max-width: 540px){
+        .blog_header_img img {
+           display: none;
+         }
+         .col-lg-7{
+             display: none;
+         }
 
+         .invite_button2 {
+            width: 150px;
+        }
+        .invite_button {
+         margin-top: 10px;
+        }
+    }
+</style>
 
 
 
@@ -128,43 +144,7 @@
         @endforeach
     </div>
 
-      <!-- ---------- pagination section ------------ -->
-         {{-- <div class="pagination_section mt-3">
-            <nav aria-label="Page navigation example">
-                <ul class="pagination justify-content-end" style="margin:20px 0">
 
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Previous">
-                            <span aria-hidden="true">&laquo;</span>
-                            <span class="sr-only">Previous</span>
-                        </a>
-                    </li>
-
-                    <li class="page-item">
-                        <a class="page-link left_icon_pagi" href="#" aria-label="Previous">
-                            <i class="fas fa-chevron-left"></i>
-
-                        </a>
-                    </li>
-
-                    <li class="page-item active"><a class="page-link" href="#">1 </a></li>
-                    <li class="page-item"><a class="page-link" href="#">2</a></li>
-                    <li class="page-item"><a class="page-link" href="#">3</a></li>
-                  <li class="page-item">
-                        <a class="page-link left_icon_pagi" href="#" aria-label="Previous">
-                            <i class="fas fa-chevron-right"></i>
-
-                        </a>
-                    </li>
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                            <span class="sr-only">Next</span>
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </div> --}}
  {{ $all_post->links('vendor.pagination.custom')}}
 
 

@@ -493,6 +493,7 @@ select.select-box {
                       <table class="table table-borderless border-top-0">
                           <tbody>
                               <tr class="top border-bottom border-light" id="tableRow_1">
+
                                   <td><div class="circle"></div></td>
                                   <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
                                   <td class="qty">

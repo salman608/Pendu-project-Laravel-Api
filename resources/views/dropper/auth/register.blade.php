@@ -12,8 +12,8 @@
         border-radius: 10px !important;
     }
 
-    
-    
+
+
     .service-cat-container {
         margin-top: 32px;
     }
@@ -29,6 +29,14 @@
         font-weight: 600;
         padding: 0 12px;
     }
+
+    @media (max-width: 500px){
+        .blog_header_img img {
+           display: none;
+         }
+
+    }
+
 </style>
 @section('user_content')
 

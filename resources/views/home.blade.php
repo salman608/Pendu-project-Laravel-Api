@@ -1013,7 +1013,7 @@
 
 
 <!-- --------- invite section --------------- -->
-      {{--
+{{--
         // NOTE: For fixing Responsive
 
       <section class="invite_area py-4 mt-4">
@@ -1050,9 +1050,30 @@
               </div>
            </div>
         </div>
-     </section>
+     </section> --}}
 
-     --}}
+   {{-- <section class="invite-section py-4 mt-4">
+      <div class="container inner_footer py-4">
+          <div class="row">
+              <div class="col-md-12 text-center">
+                <div class="invite_content">
+                    <h1> Invite a friend , you both get $15 </h1>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                        invidunt
+                        ut labore et dolore magna</p>
+                </div>
+                <div class="invite-mail">
+                  <form action="" class="form-inline">
+                     {{-- <input type="text" class="from-controll" style="">
+                     <button class="btn btn-success"></button> --}}
+                  </form>
+                </div>
+              </div>
+          </div>
+      </div>
+   </section> --}}
+
+
 
 
 

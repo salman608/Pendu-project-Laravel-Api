@@ -1,7 +1,67 @@
 @extends('user.asset')
 @section('user_content')
 
+<style>
+    .form-check-label {
+      margin-bottom: 24px;
+    }
+    .new-User{
+      margin-left: 8rem !important;
+    }
+    .new-User a{
+        font-size: 15px;
+        color: #5bdb98;
+    }
 
+    @media (max-width: 768px){
+        .form-check-label {
+         font-size: 14px;
+        }
+        .font-weight-bold{
+            font-size: 10px;
+            margin-bottom: 6px;
+            font-style: italic;
+        }
+        .google_icon {
+          width: 18px;
+          height: 17px;
+          margin-top: -1px;
+
+        }
+        .login_footer p{
+            font-size: 12px;
+        }
+        .login_footer span{
+            font-size: 8px;
+        }
+
+        .login_social_icon i {
+            border-radius: 50%;
+            font-size: 12px;
+            padding: 2px;
+            width: 18px;
+            height: 17px;
+        }
+
+        .login_footer p {
+            margin-left: 2rem !important
+       }
+       .new-user-register{
+          font-size: 15px;
+          color: #5bdb98;
+       }
+
+    }
+
+
+    /* @media only screen and (max-width: 540px){
+        .login_footer p {
+            margin-left: 12rem !important;
+            font-size: 13px;
+       }
+
+    } */
+</style>
 
 
 <section class="login_page">
@@ -63,23 +123,30 @@
 
                                 <div class="rember_forget mt-2">
                                     <form action="">
-                                        <div class="form-check">
+                                        {{-- <div class="form-check">
 
                                             <input class="form-check-input" type="checkbox" name="remember"
                                                 id="remember" {{ old('remember') ? 'checked' : '' }}>
                                             <label class="form-check-label rember_login" for=" ">Remember me</label>
+                                        </div> --}}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+
+                                            <label class="form-check-label" for="remember">
+                                                {{ __('Remember Me') }}
+                                            </label>
                                         </div>
                                     </form>
                                     <p>
                                         @if (Route::has('password.request'))
                                         <a class="btn btn-link font-weight-bold text-success"
                                             href="{{ route('password.request') }}">
-                                            {{ __('Forgot Your Password?') }}
+                                            {{ __('Forgot Password?') }}
                                         </a>
                                         @endif
                                     </p>
                                 </div>
-                                <div class="login_social_icon">
+                                {{-- <div class="login_social_icon">
                                     <span>Or login with</span>
                                     <a href="#"> <img class=' google_icon'
                                             src="https://img.icons8.com/color/48/000000/google-logo.png" /></a>
@@ -88,7 +155,7 @@
                                     <a href="#"><i class="fab fa-facebook login_fb_icon"></i></a>
 
 
-                                </div>
+                                </div> --}}
                             </div>
 
 
@@ -97,7 +164,19 @@
                 </div>
 
                 <div class="modal-footer login_footer">
-                    <p>New user,<a href="{{ url('register') }}"><span data-toggle="modal" data-target="#reg_exampleModalCenter"> Register!</span></a></p>
+                    <div class="login_social_icon">
+                        <span>Or login with</span>
+                        <a href="#">
+
+                             <img class='google_icon' src="https://img.icons8.com/color/48/000000/google-logo.png" />
+                            </a>
+
+                        <a href="#"> <i class="fab fa-apple apple_login_icon"></i></a>
+                        <a href="#"><i class="fab fa-facebook login_fb_icon"></i></a>
+
+
+                    </div>
+                    <p class="new-User">New user,<a href="{{ url('register') }}" class="new-user-register"><span  data-toggle="modal" data-target="#reg_exampleModalCenter"> Register!</span></a></p>
                 </div>
             </div>
 

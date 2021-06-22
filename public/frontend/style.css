@@ -373,10 +373,9 @@ li.signup_login {
     font-weight: 400;
 }
 .login_footer span {
-    color: var(--icon-color-green);
     font-family: var(--montserrat-font);
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     cursor: pointer;
 }
 
@@ -1513,7 +1512,7 @@ img.hero_apple_icon {
     border-radius: 50%;
     padding: 10px;
     text-align: center;
-    font-size: 15px;
+    font-size: 14px;
     display: inline-block;
 }
 
@@ -4011,4 +4010,14 @@ input::-webkit-inner-spin-button {
 }
 input:disabled {
     background-color: white;
+}
+
+/* invite friend home page */
+
+.invite-section{
+    background: #1b3149 !important;
+}
+.invite-section container{
+    border: 1px solid var(--after-black-color);
+    border-radius: 5px;
 }
