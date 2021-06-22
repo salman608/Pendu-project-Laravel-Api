@@ -111,7 +111,7 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     Route::get('/vehicles', [VehicleController::class, 'index']);
     Route::get('/delivery-times', [DeliveryTimeController::class, 'index']);
 
-    Route::get('/coupons/', [CouponController::class, 'index']);
+    Route::get('/coupons', [CouponController::class, 'index']);
     Route::get('/coupons/{id}', [CouponController::class, 'show']);
 
 

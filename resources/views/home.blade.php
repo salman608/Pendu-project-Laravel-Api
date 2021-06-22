@@ -157,30 +157,43 @@
 
 
   
-  @media (max-width: 575.98px){
+@media (max-width: 575.98px){
 
-    .service_slider1{
-
-      height: 20vh !important;
-    }
-
-    .member_border {
-      border: none;
-      border-top: 1px solid #90a0b2 !important;
-      border-radius: 0px;
-      margin-bottom: -41px !important;
-    }
+  .service_slider1{
+    height: 20vh !important;
   }
 
-  @media (min-width: 1200px) and (max-width: 1500px) {
-    .tech_right_img img {
-        width: 24rem;
-    }
-    .tech_logo{
-      margin-top: 60px !important;
-    }
+  .member_border {
+    border: none;
+    border-top: 1px solid #90a0b2 !important;
+    border-radius: 0px;
+    margin-bottom: -41px !important;
   }
 
+  .footer_share a i {
+    margin-top: 0px;
+  }
+
+  .footer_share {
+    width: 186px;
+  }
+
+  .footer_menu ul li {
+    padding-left: 3px;
+    font-size: 12px;
+    /* text-align: center; */
+    text-align: right;
+  }
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  .tech_right_img img {
+      width: 24rem;
+  }
+  .tech_logo{
+    margin-top: 60px !important;
+  }
+}
 
 
 
