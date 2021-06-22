@@ -137,10 +137,10 @@
     margin-left: -5px;
     margin-top: -1px;
   }
-  form { 
+  form {
     position: relative;
-     margin: 50px; 
-     width: 1200px; 
+     margin: 50px;
+     width: 1200px;
   }
 
   .owl-theme .owl-nav.disabled+.owl-dots {
@@ -152,11 +152,19 @@
     .mt-n7rem {
       margin-top: -7.5rem!important;;
     }
+    .footer_share a {
+      color: var(--white-color);
+      background-color: var(--text-color-black);
+      border-radius: 50%;
+      padding: 4px !important;
+      text-align: center;
+      font-size: 11px;
+     }
   }
 
 
 
-  
+
   @media (max-width: 575.98px){
 
     .service_slider1{
@@ -170,6 +178,18 @@
       border-radius: 0px;
       margin-bottom: -41px !important;
     }
+    .footer_share a {
+      color: var(--white-color);
+      background-color: var(--text-color-black);
+      border-radius: 50%;
+      padding: 4px !important;
+      text-align: center;
+      font-size: 11px;
+      display: initial;
+     }
+     .footer_menu li a {
+      font-size: 12px;
+     }
   }
 
   @media (min-width: 1200px) and (max-width: 1500px) {
@@ -991,8 +1011,8 @@
 
 
 
-<!-- --------- invite section --------------- -->      
-      {{-- 
+<!-- --------- invite section --------------- -->
+      {{--
         // NOTE: For fixing Responsive
 
       <section class="invite_area py-4 mt-4">
@@ -1029,22 +1049,22 @@
               </div>
            </div>
         </div>
-     </section> 
-     
+     </section>
+
      --}}
 
 
 
   {{--
   // NOTE: For fixing Responsive
-  
+
   @include("user.component.pro_driver_quote")
   @include("user.component.googleMap_pickup_quote")
   @include("user.component.googleMap_delivery_quote")
   @include("user.component.googleMap_pickup_collect")
   @include("user.component.googleMap_delivery_collect_modal")
   @include("user.component.post_delivery")
-  
+
   --}}
        <!-- ================ Footer  ============= -->
 
@@ -1052,7 +1072,7 @@
 
 
 
-       
+
        <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
        <!-- Latest compiled and minified JavaScript -->
        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDe9wIv3EiEy0aH3YTSRRZP8eRNbitATDo&libraries=places"></script>

@@ -1511,11 +1511,11 @@ img.hero_apple_icon {
     color: var(--white-color);
     background-color: var(--text-color-black);
     border-radius: 50%;
-    padding: 10px;
+    padding: 5px;
     text-align: center;
-    font-size: 14px;
-    display: inline-block;
-}
+    font-size: 10px;
+    /* display: inline-block;
+} *
 
 /* ============= shop drop or buy ============ */
 .shop_drop_section2 {
