@@ -1511,9 +1511,9 @@ img.hero_apple_icon {
     color: var(--white-color);
     background-color: var(--text-color-black);
     border-radius: 50%;
-    padding: 5px;
+    padding: 10px;
     text-align: center;
-    font-size: 10px;
+    font-size: 15px;
     /* display: inline-block;
 } *
 
