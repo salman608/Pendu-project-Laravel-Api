@@ -1,6 +1,6 @@
 <?php
 // FIXME: Delete this
-namespace App\Http\Controllers\Driver;
+namespace App\Http\Controllers\Dropper;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
