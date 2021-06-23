@@ -68,7 +68,7 @@ class TaskCheckoutController extends ApiController
                 Log::info($e->getMessage());
                 return $this->respondWithError(
                     'Something is wrong. Try again.',
-                    $e->getMessage(),
+                    [],
                     500
                 );
             }
@@ -103,7 +103,7 @@ class TaskCheckoutController extends ApiController
                 Log::info($e->getMessage());
                 return $this->respondWithError(
                     'Something is wrong. Try again.',
-                    $e->getMessage(),
+                    [],
                     500
                 );
             }
@@ -178,39 +178,7 @@ class TaskCheckoutController extends ApiController
             Log::info($e->getMessage());
             return $this->respondWithError(
                 'Something is wrong. Try again.',
-                $e->getMessage(),
-                500
-            );
-        }
-    }
-
-
-
-
-
-    public function store($taskId, $offerId, Request $request){
-
-        DB::beginTransaction();
-
-        try {                     
-            $task_order = TaskOrderRepository::saveTaskOrderData($taskId, $offerId, $request->all());
-
-
-            DB::commit();
-            
-            return $this->respondWithSuccess(
-                'Your checkout request is submitted.',
-                $task_order
-            );
-
-        } catch (Exception $e) {
-            DB::rollBack();
-
-            Log::info($e->getMessage());
-
-            return $this->respondWithError(
-                'Something is wrong. Try again.',
-                $e->getMessage(),
+                [],
                 500
             );
         }
@@ -220,7 +188,7 @@ class TaskCheckoutController extends ApiController
      *  Stripe Checkout
      *
      */
-    public function checkOutProcess(Request $request, $offerId, $taskId)
+    public function checkOutProcess(Request $request, $taskId, $offerId)
     {   
         // we just need Stripe token
         // {
@@ -242,7 +210,7 @@ class TaskCheckoutController extends ApiController
             $charge = Stripe\Charge::create ([
                     "amount" => $final_amount,
                     "currency" => $currency,
-                    "source" => $request->stripeToken,
+                    "source" => $request->stripe_token,
                     "description" => "This payment is testing purpose of Pendu Service",
             ]);
 
@@ -256,10 +224,10 @@ class TaskCheckoutController extends ApiController
                 $taskOrder->order_id	    = rand(100000000,999999999);
                 $taskOrder->task_id	        = $taskId;
                 $taskOrder->task_offer_id	= $offerId;
-                $taskOrder->coupon_id	    = session('promo_code_id') ?? null;
+                $taskOrder->coupon_id	    = $request->coupon_id ?? null;
                 $taskOrder->payment_method_id = 1;  // stripe
-                $taskOrder->service_fee     = session('service_fee_amount');
-                $taskOrder->promo_amount    = session('promo_amount') ?? null;
+                $taskOrder->service_fee     = $request->service_fee;
+                $taskOrder->promo_amount    = $request->promo_discount ?? null;
                 $taskOrder->grand_total     = $amount;
                 $taskOrder->user_id         = $request->user()->id;
 
@@ -292,7 +260,10 @@ class TaskCheckoutController extends ApiController
                     'balance' => $user->balance + $amount
                 ]);
 
-                $user->appliedCoupons()->attach(session('promo_code_id'));
+                if($request->coupon_id ){
+                    $user->appliedCoupons()->attach($request->coupon_id);
+                }
+
 
                 $task = Task::findOrFail($taskId);
                 $task->update([
@@ -301,22 +272,28 @@ class TaskCheckoutController extends ApiController
                 ]);
 
                 DB::commit();
-                
-                Session::flash('payment-success', 'Payment is done successfully.'); 
-                return redirect()->route('user.dashboard');
+
+
+                return $this->respondWithSuccess(
+                    'Payment is done successfully.',
+                    []
+                ); 
             }
             
             DB::rollBack();
-            Session::flash('error', 'Payment failed. Please try again.'); 
-            
-            return redirect()->back();
+
+            return $this->respondWithError(
+                'Payment failed. Please try again.',
+                [],
+            );
             
         } catch (Exception $e) {
-            DB::rollBack();
             Log::info($e->getMessage());
-            session()->flash('error', 'Invalid card details');
-            // return $e->getMessage();
-            return redirect()->back();
+            return $this->respondWithError(
+                'Invalid Stripe token.',
+                [],
+                500
+            );
         }
     }
 
@@ -339,7 +316,7 @@ class TaskCheckoutController extends ApiController
 
             return $this->respondWithError(
                 'Something is wrong. Try again.',
-                $e->getMessage(),
+                [],
                 500
             );
         }
@@ -362,7 +339,7 @@ class TaskCheckoutController extends ApiController
 
             return $this->respondWithError(
                 'Something is wrong. Try again.',
-                $e->getMessage(),
+                [],
                 500
             );
         }
