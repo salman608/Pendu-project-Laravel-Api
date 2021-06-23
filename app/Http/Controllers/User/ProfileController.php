@@ -7,13 +7,11 @@ use App\Mail\InvitationMail;
 use App\Models\ReferalMail;
 use App\Models\Task;
 use App\Models\User;
-use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Session as FacadesSession;
+use Illuminate\Support\Facades\Session;
 use Image;
-use Tymon\JWTAuth\Contracts\Providers\Auth as ProvidersAuth;
 
 class ProfileController extends Controller
 {
@@ -95,7 +93,7 @@ class ProfileController extends Controller
          if ($request->hasFile('profile_photo')) {
             $image = $request->file('profile_photo');
             $name_gen=hexdec(uniqid()).'.'.$image->getClientOriginalExtension();
-            Image::make($image)->resize(270,270)->save('uploads/user/photos/'.$name_gen);
+            Image::make($image)->resize(270,270)->save('public/uploads/user/photos/'.$name_gen);
             $profile_photo = $name_gen;
         }
 
@@ -107,12 +105,9 @@ class ProfileController extends Controller
             $user['profile_photo']  = $profile_photo;
         }
 
-
-
-
         $user->save();
 
-        FacadesSession::flash('insert', 'Updated Sucessfully...');
+        Session::flash('insert', 'Updated Sucessfully...');
         return back();
     }
 
