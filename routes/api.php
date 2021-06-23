@@ -57,7 +57,7 @@ Route::group([
 
 Route::group([
     'prefix' => 'v1/auth',
-    "middleware" => 'phone-verified-api'
+    "middleware" => ['jwt.verify', 'phone-verified-api']
 
 ], function () {
     Route::post('/logout', [AuthController::class, 'logout']);
@@ -100,12 +100,15 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
 
     Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskCheckoutController::class, 'store']);
     
-    Route::post('/task-order/{taskOrderId}/review',[TaskCheckoutController::class, 'storeReview']);
+    Route::post('/task-checkout/coupon/{couponCode}',[TaskCheckoutController::class, 'applyCoupon']);
+
+
+
     Route::post('/task-order/{taskOrderId}/tips',[TaskCheckoutController::class, 'storeTips']);
 
 
 
-
+    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 
     // Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 
