@@ -133,18 +133,18 @@ class AuthController extends ApiController
      */
     public function update(Request $request) {
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|between:2,100',
-            'phone' => 'required|string',
-            'suburb' => 'required|string',
+            'name' => 'string|between:2,100',
+            'phone' => 'string',
+            'suburb' => 'string',
         ]);
 
-        if($validator->fails()){
-            return $this->respondWithError(
-                'Validation Error',
-                $validator->errors(),
-                422
-            );
-        }
+        // if($validator->fails()){
+        //     return $this->respondWithError(
+        //         'Validation Error',
+        //         $validator->errors(),
+        //         422
+        //     );
+        // }
 
         $user = $request->user()->update($validator->validated());
 

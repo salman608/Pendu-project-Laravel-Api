@@ -90,17 +90,16 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
 
     // Get task offers
     Route::get('/tasks/{taskId}/offers',  [TaskOfferController::class, 'index']);
-
-
-
-
     
+    // Get Checkout Page details info
+    Route::get('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'index']);
 
-    Route::get('/task-checkout/{offerId}/task/{taskId}',[TaskCheckoutController::class, 'index']);
-
-    Route::post('/tasks/{taskId}/offers/{offerId}/checkout',[TaskCheckoutController::class, 'store']);
-    
+    // Apply Coupon
     Route::post('/task-checkout/coupon/{couponCode}',[TaskCheckoutController::class, 'applyCoupon']);
+
+    // Check out 
+    Route::post('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'checkOutProcess']);
+
 
 
 

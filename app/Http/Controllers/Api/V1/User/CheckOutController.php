@@ -28,8 +28,6 @@ class CheckOutController extends Controller
     {   
         $serviceCategoryId = Task::select('service_category_id')->where('id', $taskId)->first();
 
-        // Remove all session about coupon
-        session()->forget(['promo_code_id','promo_amount','grandTotalPromo']);
         
         if($serviceCategoryId->service_category_id == 1){ 
 

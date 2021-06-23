@@ -22,7 +22,7 @@ class DropperSeeder extends Seeder
             DB::table('droppers')->insert([
                 "first_name"=>'mr.',
                 "last_name"=>'dropper'.$i,
-                "email"=>'user'.$i.'@gmail.com',
+                "email"=>'dropper'.$i.'@gmail.com',
                 "phone" => '018855443'.rand(10,50),
                 "abn" => 'suburb',
                 "vehicle_id" => rand(1,4),
