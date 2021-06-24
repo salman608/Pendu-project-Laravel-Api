@@ -167,10 +167,32 @@ Route::group([
     Route::post('/logout', [DropperAuthController::class, 'logout']);
     Route::post('/refresh', [DropperAuthController::class, 'refresh']);
     Route::get('/profile', [DropperAuthController::class, 'profile']);
+    Route::put('/profile', [DropperAuthController::class, 'update']);
 
 
     // Task Submit Offer
     Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
+
+
+
+    Route::get('/tasks/pending', function(){
+        return response()->json(["data" => []]);
+    });
+
+    Route::get('/tasks/confirmed', function(){
+        return response()->json(["data" => []]);
+    });
+
+    Route::get('/tasks/in-progress', function(){
+        return response()->json(["data" => []]);
+    });
+
+    Route::get('/tasks/completed', function(){
+        return response()->json(["data" => []]);
+    });
+    Route::post('/tasks/review-submit', function(){
+        return response()->json(["data" => []]);
+    });
 
 });
 

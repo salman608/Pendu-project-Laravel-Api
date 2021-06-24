@@ -17,8 +17,9 @@ class AuthController extends ApiController
      * @return void
      */
     public function __construct() {
-        // $this->middleware('jwt.verify', ['except' => ['login', 'register']]);
         // $this->middleware('auth:api', ['except' => ['login', 'register']]);
+        // below one working
+        // $this->middleware('jwt.verify', ['except' => ['login', 'register']]);
     }
 
     /**
@@ -63,7 +64,7 @@ class AuthController extends ApiController
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|between:2,100',
             'email' => 'required|string|email|max:100|unique:users',
-            'phone' => 'required|string',
+            'phone' => 'required|string|unique:users',
             'suburb' => 'required|string',
             'password' => 'required|string|min:6',
         ]);
@@ -96,7 +97,9 @@ class AuthController extends ApiController
     public function logout() {
         auth('api')->logout();
 
-        return response()->json(['message' => 'User successfully signed out']);
+        return $this->respondWithSuccess(
+            'User successfully signed out.'
+        );
     }
 
     /**
@@ -132,11 +135,11 @@ class AuthController extends ApiController
      * @return \Illuminate\Http\JsonResponse
      */
     public function update(Request $request) {
-        $validator = Validator::make($request->all(), [
-            'name' => 'string|between:2,100',
-            'phone' => 'string',
-            'suburb' => 'string',
-        ]);
+        // $validator = Validator::make($request->all(), [
+        //     'name' => 'string|between:2,100',
+        //     'phone' => 'string',
+        //     'suburb' => 'string',
+        // ]);
 
         // if($validator->fails()){
         //     return $this->respondWithError(
@@ -146,7 +149,10 @@ class AuthController extends ApiController
         //     );
         // }
 
-        $user = $request->user()->update($validator->validated());
+        $user = $request->user()->update([
+            'name' => $request->name,
+            'suburb' => $request->suburb
+        ]);
 
         return $this->respondWithSuccess(
             'User profile has been updated.',
