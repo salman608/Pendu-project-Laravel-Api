@@ -64,6 +64,8 @@ Route::group([
     Route::put('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);
     Route::put('/profile', [AuthController::class, 'update']);
+
+    Route::put('/profile-image', [AuthController::class, 'changeProfileImage']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 
 });
@@ -170,6 +172,13 @@ Route::group([
     Route::put('/profile', [DropperAuthController::class, 'update']);
 
 
+
+    Route::post('/password/email', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'index']);
+    Route::post('/password/confirm', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'confirm']);
+    Route::put('/password/reset', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'reset']);
+
+
+
     // Task Submit Offer
     Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
 
@@ -195,6 +204,9 @@ Route::group([
     });
 
 });
+
+
+
 
 
 // =======Dropper Route Section=========

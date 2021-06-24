@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Api\V1\User\Auth;
+namespace App\Http\Controllers\Api\V1\Dropper\Auth;
 
 use App\Http\Controllers\ApiController;
 use Illuminate\Http\Request;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\Controller;
 use App\Mail\Password\PasswordReset;
+use App\Models\Dropper;
 use Carbon\Carbon;
 use Exception;
 use DB;
@@ -36,7 +36,7 @@ class ResetPasswordController extends ApiController
     public function index(Request $request){
 
 
-        if(User::where('email',$request->email)->exists()){
+        if(Dropper::where('email',$request->email)->exists()){
             DB::beginTransaction();
             try {
                 $otp = rand(100000,999999);
@@ -130,7 +130,7 @@ class ResetPasswordController extends ApiController
             );
         }
 
-        if( !User::where('email', $request->email)->exists()){
+        if( !Dropper::where('email', $request->email)->exists()){
             return $this->respondWithError(
                 'We can\'t find a user with that email address.',
                 [],
@@ -140,7 +140,7 @@ class ResetPasswordController extends ApiController
 
         DB::beginTransaction();
             try {
-                $user = User::where('email', $request->email)
+                $dropper = Dropper::where('email', $request->email)
                     ->update(['password' => Hash::make($request->password)]);
 
 

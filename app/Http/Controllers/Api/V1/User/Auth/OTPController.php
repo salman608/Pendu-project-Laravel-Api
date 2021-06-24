@@ -15,7 +15,7 @@ class OTPController extends ApiController
     public function verifyPhone(Request $request){
         $code = (int) $request->otp;
 
-        if($code != 1234){
+        if($code != 123456){
             return $this->respondWithError(
                 'Your entered otp is incorrect.',
                 [],

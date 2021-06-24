@@ -88,6 +88,14 @@ class AuthController extends ApiController
         );
     }
 
+    /**
+     * Change Profile Image
+     */
+
+    public function changeProfileImage(Request $request){
+        return response()->json(['hello' => $request->all()]);
+    }
+
 
     /**
      * Log the user out (Invalidate the token).
