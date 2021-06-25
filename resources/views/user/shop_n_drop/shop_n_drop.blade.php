@@ -1,64 +1,153 @@
 @extends('user.asset')
 
 <style>
+    .task-body{
+        border-radius: 10px;
+         background: #fff;
+         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6);
+         padding: 25px 40px 25px 40px;
+         margin-top: 30px;
+         margin-bottom: 30px;
+    }
+    .cross{
+        padding-left: 0px;
+        width: 26px;
+    }
+    .delivery_time_checker {
+        margin-top: 16px;
+        margin-right: 6px;
 
-.pac-container { z-index: 100000; }
-input[type="text"] {
-    background: #f1f1f1;
-    border:none;
-    outline: none;
-}
-select {
-    background-color: #f1f1f1!important;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-}
+    }
+    .d-time{
+        margin-left: 7px;
+    }
 
-select.select-box {
-    background-image:
-        linear-gradient(45deg, transparent 50%, #8f8f8f 50%),
-        linear-gradient(135deg, #8f8f8f 50%, transparent 50%);
-    background-position:
-        calc(100% - 20px) calc(1em + 2px),
-        calc(100% - 15px) calc(1em + 2px),
-        100% 0;
-    background-size:
-        5px 5px,
-        5px 5px,
-        2.5em 2.5em;
-    background-repeat: no-repeat;
-}
-.qty{
-    text-align: center !important;
-}
-.plus-button{
-    font-weight: bold;
-    width: 70px;
-}
+    .pac-container { z-index: 100000; }
+    input[type="text"] {
+        background: #f1f1f1;
+        border:none;
+        outline: none;
+    }
+    input[type="number"] {
+        background: #f1f1f1;
+        border:none;
+        outline: none;
+    }
+    select {
+        background-color: #f1f1f1!important;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+    }
 
+    select.select-box {
+        background-image:
+            linear-gradient(45deg, transparent 50%, #8f8f8f 50%),
+            linear-gradient(135deg, #8f8f8f 50%, transparent 50%);
+        background-position:
+            calc(100% - 20px) calc(1em + 2px),
+            calc(100% - 15px) calc(1em + 2px),
+            100% 0;
+        background-size:
+            5px 5px,
+            5px 5px,
+            2.5em 2.5em;
+        background-repeat: no-repeat;
+    }
+    .qty{
+        text-align: center !important;
+        width: 200px
+    }
+    .plus-button{
+        font-weight: bold;
+        /* width: 70px; */
+    }
 
+    .hello-salman-modal {
+        width: 50%;
+        margin: auto;
+        border: 1px solid rgba(0,0,0,.2);
+        border-radius: .3rem;
+        position: absolute;
+        z-index: 9999999999999;
+        top: 50%; right: 50%;
+       transform: translate(50%,-50%);
 
-.hello-salman-modal {
-    width: 50%;
-    margin: auto;
-    border: 1px solid rgba(0,0,0,.2);
-    border-radius: .3rem;
-    position: absolute;
-    z-index: 9999999999999;
-   top: 50%; right: 50%;
-   transform: translate(50%,-50%);
+    }
 
-}
+    .hello-salman-modal-block{
+        position: fixed;
+        background-color: transparent;
+        /* opacity: 0.9; */
+        width: 100vw;
+        height: 100vh;
+        z-index: 999999999999;
+        /* display: none; */
+    }
 
-.hello-salman-modal-block{
-    position: fixed;
-    background-color: transparent;
-    /* opacity: 0.9; */
-    width: 100vw;
-    height: 100vh;
-    z-index: 999999999999;
-    /* display: none; */
-}
+    @media (max-width: 575.98px){
+        .step-2{
+            margin-left: -56px !important;
+
+        }
+        .step-line-text{
+            font-weight: bold;
+        }
+        .p_dot{
+            display: none;
+        }
+        .pro-name,.p-name{
+            width:136px !important;
+            font-size: 10px !important;
+        }
+        .pprice,.pprice{
+            width: 60px !important;
+            font-size: 10px !important;
+        }
+        .qty{
+            width: 74px;
+        }
+        /* input[type="text"] {
+            font-size: 10;
+       } */
+
+       .table td, .table th {
+           padding: .25rem !important;
+       }
+       .qty .count{
+           font-size: 17px !important;
+           min-width: 15px !important;
+       }
+       .qty .plus{
+        font: 18px/1.8 Arial, sans-serif !important;
+       }
+       .d-time{
+        margin-left: 14px !important;
+       }
+       .hello-salman-modal{
+         width: 93% !important;
+       }
+       .payment-checkbox{
+           width: 137px !important;
+       }
+       .payment-checkbox img{
+           width: 70px !important;
+       }
+
+       [type=checkbox]:checked + .payment-checkbox  {
+         width: 178px;
+       }
+
+    @media (max-width:375px){
+        [type="radio"] + .d-time {
+         width: 158px !important;
+      }
+      .radio-btn-text {
+        font-size: 13px;
+        }
+        .delivery_time_checker {
+        font-size: 13px !important;
+        }
+    }
 
 
 </style>
@@ -448,7 +537,7 @@ select.select-box {
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/time.svg') }}" alt="">
                     </div> --}}
                     <div>
-                        <small class="step-line-text" style="margin-left: -40px;">Review & Submit</small>
+                        <small class="step-line-text step-2">Review & Submit</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
                     </div>
                 </div>
@@ -468,7 +557,7 @@ select.select-box {
 
     </div>
 
-    <div class="container" style="border-radius: 10px; background: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
+    <div class="container task-body" style="">
         <form method="POST" action="{{route('shop_n_drop.store')}}" id="shop-n-drop-form">
             @csrf
             <div id="task-details">
@@ -494,22 +583,28 @@ select.select-box {
                           <tbody>
                               <tr class="top border-bottom border-light" id="tableRow_1">
 
-                                  <td><div class="circle"></div></td>
-                                  <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
-                                  <td class="qty">
-                                         <span class="minus" style="background: #8f8f8f">-</span>
-                                         <input type="number" class="count" value="1" name="qty[]">
-                                         <span class="plus" style="background: #8f8f8f">+</span>
+                                    <td class="p_dot"><div class="circle"></div></td>
+                                    <td class="p-name">
+                                        <input class="form-control pro-name" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name...">
+
                                     </td>
-                                  <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."><div id="result"></div> </td>
-                                  <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
+
+                                    <td class="qty">
+                                        <span class="minus">-</span>
+                                        <input type="number" class="count" value="1" name="qty[]">
+                                        <span class="plus" >+</span>
+                                   </td>
+
+                                    <td class="text-right pprice"> <input type="text" id="pprice" name="pro_price[]" title="Price" class="form-control pprice" placeholder="Price.."><div id="result"></div> </td>
+                                    <td class="text-right cross"><button type="button" class="cross-button" id="remove"></button>
+
                               </tr>
 
                           </tbody>
-                          <tfoot >
-                                <tr >
+                          <tfoot>
+                                <tr>
                                     <td colspan="5" class="text-center">
-                                        <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                        <button type="button" class="btn btn-success plus-button" id="add_btn">+ Add another</button>
                                     </td>
                                 </tr>
                           </tfoot>
@@ -586,9 +681,9 @@ select.select-box {
                         <div class="pr-2" >
                             <label >
                                 <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
-                                <div style="width: 180px;">
+                                <div class="d-time">
                                     <img src="{{$d_time->icon}}" height="30" width="80">
-                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;"  >{{$d_time->title}}</label>
+                                    <label class="radio-btn-text delivery_time_checker"   >{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -670,10 +765,10 @@ select.select-box {
         $('#add_btn').on('click',function(){
             let html='';
             html+='<tr>';
-            html+='<td><div class="circle"></div></td>';
-            html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-            html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty[]" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
-            html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
+            html+='<td class="p_dot"><div class="circle"></div></td>';
+            html+='<td class="p-name"><input class="form-control pro-name" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
+            html+='<td class="qty"> <span class="minus" >-</span>  <input type="number" class="count" name="qty[]" value="1">  <span class="plus">+</span></td>';
+            html+='<td  class="text-right pprice"> <input type="text" id="pprice" name="pro_price[]" class="form-control pprice" placeholder="Price.."></td>';
             html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
             html+='</tr>';
             $('tbody').append(html);

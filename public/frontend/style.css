@@ -3940,8 +3940,8 @@ button.btn.checkout_payment_btn {
 #pprice {
     border: 1px solid #2cee8a;
     border-radius: 4px;
-    /* margin-left: 60px; */
-    width: 150px;
+
+    width: 100% !important;
     display: inline-block;
 }
 
@@ -3949,7 +3949,7 @@ button.btn.checkout_payment_btn {
     border: 1px solid #2cee8a;
     border-radius: 4px;
     display: inline-block;
-    width: 356px;
+    width: 100% !important;
 }
 .qty .count {
     color: #56cd93;
@@ -3961,37 +3961,34 @@ button.btn.checkout_payment_btn {
     padding: 0 2px;
     min-width: 35px;
     text-align: center;
+    background: none;
 }
 .qty .plus {
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
-    color: white;
-    width: 30px;
-    height: 30px;
+    color: #8F8F8F;
     font: 30px/1 Arial, sans-serif;
     text-align: center;
-    border-radius: 50%;
-    background: gray;
+
+
+
 }
 .qty .minus {
     cursor: pointer;
     display: inline-block;
     vertical-align: top;
-    color: white;
-    width: 30px;
-    height: 30px;
+    color: #8F8F8F;
     font: 30px/1 Arial, sans-serif;
     text-align: center;
-    border-radius: 50%;
     background-clip: padding-box;
 }
 
 .minus:hover {
-    background-color: #56cd93 !important;
+
 }
 .plus:hover {
-    background-color: #56cd93 !important;
+
 }
 /*Prevent text selection*/
 span {
@@ -4009,7 +4006,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 input:disabled {
-    background-color: white;
+
 }
 
 /* invite friend home page */

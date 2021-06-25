@@ -16,29 +16,7 @@
 
 
 
-
-
-
-
-
-
-
               <div class="tab-content  " id="v-pills-tabContent">
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                 <!-- ------------- inbox tab ------------- -->
               <div class="tab-pane fade @if(isset($_GET['message'])) show active @endif" id="v-pills-inbox" role="tabpanel" aria-labelledby="v-pills-inbox-tab">
                 <div class="profile_tab_title">
@@ -343,7 +321,6 @@
 
           </div>
 
- 
 
 
 
@@ -355,7 +332,8 @@
 
 
 
-          
+
+
 
 
       <!-- ------------- profile tab info  ------------- -->

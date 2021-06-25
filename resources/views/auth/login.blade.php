@@ -54,13 +54,19 @@
     }
 
 
-    /* @media only screen and (max-width: 540px){
+    @media only screen and (min-width: 411px){
         .login_footer p {
-            margin-left: 12rem !important;
-            font-size: 13px;
-       }
+         margin-left: 5rem !important;
+        }
 
-    } */
+    }
+
+    @media only screen and (min-width: 540px){
+        .login_footer p {
+         margin-left: 13rem !important;
+        }
+
+    }
 </style>
 
 

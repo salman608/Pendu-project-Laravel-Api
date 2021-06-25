@@ -124,6 +124,33 @@
     /* #promo-code-tr{
         display: none;
     } */
+    @media (max-width: 375 px){
+        .payment-checkbox{
+           width: 158px !important;
+       }
+    }
+
+    @media (max-width: 575.98px){
+      .payment-checkbox{
+           width: 183px !important;
+       }
+       .payment-checkbox img{
+           width: 97px !important;
+       }
+       .checkout-products{
+           padding: 0px !important;
+       }
+       #pay-confirm-model{
+           width: 92% !important;
+       }
+       .payment-summary{
+           margin-top: 28px;
+       }
+
+
+   }
+
+
 
 
 
@@ -208,8 +235,8 @@
                                     <label for="checboxPendu" id="checboxPendu-coming" class="d-flex justify-content-between align-items-center">
                                         <input type="checkbox" name="test" value="small" style="position: absolute; margin-left: 25px;" id="checboxPendu" title="Comming Soon" disabled>
                                         <div class="payment-checkbox" style="padding-left: 50px" title="Comming Soon">
-                                            <img src="{{ asset('frontend/assets/images/Icons/pandupay.png') }}" alt=""   style="margin-top: 30px;padding-left: 8px;height: 34px;">
-                                            <p style="padding-left: 31px;margin-top: -30px;font-weight: 500;">PenduPay</p>
+                                            <img src="{{ asset('frontend/assets/images/Icons/pendu.png') }}" alt=""   style="margin-top: 25px;padding-left: 8px;height: 43px;">
+
                                         </div>
                                     </label>
                                     {{-- <label for="checboxMasterCard" class="d-flex justify-content-between align-items-center">
@@ -239,10 +266,10 @@
                         <tr>
                             <td class="text-left">Service fee({{$service_fee}}%)</td>
                             <!-- <td class="text-right">${{ number_format((($data->task->total_cost/100) * $service_fee), 2) }}</td> -->
-                       
+
                             <td class="text-right">${{ $service_fee_amount }}</td>
                         </tr>
-                    
+
 
                         <tr id="promo-code-amount-tr">
                             <td class="text-left">Promo code</td>
@@ -276,15 +303,15 @@
                             </svg> -->
                             Apply
                         </span>
-                        
+
                     </div>
                     <span id="coupon-apply-msg"></span>
                 </div>
                 <div>
                     <button type="button" id="picupModalBtn" class="button text-white" style="margin-top: 15px;width: 100%;" style="padding-bottom: 15px" data-toggle="modal" data-target="#paymentMethodTransaction">Proceed</button>
-              
-                        <h5 class="text-center mt-4 pb-4" id="grand-total">${{$grand_total}}</h5>       
-                    
+
+                        <h5 class="text-center mt-4 pb-4" id="grand-total">${{$grand_total}}</h5>
+
                 </div>
                 <div class="payment-procced-nb mt-3">
                     Your funds will be securely held in "Pendu Pay" until the task is done.
@@ -309,11 +336,11 @@
                     </button>
                 </div>
             </div>
-       
+
             <div class="d-flex justify-content-center">
                 <h5 class="payment-done">Stripe</h5>
             </div>
-            
+
             <div class="" style="padding: 25px;">
             <form action="{{ route('user.payment-process', ['offerId'=> $data->id, 'taskId'=>  $data->task_id]) }}" method="post" id="payment-form">
 
@@ -438,7 +465,7 @@
 
 
 
-    
+
     // Create a token or display an error when the form is submitted.
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(event) {
@@ -472,7 +499,7 @@
         $('#paymentMethodTransaction').modal('hide');
         $('#paymentConfirmModalId').modal('show');
     }
-    
+
 </script>
 
 
@@ -493,7 +520,7 @@ $(document).ready(function(){
         url = url.replace(':coupon', coupon);
         if(coupon != ''){
 
-        
+
             $.ajax({
                 url: url,
                 type: "GET",
@@ -530,7 +557,7 @@ $(document).ready(function(){
 
                             }, 2000)
                         }
-                        
+
                     }
                 }
             });

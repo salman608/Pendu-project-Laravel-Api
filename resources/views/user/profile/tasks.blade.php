@@ -94,7 +94,7 @@
   .chat-btn:hover{
       background: #41ab70;
       border: 1px solid #41ab70;
-  
+
   }
   .home-btn{
       width: 108px;
@@ -103,12 +103,12 @@
       margin-left: 110px;
       border-radius: 5px;
   }
-  
+
   .home-btn:hover{
-  
+
       background: #41ab70;
       border: 1px solid #41ab70;
-  
+
   }
   .release-btn{
       background: #ffce8a;
@@ -118,11 +118,20 @@
   .release-btn:hover{
       background: #e4a957;
       border: 1px solid #e4a957;
-  
+
   }
-  
+
+  @media screen and (max-width: 575.98 px){
+    .track-row .track-status-div .step-line{
+        width: 298px !important;
+    }
+    .home-btn{
+        color: red;
+    }
+   }
+
 </style>
-  
+
 
   <!-- ============ Breadcrumb ============ -->
   <section class="breadcrumb_main">
@@ -448,7 +457,7 @@
                      </div>
                </div>
               @endif
-    
+
 
             </div>
 @empty
@@ -885,7 +894,7 @@ $(document).ready(function(){
                 $(item).addClass('bg-done-first-step');
               }
             });
-  
+
             $('#taskProcessModal').modal('toggle');
           }
         }
@@ -894,7 +903,7 @@ $(document).ready(function(){
     // Toggole
     // $('#taskProcessModal').modal('toggle');
 
-    
+
 
   });
 

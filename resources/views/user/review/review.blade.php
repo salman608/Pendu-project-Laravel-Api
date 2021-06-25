@@ -132,6 +132,34 @@
     .trips-success-show{
         /* display: none; */
     }
+    #order-tips-form{
+        display: inherit;
+        margin: auto;
+    }
+    .not-btn, .not-btn:hover{
+        background:#ffebcf;
+        color: rgb(255, 180, 74);
+        border: none;
+        padding: 10px 55px;
+        border-radius: 4px;
+    }
+    .cnf-btn, .cnf-btn:hover{
+        background: rgb(231, 248, 239);
+        color: #4CAF50;
+        border: none;
+        padding: 10px 55px;
+        border-radius: 4px;
+    }
+
+    /* @media (max-width: 575.98 px){
+        .trips-success-hide .not-btn{
+            padding: 10px 10px !important;
+            color: red;
+        }
+        #submit-order-tips{
+            padding: 10px 10px !important;
+        }
+    } */
 </style>
 <section class="">
     <div style="height: 120px; background: #5bdb98"></div>
@@ -238,7 +266,7 @@
 
             @if (!session()->has('success'))
 
-            <div class="trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center border-top pt-2" 
+            <div class="trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center border-top pt-2"
                 style="font-family: Montserrat;
                 font-weight: 600;
                 font-size: 20px;
@@ -247,10 +275,10 @@
                 <p>Want to give a tip!</p>
             </div>
             <div class=" trips-success-hide  col-md-12 col-sm-12 col-lg-12">
-                <div class="row text-center">
-                    <form style="display: flex;" id="order-tips-form" action="{{route('user.order-tips', $orderId)}}" method="POST">
+                <div class="row text-center tips">
+                    <form  id="order-tips-form" action="{{route('user.order-tips', $orderId)}}" method="POST">
                         @csrf
-                    <div class="pr-2" style=" margin-left: 394px;">
+                    <div class="pr-2">
                         <label>
                             <input type="radio" name="tips_amount" id="" value="5" checked>
                             <div>
@@ -288,26 +316,15 @@
             </div>
 
             <div  class=" trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center mt-4">
-                <svg xmlns="http://www.w3.org/2000/svg" width="410" height="45" viewBox="0 0 410 45">
-                    <g id="Group_3158" data-name="Group 3158" transform="translate(7410 -2859)">
-                    <rect id="Rectangle_4311" data-name="Rectangle 4311" width="194" height="45" rx="5" transform="translate(-7410 2859)" fill="#ffebcf"/>
-                    <rect style="cursor: pointer" id="Rectangle_4508" data-name="Rectangle 4508" width="194" height="45" rx="5" transform="translate(-7194 2859)" fill="#e7f8ef"/>
 
-                    <a href="{{ route('user.dashboard')}}">
-                    <text id="Not_now" data-name="Not now" transform="translate(-7313 2887)" fill="#ffb44a" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-30.57" y="0">Not now</tspan></text>
-                    </a>
-
-                    <a style="cursor: pointer"  id="submit-order-tips">
-                        <text id="Confirm" transform="translate(-7097 2887)" fill="#60e99c" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="-28.281" y="0">Confirm</tspan></text>
-                    </a>
-                    </g>
-                </svg>
+                <a href="{{ route('user.dashboard')}}" class="btn not-btn">Not Now</a>
+                <a href="" class="btn cnf-btn" id="submit-order-tips">Confirm </a>
             </div>
 
             @else
             <div  class=" trips-success-show col-md-12 col-sm-12 col-lg-12 text-center mt-4">
                 <h1 style="color: #60e99c">Congratulations.</h1>
-            </div>      
+            </div>
 
             @endif
 
@@ -336,7 +353,7 @@
             <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
                 <div class="row w-100 d-flex justify-content-center">
                     {{-- <div class="section_tooltipss">
-                        <input type="text" class=" link_input  w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:50%!important ">
+                        <input type="text" class=" link_input  w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:100%!important ">
                         <div class="tooltip22">
                         <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">
                           <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
@@ -344,8 +361,9 @@
                           </button>
                         </div>
                       </div> --}}
-                      <div class="section_tooltipss">
-                        <input type="text" class="link_input" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+
+                      <div class="section_tooltipss" >
+                        <input type="text" class="link_input w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:50%!important;display: initial; ">
                         <div class="tooltip22">
                         <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()" style="width: 179px;">
                           <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
@@ -353,6 +371,7 @@
                           </button>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -405,11 +424,11 @@
                     </button>
                 </div>
             </div>
-       
+
             <div class="d-flex justify-content-center">
                 <h5 class="payment-done">Stripe</h5>
             </div>
-            
+
             <div class="" style="padding: 25px;">
             <form action="{{route('user.order-tips', $orderId)}}" method="post" id="payment-form">
 
@@ -507,7 +526,7 @@
 
 
 
-    
+
     // Create a token or display an error when the form is submitted.
     var form = document.getElementById('payment-form');
     form.addEventListener('submit', function(event) {
@@ -544,7 +563,7 @@
         $('#paymentMethodTransaction').modal('hide');
         // $('#paymentConfirmModalId').modal('show');
     }
-    
+
 
 
 
