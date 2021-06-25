@@ -87,7 +87,7 @@ class Dropper extends Authenticatable implements JWTSubject
     // url('/uploads/dropper/photos').'/'.$value;
     public function getProfileImageAttribute($value)
     {
-        return asset('uploads/photos/'.$value);  
+        return asset('uploads/dropper/photos/'.$value);  
     }
 
     // public function getImageLinkAttribute()

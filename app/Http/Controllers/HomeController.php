@@ -40,6 +40,7 @@ class HomeController extends Controller
             $query->where('title', '=' , 'Pro');
         })->with('services')->get();
 
+        // return $pro_drivers;
 
         return view('home',compact('posts','product_cats','delivery_times','vehicles', 'pro_drivers'));
     }

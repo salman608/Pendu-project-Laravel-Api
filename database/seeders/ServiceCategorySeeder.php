@@ -19,8 +19,8 @@ class ServiceCategorySeeder extends Seeder
         // Service Dummy Data
         \DB::table('service_categories')->truncate();
         $services = collect([
-            ['title' => 'Shop and drop','icon' => 'shop_and_drop.png'],
-            ['title' => 'Collect and drop','icon' => 'collect_and_drop.png'],
+            ['title' => 'Shop and drop','icon' => 'shop.png'],
+            ['title' => 'Collect and drop','icon' => 'collect.png'],
             ['title' => 'Mover','icon' => 'mover.png'],
         ]);
 

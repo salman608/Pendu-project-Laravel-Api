@@ -11,6 +11,11 @@
 
     }
 
+    .share_invite{
+        display: flex;
+        justify-content: center;
+    }
+
 </style>
 
 
@@ -114,7 +119,7 @@
 
             <div class="blog_content_share_section ">
                 <div class="share_invite">
-                    <span>Share:-</span>
+                    <span class="mr-3">Share-</span>
                         <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_inline_share_toolbox"></div>
 
@@ -163,6 +168,74 @@
     </div>
 
 </div>
+
+
+
+
+
+<!-- --------- invite section --------------- -->
+<section class="invite_area py-4 mt-4">
+    <div class="container inner_footer py-4">
+        <div class="row">
+            <div class="col-md-12 text-center">
+
+                <div class="invite_content">
+                    <h1> Invite a friend , you both get $15 </h1>
+                    <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                        invidunt
+                        ut labore et dolore magna</p>
+
+                </div>
+
+                <div class="invite_mail">
+                    <form>
+                        <div class="form-group form-inline ">
+                            <input type="email" class="form-control  mail_input" id="exampleInputEmail1"
+                                aria-describedby="emailHelp" placeholder="Enter email address">
+
+                            <a href="#"><button type="submit" class="btn invite_button">Send invite</button></a>
+                        </div>
+
+                        <p class='more_way'>More way to invite</p>
+
+                        <div class="section_tooltipss">
+                            <input type="text" class=" link_input"
+                                value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+
+                            <div class="tooltip22">
+                                <button type="button" class="btn invite_button2" onclick="myFunctions()"
+                                    onmouseout="outFunca()">
+                                    <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                                    Copy text
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="share_invite">
+                            <span>Share:-</span>
+                            <a href="#" class='twiter'> <i class="fab fa-twitter-square"></i></a>
+                            <a href="#" class='fb'> <i class="fab fa-facebook-square"></i></a>
+                            <a href="#" class='ins'> <i class="fab fa-instagram-square"></i></a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</section>
+
+
+
+
+
+
+
+
+
+
 
 <script>
     // social share button

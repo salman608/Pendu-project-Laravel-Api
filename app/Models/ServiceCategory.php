@@ -17,10 +17,6 @@ class ServiceCategory extends Model
 
     public function getIconAttribute($value)
     {
-        if ($value) {
-            return asset('images/profile/' . $value);
-        } else {
-            return asset('images/profile/no-image.png');
-        }
+        return asset('frontend/images/service/' . $value);
     }
 }

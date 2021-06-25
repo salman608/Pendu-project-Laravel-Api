@@ -86,7 +86,7 @@
                             <div class="form-group">
                                 <input type="password" name="password_confirmation" class="form-control form-control-lg reg_pass_input" id=" ">
                            
-                                <label class='reg_pass' for="  ">Confirm PassPassword</label>
+                                <label class='reg_pass' for="  ">Confirm Password</label>
                             </div>
 
 
