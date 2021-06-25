@@ -123,7 +123,7 @@
 
 
   @media (max-width: 575.98px){
-  
+
     /* Check Progress Modal */
     .step-line {
       width: 305px !important;
@@ -151,7 +151,7 @@
     .col-md-6.offer_middle_row.offer-cont-item2 {
         width: 66%;
         margin-top: 57px;
-        
+
     }
 
     .circle_curve h1 {
@@ -190,6 +190,22 @@
       left: 44%;
       transform: translateX(-50%) !important;
     }
+    #pay-confirm-model{
+        width: 100% !important;
+    }
+    .profile_tab_title{
+        margin-top: -32px;
+    }
+
+    /* .rate{
+        margin-top: 44px !important;
+    }
+    .rate label {
+        margin-left: -31px !important;
+    }
+    .accurancy-lebel{
+        margin-left: 15px !important;
+    } */
   }
 
 
