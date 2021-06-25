@@ -1,6 +1,27 @@
 @extends('user.asset')
 @section('user_content')
 <style>
+
+.task-body{
+        border-radius: 10px;
+         background: #fff;
+         box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6);
+         padding: 25px 40px 25px 40px;
+         margin-top: 30px;
+         margin-bottom: 30px;
+    }
+    .cross{
+        padding-left: 0px;
+        width: 26px;
+    }
+    .delivery_time_checker {
+        margin-top: 16px;
+        margin-right: 6px;
+
+    }
+    .d-time{
+        margin-left: 7px;
+    }
     input[type="text"] {
         background: #f1f1f1;
         border:none;
@@ -123,6 +144,70 @@
     z-index: 999999999999;
     /* display: none; */
  }
+
+ @media (max-width: 575.98px){
+    .step-2{
+            margin-left: -56px !important;
+
+        }
+        .step-line-text{
+            font-weight: bold;
+        }
+        .p_dot{
+            display: none;
+        }
+        .pro-name,.p-name{
+            width:136px !important;
+
+        }
+        .pprice,.pprice{
+            width: 60px !important;
+            font-size: 10px !important;
+        }
+        .qty{
+            width: 74px;
+        }
+        /* input[type="text"] {
+            font-size: 10;
+       } */
+
+       .table td, .table th {
+           padding: .25rem !important;
+       }
+       .qty .count{
+           font-size: 17px !important;
+           min-width: 15px !important;
+       }
+       .qty .plus{
+        font: 18px/1.8 Arial, sans-serif !important;
+       }
+       .d-time{
+        margin-left: 14px !important;
+       }
+       .deliveryAddress{
+           margin-top: -7px !important;
+       }
+       .hello-salman-modal{
+         width: 93% !important;
+       }
+       .drinkcard-cc {
+           width: 85px !important;
+       }
+
+
+   }
+   @media (max-width:375px){
+        [type="radio"] + .d-time {
+         width: 158px !important;
+      }
+      .radio-btn-text {
+        font-size: 13px;
+        }
+        .delivery_time_checker {
+        font-size: 13px !important;
+        }
+    }
+
 
 </style>
 
@@ -291,7 +376,7 @@
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/time.svg') }}" alt="">
                     </div> --}}
                     <div>
-                        <small class="step-line-text" style="margin-left: -40px;">Review & Submit</small>
+                        <small class="step-line-text step-2" >Review & Submit</small>
                         <img class="task-img" src="{{ asset('frontend/assets/images/Icons/tik.png') }}" alt="">
                     </div>
                 </div>
@@ -306,7 +391,7 @@
 
     </div>
 
-    <div class="container" style="border-radius: 10px; bacground: #fff;box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6); padding: 25px 40px 25px 40px;margin-top: 30px;margin-bottom: 30px;">
+    <div class="container" class="task-body">
         <form enctype="multipart/form-data" method="POST" id="mover-form" action="{{route('mover.store')}}">
             @csrf
             <div id="task-details">
@@ -358,9 +443,9 @@
                                     <td><div class="circle"></div></td>
                                     <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>
                                     <td class="qty">
-                                           <span class="minus" style="background: #8f8f8f">-</span>
+                                           <span class="minus">-</span>
                                            <input type="number" class="count" name="qty[]" value="1">
-                                           <span class="plus" style="background: #8f8f8f">+</span>
+                                           <span class="plus">+</span>
                                       </td>
                                     {{-- <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td> --}}
                                     <td class="text-right"><button type="button" class="cross-button" id="remove"></button>
@@ -453,7 +538,7 @@
                         <div class="pr-2" >
                             <label >
                                 <input type="radio" name="delivery_time" id="delivery_time"  value="{{$d_time->id}}" >
-                                <div style="width: 180px;">
+                                <div class="d-time">
                                     <img src="{{$d_time->icon}}" height="30" width="80">
                                     <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
                                 </div>
@@ -724,7 +809,7 @@ $('#add_btn').on('click',function(){
     html+='<tr>';
     html+='<td><div class="circle"></div></td>';
     html+=' <td><input class="form-control" type="text" name="pro_name[]" id="pname" placeholder="Enter Product Name..."></td>';
-    html+='<td class="qty"> <span class="minus" style="background: #8f8f8f">-</span>  <input type="number" class="count" name="qty[]" value="1">  <span class="plus" style="background: #8f8f8f">+</span></td>';
+    html+='<td class="qty"> <span class="minus" >-</span>  <input type="number" class="count" name="qty[]" value="1">  <span class="plus">+</span></td>';
     // html+='<td  class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td>';
     html+='<td class="text-right"><button type="button" class="cross-button" id="remove"></button></td>';
     html+='</tr>';

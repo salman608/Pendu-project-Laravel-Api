@@ -93,6 +93,19 @@
   left: 50%;
 } */
 
+/* responsive */
+@media (max-width: 575.98 px){
+    .rate{
+        margin-top: 44px !important;
+    }
+    .rate label {
+        margin-left: -31px !important;
+    }
+    .accurancy-lebel{
+        margin-left: 15px !important;
+    }
+}
+
 
 </style>
 {{-- payment confirm modal --}}
@@ -279,7 +292,7 @@
         form.appendChild(hiddenProductsInput);
 
 
-        
+
 
         // Submit the form
         form.submit();

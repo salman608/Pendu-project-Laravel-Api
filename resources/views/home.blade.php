@@ -42,12 +42,12 @@
         -moz-filter: brightness(1.2) grayscale(.5) opacity(.9);
               filter: brightness(1.2) grayscale(.5) opacity(.9);
   }
-  #pname{
+  /* #pname{
       width: 206px !important;
   }
   .qty{
       width: 128px !important;
-  }
+  } */
   .qty .count {
       color: #56cd93;
       display: inline-block;

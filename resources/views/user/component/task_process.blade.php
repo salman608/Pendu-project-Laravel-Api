@@ -63,6 +63,14 @@ hr {
 
 }
 
+   @media (min-width: 575.98 px){
+    .step-line{
+        width: 298px !important;
+    }
+    .home-btn{
+        color: red;
+    }
+   }
 
 
 
