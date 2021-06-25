@@ -93,7 +93,7 @@ class AuthController extends ApiController
      */
 
     public function changeProfileImage(Request $request){
-        return response()->json(['hello' => $request->all()]);
+        return response()->json(['data' => $request->all()]);
     }
 
 
