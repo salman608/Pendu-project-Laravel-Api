@@ -14,4 +14,13 @@ class ServiceCategory extends Model
     public function droppers(){
         return $this->belongsToMany(Dropper::class);
     }
+
+    public function getIconAttribute($value)
+    {
+        if ($value) {
+            return asset('images/profile/' . $value);
+        } else {
+            return asset('images/profile/no-image.png');
+        }
+    }
 }

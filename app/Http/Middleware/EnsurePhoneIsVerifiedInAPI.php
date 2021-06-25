@@ -23,7 +23,7 @@ class EnsurePhoneIsVerifiedInAPI
 
             return response()->json([
                 'status' => 403,
-                'message' => 'Your phone address is not verified.',
+                'message' => 'Your phone number is not verified.',
                 'error' =>[]
             ], 403);
         } 

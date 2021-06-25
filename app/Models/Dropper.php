@@ -25,7 +25,7 @@ class Dropper extends Authenticatable implements JWTSubject
         'profile_image',
     ];
 
-    protected $appends = ['full_name','profile_image'];
+    protected $appends = ['full_name'];
 
      /**
      * The attributes that should be hidden for arrays.
@@ -82,13 +82,33 @@ class Dropper extends Authenticatable implements JWTSubject
     // url('/uploads/dropper/photos').'/'.$value;
     public function getProfileImageAttribute($value)
     {
-        return asset('uploads/dropper/photos/').'/'.$value;  
+        return asset('uploads/photos/'.$value);  
     }
+
+    // public function getImageLinkAttribute()
+    // {
+    //     if ($this->profile_image) {
+    //         return asset('uploads/dropper/photos/' . $this->profile_image);
+    //     } 
+    //     // else {
+    //     //     return asset('images/profile/no-image.png');
+    //     // }
+    // }
+
+    // public function getImageAttribute($value)
+    // {
+    //     if ($value) {
+    //         return asset('images/profile/' . $value);
+    //     } else {
+    //         return asset('images/profile/no-image.png');
+    //     }
+    // }
 
     public function getFullNameAttribute($value)
     {
         return $this->first_name.' '.$this->last_name;
     }
+    
 
 
 }

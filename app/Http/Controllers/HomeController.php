@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\DeliveryTime;
+use App\Models\Dropper;
 use App\Models\Post;
 use App\Models\ProductCategory;
 use App\Models\Vehicle;
@@ -34,7 +35,13 @@ class HomeController extends Controller
         $delivery_times=DeliveryTime::all();
         $vehicles=Vehicle::all();
         $posts=Post::latest()->take(3)->get();
-        return view('home',compact('posts','product_cats','delivery_times','vehicles'));
+
+        $pro_drivers = Dropper::whereHas('level', function($query){
+            $query->where('title', '=' , 'Pro');
+        })->with('services')->get();
+
+
+        return view('home',compact('posts','product_cats','delivery_times','vehicles', 'pro_drivers'));
     }
 
     public function stripe()

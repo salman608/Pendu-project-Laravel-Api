@@ -188,9 +188,7 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verifi
     // Route::get('review', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('review');
 
     Route::get('track', [App\Http\Controllers\User\ReviewController::class, 'orderTraking'])->name('order_track');
-
     Route::post('track', [App\Http\Controllers\User\ReviewController::class, 'trackOrderStatus']);
-
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 
 });

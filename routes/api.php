@@ -12,6 +12,7 @@ use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
 use App\Http\Controllers\Api\V1\User\AppController;
+use App\Http\Controllers\Api\V1\User\AppHomeController;
 use App\Http\Controllers\Api\V1\User\Auth\OTPController;
 use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\V1\User\TaskCheckoutController;
@@ -87,6 +88,9 @@ Route::prefix('v1')->group(function () {
 
 Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(function () {
 	
+    // Get all pro drivers
+    Route::get('/pro-drivers', [AppHomeController::class, 'proDriver']);
+
     // Store task request
     Route::post('/tasks', [TaskController::class, 'store']);
 
