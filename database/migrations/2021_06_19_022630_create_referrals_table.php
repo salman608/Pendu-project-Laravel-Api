@@ -15,7 +15,8 @@ class CreateReferralsTable extends Migration
     {
         Schema::create('referrals', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
+            $table->morphs('referralable');
             $table->string('email');
             $table->string('token')->nullable();
             $table->boolean('completed')->default(false);

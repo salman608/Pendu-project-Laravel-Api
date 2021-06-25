@@ -18,7 +18,7 @@ class TaskOfferController extends ApiController
      */
     public function index($taskId){
         
-       $task_offers = TaskOffer::where('task_id',$taskId)->get();
+       $task_offers = TaskOffer::with(['dropper', 'dropper.vehicle'])->where('task_id',$taskId)->get();
        return $task_offers;
     }
 

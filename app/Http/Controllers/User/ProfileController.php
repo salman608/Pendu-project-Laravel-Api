@@ -121,17 +121,4 @@ class ProfileController extends Controller
     {
         //
     }
-
-    public function sendInvitationMail(Request $req)
-    {
-        $isInsert = ReferalMail::create([
-            'email'      => $req->email,
-            'refer_by'   => Auth::user()->id,
-            'created_at' => now(),
-        ]);
-
-        Mail::to($req->email)->send(new InvitationMail());
-
-        return redirect()->back();
-    }
 }

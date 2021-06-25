@@ -15,16 +15,21 @@ class ReferralReceived extends Mailable
 
     public $sender;
     public $referral;
+    private $markdownFile = 'emails.referrals.received';
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(User $sender, Referral $referral)
+    public function __construct( $sender, Referral $referral, $dropper = false)
     {
         $this->sender = $sender;
         $this->referral = $referral;
+
+        if($dropper){
+            $this->markdownFile = 'emails.referrals.received-dropper';
+        }
     }
 
 
@@ -37,6 +42,6 @@ class ReferralReceived extends Mailable
     {
         return $this
             ->subject($this->sender->name . ' has invited you.')
-            ->markdown('emails.referrals.received');
+            ->markdown($this->markdownFile);
     }
 }

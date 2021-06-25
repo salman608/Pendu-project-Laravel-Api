@@ -78,6 +78,11 @@ class Dropper extends Authenticatable implements JWTSubject
         return $this->belongsTo(Vehicle::class);
     }
 
+    public function referrals()
+    {
+        return $this->morphMany(Referral::class, 'referralable');
+    }
+
     // profile_image
     // url('/uploads/dropper/photos').'/'.$value;
     public function getProfileImageAttribute($value)

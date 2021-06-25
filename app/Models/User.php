@@ -68,7 +68,7 @@ class User extends Authenticatable implements JWTSubject
     
     public function referrals()
     {
-        return $this->hasMany(Referral::class);
+        return $this->morphMany(Referral::class, 'referralable');
     }
 
 

@@ -106,14 +106,12 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     // Check out 
     Route::post('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'checkOutProcess']);
 
-
-
-
     Route::post('/task-order/{taskOrderId}/tips',[TaskCheckoutController::class, 'storeTips']);
 
 
+    // Refer and Earn
+    Route::post('refer-n-earn', [App\Http\Controllers\User\ReferralController::class, 'store']);
 
-    Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 
     // Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 

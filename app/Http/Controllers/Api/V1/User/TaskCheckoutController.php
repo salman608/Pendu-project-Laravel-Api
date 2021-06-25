@@ -66,10 +66,9 @@ class TaskCheckoutController extends ApiController
 
             } catch (Exception $e) {
                 Log::info($e->getMessage());
-                return $this->respondWithError(
-                    'Something is wrong. Try again.',
-                    [],
-                    500
+                return $this->respondWithSuccess(
+                    'This offer doesn\'t belong to the task.',
+                    []
                 );
             }
         }else {
@@ -101,10 +100,9 @@ class TaskCheckoutController extends ApiController
 
             } catch (Exception $e) {
                 Log::info($e->getMessage());
-                return $this->respondWithError(
-                    'Something is wrong. Try again.',
-                    [],
-                    500
+                return $this->respondWithSuccess(
+                    'This offer doesn\'t belong to the task.',
+                    []
                 );
             }
         }
@@ -205,7 +203,7 @@ class TaskCheckoutController extends ApiController
 
         try {
             
-
+            // Checkout
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             $charge = Stripe\Charge::create ([
                     "amount" => $final_amount,
@@ -218,7 +216,7 @@ class TaskCheckoutController extends ApiController
             if($charge['status'] == "succeeded" &&  $charge['paid'] == true){
 
 
-                // Safe Task Order
+                // Save Task Order
                 $taskOrder = new TaskOrder();
 
                 $taskOrder->order_id	    = rand(100000000,999999999);
@@ -233,6 +231,7 @@ class TaskCheckoutController extends ApiController
 
                 $taskOrder->save();
 
+                // Save Transaction data
                 $orderTransaction =new TaskOrderTransaction( [
                     "tran_id"   => $charge['id'],
                     "amount"    => $charge['amount'],

@@ -7,7 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Mail\Referrals\ReferralReceived;
+use App\Rules\NotRefferingExisting;
 use Illuminate\Support\Facades\Mail;
+use Exception;
+use DB;
+use Illuminate\Support\Facades\Log;
 
 class ReferralController  extends Controller
 {
@@ -31,19 +35,33 @@ class ReferralController  extends Controller
     public function store(Request $request){
 
         $request->validate([
-            'email' => 'required'       
+            'email' => [
+                'required',
+                new NotRefferingExisting($request->user())   
+            ]
+                 
         ]);
 
-        $referral = $request->user()->referrals()->create(
-            array_merge( $request->only('email'),[ 'token' => STR::random(50)])
-        );
+        DB::beginTransaction();
 
-        Mail::to($referral->email)->send(
-            new ReferralReceived($request->user(), $referral)
-        );
+        try {
+            $referral = $request->user()->referrals()->create(
+                array_merge( $request->only('email'),[ 'token' => STR::random(50)])
+            );
+    
+            Mail::to($referral->email)->send(
+                new ReferralReceived($request->user(), $referral)
+            );
+            DB::commit();
+            
+            return redirect()->back()->with('success', 'Your invitation has been sent.');
 
-        return redirect()->back()->with('success', 'Your invitation has been sent.');
-        // return $request->all();
-        // return view('user.profile.refer_n_earn');
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            return redirect()->back()->with('error', 'Your invitation has not been sent. Try again later.');
+        }
+
+
     }
 }
