@@ -3,6 +3,10 @@
 
 {{-- style start Here --}}
 <style>
+    .rating_point{
+        padding-left: 0.5rem !important;
+        margin-top: 3px;
+    }
 
   .modal { overflow-y: auto !important; }
   .car{
@@ -988,11 +992,13 @@
               </div>
             </div>
           </div>
-
           <div class="container">
 
+
             <div class="row">
+
                 @foreach ($posts as $post )
+
                 <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
                     <div class="card blog_item " >
                       <img class="card-img-top" src="{{asset('uploads/images/posts/' . $post->featured_image)}}" alt="Card image cap">
@@ -1007,9 +1013,10 @@
                       </div>
                     </div>
                   </div>
+
                 @endforeach
 
-            </div>
+        </div>
 
           </div>
         </section>
