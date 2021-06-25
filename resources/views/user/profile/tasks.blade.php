@@ -121,14 +121,77 @@
 
   }
 
-  @media screen and (max-width: 575.98 px){
-    .track-row .track-status-div .step-line{
-        width: 298px !important;
+
+  @media (max-width: 575.98px){
+  
+    /* Check Progress Modal */
+    .step-line {
+      width: 305px !important;
     }
-    .home-btn{
-        color: red;
+
+    .home-btn {
+      margin-left: 0px;
     }
-   }
+
+    .redirect.mt-4.mb-4 {
+      display: flex;
+      justify-content: space-evenly;
+    }
+
+    .chat.mt-3 {
+      margin-top: 21px !important;
+      margin-left: -24px;
+    }
+
+    /*  Driver Offer Modal */
+
+    .col-md-2.offer-cont-item1 {
+      width: 33%;
+    }
+    .col-md-6.offer_middle_row.offer-cont-item2 {
+        width: 66%;
+        margin-top: 57px;
+        
+    }
+
+    .circle_curve h1 {
+      top: -34vh;
+      width: 24% !important;
+      height: 50px;
+    }
+
+    .circle_curve h4 {
+      top: -158px;
+      font-size: 22px;
+    }
+
+    .offer_image {
+      top: 44%;
+      transform: translateY(-48%);
+      left: -6%;
+    }
+
+    .offer_image img {
+      height: 80px;
+      width: 80px;
+    }
+
+    .offer_image h6 span {
+        font-size: 18px;
+        font-weight: 700;
+    }
+
+    .accept_offer_cost a {
+      margin-top: -51px;
+    }
+
+    .offer_main_area ul {
+      position: relative;
+      left: 44%;
+      transform: translateX(-50%) !important;
+    }
+  }
+
 
 </style>
 
@@ -775,14 +838,14 @@ $(document).ready(function(){
 
       let offerItem = '<li class="offer_inter_item mt-1">';
       offerItem += '<div class="container">';
-      offerItem += '<div class="row">';
+      offerItem += '<div class="row offer-cont">';
 
-      offerItem += '<div class="col-md-2 "><div class="offer_image"><img src="'+ offerData['dropper']['profile_image'] +'" alt=""><h5>'+ offerData['dropper']['last_name'] +'</h5><h6><i class="fas fa-star"></i> <span>'+ offerData['dropper']['rating']  +'</span> </h6></div></div>';
+      offerItem += '<div class="col-md-2 offer-cont-item1"><div class="offer_image"><img src="'+ offerData['dropper']['profile_image'] +'" alt=""><h5>'+ offerData['dropper']['last_name'] +'</h5><h6><i class="fas fa-star"></i> <span>'+ offerData['dropper']['rating']  +'</span> </h6></div></div>';
 
 
-      offerItem += '<div class="col-md-6 offer_middle_row"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
+      offerItem += '<div class="col-md-6 offer_middle_row offer-cont-item2"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
 
-      offerItem += '<div class="col-md-3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="'+ url +'" type="button" class="btn">Accept Offer</a></div></div>';
+      offerItem += '<div class="col-md-3 offer-cont-item3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="'+ url +'" type="button" class="btn">Accept Offer</a></div></div>';
       // offerItem += '';
       offerItem += '</div>';
       offerItem += '</div>';
