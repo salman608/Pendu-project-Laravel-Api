@@ -13,7 +13,11 @@
         color: #5bdb98;
     }
 
-    @media (max-width: 768px){
+   .login_footer .new-User{
+    margin-left: 8rem !important;
+    }
+
+    @media (max-width: 600px){
         .form-check-label {
          font-size: 14px;
         }
@@ -43,7 +47,7 @@
             height: 17px;
         }
 
-        .login_footer p {
+        .login_footer .new-User {
             margin-left: 2rem !important
        }
        .new-user-register{
@@ -55,14 +59,14 @@
 
 
     @media only screen and (min-width: 411px){
-        .login_footer p {
+        .login_footer .new-User {
          margin-left: 5rem !important;
         }
 
     }
 
     @media only screen and (min-width: 540px){
-        .login_footer p {
+        .login_footer .new-User {
          margin-left: 13rem !important;
         }
 

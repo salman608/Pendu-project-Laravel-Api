@@ -396,7 +396,7 @@
             @csrf
             <div id="task-details">
                 <div class="form-group">
-                <div class="form-row" style="margin-top: -18px;">
+                <div class="form-row" style="margin-top: 7px;">
                     <div class="float-left"><label for="exampleInputEmail1" class="label-title mr-5" style="margin-top: 20px;">Vehicle Type-</label></div>
                     <div class="cc-selector">
                         <div class="row">

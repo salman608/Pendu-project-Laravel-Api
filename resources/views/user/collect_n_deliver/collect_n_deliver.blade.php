@@ -646,14 +646,6 @@
             </div>
 
 
-                {{-- <div class="form-group">
-                    <label for="procat_id" class="label-title">Categories</label>
-                    <select multiple class="selectpicker w-100" id="procat_id" name="product_cats[]">
-                        @foreach ($product_cats as $p_cat)
-                            <option value="{{ $p_cat->id  }}">{{$p_cat->title}}</option>
-                        @endforeach
-                    </select><!-- End -->
-                  </div> --}}
                   <div class="form-group">
                     <label for="taskTitle" class="label-title">Task title</label>
                     <input type="text" class="form-control" id="taskTitle" name="title" placeholder="Enter your title here" style="outline: none">
@@ -673,7 +665,7 @@
                                            <input type="number" class="count" name="qty[]" value="1">
                                            <span class="plus">+</span>
                                       </td>
-                                    {{-- <td class="text-right"> <input type="text" id="pprice" name="pro_price[]" class="form-control" placeholder="Unit Price.."></td> --}}
+
                                     <td class="text-right cross"><button type="button" class="cross-button" id="remove"></button>
                                 </tr>
                             </tbody>
@@ -690,11 +682,6 @@
                     </div>
                   </div>
 
-                  <!-- <div class="form-group">
-                    <label for="additional_note" class="label-title">Additional notes</label>
-
-                    <textarea id="additional_note" class="form-control input-group-lg bg-input-orange" name="additional_note"  placeholder="Enter additional notes" required ></textarea>
-                </div> -->
 
                     <div class="form-group">
                         <label for="productCost" class="label-title">Product cost</label>
@@ -765,7 +752,7 @@
                 <div class="task-details-timeframe" style="padding-left: 30px;padding-top: 8px;">
                     <div>
                         <i class="fa fa-map-marker-alt map-icon"></i>
-                        {{-- <img src="{{ asset('frontend/assets/images/Icons/location green.svg') }}" alt="" height="39" width="30"> --}}
+
                         <span style="margin-left: 20px;color: #8f8f8f" class="shopAddress" id="shopAddress">3/A Jadobpur, Abdul Goli, MD Pur, Dhaka, Abdul Goli, MD Pur, Dhaka</span>
                     </div>
                     <div class="vertical-dotted-line" style="margin-left: 14px;margin-top: -5px;"></div>

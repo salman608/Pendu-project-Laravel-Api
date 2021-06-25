@@ -86,6 +86,18 @@
     .bg-pendu-color{
         background-color: #60e99c;
     }
+
+    @media(max-width: 478px){
+        .card{
+            width: 100% !important;
+        }
+        .promo p{
+            width: 100% !important;;
+        }
+        .promo-card{
+            margin-top: 15px;
+        }
+    }
 </style>
 
   <!-- ============ Breadcrumb ============ -->
