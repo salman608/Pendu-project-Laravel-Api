@@ -231,6 +231,7 @@
      .accurancy-lebel {
       margin-left: 60px !important;
     }
+    
   }
 
   @media screen and (max-width: 375px){
@@ -274,6 +275,20 @@
   }
   }
 
+  @media (max-width: 575.98px){
+
+    .col-sm-6.track-ord-title {
+        width: 34%;
+    }
+    .col-sm-6.track-ord-id {
+        width: 29%;
+        margin-left: -79px;
+    }
+
+    .offer-show-modal-sr{
+      padding: 0px !important;
+    }
+  }
 
 </style>
 
@@ -640,7 +655,7 @@
             <span aria-hidden="true">&times;</span>
             </button>
          </div>
-         <div class="modal-body">
+         <div class="modal-body offer-show-modal-sr">
             <section class=" offer_main_area" >
                <ul class="offer_show_modal_ul">
 
@@ -840,8 +855,8 @@
       </div> --}}
       <div class="container-fluid">
           <div class="row track-row">
-              <div class="col-sm-6"><small>Track order</small></div>
-              <div class="col-sm-6"><small id="show-order-id"></small></div>
+              <div class="col-sm-6 track-ord-title"><small>Track order</small></div>
+              <div class="col-sm-6 track-ord-id"><small id="show-order-id"></small></div>
 
           </div>
           <hr>

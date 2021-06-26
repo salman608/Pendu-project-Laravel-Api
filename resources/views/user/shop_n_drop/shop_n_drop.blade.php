@@ -144,6 +144,12 @@
          width: 178px;
        }
 
+      span#shopAddress {
+          text-align: center;
+          display: inline-block;
+          margin-top: -35px;
+      }
+    }
     @media (max-width:375px){
         [type="radio"] + .d-time {
          width: 158px !important;
@@ -531,7 +537,7 @@
     <div style="height: 120px; background: #5bdb98"></div>
     <div class="container" style="margin-top: -60px;">
         <span class="font-weight-bold" id="titleId">Shop and Drop</span>
-        <div class="row" style="background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);height: 80px;border-radius: 10px;">
+        <div class="row" style=" margin: 0 -6px; background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);height: 80px;border-radius: 10px;">
             <div class="d-flex justify-content-center" style="width: 80%;align-items: center;margin: auto;
             ">
                 <div class="step-line">

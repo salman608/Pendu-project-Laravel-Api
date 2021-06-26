@@ -208,6 +208,11 @@
         width: 175px !important;
      }
 
+     span#shopAddress {
+          text-align: center;
+          display: inline-block;
+          margin-top: -35px;
+      }
 
    }
    @media (max-width:375px){
@@ -377,7 +382,7 @@
     <div style="height: 120px; background: #5bdb98"></div>
     <div class="container" style="margin-top: -60px;">
         <span class="font-weight-bold" id="titleId">Mover</span>
-        <div class="row" style="background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);height: 80px;border-radius: 10px;">
+        <div class="row" style=" margin: 0 -6px; background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);height: 80px;border-radius: 10px;">
             <div class="d-flex justify-content-center" style="width: 80%;align-items: center;margin: auto;
             ">
                 <div class="step-line">
@@ -431,7 +436,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
 
                 {{-- <div class="form-group">
                     <label for="procat_id" class="label-title">Categories</label>
@@ -505,7 +510,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                    </div>
                   <div class="form-group nb-mover" style="border-color: #60e99c!important;border-style: dashed; height: 40px!important;">
                       <label for="task_image" style="width: 100%">
                         <div class="row" style="position: relative;">
@@ -542,6 +547,7 @@
                           <input type="file" name="task_image" id="task_image" class="d-none">
                       </label>
                   </div>
+            </div>
             </div>
 
             <div id="timeFrameDiv" style="">
