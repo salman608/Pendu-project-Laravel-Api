@@ -366,6 +366,9 @@
                         </div>
                     </div>
 
+                    
+                    <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}"/>
+
                     <div class="row form-group d-flex justify-content-center">
                         <div class="col-md-6">
                             <input type="submit" style="width: 200px; background: #5ee39a; border-color: #5ee39a" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
@@ -428,7 +431,12 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 
-    var stripe = Stripe('{{ env("STRIPE_KEY") }}');
+    
+    // var stripe = Stripe('{{ env("STRIPE_KEY") }}');
+    
+    var stripeKey = document.getElementById('stripe_key').value;
+    var stripe = Stripe(stripeKey);
+
     var elements = stripe.elements();
 
 
