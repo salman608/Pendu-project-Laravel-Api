@@ -150,11 +150,11 @@
    }
 
    .radio-btn-text{
-     font-size: 15px;
+     font-size: 16px !important;
     }
-    [type="radio"] + div {
+    [type="radio"] + .d-time {
 
-    width: 166px !important;
+    width: 173px !important;
    }
    @media (max-width: 575.98px){
     .step-2{
@@ -939,7 +939,7 @@ $(document).ready(function(){
             $('#nextButton').hide();
             $('#task-details').hide();
             $('#postButtonId').show();
-            // $('#titleId').text('Review');
+
             $('#timeFrameDiv').hide();
             $('#taskDetails').show();
             // myMap()

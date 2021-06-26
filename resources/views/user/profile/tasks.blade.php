@@ -160,6 +160,8 @@
       height: 50px;
     }
 
+
+
     .circle_curve h4 {
       top: -158px;
       font-size: 22px;
@@ -194,16 +196,82 @@
         width: 100% !important;
     }
 
-
-    /* .rate{
-        margin-top: 44px !important;
+    .track-row {
+    margin-top: -160px;
+    margin-left: 37px;
     }
-    .rate label {
-        margin-left: -31px !important;
+    #show-order-id{
+        margin-left: 135px !important;
+        margin-top: -29px !important;
+    }
+
+    /* review page */
+    .rate {
+     margin-top: 40px !important;
+     margin-left: 210px !important;
     }
     .accurancy-lebel{
-        margin-left: 15px !important;
-    } */
+        margin-left: 26px !important;
+    }
+    .range {
+    margin-left: 147px !important;
+   }
+
+
+  }
+
+  @media only screen and (min-width: 540px){
+    .rate {
+        margin-top: -11px !important;
+        margin-left: 263px !important;
+     }
+    .range {
+      margin-left: 164px !important;
+     }
+     .accurancy-lebel {
+      margin-left: 60px !important;
+    }
+  }
+
+  @media screen and (max-width: 375px){
+    .rate {
+        margin-top: 58px !important;
+        margin-left: 199px !important;
+    }
+
+    .range {
+    margin-left: 140px !important;
+   }
+   .accurancy-lebel {
+    margin-left: 19px !important;
+    }
+
+    .circle_curve h1 {
+    top: -34vh;
+    width: 24% !important;
+    height: 80px;
+    border-radius: 23px;
+  }
+  }
+
+  @media screen and (max-width: 360px){
+    .rate {
+        margin-top: 64px !important;
+    margin-left: 188px !important;
+    }
+    .range {
+    margin-left: 140px !important;
+   }
+   .accurancy-lebel {
+    margin-left: 19px !important;
+   }
+
+   .circle_curve h1 {
+    top: -40vh;
+    width: 24% !important;
+    height: 58px;
+    border-radius: 18px;
+  }
   }
 
 

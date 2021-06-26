@@ -126,11 +126,7 @@
     } */
 
    /* responsive */
-   @media (max-width: 375.96 px){
-        .payment-checkbox{
-           width: 158px !important;
-       }
-    }
+
 
    @media (max-width: 575.98px){
     .payment-checkbox{
@@ -151,6 +147,12 @@
 
 
    }
+
+   @media (max-width: 375.96px){
+        .payment-checkbox{
+           width: 158px !important;
+       }
+    }
 
    div#card-errors {
         text-align: center;

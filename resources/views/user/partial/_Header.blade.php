@@ -49,7 +49,7 @@
   }
 
   .navbar-logo-connt{
-      display: block;
+      display: none !important;
   }
 
   .notification-contt{
