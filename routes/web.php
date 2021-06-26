@@ -130,7 +130,8 @@ Route::post('mover', [MoverController::class, 'store'])->name('mover.store');
 /**
  * User routes
  */
-Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verified'], function () {
+
+Route::group(["as" => 'user.', "prefix" => 'user', "middleware" =>['auth', 'phone-verified']], function () {
     Route::get('dashboard', [App\Http\Controllers\User\UserDashboardController::class, 'index'])->name('dashboard');
 
     Route::get('profile', [App\Http\Controllers\User\UserDashboardController::class, 'profile'])->name('profile');
@@ -170,8 +171,10 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verifi
 
     Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 
+    // Show Checkout Page
     Route::get('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'index'])->name('payment');
 
+    // Pay for the task
     Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'checkOutProcess'])->name('payment-process');
 
     // Order TIps
@@ -189,6 +192,9 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" => 'phone-verifi
     Route::get('review_sent', [App\Http\Controllers\User\ReviewController::class, 'sent']);
 
 });
+
+
+
 
 Route::get('verify-phone', [App\Http\Controllers\Auth\OTPController::class, 'index'])->name('verify-phone');
 Route::post('verify-phone', [App\Http\Controllers\Auth\OTPController::class, 'verifyPhone']);

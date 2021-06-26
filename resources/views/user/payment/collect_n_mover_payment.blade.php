@@ -152,6 +152,10 @@
 
    }
 
+   div#card-errors {
+        text-align: center;
+    }
+
 
 
 </style>
@@ -370,7 +374,7 @@
 
                     <div class="row form-group d-flex justify-content-center">
                         <div class="col-md-6">
-                            <input type="submit" style="width: 200px;" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
+                            <input type="submit" style="width: 200px; background: #5ee39a; border-color: #5ee39a" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
                         </div>
                     </div>
 

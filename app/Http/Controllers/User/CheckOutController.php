@@ -24,8 +24,23 @@ class CheckOutController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($offerId, $taskId)
+    public function index(Request $request, $offerId, $taskId)
     {   
+
+        // Check if task owner is logged user & task is not payment yet.
+        $taskOwner = Task::where('id', $taskId)->where('user_id', $request->user()->id)->whereNull('offer_id');
+        if(!$taskOwner->exists()){
+            abort(403);
+        }
+
+        // Check if offer belongs to the task
+        $offerBelongs = TaskOffer::where('id', $offerId)->where('task_id', $taskId);
+        if(!$offerBelongs->exists()){
+            abort(403);
+        }
+        
+
+
         $serviceCategoryId = Task::select('service_category_id')->where('id', $taskId)->first();
 
         // Remove all session about coupon

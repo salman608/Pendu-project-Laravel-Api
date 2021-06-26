@@ -232,10 +232,7 @@
 
                       @csrf
                     <div class="row review-row">
-
-
                             <div class="rate">
-
                                 <input type="radio" class="review-name" checked id="star5" name="rate" value="5" />
                                 <label for="star5" title="text">5 stars</label>
                                 <input type="radio" class="review-name" checked id="star4" name="rate" value="4" />
@@ -255,7 +252,6 @@
                                   <textarea class="form-control input-group-lg bg-input-orange review-experience" name="experience"  cols="36" rows="4" placeholder="Write your experience here"></textarea>
                               </div>
                               <br>
-
                         </div>
 
                         <button class="btn btn-success mt-3 mb-3 button-review"   id="submitReview">Submit</button>
@@ -290,9 +286,6 @@
         hiddenProductsInput.setAttribute('name', 'task_order_id');
         hiddenProductsInput.setAttribute('value', window.orderId);
         form.appendChild(hiddenProductsInput);
-
-
-
 
         // Submit the form
         form.submit();

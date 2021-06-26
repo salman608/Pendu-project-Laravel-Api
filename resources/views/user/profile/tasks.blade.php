@@ -454,8 +454,8 @@
                             @if($task->total_cost)
                             <p>Item cost- <span class='coast'>${{$task->total_cost}}</span> </p>
                             @endif
-                            <p class="service-category-show">{{$task->serviceCategory->title}}</p>
-                            {{-- <h6>{{$task->request_status}}</h6> --}}
+                            {{-- <p class="service-category-show">{{$task->serviceCategory->title}}</p> --}}
+                            <h6>{{$task->request_status}}</h6>
                             <!-- <h6>Proccessing</h6> -->
                       </div>
                   </div>
@@ -544,7 +544,7 @@
 
 
 
-<!-- ================= Offers from driverstab ============ -->
+<!-- ================= Offers from drivers tab ============ -->
 <div id="offer_show_modal" class="modal fade profile-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
    <div class="modal-dialog modal-lg  ">
       <div class="modal-content offer_modal_contetn">
@@ -875,7 +875,7 @@ $(document).ready(function(){
   });
 
 
-  // Show offer Modal
+  // Show offers From Drivers Modal
   $('.view-offer-btn').on('click',function(){
 
     let taskId = $(this).attr("data-id");
