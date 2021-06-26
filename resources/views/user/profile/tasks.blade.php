@@ -160,6 +160,8 @@
       height: 50px;
     }
 
+
+
     .circle_curve h4 {
       top: -158px;
       font-size: 22px;
@@ -231,7 +233,7 @@
     }
   }
 
-  @media screen and (max-width: 375.98px){
+  @media screen and (max-width: 375px){
     .rate {
         margin-top: 58px !important;
         margin-left: 199px !important;
@@ -242,6 +244,13 @@
    }
    .accurancy-lebel {
     margin-left: 19px !important;
+    }
+
+    .circle_curve h1 {
+    top: -34vh;
+    width: 24% !important;
+    height: 80px;
+    border-radius: 23px;
   }
   }
 
@@ -256,6 +265,13 @@
    .accurancy-lebel {
     margin-left: 19px !important;
    }
+
+   .circle_curve h1 {
+    top: -40vh;
+    width: 24% !important;
+    height: 58px;
+    border-radius: 18px;
+  }
   }
 
 
