@@ -22,6 +22,8 @@
         margin-left: 7px;
     }
 
+
+
     .pac-container { z-index: 100000; }
     input[type="text"] {
         background: #f1f1f1;
@@ -83,7 +85,12 @@
         z-index: 999999999999;
         /* display: none; */
     }
-
+    .radio-btn-text{
+     font-size: 15px !important;
+    }
+    [type="radio"] + .d-time {
+     width: 175px !important;
+    }
     @media (max-width: 575.98px){
         .step-2{
             margin-left: -56px !important;
@@ -721,7 +728,7 @@
                         <div class="pr-2">
                             <label>
                                 <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
-                                <div style="width: 180px;">
+                                <div class="d-time">
                                     <img src="{{$d_time->icon}}" height="30" width="80">
                                     <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
