@@ -151,15 +151,25 @@
         border-radius: 4px;
     }
 
-    /* @media (max-width: 575.98 px){
-        .trips-success-hide .not-btn{
-            padding: 10px 10px !important;
-            color: red;
-        }
-        #submit-order-tips{
-            padding: 10px 10px !important;
-        }
-    } */
+    @media (max-width: 575.98px){
+         #additionalNote{
+            width: 100%!important;
+             margin-left: 25px !important;
+         }
+         .sent-invite{
+             margin-top: 7px !important;
+         }
+
+         #myInput1{
+            width: 100%!important;
+             margin-left: 14px !important;
+         }
+         .invite_button2{
+             margin-left: 75px !important;
+             margin-top: 5px !important;
+
+         }
+    }
 </style>
 <section class="">
     <div style="height: 120px; background: #5bdb98"></div>
@@ -348,7 +358,7 @@
                     <input id="additionalNote" class="form-control w-50" type="text" name="email"
                         title="Enter email address"
                         placeholder="Enter email address"/>
-                    <button class="button ml-4 pl-5 pr-5" style="background: #60e99c;color:#fff;height:37px;border-radius: 5px; padding: 0;">Send invite</button>
+                    <button class="button ml-4 pl-5 pr-5 sent-invite" style="background: #60e99c;color:#fff;height:37px;border-radius: 5px; padding: 0;">Send invite</button>
                 </div>
             </div>
             <div class="col-md-12 col-sm-12 col-lg-12 mt-5 border-top text-center">
@@ -371,7 +381,7 @@
                       </div> --}}
 
                       <div class="section_tooltipss" >
-                        <input type="text" class="link_input w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:50%!important;display: initial; ">
+                        <input type="text" class="link_input w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="display: initial; ">
                         <div class="tooltip22">
                         <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()" style="width: 179px;">
                           <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
@@ -484,7 +494,7 @@
 
         // alert('Hello');
         event.preventDefault();
-        
+
         let form = document.getElementById('order-tips-form');
         // form.submit();
         $('#paymentMethodTransaction').modal('show');

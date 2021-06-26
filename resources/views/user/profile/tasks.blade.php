@@ -194,16 +194,68 @@
         width: 100% !important;
     }
 
-
-    /* .rate{
-        margin-top: 44px !important;
+    .track-row {
+    margin-top: -160px;
+    margin-left: 37px;
     }
-    .rate label {
-        margin-left: -31px !important;
+    #show-order-id{
+        margin-left: 135px !important;
+        margin-top: -29px !important;
+    }
+
+    /* review page */
+    .rate {
+     margin-top: 40px !important;
+     margin-left: 210px !important;
     }
     .accurancy-lebel{
-        margin-left: 15px !important;
-    } */
+        margin-left: 26px !important;
+    }
+    .range {
+    margin-left: 147px !important;
+   }
+
+
+  }
+
+  @media only screen and (min-width: 540px){
+    .rate {
+        margin-top: -11px !important;
+        margin-left: 263px !important;
+     }
+    .range {
+      margin-left: 164px !important;
+     }
+     .accurancy-lebel {
+      margin-left: 60px !important;
+    }
+  }
+
+  @media screen and (max-width: 375.98px){
+    .rate {
+        margin-top: 58px !important;
+        margin-left: 199px !important;
+    }
+
+    .range {
+    margin-left: 140px !important;
+   }
+   .accurancy-lebel {
+    margin-left: 19px !important;
+  }
+  }
+
+  @media screen and (max-width: 360px){
+    .rate {
+        margin-top: 64px !important;
+    margin-left: 188px !important;
+    }
+    .range {
+    margin-left: 140px !important;
+   }
+   .accurancy-lebel {
+    margin-left: 19px !important;
+   }
   }
 
 
