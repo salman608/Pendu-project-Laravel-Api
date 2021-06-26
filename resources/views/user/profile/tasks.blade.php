@@ -193,9 +193,7 @@
     #pay-confirm-model{
         width: 100% !important;
     }
-    .profile_tab_title{
-        margin-top: -32px;
-    }
+
 
     /* .rate{
         margin-top: 44px !important;

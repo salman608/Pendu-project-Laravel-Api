@@ -328,6 +328,14 @@
 
             @endif
 
+
+
+
+
+
+
+
+
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-5" style="font-family: Montserrat;
             font-size: 11px;
             color: #90a0b2;
@@ -475,7 +483,8 @@
     $('#Rectangle_4508, #submit-order-tips').click(function(){
 
         // alert('Hello');
-
+        event.preventDefault();
+        
         let form = document.getElementById('order-tips-form');
         // form.submit();
         $('#paymentMethodTransaction').modal('show');
@@ -560,7 +569,7 @@
         $('.trips-success-hide').css('display','none');
         $('.trips-success-show').css('display','block');
 
-        $('#paymentMethodTransaction').modal('hide');
+        // $('#paymentMethodTransaction').modal('hide');
         // $('#paymentConfirmModalId').modal('show');
     }
 

@@ -152,62 +152,6 @@
       margin-bottom: 20px !important;
   }
 
-  @media only screen and (min-width: 768px) {
-    .mt-n7rem {
-      margin-top: -7.5rem!important;;
-    }
-    .footer_share a {
-      color: var(--white-color);
-      background-color: var(--text-color-black);
-      border-radius: 50%;
-      padding: 4px !important;
-      text-align: center;
-      font-size: 11px;
-     }
-  }
-
-
-
-
-@media (max-width: 575.98px){
-
-  .service_slider1{
-    height: 20vh !important;
-  }
-
-  .member_border {
-    border: none;
-    border-top: 1px solid #90a0b2 !important;
-    border-radius: 0px;
-    margin-bottom: -41px !important;
-  }
-
-  .footer_share a i {
-    margin-top: 0px;
-  }
-
-  .footer_share {
-    width: 186px;
-  }
-
-  .footer_menu ul li {
-    padding-left: 3px;
-    font-size: 12px;
-    /* text-align: center; */
-    text-align: right;
-  }
-}
-
-@media (min-width: 1200px) and (max-width: 1500px) {
-  .tech_right_img img {
-      width: 24rem;
-  }
-  .tech_logo{
-    margin-top: 60px !important;
-  }
-}
-
-
 
 
 </style>

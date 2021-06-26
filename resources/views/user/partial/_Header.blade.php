@@ -1,4 +1,90 @@
-  <!-- ===================== Navbar ================= -->
+<style>
+
+
+
+@media only screen and (min-width: 768px) {
+    .mt-n7rem {
+        margin-top: -7.5rem!important;;
+    }
+    .footer_share a {
+        color: var(--white-color);
+        background-color: var(--text-color-black);
+        border-radius: 50%;
+        padding: 4px !important;
+        text-align: center;
+        font-size: 11px;
+    }
+}
+
+.navbar-logo-connt{
+      display: none;
+  }
+
+@media (max-width: 575.98px){
+
+  .service_slider1{
+    height: 20vh !important;
+  }
+
+  .member_border {
+    border: none;
+    border-top: 1px solid #90a0b2 !important;
+    border-radius: 0px;
+    margin-bottom: -41px !important;
+  }
+
+  .footer_share a i {
+    margin-top: 0px;
+  }
+
+  .footer_share {
+    width: 186px;
+  }
+
+  .footer_menu ul li {
+    padding-left: 3px;
+    font-size: 12px;
+    /* text-align: center; */
+    text-align: right;
+  }
+
+  .navbar-logo-connt{
+      display: block;
+  }
+
+  .notification-contt{
+    margin-top: 13px;
+  }
+
+  .refer {
+    margin-top: 4px;
+    padding-left: 0px;
+    width: 181px;
+    }
+
+
+}
+
+@media (min-width: 1200px) and (max-width: 1500px) {
+  .tech_right_img img {
+      width: 24rem;
+  }
+  .tech_logo{
+    margin-top: 60px !important;
+  }
+}
+
+/* For User Profile */
+.profile_tab_title{
+    margin-top: -32px;
+}
+
+</style>
+
+
+
+
+<!-- ===================== Navbar ================= -->
   <section class="navmanu_main">
     <div class="container">
         <nav class="navbar sticky-top navbar-expand-lg navbar-light  ">
@@ -42,13 +128,13 @@
                 </ul>
             </div>
 
-            {{-- <div class="nav_icon_img">
+            <div class="nav_icon_img navbar-logo-connt">
               <a class="navbar-brand" href="{{url('/')}}"> <img
                   src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo">
               </a>
-            </div> --}}
+            </div>
             <!-- ------ Notificaitons and login ----- -->
-            <div class="">
+            <div class="notification-contt">
 
 
                 @if(Auth::check())
