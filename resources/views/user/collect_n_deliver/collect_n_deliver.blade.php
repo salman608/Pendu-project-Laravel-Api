@@ -148,6 +148,14 @@
     margin-left: 3px;
     display: inline;
    }
+
+   .radio-btn-text{
+     font-size: 15px;
+    }
+    [type="radio"] + div {
+
+    width: 166px !important;
+   }
    @media (max-width: 575.98px){
     .step-2{
             margin-left: -56px !important;

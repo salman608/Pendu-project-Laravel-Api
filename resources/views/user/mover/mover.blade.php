@@ -116,7 +116,7 @@
     }
     .plus-button{
         font-weight: bold;
-        width: 70px;
+
     }
     #pname{
         width:100% !important;
@@ -144,6 +144,13 @@
     z-index: 999999999999;
     /* display: none; */
  }
+ .radio-btn-text{
+     font-size: 15px;
+ }
+ [type="radio"] + div {
+
+    width: 166px !important;
+}
 
  @media (max-width: 575.98px){
     .step-2{
@@ -193,6 +200,13 @@
        .drinkcard-cc {
            width: 85px !important;
        }
+      .radio-btn-text{
+       font-size: 17px;
+      }
+     [type="radio"] + div {
+
+        width: 175px !important;
+     }
 
 
    }
@@ -391,7 +405,7 @@
 
     </div>
 
-    <div class="container" class="task-body">
+    <div class="container task-body">
         <form enctype="multipart/form-data" method="POST" id="mover-form" action="{{route('mover.store')}}">
             @csrf
             <div id="task-details">
@@ -454,7 +468,7 @@
                             <tfoot >
                                   <tr >
                                       <td colspan="5" class="text-center">
-                                          <button type="button" class="btn btn-success plus-button" id="add_btn">+</button>
+                                          <button type="button" class="btn btn-success plus-button" id="add_btn">+ Add another</button>
                                       </td>
                                   </tr>
                             </tfoot>

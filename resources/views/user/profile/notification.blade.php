@@ -1,6 +1,14 @@
 @extends('user.asset')
 @section('user_content')
 
+<style>
+    @media(max-width:425px){
+        .notification_section ul li{
+            margin-left: -33px;
+        }
+    }
+</style>
+
   <!-- ============ Breadcrumb ============ -->
   <section class="breadcrumb_main">
     <div class="container">
