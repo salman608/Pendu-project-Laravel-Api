@@ -2,20 +2,28 @@
 @section('user_content')
 
 <style>
+    .form-check {
+    position: initial;
+    display: block;
+    padding-left: 1.25rem;
+}
     .form-check-label {
       margin-bottom: 24px;
     }
-    .new-User{
+    /* .new-User{
       margin-left: 8rem !important;
-    }
+    } */
     .new-User a{
         font-size: 15px;
         color: #5bdb98;
     }
-
-   .login_footer .new-User{
-    margin-left: 8rem !important;
+    .login_footer p{
+        margin-left: 8px !important;
     }
+
+   /* .login_footer .new-User{
+    margin-left: 8rem !important;
+    } */
 
     @media (max-width: 600px){
         .form-check-label {
@@ -65,10 +73,10 @@
 
     }
 
-    @media only screen and (min-width: 540px){
+    /* @media only screen and (min-width: 540px){
         .login_footer .new-User {
          margin-left: 13rem !important;
-        }
+        } */
 
     }
 </style>
