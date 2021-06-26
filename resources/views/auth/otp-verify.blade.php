@@ -119,7 +119,7 @@
                 <div class="card card-otp">
                     <img src="{{asset('frontend/images/otp.png')}}" alt="" style="width:265px;margin:auto;">
                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
-                   <p class="mt-2" style="font-size: 15px"> Defaul is : 1234</p>
+                   <p class="mt-2" style="font-size: 15px; text-align: center;"> Defaul is : 1234</p>
                    @if (session()->has('error')) {
 
                         <p class="mt-2" style="font-size: 15px; color:red">{{ session('error') }}</p>
