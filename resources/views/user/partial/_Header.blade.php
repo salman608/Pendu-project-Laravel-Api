@@ -62,6 +62,14 @@
     width: 181px;
     }
 
+    /* For User Profile */
+    .profile_tab_title{
+        margin-top: -32px;
+    }
+
+    .nav-logo-one{
+        display: none;
+    }
 
 }
 
@@ -74,10 +82,7 @@
   }
 }
 
-/* For User Profile */
-.profile_tab_title{
-    margin-top: -32px;
-}
+
 
 </style>
 
@@ -97,7 +102,7 @@
             </button>
             <!-- ----Menu Items --- -->
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <a class="navbar-brand" href="{{url('/')}}"> <img
+                <a class="navbar-brand nav-logo-one" href="{{url('/')}}"> <img
                         src="{{asset('frontend')}}/assets/images/Logo/pendu.svg" class="navbar-logo" alt="logo">
                   </a>
 
