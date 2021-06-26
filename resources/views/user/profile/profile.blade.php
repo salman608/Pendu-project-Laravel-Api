@@ -49,7 +49,7 @@
                   <div class="modal-content login_page_modal_content profile_form_area">
                      <div class="modal-body ">
                         <div class="reg_form profile_info_form">
-                           <form action="{{ url('profile/update/'.Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
+                           <form action="{{ route('user.profile-update', Auth::user()->id) }}" method="POST" enctype="multipart/form-data">
                               @csrf
 
                               <div class="form-group">
@@ -69,7 +69,7 @@
                                  <label class='reg_name' id="pro_reg_name" for="" style="top: -43px !important">Name</label>
                               </div>
                               <div class="form-group">
-                                 <input type="email" class="form-control form-control-lg reg_mail_input"  value="{{Auth::user()->email}}"  name="email">
+                                 <input type="email" disabled class="form-control form-control-lg reg_mail_input"  value="{{Auth::user()->email}}"  name="email">
                                  <label class='reg_mail' for="  " style="top: -43px !important">Email</label>
                               </div>
                               <div class="form-group">
@@ -77,7 +77,7 @@
                                  <label class='reg_sub profile_sub' for="  "style="top: 247px !important;left: 49px">Suburb</label>
                               </div>
                               <div class="form-group">
-                                 <input type="text" class="form-control form-control-lg reg_phn_input" value="{{Auth::user()->phone}}" name="phone">
+                                 <input type="text" class="form-control form-control-lg reg_phn_input" disabled value="{{Auth::user()->phone}}" name="phone">
                                  <label class='reg_phn profile_phn' for="  "style="top: 305px!important;left: 49px">Phone</label>
                               </div>
 

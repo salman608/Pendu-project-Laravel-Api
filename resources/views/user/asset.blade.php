@@ -100,7 +100,7 @@
 
 	@if(Session::has('insert'))
 		<script type="text/javascript">
-			swal("Information was collected.","The information you provided was successfully added to our system...","success")
+		swal("Success","Your request has been submitted successfully.","success")
 		</script>
 	@endif
 	{{-- multi select function --}}

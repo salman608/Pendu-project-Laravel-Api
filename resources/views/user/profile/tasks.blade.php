@@ -446,6 +446,10 @@
                      </select>
                </div>
             </div> -->
+      @if (session()->has('error'))
+          <div class="alert alert-danger mt-4" style="font-size: 22px;" role="alert">{{ session()->get('error') }}</div>
+      @endif
+
 
 @forelse($tasks as $task)
             <div class="order_number">

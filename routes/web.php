@@ -136,6 +136,8 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" =>['auth', 'phon
 
     Route::get('profile', [App\Http\Controllers\User\UserDashboardController::class, 'profile'])->name('profile');
 
+    Route::post('/profile-update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('profile-update');
+
     Route::get('tasks', [App\Http\Controllers\User\UserDashboardController::class, 'tasks'])->name('tasks');
     Route::get('task_offer_json/{id}', [App\Http\Controllers\User\UserDashboardController::class, 'TaskOfferJson'])->name('task_offer_json');
 
@@ -169,6 +171,7 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" =>['auth', 'phon
     Route::get('faq', [App\Http\Controllers\User\UserDashboardController::class, 'faq'])->name('faq');
     Route::get('term-n-conditions', [App\Http\Controllers\User\UserDashboardController::class, 'termAndCondition'])->name('term-n-conditions');
 
+    // apply Coupon
     Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
 
     // Show Checkout Page
@@ -178,7 +181,7 @@ Route::group(["as" => 'user.', "prefix" => 'user', "middleware" =>['auth', 'phon
     Route::post('payment/{offerId}/task/{taskId}', [App\Http\Controllers\User\CheckOutController::class, 'checkOutProcess'])->name('payment-process');
 
     // Order TIps
-    Route::get('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'index'])->name('order-tips');
+    Route::get('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'orderTip'])->name('order-tips');
     Route::post('order-tips/{orderId}', [App\Http\Controllers\User\ReviewController::class, 'submitTips']);
 
 
@@ -202,7 +205,7 @@ Route::post('verify-phone', [App\Http\Controllers\Auth\OTPController::class, 've
 //profile section
 Route::group(["as" => 'profile.', "prefix" => 'profile'], function () {
     // Route::get('/index', [App\Http\Controllers\User\ProfileController::class, 'index'])->name('index');
-    Route::post('/update/{id}', [App\Http\Controllers\User\ProfileController::class, 'update'])->name('profile_update');
+
     Route::get('/logout', [App\Http\Controllers\User\ProfileController::class, 'logout']);
 });
 

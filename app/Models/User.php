@@ -55,10 +55,10 @@ class User extends Authenticatable implements JWTSubject
         return $this->belongsTo(role::class);
       }
 
-    public function referrer()
-    {
-        return $this->belongsTo(User::class, 'referrer_id', 'id');
-    }
+    // public function referrer()
+    // {
+    //     return $this->belongsTo(User::class, 'referrer_id', 'id');
+    // }
 
     /**
      * A user has many referrals.
@@ -132,4 +132,7 @@ class User extends Authenticatable implements JWTSubject
         return ! is_null($this->phone_verified_at);
     }
 
+    public function reviews(){
+    	return $this->morphMany(TaskOrderReview::class, 'reviewable');
+    }
 }

@@ -98,9 +98,7 @@ class ProfileController extends Controller
         }
 
         $user['name']           = $request->name;
-        $user['email']          = $request->email;
         $user['suburb']         = $request->suburb;
-        $user['phone']          = $request->phone;
         if ($request->has('profile_photo')) {
             $user['profile_photo']  = $profile_photo;
         }

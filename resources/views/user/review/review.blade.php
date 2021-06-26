@@ -151,6 +151,12 @@
         border-radius: 4px;
     }
 
+    
+   div#card-errors {
+        text-align: center;
+    }
+
+
     /* @media (max-width: 575.98 px){
         .trips-success-hide .not-btn{
             padding: 10px 10px !important;
@@ -257,13 +263,21 @@
                     </g>
                 </svg>
             </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 text-center" style="font-family: Montserrat;
+
+   
+            @if (session()->has('error'))
+                <div class="alert alert-danger mt-2 col-md-12 col-sm-12 col-lg-12 text-center"  style="font-size: 22px;" role="alert">
+                    {{ session()->get('error') }}
+                </div>
+            @else
+
+            <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-2" style="font-family: Montserrat;
             font-weight: 600;
-            font-size: 15px;
+            font-size: 18px;
             color: #000;">
                 <p>Review sent successfully!</p>
             </div>
-
+            @endif
             @if (!session()->has('success'))
 
             <div class="trips-success-hide col-md-12 col-sm-12 col-lg-12 text-center border-top pt-2"
@@ -441,7 +455,7 @@
             <form action="{{route('user.order-tips', $orderId)}}" method="post" id="payment-form">
 
                 <div class="row form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-10" style="margin: auto;">
                             <!-- Display errors returned by createToken -->
                             <label>Card Number</label>
                             <div id="paymentResponse" class="text-danger font-italic"></div>
@@ -449,11 +463,11 @@
                         </div>
                     </div>
                     <div class="row form-group d-flex justify-content-center">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label>Expiry Date</label>
                             <div id="card_expiry" class="field form-control"></div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label>CVC Code</label>
                             <div id="card_cvc" class="field form-control"></div>
                         </div>
@@ -461,7 +475,7 @@
 
                     <div class="row form-group d-flex justify-content-center">
                         <div class="col-md-6">
-                            <input type="submit" style="width: 200px;" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
+                            <input type="submit" style="width: 200px; background: #5ee39a; border-color: #5ee39a"" value="Pay via Stripe" class="btn btn-primary pay-via-stripe-btn">
                         </div>
                     </div>
 
@@ -484,9 +498,9 @@
 
         // alert('Hello');
         event.preventDefault();
-        
-        let form = document.getElementById('order-tips-form');
+        // let form = document.getElementById('order-tips-form');
         // form.submit();
+
         $('#paymentMethodTransaction').modal('show');
 
     });
@@ -553,6 +567,13 @@
         });
     });
 
+    // Select Tips Amount
+    var tipsAmount = 20;
+    $('input[type=radio][name=tips_amount]').change(function() {
+        tipsAmount =  this.value;
+        // alert(tipsAmount);
+    });
+
 
     function stripeTokenHandler(token) {
         // Insert the token ID into the form so it gets submitted to the server
@@ -561,7 +582,14 @@
         hiddenInput.setAttribute('type', 'hidden');
         hiddenInput.setAttribute('name', 'stripeToken');
         hiddenInput.setAttribute('value', token.id);
+
+        var hiddenInputTip = document.createElement('input');
+        hiddenInputTip.setAttribute('type', 'hidden');
+        hiddenInputTip.setAttribute('name', 'tipsAmount');
+        hiddenInputTip.setAttribute('value', tipsAmount);
+
         form.appendChild(hiddenInput);
+        form.appendChild(hiddenInputTip);
 
         // Submit the form
         form.submit();

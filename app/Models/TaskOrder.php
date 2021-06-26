@@ -17,8 +17,8 @@ class TaskOrder extends Model
     protected $guarded = [];
 
 
-    public function transaction(){
-        return $this->hasOne(TaskOrderTransaction::class);
+    public function transactions(){
+        return $this->morphMany(TaskOrderTransaction::class, 'transable');
     }
 
     public function task(){

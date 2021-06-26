@@ -348,7 +348,7 @@
             <form action="{{ route('user.payment-process', ['offerId'=> $data->id, 'taskId'=>  $data->task_id]) }}" method="post" id="payment-form">
 
                 <div class="row form-group">
-                        <div class="col-md-12">
+                        <div class="col-md-10" style="margin: auto;">
                             <!-- Display errors returned by createToken -->
                             <label>Card Number</label>
                             <div id="paymentResponse" class="text-danger font-italic"></div>
@@ -356,11 +356,11 @@
                         </div>
                     </div>
                     <div class="row form-group d-flex justify-content-center">
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label>Expiry Date</label>
                             <div id="card_expiry" class="field form-control"></div>
                         </div>
-                        <div class="col-md-3">
+                        <div class="col-md-5">
                             <label>CVC Code</label>
                             <div id="card_cvc" class="field form-control"></div>
                         </div>

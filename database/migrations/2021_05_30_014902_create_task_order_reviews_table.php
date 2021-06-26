@@ -15,8 +15,8 @@ class CreateTaskOrderReviewsTable extends Migration
     {
         Schema::create('task_order_reviews', function (Blueprint $table) {
             $table->id();
+            $table->morphs('reviewable');
             $table->unsignedBigInteger('task_order_id');
-            $table->integer('review_by')->default(1); // 1 user, 2 dropper
             $table->integer('rating');
             $table->integer('accuracy');
             $table->string('review')->nullable();

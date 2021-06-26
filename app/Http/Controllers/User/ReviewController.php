@@ -3,26 +3,23 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\Dropper;
 use App\Models\Task;
+use App\Models\TaskOffer;
 use App\Models\TaskOrder;
 use App\Models\TaskOrderReview;
 use App\Models\TaskOrderTip;
+use App\Models\TaskOrderTransaction;
 use Illuminate\Http\Request;
 use Session;
 use DB;
+use Exception;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Log;
+use Stripe;
 
 class ReviewController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index($orderId)
-    {   
-
-        return view("user.review.review", ['orderId' => $orderId]);
-    }
 
     /**
      *  Show review sent page
@@ -60,22 +57,76 @@ class ReviewController extends Controller
      *
      */
     public function reviewSubmit(Request $request){
+        
+        DB::beginTransaction();
 
-        $taskOrder = TaskOrder::where('order_id', $request->task_order_id)->first();
-
-
-        $orderReview = new TaskOrderReview();
-        $orderReview->task_order_id = $taskOrder->id;
-        $orderReview->review_by = $request->user()->id;
-        $orderReview->rating = $request->rate;
-        $orderReview->accuracy = $request->range;
-        $orderReview->review = $request->experience;
-
-        $orderReview->save();
+        try {
+                
+            $taskOrder = TaskOrder::where('order_id', $request->task_order_id)->first();
 
 
-        return redirect()->route('user.order-tips', ['orderId' => $request->task_order_id]);
+            // $orderReview = new TaskOrderReview();
+            // $orderReview->save();
 
+            $user = Auth::user();
+            $user->reviews()->create(
+                [
+                    
+                    'task_order_id' => $taskOrder->id,
+                    'rating' => $request->rate,
+                    'accuracy' => $request->range,
+                    'review' => $request->experience
+                ]
+            );
+
+ 
+
+            // Update Task order as Delivered
+            $taskOrder->update([
+                'status' => TaskOrder::STATUS_DELIVERED
+            ]);
+
+            // Update Task as Completed
+            $task = Task::findOrFail($taskOrder->task_id);
+            $task->update([
+                'request_status' => Task::REQUEST_COMPLETED
+            ]);
+
+            // Update Task Offer as Completed
+            $taskOffer = TaskOffer::findOrFail($taskOrder->task_offer_id);
+            $taskOffer->update([
+                'status' => TaskOffer::STATUS_COMPLETED
+            ]);
+
+            // Cut the amount
+            $user->update([
+                'balance' => $user->balance - $taskOrder->grand_total
+            ]);
+
+            DB::commit();
+
+            return redirect()->route('user.order-tips', ['orderId' => $request->task_order_id]);
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+            session()->flash('error', $e->getMessage());
+            // return $e->getMessage();
+            return redirect()->back();
+        }
+
+    }
+
+    /**
+     * Order Tips Page
+     */
+    public function orderTip($orderId)
+    {   
+        if(TaskOrderTip::where('task_order_id', $orderId)->exists()){
+            abort(404);
+        }
+
+        return view("user.review.review", ['orderId' => $orderId]);
     }
 
     /**
@@ -84,26 +135,76 @@ class ReviewController extends Controller
      */
     public function submitTips(Request $request, $orderId){
 
-
         DB::beginTransaction();
 
         try {
+            
+            $amount     = (int)$request->tipsAmount;
+            $final_amount   = $amount  * 100;
+            $currency       = 'usd';
 
+            Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
+            $charge = Stripe\Charge::create ([
+                "amount" => $final_amount,
+                    "currency" => $currency,
+                    "source" => $request->stripeToken,
+                    "description" => "This payment is testing purpose of Pendu Service",
+                ]);
                 
-            $task = TaskOrder::with('task')->where('order_id', $orderId)->first();
-            $task->task->update(['request_status'=> Task::REQUEST_COMPLETED]);
-            $task->user->update(['balance'=> $task->user->balance - $task->taskOffer->amount]);
+                
+            
+            if($charge['status'] == "succeeded" &&  $charge['paid'] == true){
 
-            Session::flash('success', 'Your request is submitted!');
-            return redirect()->route('user.order-tips', $orderId);
+                $taskOrder = TaskOrder::where('order_id', $orderId)->first();
+
+                // Save Tips details
+                $taskOrderTip = new TaskOrderTip();
+                $taskOrderTip->task_order_id = $orderId;
+                $taskOrderTip->tip_amount = $amount;
+                $taskOrderTip->save();
+
+                $orderTransaction =new TaskOrderTransaction( [
+                    "tran_id"   => $charge['id'],
+                    "amount"    => $charge['amount'],
+                    "currency"  => $charge['currency'],
+                    "balance_transaction"  => $charge['balance_transaction'],
+                    "description"  => $charge['description'],
+
+                    "card_id"  => $charge['source']['id'],
+                    "card_brand"  => $charge['source']['brand'],
+                    "card_exp_month"  => $charge['source']['exp_month'],
+                    "card_exp_year"  => $charge['source']['exp_year'],
+                    "card_last4"  => $charge['source']['last4'],
+                    "country"  => $charge['source']['country'],
+                    "receipt_url"  => $charge['receipt_url']
+                ]);
+
+                $taskOrderTip->transaction()->save($orderTransaction);
+
+                // Increase the pendu pay balance
+                $taskOffer = TaskOffer::findOrFail($taskOrder->task_offer_id);
+                $dropper = Dropper::findOrfail($taskOffer->dropper_id);
+                $dropper->update([
+                    'balance' => $dropper->balance + $amount
+                ]);
+                
+    
+                Session::flash('success', 'Your request is submitted!');
+                DB::commit();
+
+                return redirect()->route('user.order-tips', $orderId);
+            }
+            
+               
+            DB::rollBack();
+            Session::flash('error', "Something is wrong try again.");
+            return redirect()->back();
         
-            DB::commit();
-
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            Session::flash('error', "Something is wrong try again..");
-            return redirect()->route('collect_n_drop');
+            Session::flash('error',$e->getMessage());
+            return redirect()->back();
         }
         // return $request->all();
         // $orderTip = new TaskOrderTip();

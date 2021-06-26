@@ -66,7 +66,8 @@ class CheckOutController extends Controller
                 session(['service_fee_amount'         => $data['service_fee_amount']]);
                 session(['total_cost'         => $data['data']->task->total_cost ]);
                 session(['grand_total'         => $data['grand_total'] ]);
-
+                
+                // dd($data);
                 return view('user.payment.shop_n_drop', $data);
             } catch (Exception $e) {
                 Log::info($e->getMessage());
@@ -96,7 +97,7 @@ class CheckOutController extends Controller
                 session(['total_cost'         => $data['data']->task->total_cost ]);
                 session(['grand_total'         => $data['grand_total'] ]);
                 
-        
+                        // dd ($data);
                 return view('user.payment.collect_n_mover_payment', $data);
             } catch (Exception $e) {
                 Log::info($e->getMessage());
@@ -114,7 +115,13 @@ class CheckOutController extends Controller
 
     public function applyCoupon($couponCode){
 
+
+
         try {
+
+            if(!session('total_cost')){
+                throw new Exception("Error Processing Request", 1);
+            }
 
             $coupon = Coupon::where('promo_code', $couponCode);
 
@@ -201,7 +208,7 @@ class CheckOutController extends Controller
             if($charge['status'] == "succeeded" &&  $charge['paid'] == true){
 
 
-                // Safe Task Order
+                // Save Task Order
                 $taskOrder = new TaskOrder();
 
                 $taskOrder->order_id	    = rand(100000000,999999999);
@@ -232,7 +239,7 @@ class CheckOutController extends Controller
                     "receipt_url"  => $charge['receipt_url']
                 ]);
 
-                $taskOrder->transaction()->save($orderTransaction);
+                $taskOrder->transactions()->save($orderTransaction);
 
                 // Add balance to user account
                 $user = Auth::user();
@@ -243,12 +250,21 @@ class CheckOutController extends Controller
                     'balance' => $user->balance + $amount
                 ]);
 
-                $user->appliedCoupons()->attach(session('promo_code_id'));
+                if(session('promo_code_id')){
+
+                    $user->appliedCoupons()->attach(session('promo_code_id'));
+                }
 
                 $task = Task::findOrFail($taskId);
                 $task->update([
                     'request_status' => Task::REQUEST_ACCEPTED,
                     'offer_id' => $offerId
+                ]);
+
+                
+                $taskOfferForUpdate = TaskOffer::findOrFail($offerId);
+                $taskOfferForUpdate->update([
+                    'status' => TaskOffer::STATUS_CONFIRMED
                 ]);
 
                 DB::commit();

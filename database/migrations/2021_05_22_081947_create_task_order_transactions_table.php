@@ -16,7 +16,9 @@ class CreateTaskOrderTransactionsTable extends Migration
         Schema::create('task_order_transactions', function (Blueprint $table) {
             $table->id();
             
-            $table->unsignedBigInteger('task_order_id');
+
+            $table->morphs('transable');
+
             $table->string('tran_id');
             $table->double('amount');
             $table->string('currency');
