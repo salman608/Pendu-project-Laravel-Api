@@ -637,7 +637,7 @@
         <input type="hidden" name="category_id" value="2">
         <input type="hidden" name="vahicle_type" value="car">
 
-            <div id="task-details mt-3">
+            <div id="task-details mt-3" class="hello-hide-sr">
 
 
             <div class="form-group">
@@ -945,6 +945,7 @@ $(document).ready(function(){
         else {
             $('#nextButton').hide();
             $('#task-details').hide();
+            $('.hello-hide-sr').hide();
             $('#postButtonId').show();
 
             $('#timeFrameDiv').hide();
