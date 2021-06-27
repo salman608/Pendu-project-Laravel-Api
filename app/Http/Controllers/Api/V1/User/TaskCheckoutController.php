@@ -288,7 +288,7 @@ class TaskCheckoutController extends ApiController
 
 
                 // Add balance to user account
-                $user = Auth::guard('api')->user()
+                $user = Auth::guard('api')->user();
                 $user->update([
                     'balance' => $user->balance + $amount
                 ]);

@@ -11,6 +11,7 @@ use \App\Http\Controllers\Api\V1\Others\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
+
 use App\Http\Controllers\Api\V1\User\AppController;
 use App\Http\Controllers\Api\V1\User\AppHomeController;
 use App\Http\Controllers\Api\V1\User\Auth\OTPController;
@@ -158,17 +159,9 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     Route::post('/app-permission/{id}', [ AppController::class, 'updateAppPermission']);
     
 
-    // Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
-    //     // return "Offer accepted";
-
-    //     return response()->json([
-    //         'status' => 200,
-    //         'message' => "Offer accepted",
-    //         'data' => Task::find($taskId)
-    //     ]);
-
-    // });
 });
+
+
 
 /**
  * Dropper Routes
@@ -179,10 +172,6 @@ Route::group([
 ], function ($router) {
     Route::post('/login', [DropperAuthController::class, 'login']);
     Route::post('/register', [DropperAuthController::class, 'register']);
-    Route::post('/logout', [DropperAuthController::class, 'logout']);
-    Route::post('/refresh', [DropperAuthController::class, 'refresh']);
-    Route::get('/profile', [DropperAuthController::class, 'profile']);
-    Route::put('/profile', [DropperAuthController::class, 'update']);
 
 
 
@@ -190,13 +179,35 @@ Route::group([
     Route::post('/password/confirm', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'confirm']);
     Route::put('/password/reset', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'reset']);
 
+});
 
 
-    // Task Submit Offer
-    Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
+Route::prefix('v1/dropper')->middleware('jwt.verify')->group(function () {
+
+    
+    Route::post('/logout', [DropperAuthController::class, 'logout']);
+    Route::post('/refresh', [DropperAuthController::class, 'refresh']);
+    Route::get('/profile', [DropperAuthController::class, 'profile']);
+    Route::put('/profile', [DropperAuthController::class, 'update']);
 
 
 
+    // Refer and Earn
+    Route::post('refer-n-earn', [App\Http\Controllers\Api\V1\Dropper\ReferralController::class, 'store']);
+
+
+    // Show task in maps
+    Route::get('/tasks/map-show', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'tasksMapShow']);
+
+    Route::get('/tasks/{taskId}', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'singleTaskInfo']);
+
+    Route::post('/tasks/{taskId}', [App\Http\Controllers\Api\V1\Dropper\offerController::class, 'submitOffer']);
+
+        // Task Submit Offer
+        Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
+
+
+        
     Route::get('/tasks/pending', function(){
         return response()->json(["data" => []]);
     });
@@ -216,10 +227,8 @@ Route::group([
         return response()->json(["data" => []]);
     });
 
+
 });
-
-
-
 
 
 // =======Dropper Route Section=========

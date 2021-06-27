@@ -14,6 +14,7 @@ class ReferralReceived extends Mailable
     use Queueable, SerializesModels;
 
     public $sender;
+    public $senderName;
     public $referral;
     private $markdownFile = 'emails.referrals.received';
 
@@ -27,8 +28,10 @@ class ReferralReceived extends Mailable
         $this->sender = $sender;
         $this->referral = $referral;
 
+        $this->senderName = $this->sender->name;
         if($dropper){
             $this->markdownFile = 'emails.referrals.received-dropper';
+            $this->senderName = $this->sender->full_name;
         }
     }
 
@@ -41,7 +44,7 @@ class ReferralReceived extends Mailable
     public function build()
     {
         return $this
-            ->subject($this->sender->name . ' has invited you.')
+            ->subject($this->senderName. ' has invited you.')
             ->markdown($this->markdownFile);
     }
 }

@@ -25,7 +25,8 @@ class Dropper extends Authenticatable implements JWTSubject
         'profile_image',
     ];
 
-    protected $appends = ['full_name'];
+    protected $appends = ['full_name', 'referral_link'];
+
 
      /**
      * The attributes that should be hidden for arrays.
@@ -83,6 +84,7 @@ class Dropper extends Authenticatable implements JWTSubject
         return $this->morphMany(Referral::class, 'referralable');
     }
 
+
     // profile_image
     // url('/uploads/dropper/photos').'/'.$value;
     public function getProfileImageAttribute($value)
@@ -114,6 +116,14 @@ class Dropper extends Authenticatable implements JWTSubject
         return $this->first_name.' '.$this->last_name;
     }
     
-
+    /**
+     * Get the user's referral link.
+     *
+     * @return string
+     */
+    public function getReferralLinkAttribute()
+    {
+        return $this->referral_link = route('dropper.register', ['ref' => $this->name]);
+    }
 
 }

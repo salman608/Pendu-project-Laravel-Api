@@ -14,7 +14,7 @@ class DropperAuthController extends ApiController
     public function __construct() {
         // $this->middleware('auth:dropper-api', ['except' => ['login', 'register']]);
         // Below one working..
-        $this->middleware('jwt.verify', ['except' => ['login', 'register']]);
+        // $this->middleware('jwt.verify', ['except' => ['login', 'register']]);
     }
 
     /**
