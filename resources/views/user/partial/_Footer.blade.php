@@ -34,8 +34,8 @@
                         <ul class='footer_ite'>
                             <li><a href="#">About us</a></li>
                             <li class="ml-sm-0 ml-md-5"><a href="#">Contact Us</a></li>
-                            <li class="ml-sm-0 ml-md-5"><a href="#">Blogs</a></li>
-                            <li class="ml-sm-0 ml-md-5"><a href="#">Become a dropper</a></li>
+                            <li class="ml-sm-0 ml-md-5"><a href="{{route('allpost')}}">Blogs</a></li>
+                            <li class="ml-sm-0 ml-md-5"><a href="{{route('dropper.register')}}">Become a dropper</a></li>
                             <li class="ml-sm-0 ml-md-5"><a href="#">Support</a></li>
                         </ul>
 

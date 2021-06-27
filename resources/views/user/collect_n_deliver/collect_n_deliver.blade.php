@@ -604,8 +604,7 @@
     <div class="container" style="margin-top: -60px;">
         <span class="font-weight-bold" id="titleId">Collect And Drop</span>
         <div class="row" style="margin: 0 -6px; background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);height: 80px;border-radius: 10px;">
-            <div class="d-flex justify-content-center" style="width: 80%;align-items: center;margin: auto;
-            ">
+            <div class="d-flex justify-content-center" style="width: 80%;align-items: center;margin: auto;">
                 <div class="step-line">
                     <div class="bg-done-first-step">
                         <small class="step-line-text">Task Details</small>
@@ -739,7 +738,7 @@
 
             </div>
 
-            <div id="timeFrameDiv" style="">
+            <div id="timeFrameDiv">
 
                 <div class="form-group">
                     <label for="exampleInputEmail1" class="label-title">Delivery Time</label>
