@@ -18,6 +18,7 @@ use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
 use App\Http\Controllers\Api\V1\User\TaskCheckoutController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\Api\V1\User\TaskOfferController;
+use App\Http\Controllers\Api\V1\User\TaskReviewController;
 use App\Http\Controllers\ApiController;
 use App\Models\Task;
 use App\Models\TaskOffer;
@@ -97,16 +98,20 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     // Get task offers
     Route::get('/tasks/{taskId}/offers',  [TaskOfferController::class, 'index']);
     
-    // Get Checkout Page details info
+    // Get Checkout Page List of offers details 
     Route::get('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'index']);
 
     // Apply Coupon
     Route::post('/task-checkout/coupon/{couponCode}',[TaskCheckoutController::class, 'applyCoupon']);
 
-    // Check out 
+    // Submit for checkout
     Route::post('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'checkOutProcess']);
 
-    Route::post('/task-order/{taskOrderId}/tips',[TaskCheckoutController::class, 'storeTips']);
+    // Store review  for as a task order
+    Route::post('/task-order/{taskOrderId}/review',[TaskReviewController::class, 'reviewSubmit']);
+
+    // Store Tips for as a task order
+    Route::post('/task-order/{taskOrderId}/tips',[TaskReviewController::class, 'storeTips']);
 
 
     // Refer and Earn

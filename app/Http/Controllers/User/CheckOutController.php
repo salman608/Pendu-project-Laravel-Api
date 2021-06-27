@@ -243,8 +243,6 @@ class CheckOutController extends Controller
 
                 // Add balance to user account
                 $user = Auth::user();
-                
-                // $user->balance = 
 
                 $user->update([
                     'balance' => $user->balance + $amount
@@ -255,13 +253,14 @@ class CheckOutController extends Controller
                     $user->appliedCoupons()->attach(session('promo_code_id'));
                 }
 
+                // Make Task as assigned and add offer_id
                 $task = Task::findOrFail($taskId);
                 $task->update([
                     'request_status' => Task::REQUEST_ACCEPTED,
                     'offer_id' => $offerId
                 ]);
 
-                
+                // Make Task offer as confirmed
                 $taskOfferForUpdate = TaskOffer::findOrFail($offerId);
                 $taskOfferForUpdate->update([
                     'status' => TaskOffer::STATUS_CONFIRMED
