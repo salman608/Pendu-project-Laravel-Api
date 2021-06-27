@@ -101,6 +101,10 @@
 </div>
 <!-- ---- end  tab ------ -->
 
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
+
 @include("user.component.task_process")
 @include("user.payment.payment_release")
 

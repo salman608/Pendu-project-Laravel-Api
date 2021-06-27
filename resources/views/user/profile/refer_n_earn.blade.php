@@ -61,16 +61,16 @@
 
               @error('email')
               <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
-              @enderror 
+              @enderror
 
               @if(session('success'))
               <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
-              @endif 
+              @endif
 
               @if(session('error'))
               <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
-              @endif 
-               
+              @endif
+
               </form>
 
                <p class='more_way more_way_refer' >More way to invite</p>
@@ -105,6 +105,9 @@
    </div>
 </div>
 <!-- ---- end  tab ------ -->
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 @include("user.component.task_process")
 @include("user.payment.payment_release")

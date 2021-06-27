@@ -1,7 +1,7 @@
 @extends('user.asset')
 <style>
     .task-body{
-        border-radius: 10px;
+         border-radius: 10px;
          background: #fff;
          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6);
          padding: 25px 40px 25px 40px;
@@ -12,14 +12,7 @@
         padding-left: 0px;
         width: 26px;
     }
-    .delivery_time_checker {
-        margin-top: 16px;
-        margin-right: 6px;
 
-    }
-    .d-time{
-        margin-left: 7px;
-    }
     input[type="text"] {
         background: #f1f1f1;
         border:none;
@@ -150,15 +143,38 @@
    }
 
    .radio-btn-text{
-     font-size: 16px !important;
+     /* font-size: 20px !important; */
+     margin-left: 2px;
+     font: var(--unnamed-font-style-normal) normal 600 55px/65px var(--unnamed-font-family-montserrat) !important;
+     letter-spacing: 0px !important;
+     font-weight: bold !important;
+     opacity: 1;
+     text-align: center;
     }
-    [type="radio"] + .d-time {
 
-    width: 173px !important;
+    [type="radio"] + .d-time {
+        width: 173px !important;
+        height: 77px !important;
+        border-radius: 6px;
    }
+   .d-time img{
+        height: 45px;
+        width: 59px;
+        margin-left: 17px;
+        margin-top: 0px;
+    }
+
+    .delivery_time_checker {
+        margin-top: 29px;
+        margin-right: 6px;
+
+    }
+    .d-time{
+        margin-left: 7px;
+    }
    @media (max-width: 575.98px){
     .step-2{
-            margin-left: -56px !important;
+            margin-left: -61px !important;
 
         }
         .step-line-text{
@@ -193,7 +209,7 @@
         font: 18px/1.8 Arial, sans-serif !important;
        }
        .d-time{
-        margin-left: 14px !important;
+        margin-left: 18px !important;
        }
        .deliveryAddress{
            margin-top: -7px !important;
@@ -207,7 +223,12 @@
        .task-details ,.task-body{
            margin-top: 10px;
        }
-
+       .invite_button2 {
+        width: 45% !important;
+        }
+        .invite_button {
+         margin-top: 10px;
+        }
 
        span#shopAddress {
           text-align: center;
@@ -227,6 +248,15 @@
         .delivery_time_checker {
         font-size: 13px !important;
         }
+        .d-time{
+        margin-left: 16px !important;
+       }
+    }
+
+    @media(max-width:360px){
+        .d-time{
+        margin-left: 14px !important;
+       }
     }
 
 
@@ -808,6 +838,9 @@
         <button class="button text-white" id="postSubmitButtonId">Post Delivery Request</button>
     </div><br><br>
 </section>
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 {{-- data-toggle="modal" data-target="#deliveryProcessModal" --}}
 

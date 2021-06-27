@@ -12,6 +12,6 @@ class DeliveryTime extends Model
 
     public function getIconAttribute($value)
     {
-        return asset('/frontend/images/icons').'/'.$value;
+        return asset('/frontend/images/delivery_time').'/'.$value;
     }
 }

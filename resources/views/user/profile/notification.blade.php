@@ -127,14 +127,14 @@
              </div>
            </li>
 
-              
+
            @empty
 
            <div style="margin: auto;
-           margin-top: 130px;" > 
+           margin-top: 130px;" >
            <p style="font-size: 18px; text-align: center;">There are no notifications right now.</p>
         </div>
-              
+
            @endforelse
 
          </ul>
@@ -152,6 +152,9 @@
    </div>
 </div>
 <!-- ---- end  tab ------ -->
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 @include("user.component.task_process")
 @include("user.payment.payment_release")

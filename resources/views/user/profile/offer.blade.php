@@ -97,6 +97,27 @@
         .promo-card{
             margin-top: 15px;
         }
+        .promo a{
+            margin-left: 105px !important;
+        }
+        .promo-code-name{
+            width: 50% !important;
+        }
+        .promo-code-date{
+            width: 50% !important;
+        }
+    }
+
+    @media(max-width: 375px){
+       .promo a{
+        margin-left: 64px !important;
+       }
+        .promo-code-name{
+            width: 50% !important;
+        }
+       .promo-code-date{
+            width: 50% !important;
+        }
     }
 </style>
 
@@ -210,11 +231,11 @@
            </div>
            <div class="modal-body" id="details-offer-body">
             <div class="row mb-3">
-                <div class="col-md-7 ">
+                <div class="col-md-7 promo-code-name">
                      <p style="padding-bottom: 1px;">Promo</p>
                      <h6 style="font-size: 18px;font-weight:500;margin-top: -15px" id="promo-code-show"></h6>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-5 promo-code-date">
                      <p>Validity</p>
                      <h6 style="font-size: 17px;font-weight:500;margin-top: -15px" id="promo-code-range">1 FEB-1 JUN 2021</h6>
                 </div>
@@ -234,6 +255,9 @@
    </div>
 </div>
 <!-- ---- end  tab ------ -->
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 @include("user.component.task_process")
 @include("user.payment.payment_release")

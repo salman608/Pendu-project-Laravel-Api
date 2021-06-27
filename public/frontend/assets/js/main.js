@@ -107,16 +107,16 @@ $('.close__payment_card').click(function (e) {
 
 
 //   =============== Offer pie chart ==========
-$(function() {
-    $('.chart').easyPieChart({
-        scaleColor:false,
-        size:70,
-        barColor:'#60E99C',
-        trackColor:'#E8E8E8',
-        scaleLength:0,
-        lineWidth:8,
-    });
-});
+// $(function() {
+//     $('.chart').easyPieChart({
+//         scaleColor:false,
+//         size:70,
+//         barColor:'#60E99C',
+//         trackColor:'#E8E8E8',
+//         scaleLength:0,
+//         lineWidth:8,
+//     });
+// });
 
 
 // ================ offer close button ============

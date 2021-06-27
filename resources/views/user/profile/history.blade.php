@@ -36,16 +36,16 @@
    <div class="row">
       @include('user.partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
-        <div>             <!-- ------------- profile tab info  ------------- -->      
-             
+        <div>             <!-- ------------- profile tab info  ------------- -->
+
    <div class="profile_tab_title">
       <h2>History</h2>
    </div>
    <div class="inbox_list_area history_section">
       <ul>
          @forelse ($tasks as $task)
-             
-         
+
+
 
          <p class='mt-1 history_date_time_section'><span class='history_time' >{{ $task->created_at->format('g:i')}}</span>
             <span class='history_date'>{{ $task->created_at->format('j M Y')}}</span>
@@ -81,15 +81,15 @@
          </li>
 
          @empty
-   
-            <div 
+
+            <div
                style="display: flex;    display: flex;
                justify-content: center;
                align-items: center;
-               height: 100%;"> 
+               height: 100%;">
                <p style="font-size: 18px;">There are no records found.</p>
             </div>
-       
+
          @endforelse
 
 
@@ -98,15 +98,19 @@
 
 
 
-        
 
 
 
-        </div>        
+
+        </div>
       </div>
    </div>
 </div>
 <!-- ---- end  tab ------ -->
+
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 @include("user.component.task_process")
 @include("user.payment.payment_release")

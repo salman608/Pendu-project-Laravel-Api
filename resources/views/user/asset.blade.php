@@ -22,7 +22,12 @@
 	<link rel="stylesheet" href="{{asset('frontend/assets/css/owl.theme.default.min.css')}}"/>
 	{{-- Multi select css --}}
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet"type="text/css" href="/path/to/jquery.easy-pie-chart.css">
+
+	<script src='{{asset('frontend/assets/js/easypiechart.js')}}'></script>
+	<script src='{{asset('frontend/assets/js/jquery.easypiechart.js')}}'></script>
 	<script src='{{asset('frontend/assets/js/jquery3.2.1.min.js')}}'></script>
+
 
 <style>
 	.reg_image {
@@ -69,7 +74,18 @@
 
 
 
-
+    <script type="text/javascript">
+        $(function() {
+            $('.chart').easyPieChart({
+            scaleColor:false,
+            size:70,
+            barColor:'#60E99C',
+            trackColor:'#E8E8E8',
+            scaleLength:0,
+            lineWidth:8,
+            });
+        });
+        </script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->

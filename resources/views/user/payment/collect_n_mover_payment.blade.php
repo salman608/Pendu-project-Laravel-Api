@@ -144,6 +144,9 @@
        #pay-confirm-model{
            width: 92% !important;
        }
+       .label-title {
+        margin-top: 10px;
+      }
 
 
    }
@@ -331,10 +334,12 @@
                 <div class="payment-procced-nb mt-3">
                     Your funds will be securely held in "Pendu Pay" until the task is done.
                 </div>
+
             </div>
         </div>
     </div>
 </section>
+<br><br>
 
 
 
@@ -399,6 +404,9 @@
     </div>
 </div>
 
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
+
 
 
 @include('user.component.task_process')
@@ -438,7 +446,7 @@
 <script>
 
     // var stripe = Stripe('{{ env("STRIPE_KEY") }}');
-    
+
     var stripeKey = document.getElementById('stripe_key').value;
     var stripe = Stripe(stripeKey);
 

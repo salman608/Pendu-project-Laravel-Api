@@ -13,11 +13,11 @@
         padding-left: 0px;
         width: 26px;
     }
-    .delivery_time_checker {
+    /* .delivery_time_checker {
         margin-top: 16px;
-        margin-right: 6px;
 
-    }
+
+    } */
     .d-time{
         margin-left: 7px;
     }
@@ -86,14 +86,38 @@
         /* display: none; */
     }
     .radio-btn-text{
-     font-size: 15px !important;
+     /* font-size: 20px !important; */
+     margin-left: 2px;
+     font: var(--unnamed-font-style-normal) normal 600 55px/65px var(--unnamed-font-family-montserrat) !important;
+     letter-spacing: 0px !important;
+     font-weight: bold !important;
+     opacity: 1;
+     text-align: center;
     }
+
     [type="radio"] + .d-time {
-     width: 175px !important;
+        width: 173px !important;
+        height: 77px !important;
+        border-radius: 6px;
+   }
+   .d-time img{
+        height: 45px;
+        width: 59px;
+        margin-left: 17px;
+        margin-top: 0px;
+    }
+
+    .delivery_time_checker {
+        margin-top: 29px;
+        margin-right: 6px;
+
+    }
+    .d-time{
+        margin-left: 7px;
     }
     @media (max-width: 575.98px){
         .step-2{
-            margin-left: -56px !important;
+            margin-left: -61px !important;
 
         }
         .step-line-text{
@@ -128,7 +152,7 @@
         font: 18px/1.8 Arial, sans-serif !important;
        }
        .d-time{
-        margin-left: 14px !important;
+        margin-left: 19px !important;
        }
        .hello-salman-modal{
          width: 93% !important;
@@ -149,6 +173,12 @@
           display: inline-block;
           margin-top: -35px;
       }
+      .invite_button2 {
+        width: 45% !important;
+        }
+        .invite_button {
+         margin-top: 10px;
+        }
     }
     @media (max-width:375px){
         [type="radio"] + .d-time {
@@ -160,8 +190,15 @@
         .delivery_time_checker {
         font-size: 13px !important;
         }
+        .d-time{
+        margin-left: 16px !important;
+       }
     }
-
+    @media(max-width:360px){
+        .d-time{
+        margin-left: 14px !important;
+       }
+    }
 
 </style>
 @section('user_content')
@@ -513,7 +550,7 @@
                       </g>
                     </g>
                     <g id="Group_2736" data-name="Group 2736" transform="translate(-399 -289)">
-                      <text id="Quick_Tip_-_we_will_notify_you_once_your_offer_is_accepted_or_a_new_offer_is_made." data-name="Quick Tip - we will notify you once your offer is accepted or a new offer is made." transform="translate(1157 769)" fill="#1b3149" font-size="12" font-family="SegoeUI, Segoe UI"><tspan x="-212.142" y="0">Quick Tip - we will notify you once your offer is accepted or a new offer is made.</tspan></text>
+                      <text id="Quick_Tip_-_we_will_notify_you_once_your_offer_is_accepted_or_a_new_offer_is_made." data-name="Quick Tip - we will notify you once your offer is accepted or a new offer is made." transform="translate(1157 769)" fill="#1b3149" font-size="15" font-family="SegoeUI, Segoe UI"><tspan x="-212.142" y="0">Quick Tip - we will notify you once your offer is accepted or a new offer is made.</tspan></text>
                       <g id="Rectangle_4231" data-name="Rectangle 4231" transform="translate(882 742)" fill="none" stroke="#ffebcf" stroke-width="1">
                         <rect width="559" height="45" rx="5" stroke="none"/>
                         <rect x="0.5" y="0.5" width="558" height="44" rx="4.5" fill="none"/>
@@ -695,8 +732,9 @@
                             <label >
                                 <input type="radio" name="delivery_time"  value="{{$d_time->id}}" >
                                 <div class="d-time">
-                                    <img src="{{$d_time->icon}}" height="30" width="80">
+                                 <img src="{{$d_time->icon}}">
                                     <label class="radio-btn-text delivery_time_checker"   >{{$d_time->title}}</label>
+
                                 </div>
                             </label>
                         </div>
@@ -733,10 +771,10 @@
                         @foreach ($delivery_times as $d_time )
                         <div class="pr-2">
                             <label>
-                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
+                                <input type="radio" value="{{$d_time->id}}" name="delivery_time_review"  disabled>
                                 <div class="d-time">
                                     <img src="{{$d_time->icon}}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
+                                    <label class="radio-btn-text delivery_time_checker" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -763,6 +801,8 @@
         <button class="button text-white" id="postSubmitButtonId">Post Delivery Request</button>
     </div><br><br>
 </section>
+
+@include("user.partial._Invite")
 
 {{-- map modal include --}}
 

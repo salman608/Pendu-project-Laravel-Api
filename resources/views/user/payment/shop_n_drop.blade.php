@@ -146,6 +146,9 @@
        .payment-summary{
            margin-top: 28px;
        }
+       .label-title {
+        margin-top: 10px;
+      }
 
 
    }
@@ -323,6 +326,7 @@
         </div>
     </div>
 </section>
+<br><br>
 
 
 
@@ -366,7 +370,7 @@
                         </div>
                     </div>
 
-                    
+
                     <input type="hidden" id="stripe_key" value="{{ env('STRIPE_KEY') }}"/>
 
                     <div class="row form-group d-flex justify-content-center">
@@ -389,6 +393,8 @@
 </div>
 
 
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 
 
@@ -431,9 +437,9 @@
 <script src="https://js.stripe.com/v3/"></script>
 <script>
 
-    
+
     // var stripe = Stripe('{{ env("STRIPE_KEY") }}');
-    
+
     var stripeKey = document.getElementById('stripe_key').value;
     var stripe = Stripe(stripeKey);
 
