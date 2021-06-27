@@ -15,6 +15,7 @@ use App\Http\Controllers\Api\V1\User\AppController;
 use App\Http\Controllers\Api\V1\User\AppHomeController;
 use App\Http\Controllers\Api\V1\User\Auth\OTPController;
 use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\V1\User\ReferralController;
 use App\Http\Controllers\Api\V1\User\TaskCheckoutController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\Api\V1\User\TaskOfferController;
@@ -70,6 +71,11 @@ Route::group([
     Route::put('/profile-image', [AuthController::class, 'changeProfileImage']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 
+    
+    Route::get('/tasks/in-progress', [TaskController::class, 'taskInProgress']);
+    Route::get('/tasks/pending', [TaskController::class, 'taskInPending']);
+    Route::get('/tasks/history', [TaskController::class, 'taskHistory']);
+    Route::get('/tasks/deliveries', [TaskController::class, 'taskDelivery']);
 });
 
 // Route::prefix('v1')->name('v1.')->group(function () {
@@ -115,7 +121,7 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
 
 
     // Refer and Earn
-    Route::post('refer-n-earn', [App\Http\Controllers\User\ReferralController::class, 'store']);
+    Route::post('refer-n-earn', [ReferralController::class, 'store']);
 
 
     // Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
@@ -152,16 +158,16 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     Route::post('/app-permission/{id}', [ AppController::class, 'updateAppPermission']);
     
 
-    Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
-        // return "Offer accepted";
+    // Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
+    //     // return "Offer accepted";
 
-        return response()->json([
-            'status' => 200,
-            'message' => "Offer accepted",
-            'data' => Task::find($taskId)
-        ]);
+    //     return response()->json([
+    //         'status' => 200,
+    //         'message' => "Offer accepted",
+    //         'data' => Task::find($taskId)
+    //     ]);
 
-    });
+    // });
 });
 
 /**

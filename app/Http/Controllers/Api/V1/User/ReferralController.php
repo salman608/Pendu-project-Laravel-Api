@@ -1,29 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+namespace App\Http\Controllers\Api\V1\User;
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 use App\Mail\Referrals\ReferralReceived;
 use App\Rules\NotRefferingExisting;
 use Illuminate\Support\Facades\Mail;
+use Exception;
+use DB;
+use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\ApiController;
+use Validator;
 
-class ReferralController  extends Controller
+
+class ReferralController  extends ApiController
 {
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
 
-    /**
-     *  Get refer and earn page
-     *
-     */
-    public function index(){
-        return view('user.profile.refer_n_earn');
-    }
 
     /**
      *  Store referral resource
@@ -31,21 +26,49 @@ class ReferralController  extends Controller
      */    
     public function store(Request $request){
 
-        $request->validate([
-            'email' => 'required|email',
-            new NotRefferingExisting($request->user())      
+        $validator = Validator::make($request->all(), [
+            'email' => [
+                'required',
+                new NotRefferingExisting($request->user())   
+            ]
+                 
         ]);
 
-        $referral = $request->user()->referrals()->create(
-            array_merge( $request->only('email'),[ 'token' => STR::random(50)])
-        );
+        if($validator->fails()){
+            return $this->respondWithError(
+                'Validation Error',
+                $validator->errors(),
+                422
+            );
+        }
 
-        Mail::to($referral->email)->send(
-            new ReferralReceived($request->user(), $referral)
-        );
+        DB::beginTransaction();
 
-        return redirect()->back()->with('success', 'Your invitation has been sent.');
-        // return $request->all();
-        // return view('user.profile.refer_n_earn');
+        try {
+            $referral = $request->user()->referrals()->create(
+                array_merge( $request->only('email'),[ 'token' => STR::random(50)])
+            );
+    
+            Mail::to($referral->email)->send(
+                new ReferralReceived($request->user(), $referral)
+            );
+            DB::commit();
+            
+            return $this->respondWithSuccess(
+                'Your invitation has been sent'
+            );
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::info($e->getMessage());
+
+            return $this->respondWithError(
+                'Your invitation has not been sent. Try again later.',
+                [],
+                500
+            );
+        }
+
+
     }
 }
