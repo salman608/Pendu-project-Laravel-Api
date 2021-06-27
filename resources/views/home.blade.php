@@ -1021,7 +1021,7 @@
                   <form action="" class="form-inline">
                      {{-- <input type="text" class="from-controll" style="">
                      <button class="btn btn-success"></button> --}}
-                  </form>
+   {{--               </form>
                 </div>
               </div>
           </div>

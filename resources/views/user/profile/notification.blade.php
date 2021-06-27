@@ -45,6 +45,13 @@
         </div>
        <div class="notification_section">
          <ul>
+
+          @php
+              $notification = [];
+          @endphp
+          @forelse ($notification as $item)
+
+
           <p class='notifi_date' >10 Oct, 2020</p>
            <li class='mt-2'>
              <div class="notification_item_area mt-3">
@@ -119,6 +126,17 @@
                </div>
              </div>
            </li>
+
+              
+           @empty
+
+           <div style="margin: auto;
+           margin-top: 130px;" > 
+           <p style="font-size: 18px; text-align: center;">There are no notifications right now.</p>
+        </div>
+              
+           @endforelse
+
          </ul>
        </div>
 
