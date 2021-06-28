@@ -52,6 +52,11 @@
   .qty{
       width: 128px !important;
   } */
+   .dropper-outer-boder{
+    border-top: 1px solid white;
+    position: relative;
+   }
+
   .qty .count {
       color: #56cd93;
       display: inline-block;
@@ -151,7 +156,50 @@
       /* margin-top: -22px !important; */
       margin-bottom: 20px !important;
   }
+  #invite_fd_home{
+        width: 100% !important;
+        margin: auto !important;
+    }
+/* responsi design  */
 
+ @media(max-width:475px){
+    .member_border h3{
+        left: 74px;
+    }
+    .work_home_content h2{
+        left: 34%;
+    }
+    .recent_heading h2{
+        left: 73px;
+    }
+    .dropper_right_content h2{
+        margin-left: 46px;
+        font-size: 22px;
+    }
+    .key_border h4 {
+     margin-left: 42px;
+    }
+    #invite_fd_home{
+        width: 100% !important;
+        margin: auto !important;
+    }
+ }
+
+ @media(max-width:375px){
+    .member_border h3{
+        left: 70px;
+    }
+    .work_home_content h2{
+        left: 30%;
+    }
+    .recent_heading h2{
+        left: 70px;
+    }
+    .dropper_right_content h2{
+        margin-left: 30px;
+        font-size: 22px;
+    }
+ }
 
 
 </style>
@@ -814,8 +862,9 @@
                   </div>
 
 
-                  <div class="col-md-6 col-sm-6">
+                <div class="col-md-6 col-sm-6">
                     <div class="dropper_right_content">
+
                       <h2>Become a Dropper</h2>
                       <ul>
                         <li>Simply browse the tasks around you</li>
@@ -825,7 +874,8 @@
                         <li>Easy to join</li>
                       </ul>
                      <div class="become_button">
-                     <button type="button" class="btn " >Join here</button>
+                         <a href="{{route('dropper.register')}}"><button type="button" class="btn">Join here</button></a>
+
                      </div>
                     </div>
                   </div>
@@ -1007,7 +1057,7 @@
         </div>
      </section> --}}
 
-   {{-- <section class="invite-section py-4 mt-4">
+  {{-- <section class="invite-section py-4 mt-4">
       <div class="container inner_footer py-4">
           <div class="row">
               <div class="col-md-12 text-center">
@@ -1018,15 +1068,18 @@
                         ut labore et dolore magna</p>
                 </div>
                 <div class="invite-mail">
-                  <form action="" class="form-inline">
-                     {{-- <input type="text" class="from-controll" style="">
-                     <button class="btn btn-success"></button> --}}
-   {{--               </form>
+                  <form action="" style="background: red;width:200px; margin:auto;" id="invite_fd">
+                      <input type="text" class="from-controll">
+                      <button>Send invi</button>
+                  </form>
                 </div>
               </div>
           </div>
       </div>
    </section> --}}
+
+   <!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 
 

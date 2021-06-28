@@ -119,7 +119,7 @@
                 <div class="card card-otp">
                     <img src="{{asset('frontend/images/otp.png')}}" alt="" style="width:265px;margin:auto;">
                    <p class="mt-2">One Time Password(OTP) Has been sent to your phone number</p>
-                   <p class="mt-2" style="font-size: 15px; text-align: center;"> Defaul is : 1234</p>
+                   <p class="mt-2" style="font-size: 15px; text-align: center;"> Defaul is : 123456</p>
                    @if (session()->has('error')) {
 
                         <p class="mt-2" style="font-size: 15px; color:red">{{ session('error') }}</p>
@@ -130,6 +130,8 @@
                         <input type="text" name="num2" class="form-control otp-input" value="2" maxlength="1">
                         <input type="text" name="num3" class="form-control otp-input" value="3" maxlength="1">
                         <input type="text" name="num4" class="form-control otp-input" value="4" maxlength="1">
+                        <input type="text" name="num5" class="form-control otp-input" value="5" maxlength="1">
+                        <input type="text" name="num6" class="form-control otp-input" value="6" maxlength="1">
                     </div>
                     <button type="submit" class="btn mt-3 button-cm">Confirm</button>
                     <div class="text-center mt-2 mb-5" style="font-size: 9px"> <span>Not received? Send again in</span> <strong> 0:59s</strong></div>

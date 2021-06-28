@@ -198,6 +198,29 @@ hr {
     display: none;
 }
 
+  @media (max-width:575px){
+      .track_img{
+          width: 100% !important;
+      }
+      #orderId{
+          width: 43% !important;
+      }
+      #track_div{
+          margin: auto !important;
+      }
+  }
+
+  @media (max-width:375px){
+      .track_img{
+          width: 100% !important;
+      }
+      #orderId{
+          width: 38% !important;
+      }
+      #track_div{
+          margin: auto !important;
+      }
+  }
 
 </style>
 
@@ -212,9 +235,9 @@ hr {
     <div style="height: 120px; background: #5bdb98"></div>
     <div class="container" style="margin-top: -60px;">
         <span class="font-weight-bold" id="titleId">Tracking Order</span>
-        <div class="row" style="background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);border-radius: 10px;margin-bottom: 30px;padding-bottom: 20px;">
+        <div class="row track_div" id="track_div" style="background: #fff; box-shadow: 0px 3px 6px rgba(0, 0, 0, 13);border-radius: 10px;margin-bottom: 30px;padding-bottom: 20px;margin:auto;">
             <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-5">
-                <img src="{{asset('frontend/images/track.jpg')}}" alt="" height="300px">
+                <img class="track_img" src="{{asset('frontend/images/track.jpg')}}" alt="" height="300px">
 
             </div>
             <div class="col-md-12 col-sm-12 col-lg-12 text-center" style="font-family: Montserrat;
@@ -232,11 +255,11 @@ hr {
 
             </div>
             <div class="col-md-12 col-sm-12 col-lg-12">
-                
-                    <div class="row w-100 d-flex justify-content-center mt-5 mb-3">
+
+                    <div class="row d-flex justify-content-center mt-5 mb-3">
                         <input id="orderId" class="form-control w-50" type="text" name="orderId"
                         title="Enter Your order Number..."
-                        placeholder="5677nhgh....."/>
+                        placeholder="Enter Your Order Id"/>
                         <button id="track-now-btn" class="button ml-4 pl-5 pr-5" style="background: orange;color:#fff;height:37px;border-radius: 5px; padding: 0;" >Track Now</button>
                     </div>
                     <div class="row w-100 d-flex justify-content-center  mb-5">
@@ -443,12 +466,12 @@ hr {
             <div class="row track-row">
                 <div class="col-sm-6"><small>Track order</small></div>
                 <div class="col-sm-6"><small id="show-order-id"></small></div>
-  
+
             </div>
             <hr>
-  
+
             <div class="step-line mt-6">
-  
+
                 <div class="bg-done-first-step track-status-div">
                     <small class="step-line-text">Task is assigned</small>
                     <img class="task-img" src="{{ asset('frontend/assets/images/Icons/task white.svg') }}" alt="">
@@ -468,18 +491,18 @@ hr {
             </div>
             <div class="chat mt-3">
                 <div class="text" style="margin-left:131px;"><small style="font-size: 8px; color:gray;">(you can ask for product <br> image in the chat box)</small></div>
-  
+
                 <a href="" class="btn btn-sm btn-success chat-btn mt-2">            Chat   <i class="fa fa-comments"></i></a>
             </div>
              <div class="redirect mt-4 mb-4">
                  <a href="" class="btn  btn-success home-btn"><i class="fa fa-home"></i>    Home</a>
                  <a href="" data-toggle="modal" data-target="#paymentReleaseModalId" id="releasePaymentId" class="btn  btn-success release-btn"><i class="fa fa-book"></i>    Release Payment </a>
              </div>
-  
-  
+
+
         </div>
-  
-  
+
+
             {{-- <div style="padding-left: 8px; padding-right: 8px;">
                 <div class="step-line">
                     <div class="bg-done-first-step">
@@ -500,14 +523,10 @@ hr {
                     </div>
                 </div>
             </div> --}}
-  
+
        </div>
     </div>
   </div>
-  
-  
-
-
 
 
 

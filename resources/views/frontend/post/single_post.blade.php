@@ -24,6 +24,8 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
+
+
                 <div class="bread_area">
                     <nav aria-label="breadcrumb bread_item">
                         <ol class="breadcrumb">
@@ -41,6 +43,7 @@
 <div class="blog_header_section">
     <div class="row">
 
+
         <div class="container">
             @foreach($header_post as $v_header_post)
             <div class="blog_header_content_area">
@@ -48,6 +51,18 @@
 
                     <h4>Pendu blogs</h4>
                     <p>{{$v_header_post->title}} </p>
+
+                    @error('email')
+        <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
+        @enderror
+
+        @if(session('success'))
+        <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
+        @endif
+
+        @if(session('error'))
+        <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
+        @endif
 
                 </div>
                 <div class="blog_header_img">
@@ -188,10 +203,14 @@
                 </div>
 
                 <div class="invite_mail">
-                    <form>
+                    @auth
+
+
+                    <form method="POST" action="{{ route('user.refer-n-earn') }}">
+                        @csrf
                         <div class="form-group form-inline ">
                             <input type="email" class="form-control  mail_input" id="exampleInputEmail1"
-                                aria-describedby="emailHelp" placeholder="Enter email address">
+                                aria-describedby="emailHelp" name="email" placeholder="Enter email address">
 
                             <a href="#"><button type="submit" class="btn invite_button">Send invite</button></a>
                         </div>
@@ -200,7 +219,7 @@
 
                         <div class="section_tooltipss">
                             <input type="text" class=" link_input"
-                                value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1">
+                                value="{{ auth()->user()->referral_link }}" id="myInput1">
 
                             <div class="tooltip22">
                                 <button type="button" class="btn invite_button2" onclick="myFunctions()"
@@ -219,6 +238,14 @@
                         </div>
 
                     </form>
+
+
+
+                    @endauth
+                    @guest
+                        <h1 style="color: #5bdb98;">You have to login to refer and earn.</h1>
+                    @endguest
+
                 </div>
 
             </div>

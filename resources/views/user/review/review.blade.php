@@ -126,7 +126,7 @@
     }
 
    .tooltip22 {
-       padding-left: 20px;
+       padding-left: 1px;
     }
 
     .trips-success-show{
@@ -151,10 +151,29 @@
         border-radius: 4px;
     }
 
-    
+
    div#card-errors {
         text-align: center;
     }
+    .refer_fd_input{
+        width: 54% !important;
+        height: calc(1.5em + 0.75rem + 2px);
+        padding: 0.375rem 0.75rem;
+        font-size: 1rem;
+        font-weight: 400;
+        line-height: 1.5;
+        color: #495057;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid #ced4da;
+        border-radius: 0.25rem;
+    }
+    .invite_content p{
+        color: var(--after-black-color);
+    }
+    /* .tooltip22 {
+     padding-left: 20px !important;
+    } */
 
 
     /* @media (max-width: 575.98 px){
@@ -169,7 +188,7 @@
     @media (max-width: 575.98px){
          #additionalNote{
             width: 100%!important;
-             margin-left: 25px !important;
+            margin-left: 25px !important;
          }
          .sent-invite{
              margin-top: 7px !important;
@@ -177,12 +196,22 @@
 
          #myInput1{
             width: 100%!important;
-             margin-left: 14px !important;
+
          }
          .invite_button2{
-             margin-left: 75px !important;
+             /* margin-left: 75px !important; */
              margin-top: 5px !important;
+             width: 39%;
+         }
+         .invite_button{
+             margin-top: 10px;
+         }
+    }
 
+    @media(max-width:375px){
+        .invite_button2{
+             margin-top: 5px !important;
+             width: 41%;
          }
     }
 </style>
@@ -283,7 +312,7 @@
                 </svg>
             </div>
 
-   
+
             @if (session()->has('error'))
                 <div class="alert alert-danger mt-2 col-md-12 col-sm-12 col-lg-12 text-center"  style="font-size: 22px;" role="alert">
                     {{ session()->get('error') }}
@@ -363,89 +392,81 @@
 
 
 
+            <div class="container  py-4">
+                <div class="row">
+                    <div class="col-md-12 text-center">
 
+                        <div class="invite_content">
+                            <h1> Invite a friend , you both get $15 </h1>
+                            <p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+                                invidunt
+                                ut labore et dolore magna</p>
 
-
-
-
-
-            <div class="col-md-12 col-sm-12 col-lg-12 text-center mt-5" style="font-family: Montserrat;
-            font-size: 11px;
-            color: #90a0b2;
-            ">
-                <p>Invite a friend, you both get $15</p>
-                <p>Invite a friend, you both get $Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed </p>
-            </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
-                <div class="row w-100 d-flex justify-content-center">
-                    <input id="additionalNote" class="form-control w-50" type="text" name="email"
-                        title="Enter email address"
-                        placeholder="Enter email address"/>
-                    <button class="button ml-4 pl-5 pr-5 sent-invite" style="background: #60e99c;color:#fff;height:37px;border-radius: 5px; padding: 0;">Send invite</button>
-                </div>
-            </div>
-            <div class="col-md-12 col-sm-12 col-lg-12 mt-5 border-top text-center">
-                <p style="font-family: Montserrat;
-                font-weight: normal;
-                font-size: 14px;
-                color: #1b3149;">More ways to invite</p>
-            </div>
-
-            <div class="col-md-12 col-sm-12 col-lg-12 mt-1">
-                <div class="row w-100 d-flex justify-content-center">
-                    {{-- <div class="section_tooltipss">
-                        <input type="text" class=" link_input  w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="width:100%!important ">
-                        <div class="tooltip22">
-                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()">
-                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
-                          Copy text
-                          </button>
                         </div>
-                      </div> --}}
 
-                      <div class="section_tooltipss" >
-                        <input type="text" class="link_input w-50 form-control" value="https://fontawesome.com/icons?d=gallery&q=apple" id="myInput1" style="display: initial; ">
-                        <div class="tooltip22">
-                        <button type="button" class="btn invite_button2"  onclick="myFunctions()" onmouseout="outFunca()" style="width: 179px;">
-                          <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
-                          Copy Referral
-                          </button>
+                        <div class="invite_mail">
+                            @auth
+
+
+                            <form method="POST" action="{{ route('user.refer-n-earn') }}" id="invite_fd_home">
+                                @csrf
+                                <div class="form-group form-inline ">
+                                    <input type="email" class="form-control  mail_input" id="exampleInputEmail1"
+                                        aria-describedby="emailHelp" name="email" placeholder="Enter email address">
+
+                                    <a href="#"><button type="submit" class="btn invite_button">Send invite</button></a>
+                                </div>
+
+                                <p class='more_way'>More way to invite</p>
+
+                                <div class="section_tooltipss">
+                                    <input type="text" class="  refer_fd_input"
+                                        value="{{ auth()->user()->referral_link }}" id="myInput1">
+
+                                    <div class="tooltip22">
+                                        <button type="button" class="btn invite_button2" onclick="myFunctions()"
+                                            onmouseout="outFunca()">
+                                            <span class="tooltiptext1" id="myTooltip1">Copy to clipboard</span>
+                                            Copy text
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <div class="share_invite">
+                                    <span style="color:var(--after-black-color);font-weight:bold;">Share:-</span>
+                                    <a href="#" class='twiter'> <i class="fab fa-twitter-square"></i></a>
+                                    <a href="#" class='fb'> <i class="fab fa-facebook-square"></i></a>
+                                    <a href="#" class='ins'> <i class="fab fa-instagram-square"></i></a>
+                                </div>
+
+                            </form>
+
+                            @error('email')
+                            <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
+                            @enderror
+
+                            @if(session('success'))
+                            <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
+                            @endif
+
+                            @if(session('error'))
+                            <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
+                            @endif
+
+
+                            @endauth
+                            @guest
+                                <h1 style="color:#60e99c ">You have to login to refer and earn.</h1>
+                            @endguest
+
                         </div>
+
                     </div>
-
                 </div>
             </div>
 
-            <div class="col-md-12 col-sm-12 col-lg-12 mt-5 text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="183.663" height="30.17" viewBox="0 0 183.663 30.17">
-                    <g id="Group_3091" data-name="Group 3091" transform="translate(-1101 -850.33)">
-                      <g id="Group_3066" data-name="Group 3066" transform="translate(1252 1002.33)">
-                        <g id="FB" transform="translate(-41.254 -152)">
-                          <path id="Path_7470" data-name="Path 7470" d="M32.17-149.989v26.147a2.017,2.017,0,0,1-2.011,2.011h-7.04V-134.9h3.017v-4.023H23.119v-5.028a1.009,1.009,0,0,1,1.006-1.006h3.017v-4.023H23.069a3.981,3.981,0,0,0-3.972,3.972v6.084H16.079v4.023H19.1v13.074H4.011A2.017,2.017,0,0,1,2-123.841v-26.147A2.017,2.017,0,0,1,4.011-152H30.159A2.017,2.017,0,0,1,32.17-149.989Z" transform="translate(-2 152)" fill="#4267b2"/>
-                        </g>
-                        <g id="Group_3060" data-name="Group 3060" transform="translate(-85 -152)">
-                          <path id="Dark_Blue" data-name="Dark Blue" d="M-58.6-121.83H-81.229A3.773,3.773,0,0,1-85-125.6v-22.627A3.773,3.773,0,0,1-81.229-152H-58.6a3.773,3.773,0,0,1,3.771,3.771V-125.6A3.773,3.773,0,0,1-58.6-121.83Z" transform="translate(85 152)" fill="#1da1f2"/>
-                          <path id="Logo_FIXED" data-name="Logo — FIXED" d="M-67.814-121.914a10.933,10.933,0,0,0,11-11c0-.166,0-.332-.008-.5a7.879,7.879,0,0,0,1.931-2.006,7.839,7.839,0,0,1-2.225.611,3.891,3.891,0,0,0,1.7-2.142,7.693,7.693,0,0,1-2.459.935,3.86,3.86,0,0,0-2.821-1.222,3.872,3.872,0,0,0-3.869,3.869,4.275,4.275,0,0,0,.1.882,10.983,10.983,0,0,1-7.972-4.043,3.868,3.868,0,0,0-.52,1.946,3.878,3.878,0,0,0,1.72,3.221,3.912,3.912,0,0,1-1.75-.483v.053a3.876,3.876,0,0,0,3.1,3.794,3.772,3.772,0,0,1-1.018.136,3.8,3.8,0,0,1-.724-.068,3.868,3.868,0,0,0,3.613,2.685,7.757,7.757,0,0,1-4.8,1.659,7.445,7.445,0,0,1-.92-.053,11,11,0,0,0,5.921,1.727" transform="translate(79.399 144.662)" fill="#fff"/>
-                        </g>
-                        <g id="Group_3065" data-name="Group 3065" transform="translate(2.493 -152)">
-                          <path id="Path_7471" data-name="Path 7471" d="M119.17-125.6a3.782,3.782,0,0,1-3.771,3.771H92.771A3.782,3.782,0,0,1,89-125.6v-22.627A3.782,3.782,0,0,1,92.771-152H115.4a3.782,3.782,0,0,1,3.771,3.771Z" transform="translate(-89 152)" fill="#9100eb"/>
-                          <g id="Group_3064" data-name="Group 3064" transform="translate(3.771 3.771)">
-                            <g id="Group_3061" data-name="Group 3061">
-                              <path id="Path_7472" data-name="Path 7472" d="M113-121.873H102.628A6.135,6.135,0,0,1,96.5-128v-10.371a6.135,6.135,0,0,1,6.128-6.129H113a6.135,6.135,0,0,1,6.129,6.129V-128A6.135,6.135,0,0,1,113-121.873Zm-10.371-20.742a4.247,4.247,0,0,0-4.242,4.243V-128a4.247,4.247,0,0,0,4.242,4.242H113A4.247,4.247,0,0,0,117.242-128v-10.371A4.248,4.248,0,0,0,113-142.614Z" transform="translate(-96.5 144.5)" fill="#fff"/>
-                            </g>
-                            <g id="Group_3062" data-name="Group 3062" transform="translate(5.657 5.657)">
-                              <path id="Path_7473" data-name="Path 7473" d="M113.407-121.936a5.663,5.663,0,0,1-5.657-5.657,5.663,5.663,0,0,1,5.657-5.657,5.663,5.663,0,0,1,5.657,5.657A5.663,5.663,0,0,1,113.407-121.936Zm0-9.428a3.776,3.776,0,0,0-3.771,3.771,3.776,3.776,0,0,0,3.771,3.771,3.776,3.776,0,0,0,3.771-3.771A3.776,3.776,0,0,0,113.407-131.364Z" transform="translate(-107.75 133.25)" fill="#fff"/>
-                            </g>
-                            <g id="Group_3063" data-name="Group 3063" transform="translate(16.028 4.007)">
-                              <circle id="Ellipse_224" data-name="Ellipse 224" cx="1.296" cy="1.296" r="1.296" fill="#fff"/>
-                            </g>
-                          </g>
-                        </g>
-                      </g>
-                      <text id="Share-" transform="translate(1101 871)" fill="#1b3149" font-size="16" font-family="SegoeUI, Segoe UI"><tspan x="0" y="0">Share-</tspan></text>
-                    </g>
-                </svg>
-            </div>
+
+
         </div>
     </div>
 </section>

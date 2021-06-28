@@ -49,6 +49,18 @@
                     <h4>Pendu blogs</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Placeat consequuntur ducimus quasi </p>
 
+                    @error('email')
+                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
+                    @enderror
+
+                    @if(session('success'))
+                    <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
+                    @endif
+
+                    @if(session('error'))
+                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
+                    @endif
+
                 </div>
                 <div class="blog_header_img">
                     <img src="{{asset('frontend')}}/assets/images/Illustrations/blog.png" alt="">
@@ -176,8 +188,8 @@
 
                 <div class="invite_mail">
                     @auth
-                        
-                    
+
+
                     <form method="POST" action="{{ route('user.refer-n-earn') }}">
                         @csrf
                         <div class="form-group form-inline ">
@@ -211,24 +223,14 @@
 
                     </form>
 
-                    @error('email')
-                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
-                    @enderror 
-      
-                    @if(session('success'))
-                    <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
-                    @endif 
-      
-                    @if(session('error'))
-                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
-                    @endif 
+
 
 
                     @endauth
                     @guest
-                        <h1>You have to login to refer and earn.</h1>
+                        <h1 style="color: #5bdb98;">You have to login to refer and earn.</h1>
                     @endguest
-                    
+
                 </div>
 
             </div>

@@ -39,8 +39,8 @@
    <div class="row">
       @include('user.partial._Sidebar')
       <div class="col-md-8 col-lg-8 col-xl-8    order_details_row">
-        <div>             <!-- ------------- profile tab info  ------------- -->      
-             
+        <div>             <!-- ------------- profile tab info  ------------- -->
+
 
 
 <!-- ------------- deliveries tab (Histroy tab) ------------- -->
@@ -51,8 +51,8 @@
       <ul>
 
          @forelse ($tasks as $task)
-             
-      
+
+
          <li class='mt-2' >
             <div class="deliveries_item_area">
                <div class="history_item_name">
@@ -78,16 +78,16 @@
                </div>
             </div>
          </li>
-         
+
          @empty
-            <div 
+            <div
                style="display: flex;    display: flex;
                justify-content: center;
                align-items: center;
-               height: 100%;"> 
+               height: 100%;">
                <p style="font-size: 18px;">There are no records found.</p>
             </div>
-       
+
          @endforelse
       </ul>
    </div>
@@ -97,11 +97,14 @@
 
 
 
-        </div>        
+        </div>
       </div>
    </div>
 </div>
 <!-- ---- end  tab ------ -->
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 @include("user.component.task_process")
 @include("user.payment.payment_release")

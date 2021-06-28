@@ -2,11 +2,11 @@
 @section('user_content')
 <style>
 
-.task-body{
-        border-radius: 10px;
+     .task-body{
+         border-radius: 10px;
          background: #fff;
          box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.6);
-         padding: 25px 40px 25px 40px;
+         /* padding: 25px 40px 25px 40px; */
          margin-top: 30px;
          margin-bottom: 30px;
     }
@@ -14,14 +14,8 @@
         padding-left: 0px;
         width: 26px;
     }
-    .delivery_time_checker {
-        margin-top: 16px;
-        margin-right: 6px;
 
-    }
-    .d-time{
-        margin-left: 7px;
-    }
+
     input[type="text"] {
         background: #f1f1f1;
         border:none;
@@ -145,16 +139,38 @@
     /* display: none; */
  }
  .radio-btn-text{
-     font-size: 15px;
- }
- [type="radio"] + div {
+     /* font-size: 20px !important; */
+     margin-left: 2px;
+     font: var(--unnamed-font-style-normal) normal 600 55px/65px var(--unnamed-font-family-montserrat) !important;
+     letter-spacing: 0px !important;
+     font-weight: bold !important;
+     opacity: 1;
+     text-align: center;
+    }
 
-    width: 166px !important;
-}
+    [type="radio"] + .d-time {
+        width: 173px !important;
+        height: 77px !important;
+        border-radius: 6px;
+   }
+   .d-time img{
+        height: 45px;
+        width: 59px;
+        margin-left: 17px;
+        margin-top: 0px;
+    }
+
+    .delivery_time_checker {
+        margin-top: 26px !important;
+
+    }
+    .d-time{
+        margin-left: 7px;
+    }
 
  @media (max-width: 575.98px){
     .step-2{
-            margin-left: -56px !important;
+             margin-left: -61px !important;
 
         }
         .step-line-text{
@@ -189,7 +205,7 @@
         font: 18px/1.8 Arial, sans-serif !important;
        }
        .d-time{
-        margin-left: 14px !important;
+        margin-left: 19px !important;
        }
        .deliveryAddress{
            margin-top: -7px !important;
@@ -214,6 +230,13 @@
           margin-top: -35px;
       }
 
+      .invite_button2 {
+        width: 45% !important;
+        }
+        .invite_button {
+         margin-top: 10px;
+        }
+
    }
    @media (max-width:375px){
         [type="radio"] + .d-time {
@@ -225,6 +248,9 @@
         .delivery_time_checker {
         font-size: 13px !important;
         }
+        .d-time{
+        margin-left: 14px !important;
+       }
     }
 
 
@@ -560,7 +586,7 @@
                                 <input type="radio" name="delivery_time" id="delivery_time"  value="{{$d_time->id}}" >
                                 <div class="d-time">
                                     <img src="{{$d_time->icon}}" height="30" width="80">
-                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap" >{{$d_time->title}}</label>
+                                    <label class="radio-btn-text delivery_time_checker"  for="asap" >{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -598,9 +624,9 @@
                         <div class="pr-2">
                             <label>
                                 <input type="radio" value="{{$d_time->id}}" name="delivery_time_review" id="asap" disabled>
-                                <div style="width: 180px;">
+                                <div class="d-time">
                                     <img src="{{$d_time->icon}}" height="30" width="80">
-                                    <label class="radio-btn-text" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
+                                    <label class="radio-btn-text delivery_time_checker" style="margin-top: 16px;margin-right: 6px;" for="asap">{{$d_time->title}}</label>
                                 </div>
                             </label>
                         </div>
@@ -623,6 +649,9 @@
     </div>
     <br><br>
 </section>
+
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 {{-- data-toggle="modal" data-target="#postMoverModal" --}}
 

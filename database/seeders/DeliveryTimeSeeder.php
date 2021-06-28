@@ -20,11 +20,11 @@ class DeliveryTimeSeeder extends Seeder
         \DB::table('delivery_times')->truncate();
         $delivery_times = collect([
             ['title' => 'ASAP', 'icon'=>'ASAP.svg','time' => Carbon::now()],
-            ['title' => '4Hrs', 'icon'=>'4hours.svg','time' => Carbon::now()->addHours(4)],
-            ['title' => '6Hrs', 'icon'=>'6hours.svg','time' => Carbon::now()->addHours(6)],
+            ['title' => '4Hrs', 'icon'=>'4hrs.png','time' => Carbon::now()->addHours(4)],
+            ['title' => '6Hrs', 'icon'=>'6hrs.png','time' => Carbon::now()->addHours(6)],
             ['title' => 'Same Day', 'icon'=>'same day.svg','time' => Carbon::now()->today()],
-            ['title' => 'Next Day', 'icon'=>'next day.svg','time' => Carbon::now()->tomorrow()],
-            ['title' => 'Set Later', 'icon'=>'set latter.svg','time' => null],
+            ['title' => 'Next Day', 'icon'=>'next_day.png','time' => Carbon::now()->tomorrow()],
+            ['title' => 'Set Later', 'icon'=>'set_later.png','time' => null],
         ]);
 
         $delivery_times->each(function($delivery_time){

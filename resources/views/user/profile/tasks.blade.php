@@ -231,7 +231,7 @@
      .accurancy-lebel {
       margin-left: 60px !important;
     }
-    
+
   }
 
   @media screen and (max-width: 375px){
@@ -919,7 +919,8 @@
   </div>
 </div>
 
-
+<!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 @include("user.payment.payment_release")
 
