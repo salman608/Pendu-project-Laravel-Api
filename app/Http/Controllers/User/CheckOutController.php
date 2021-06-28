@@ -263,7 +263,8 @@ class CheckOutController extends Controller
                 // Make Task offer as confirmed
                 $taskOfferForUpdate = TaskOffer::findOrFail($offerId);
                 $taskOfferForUpdate->update([
-                    'status' => TaskOffer::STATUS_CONFIRMED
+                    'status' => TaskOffer::STATUS_CONFIRMED,
+                    'accepted_at' => now()
                 ]);
 
                 DB::commit();

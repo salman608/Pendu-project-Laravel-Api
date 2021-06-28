@@ -101,6 +101,7 @@ class TaskShopDropSeeder extends Seeder
                 "price" => rand(50,480), 
                 "qty" => rand(1,20),
             ]));
+            $new_task->productCategories()->attach([1,2,3]);
         });
 
 

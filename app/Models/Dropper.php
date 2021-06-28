@@ -84,6 +84,12 @@ class Dropper extends Authenticatable implements JWTSubject
         return $this->morphMany(Referral::class, 'referralable');
     }
 
+    // Dropper provide review to a user
+    public function taskReview()
+    {
+        return $this->morphMany(TaskOrderReview::class, 'reviewable');
+    }
+
 
     // profile_image
     // url('/uploads/dropper/photos').'/'.$value;

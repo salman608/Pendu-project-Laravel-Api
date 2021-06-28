@@ -198,31 +198,37 @@ Route::prefix('v1/dropper')->middleware('jwt.verify')->group(function () {
 
     // Show task in maps
     Route::get('/tasks/map-show', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'tasksMapShow']);
+    
+    // Get all the pending tasks
+    Route::get('/tasks/pending', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'pendingTasks']);
 
+    // Get all the confirmed tasks
+    Route::get('/tasks/confirmed', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'confirmedTasks']);
+
+    // Start a task
+    Route::post('/task-start', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'startTask']);
+
+
+    // Get all the in progress tasks
+    Route::get('/tasks/in-progress', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'inProgressTasks']);
+
+    // Get all completed tasks
+    Route::get('/tasks/completed', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'completedTasks']);
+
+    // Get single task info for Task View without task status logic
+    Route::get('/task-view/offers/{id}', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'singleTaskView']);
+
+
+
+    // Get single task info for submit offer
     Route::get('/tasks/{taskId}', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'singleTaskInfo']);
 
+    // Task Submit Offer
     Route::post('/tasks/{taskId}', [App\Http\Controllers\Api\V1\Dropper\offerController::class, 'submitOffer']);
 
-        // Task Submit Offer
-        Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
-
-
         
-    Route::get('/tasks/pending', function(){
-        return response()->json(["data" => []]);
-    });
 
-    Route::get('/tasks/confirmed', function(){
-        return response()->json(["data" => []]);
-    });
 
-    Route::get('/tasks/in-progress', function(){
-        return response()->json(["data" => []]);
-    });
-
-    Route::get('/tasks/completed', function(){
-        return response()->json(["data" => []]);
-    });
     Route::post('/tasks/review-submit', function(){
         return response()->json(["data" => []]);
     });

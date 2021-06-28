@@ -122,9 +122,6 @@ class ReviewController extends Controller
      */
     public function orderTip($orderId)
     {   
-        if(TaskOrderTip::where('task_order_id', $orderId)->exists()){
-            abort(404);
-        }
 
         return view("user.review.review", ['orderId' => $orderId]);
     }
@@ -138,6 +135,10 @@ class ReviewController extends Controller
         DB::beginTransaction();
 
         try {
+
+            if(TaskOrderTip::where('task_order_id', $orderId)->exists()){
+                throw new Exception("You have already given tips.", 1);
+            }
             
             $amount     = (int)$request->tipsAmount;
             $final_amount   = $amount  * 100;
