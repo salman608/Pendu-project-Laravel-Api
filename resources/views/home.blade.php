@@ -156,6 +156,10 @@
       /* margin-top: -22px !important; */
       margin-bottom: 20px !important;
   }
+  #invite_fd_home{
+        width: 100% !important;
+        margin: auto !important;
+    }
 /* responsi design  */
 
  @media(max-width:475px){
@@ -174,6 +178,10 @@
     }
     .key_border h4 {
      margin-left: 42px;
+    }
+    #invite_fd_home{
+        width: 100% !important;
+        margin: auto !important;
     }
  }
 
@@ -1049,7 +1057,7 @@
         </div>
      </section> --}}
 
-   {{-- <section class="invite-section py-4 mt-4">
+  {{-- <section class="invite-section py-4 mt-4">
       <div class="container inner_footer py-4">
           <div class="row">
               <div class="col-md-12 text-center">
@@ -1060,15 +1068,18 @@
                         ut labore et dolore magna</p>
                 </div>
                 <div class="invite-mail">
-                  <form action="" class="form-inline">
-                     {{-- <input type="text" class="from-controll" style="">
-                     <button class="btn btn-success"></button> --}}
-   {{--               </form>
+                  <form action="" style="background: red;width:200px; margin:auto;" id="invite_fd">
+                      <input type="text" class="from-controll">
+                      <button>Send invi</button>
+                  </form>
                 </div>
               </div>
           </div>
       </div>
    </section> --}}
+
+   <!-- --------- invite section --------------- -->
+@include("user.partial._Invite")
 
 
 

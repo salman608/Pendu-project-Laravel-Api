@@ -24,7 +24,7 @@ class ReviewController extends Controller
     /**
      *  Show review sent page
      *
-     */    
+     */
     public function sent()
     {
         return view("user.review.review_sent");
@@ -53,15 +53,15 @@ class ReviewController extends Controller
 
 
     /**
-     *  Store review 
+     *  Store review
      *
      */
     public function reviewSubmit(Request $request){
-        
+
         DB::beginTransaction();
 
         try {
-                
+
             $taskOrder = TaskOrder::where('order_id', $request->task_order_id)->first();
 
 
@@ -71,7 +71,7 @@ class ReviewController extends Controller
             $user = Auth::user();
             $user->reviews()->create(
                 [
-                    
+
                     'task_order_id' => $taskOrder->id,
                     'rating' => $request->rate,
                     'accuracy' => $request->range,
@@ -79,7 +79,7 @@ class ReviewController extends Controller
                 ]
             );
 
- 
+
 
             // Update Task order as Delivered
             $taskOrder->update([
@@ -121,10 +121,10 @@ class ReviewController extends Controller
      * Order Tips Page
      */
     public function orderTip($orderId)
-    {   
-        if(TaskOrderTip::where('task_order_id', $orderId)->exists()){
-            abort(404);
-        }
+    {
+        // if(TaskOrderTip::where('task_order_id', $orderId)->exists()){
+        //     abort(404);
+        // }
 
         return view("user.review.review", ['orderId' => $orderId]);
     }
@@ -138,7 +138,7 @@ class ReviewController extends Controller
         DB::beginTransaction();
 
         try {
-            
+
             $amount     = (int)$request->tipsAmount;
             $final_amount   = $amount  * 100;
             $currency       = 'usd';
@@ -150,9 +150,9 @@ class ReviewController extends Controller
                     "source" => $request->stripeToken,
                     "description" => "This payment is testing purpose of Pendu Service",
                 ]);
-                
-                
-            
+
+
+
             if($charge['status'] == "succeeded" &&  $charge['paid'] == true){
 
                 $taskOrder = TaskOrder::where('order_id', $orderId)->first();
@@ -187,19 +187,19 @@ class ReviewController extends Controller
                 $dropper->update([
                     'balance' => $dropper->balance + $amount
                 ]);
-                
-    
+
+
                 Session::flash('success', 'Your request is submitted!');
                 DB::commit();
 
                 return redirect()->route('user.order-tips', $orderId);
             }
-            
-               
+
+
             DB::rollBack();
             Session::flash('error', "Something is wrong try again.");
             return redirect()->back();
-        
+
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());

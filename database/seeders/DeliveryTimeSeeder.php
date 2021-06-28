@@ -24,7 +24,7 @@ class DeliveryTimeSeeder extends Seeder
             ['title' => '6Hrs', 'icon'=>'6hrs.png','time' => Carbon::now()->addHours(6)],
             ['title' => 'Same Day', 'icon'=>'same day.svg','time' => Carbon::now()->today()],
             ['title' => 'Next Day', 'icon'=>'next_day.png','time' => Carbon::now()->tomorrow()],
-            ['title' => 'Set Later', 'icon'=>'set_latter.png','time' => null],
+            ['title' => 'Set Later', 'icon'=>'set_later.png','time' => null],
         ]);
 
         $delivery_times->each(function($delivery_time){

@@ -20,6 +20,15 @@
          margin-top: 10px;
         }
     }
+
+    @media(max-width: 360px){
+        .invite_button2 {
+        width: 47% !important;
+        }
+        .invite_button {
+         margin-top: 10px;
+        }
+    }
 </style>
 
 <!-- --------- invite section --------------- -->
@@ -41,7 +50,7 @@
                     @auth
 
 
-                    <form method="POST" action="{{ route('user.refer-n-earn') }}">
+                    <form method="POST" action="{{ route('user.refer-n-earn') }}" id="invite_fd_home">
                         @csrf
                         <div class="form-group form-inline ">
                             <input type="email" class="form-control  mail_input" id="exampleInputEmail1"
@@ -89,7 +98,7 @@
 
                     @endauth
                     @guest
-                        <h1>You have to login to refer and earn.</h1>
+                        <h1 style="color:#60e99c ">You have to login to refer and earn.</h1>
                     @endguest
 
                 </div>
