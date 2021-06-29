@@ -56,14 +56,14 @@ Route::group([
     Route::put('/password/reset', [ResetPasswordController::class, 'reset']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 
-    Route::post('/verify-phone', [OTPController::class, 'verifyPhone']);
 });
 
 Route::group([
     'prefix' => 'v1/auth',
-    "middleware" => ['jwt.verify', 'phone-verified-api']
-
+    "middleware" => ['jwt.verify']
+    
 ], function () {
+    Route::post('/verify-phone', [OTPController::class, 'verifyPhone']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);

@@ -19,6 +19,7 @@ class EnsurePhoneIsVerifiedInAPI
      */
     public function handle(Request $request, Closure $next)
     {  
+
         if (! auth('api')->user()->hasVerifiedPhone()) {
 
             return response()->json([
