@@ -7,6 +7,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
 	<!-- CSS -->
+
 	<link rel="stylesheet" href="{{asset('frontend')}}/style.css">
 	<link rel="stylesheet" href="{{asset('frontend')}}/assets/css/responsive.css">
 	<link rel="stylesheet" href="{{asset('frontend')}}/assets/css/custom.css">
@@ -22,11 +23,9 @@
 	<link rel="stylesheet" href="{{asset('frontend/assets/css/owl.theme.default.min.css')}}"/>
 	{{-- Multi select css --}}
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
-    <link rel="stylesheet"type="text/css" href="/path/to/jquery.easy-pie-chart.css">
 
-	<script src='{{asset('frontend/assets/js/easypiechart.js')}}'></script>
-	<script src='{{asset('frontend/assets/js/jquery.easypiechart.js')}}'></script>
-	<script src='{{asset('frontend/assets/js/jquery3.2.1.min.js')}}'></script>
+    <script src='{{asset('frontend/assets/js/jquery3.2.1.min.js')}}'></script>
+
 
 
 <style>
@@ -39,6 +38,76 @@
 	.reg_image_input {
 		border: none !important;
 	}
+
+
+
+  .b-skills
+{
+	/*text-align: center;*/
+	margin-left: 80px ;
+	text-align: center !important;
+	display: flex !important;
+}
+
+.skill-item
+{
+	position: relative !important;
+	max-width: 250px !important;
+	color: #555 !important;
+}
+
+.chart-container {
+    position: relative !important;
+    width: 110px !important;
+}
+
+.skill-item .chart,
+.skill-item .chart canvas
+{
+	position: absolute!important;
+	top: 0;
+	left: 0;
+	width: 60px	!important;
+	height: 60px!important;
+}
+
+.skill-item .chart:before
+{
+	content: "";
+	width: 0;
+	height: 100% !important;
+}
+
+.skill-item .chart:before,
+.skill-item .percent
+{
+	display: inline-block !important;
+	vertical-align: middle !important;
+}
+
+
+
+.skill-item.center-block p {
+    position: absolute !important;
+    top: 62px !important;
+    left: -18px !important;
+    font-size: 13px !important;
+}
+
+
+.skill-item .percent
+{
+	position: relative !important;
+	line-height: 1 !important;
+	font-size: 12px !important;
+	font-weight: 900 !important;
+	z-index: 2 !important;
+}
+
+.skill-item  .percent:after{
+	content: attr(data-after);
+	font-size: 12px;
+}
 
 	@media (min-width: 1501px) {
 		.modal-content.login_page_modal_content {
@@ -71,21 +140,6 @@
 	@include('user.partial._Footer')
 
 
-
-
-
-    <script type="text/javascript">
-        $(function() {
-            $('.chart').easyPieChart({
-            scaleColor:false,
-            size:70,
-            barColor:'#60E99C',
-            trackColor:'#E8E8E8',
-            scaleLength:0,
-            lineWidth:8,
-            });
-        });
-        </script>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script> -->
@@ -102,6 +156,7 @@
 	<!-- multi select js -->
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/i18n/defaults-*.min.js"></script>
+
 
 
 
@@ -130,6 +185,39 @@
 	{{-- social share code --}}
 	<!-- Go to www.addthis.com/dashboard to customize your tools -->
 	<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-60c885337d86bf2f"></script>
+
+    <script src='{{asset('frontend/assets/js/jquery.appear.min.js')}}'></script>
+    <script src='{{asset('frontend/assets/js/jquery.easypiechart.js')}}'></script>
+
+    <script>
+
+        /* chart */
+        function _chart (){
+            $('.b-skills').appear(function() {
+                setTimeout(function() {
+                    $('.chart').easyPieChart({
+                        easing: 'easeOutElastic',
+                        delay: 3000,
+                        barColor: '#5ee39a',
+                        trackColor: '#fff',
+                        scaleColor: false,
+                        lineWidth: 21,
+                        trackWidth: 21,
+                        size: 250,
+                        lineCap: 'round',
+                        onStep: function(from, to, percent) {
+                            this.el.children[0].innerHTML = Math.round(percent);
+                        }
+                    });
+                }, 150);
+            });
+        };
+
+        $(document).ready(function() {
+            _chart();
+        });
+        </script>
+
 
 </body>
 
