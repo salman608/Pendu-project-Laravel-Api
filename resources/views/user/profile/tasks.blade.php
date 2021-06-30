@@ -925,32 +925,6 @@
 
 @include("user.payment.payment_release")
 
-<div class="b-skills">
-    <div class="skill-item center-block">
-        <div class="chart-container">
-            <div class="chart " data-percent="92" data-bar-color="#23afe3">
-                <span class="percent" data-after="%">92</span>
-            </div>
-        </div>
-        <p>Average accuracy</p>
-    </div>
-
-    <div class="b-skills"><div class="skill-item center-block"><div class="chart-container"><div class="chart " data-percent="92" data-bar-color="#23afe3"><span class="percent" data-after="%">92</span></div></div><p>Average accuracy</p></div>
-
-
-
-
-    <div class="skill-item center-block">
-        <div class="chart-container">
-            <div class="chart " data-percent="80" data-bar-color="#23afe3">
-                <span class="percent" data-after="%">80</span>
-            </div>
-        </div>
-        <p>Average accuracy22</p>
-    </div>
-</div>
-
-
 
 <script>
 
@@ -973,6 +947,9 @@ $(document).ready(function(){
 
 
       offerItem += '<div class="b-skills"><div class="skill-item center-block"><div class="chart-container"><div class="chart " data-percent="92" data-bar-color="#23afe3"><span class="percent" data-after="%">92</span></div></div><p>Average accuracy</p></div>';
+
+      offerItem += '<div class="b-skills"><div class="skill-item center-block"><div class="chart-container"><div class="chart " data-percent="92" data-bar-color="#23afe3"><span class="percent" data-after="%">92</span></div></div><p>Average accuracy</p></div>';
+      
       //offerItem += '<div class="col-md-6 offer_middle_row offer-cont-item2"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
 
       offerItem += '<div class="col-md-3 offer-cont-item3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="'+ url +'" type="button" class="btn">Accept Offer</a></div></div>';
@@ -983,7 +960,6 @@ $(document).ready(function(){
       offerItem += '</li>';
 
       return offerItem;
-
   };
 
 
@@ -1035,6 +1011,13 @@ $(document).ready(function(){
                   data.offers.forEach(offer => {
                     let offerLi = driverOfferItem(offer);
                     $('.offer_show_modal_ul').append(offerLi);
+
+
+
+
+                    // 
+                    _chart();
+
                   });
                 }
 
