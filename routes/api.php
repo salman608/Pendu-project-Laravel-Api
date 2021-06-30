@@ -72,11 +72,20 @@ Route::group([
     Route::put('/profile-image', [AuthController::class, 'changeProfileImage']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 
-    
+    // Tasks
     Route::get('/tasks/in-progress', [TaskController::class, 'taskInProgress']);
     Route::get('/tasks/pending', [TaskController::class, 'taskInPending']);
     Route::get('/tasks/history', [TaskController::class, 'taskHistory']);
     Route::get('/tasks/deliveries', [TaskController::class, 'taskDelivery']);
+
+    // Notifications
+    Route::get('/notifications', function(){
+        return response()->json([
+            'status' => 200,
+            'message' => 'Your notifications list is empty',
+            'data' => []
+        ]);
+    });
 });
 
 // Route::prefix('v1')->name('v1.')->group(function () {
@@ -231,6 +240,16 @@ Route::prefix('v1/dropper')->middleware('jwt.verify')->group(function () {
 
     Route::post('/tasks/review-submit', function(){
         return response()->json(["data" => []]);
+    });
+
+
+    // Notifications
+    Route::get('/notifications', function(){
+        return response()->json([
+            'status' => 200,
+            'message' => 'Your notifications list is empty',
+            'data' => []
+        ]);
     });
 
 
