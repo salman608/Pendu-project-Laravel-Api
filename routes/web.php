@@ -62,7 +62,13 @@ Route::get('/hello/{orderId}', function($orderId){
 
 });
 
+use Illuminate\Support\Facades\Crypt;
+use Illuminate\Support\Facades\Hash;
+
 Route::get('/testing', function(){
+
+    return Crypt::encryptString(3);
+
     // return url('hello');
     // http://pendu-office.mr/hello
 
@@ -87,6 +93,7 @@ Route::get('/testing', function(){
 });
 
 Route::get('/sms/', function(){
+    
     $receiverNumber = '+8801885544345';
     $message = "This is testing from Pendu";
 

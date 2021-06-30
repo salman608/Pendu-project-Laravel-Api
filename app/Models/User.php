@@ -32,6 +32,8 @@ class User extends Authenticatable implements JWTSubject
     // ];
 
     protected $guarded = [];
+    protected $appends = ['referral_link','profile_photo'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -96,6 +98,18 @@ class User extends Authenticatable implements JWTSubject
         return asset('uploads/user/photos/').'/'.$value;  
     }
 
+
+    
+    /**
+     * Get the user's referral link.
+     *
+     * @return string
+     */
+    public function getReferralLinkAttribute()
+    {
+        return $this->referral_link = route('register', ['ref' => $this->name]);
+    }
+    
       /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -114,17 +128,7 @@ class User extends Authenticatable implements JWTSubject
         return [];
     }
 
-    protected $appends = ['referral_link'];
 
-    /**
-     * Get the user's referral link.
-     *
-     * @return string
-     */
-    public function getReferralLinkAttribute()
-    {
-        return $this->referral_link = route('register', ['ref' => $this->name]);
-    }
 
     
     public function hasVerifiedPhone()

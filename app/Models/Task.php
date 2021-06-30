@@ -27,6 +27,8 @@ class Task extends Model
 
     protected $guarded = [];
 
+    protected $appends = ['image_url'];
+
     public function productCategories()
     {
         return $this->belongsToMany(ProductCategory::class, 'product_category_task', 'task_id', 'product_category_id');
@@ -39,7 +41,10 @@ class Task extends Model
     public function offers(){
         return $this->hasMany(TaskOffer::class);
     }
-    
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+
     public function vehicle(){
         return $this->belongsTo(Vehicle::class);
     }

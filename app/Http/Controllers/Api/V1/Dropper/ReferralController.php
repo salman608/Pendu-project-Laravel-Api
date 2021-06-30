@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Controllers\Api\V1\User;
+namespace App\Http\Controllers\Api\V1\Dropper;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
@@ -25,11 +25,11 @@ class ReferralController  extends ApiController
      *
      */    
     public function store(Request $request){
-
+        // return $request->user('dropper-api')->referrals;
         $validator = Validator::make($request->all(), [
             'email' => [
                 'required',
-                new NotRefferingExisting($request->user())   
+                new NotRefferingExisting($request->user('dropper-api'))   
             ]
                  
         ]);
@@ -45,12 +45,12 @@ class ReferralController  extends ApiController
         DB::beginTransaction();
 
         try {
-            $referral = $request->user()->referrals()->create(
+            $referral = $request->user('dropper-api')->referrals()->create(
                 array_merge( $request->only('email'),[ 'token' => STR::random(50)])
             );
     
             Mail::to($referral->email)->send(
-                new ReferralReceived($request->user(), $referral)
+                new ReferralReceived($request->user('dropper-api'), $referral, true)
             );
             DB::commit();
             

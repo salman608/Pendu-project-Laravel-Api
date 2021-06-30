@@ -1,77 +1,46 @@
 <?php
 
-namespace App\Http\Controllers\User;
+namespace App\Http\Controllers\Api\V1\User;
 
-use App\Http\Controllers\Controller;
-use App\Models\Dropper;
+use App\Http\Controllers\ApiController;
+use App\Models\Coupon;
 use App\Models\Task;
 use App\Models\TaskOffer;
-use App\Models\TaskOrder;
 use App\Models\TaskOrderReview;
 use App\Models\TaskOrderTip;
-use App\Models\TaskOrderTransaction;
+use App\Repositories\TaskOrderRepository;
 use Illuminate\Http\Request;
-use Session;
-use DB;
 use Exception;
-use Illuminate\Support\Facades\Auth;
+use DB;
 use Illuminate\Support\Facades\Log;
+use App\Models\TaskOrder;
+use App\Models\TaskOrderTransaction;
+use Session;
+use Illuminate\Support\Facades\Auth;
 use Stripe;
+use App\Models\Dropper;
 
-class ReviewController extends Controller
+
+class TaskReviewController extends ApiController
 {
+    public function __construct() {
 
-    /**
-     *  Show review sent page
-     *
-     */
-    public function sent()
-    {
-        return view("user.review.review_sent");
     }
 
-    /**
-     *  Show order taking page
-     *
-     */
-    public function orderTraking(){
-        return view('user.review.track_order');
-    }
-
-
-    /**
-     *  Show order taking status page
-     *
-     */
-    public function trackOrderStatus(Request $request){
-
-        // return $request->all();
-        // return $order = TaskOrder::where('order_id', $orderId)->first();
-
-        return view('user.review.track_order');
-    }
-
-
-    /**
-     *  Store review
-     *
-     */
-    public function reviewSubmit(Request $request){
+    public function reviewSubmit($taskOrderId, Request $request){
 
         DB::beginTransaction();
 
         try {
 
-            $taskOrder = TaskOrder::where('order_id', $request->task_order_id)->first();
-
-
-            // $orderReview = new TaskOrderReview();
+            
+          // $orderReview = new TaskOrderReview();
             // $orderReview->save();
 
-            $user = Auth::user();
+            $user = Auth('api')::user();
             $user->reviews()->create(
                 [
-
+                    
                     'task_order_id' => $taskOrder->id,
                     'rating' => $request->rate,
                     'accuracy' => $request->range,
@@ -79,7 +48,7 @@ class ReviewController extends Controller
                 ]
             );
 
-
+ 
 
             // Update Task order as Delivered
             $taskOrder->update([
@@ -104,63 +73,50 @@ class ReviewController extends Controller
             ]);
 
             DB::commit();
-
-            return redirect()->route('user.order-tips', ['orderId' => $request->task_order_id]);
+            
+            return $this->respondWithSuccess(
+                'Review is submitted successfully.', 
+                []
+            );
 
         } catch (Exception $e) {
-            DB::rollBack();
             Log::info($e->getMessage());
-            session()->flash('error', $e->getMessage());
-            // return $e->getMessage();
-            return redirect()->back();
+
+            return $this->respondWithError(
+                'Something is wrong. Try again.',
+                [],
+                500
+            );
         }
-
     }
 
-    /**
-     * Order Tips Page
-     */
-    public function orderTip($orderId)
-    {   
-
-        return view("user.review.review", ['orderId' => $orderId]);
-    }
-
-    /**
-     *  Store tips
-     *
-     */
-    public function submitTips(Request $request, $orderId){
+    public function storeTips($taskOrderId, Request $request){
 
         DB::beginTransaction();
 
         try {
-
-            if(TaskOrderTip::where('task_order_id', $orderId)->exists()){
-                throw new Exception("You have already given tips.", 1);
-            }
             
-            $amount     = (int)$request->tipsAmount;
+            $amount     = (int)$request->tip_amount;
             $final_amount   = $amount  * 100;
             $currency       = 'usd';
 
             Stripe\Stripe::setApiKey(env('STRIPE_SECRET'));
             $charge = Stripe\Charge::create ([
                 "amount" => $final_amount,
-                    "currency" => $currency,
-                    "source" => $request->stripeToken,
-                    "description" => "This payment is testing purpose of Pendu Service",
-                ]);
-
-
-
+                "currency" => $currency,
+                "source" => $request->stripe_token,
+                "description" => "This payment is testing purpose of Pendu Service",
+            ]);
+                
+                
+            
             if($charge['status'] == "succeeded" &&  $charge['paid'] == true){
 
-                $taskOrder = TaskOrder::where('order_id', $orderId)->first();
+                $taskOrder = TaskOrder::where('id', $taskOrderId)->first();
 
                 // Save Tips details
                 $taskOrderTip = new TaskOrderTip();
-                $taskOrderTip->task_order_id = $orderId;
+                $taskOrderTip->task_order_id = $taskOrderId;
                 $taskOrderTip->tip_amount = $amount;
                 $taskOrderTip->save();
 
@@ -191,30 +147,30 @@ class ReviewController extends Controller
                 
     
                 DB::commit();
-                Session::flash('success', 'Your request is submitted!');
 
-                return redirect()->route('user.order-tips', $orderId);
+                return $this->respondWithSuccess(
+                    'Tips request is submitted successfully.', 
+                    []
+                );
             }
-
-
+            
+               
             DB::rollBack();
-            Session::flash('error', "Something is wrong try again.");
-            return redirect()->back();
+
+            return $this->respondWithError(
+                'Tips request is failed.Please try again',
+                []
+            );
 
         } catch (Exception $e) {
-            DB::rollBack();
             Log::info($e->getMessage());
-            Session::flash('error',$e->getMessage());
-            return redirect()->back();
+
+            return $this->respondWithError(
+                'Your stripe token is Invalid.',
+                [],
+                500
+            );
         }
-        // return $request->all();
-        // $orderTip = new TaskOrderTip();
-
-        // $orderTip->tip_amount = $request->tips_amount;
-        // $orderTip->task_order_id = $orderId;
-
-        // $orderTip->save();
-
-        // redirect()
     }
+ 
 }

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\V1\User;
 
 use App\Http\Controllers\ApiController;
+use App\Models\Task;
 use App\Repositories\TaskRepository;
 use Illuminate\Http\Request;
 use Validator;
@@ -16,6 +17,77 @@ class TaskController extends ApiController
     public function __construct() {
 
     }
+
+    public function taskInProgress(){
+
+        $tasks = Task::with('products','order','serviceCategory','acceptedOffer','acceptedOffer.dropper')->where('request_status', Task::REQUEST_ACCEPTED)->where('user_id', auth('api')->id())->latest()->get();
+
+        if($tasks->isEmpty()){
+            return $this->respondWithSuccess(
+                'You don\'t have any tasks in progress. ',
+                []
+            );
+        } 
+
+        return $this->respondWithSuccess(
+            'In progress tasks lists retrieved.',
+            $tasks
+        );
+
+    }
+
+    public function taskInPending(){
+
+        $tasks = Task::with('products','serviceCategory')->where('request_status', Task::REQUEST_PROCESSING)->where('user_id', auth('api')->id())->latest()->get();
+
+        if($tasks->isEmpty()){
+            return $this->respondWithSuccess(
+                'You don\'t have any pending tasks. ',
+                []
+            );
+        } 
+
+        return $this->respondWithSuccess(
+            'Pending tasks lists retrieved.',
+            $tasks
+        );
+    }
+
+    public function taskHistory(){
+
+        $tasks = Task::with('products','order','order.review','serviceCategory')->where('request_status', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+
+        if($tasks->isEmpty()){
+            return $this->respondWithSuccess(
+                'Your tasks history is empty. ',
+                []
+            );
+        } 
+
+        return $this->respondWithSuccess(
+            'Your tasks history retrieved.',
+            $tasks
+        );
+    }
+
+    public function taskDelivery(){
+
+        $tasks = Task::with('products','order','order.review','order','serviceCategory', 'acceptedOffer.dropper')->where('request_status', Task::REQUEST_COMPLETED)->where('user_id', auth()->id())->latest()->get();
+
+        if($tasks->isEmpty()){
+            return $this->respondWithSuccess(
+                'Your tasks deliveries is empty. ',
+                []
+            );
+        } 
+
+        return $this->respondWithSuccess(
+            'Your tasks deliveries retrieved.',
+            $tasks
+        );
+    }
+
+
 
     public function store(Request $request){
 

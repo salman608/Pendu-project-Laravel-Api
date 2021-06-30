@@ -6,16 +6,12 @@ use App\Http\Controllers\ApiController;
 use App\Models\Coupon;
 use App\Models\Task;
 use App\Models\TaskOffer;
-use App\Models\TaskOrderReview;
-use App\Models\TaskOrderTip;
-use App\Repositories\TaskOrderRepository;
 use Illuminate\Http\Request;
 use Exception;
 use DB;
 use Illuminate\Support\Facades\Log;
 use App\Models\TaskOrder;
 use App\Models\TaskOrderTransaction;
-use Session;
 use Illuminate\Support\Facades\Auth;
 use Stripe;
 
@@ -31,8 +27,29 @@ class TaskCheckoutController extends ApiController
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($taskId, $offerId)
+    public function index(Request $request, $taskId, $offerId)
     {   
+
+
+        // Check if task owner is logged user & task is not payment yet.
+        $taskNotAssign = Task::where('id', $taskId)->where('user_id', $request->user('api')->id)->whereNull('offer_id');
+        if(!$taskNotAssign->exists()){
+            return $this->respondWithSuccess(
+                'A offer already assigned to this task.',
+                []
+            );
+        }
+
+        // Check if offer belongs to the task
+        $offerBelongs = TaskOffer::where('id', $offerId)->where('task_id', $taskId);
+        if(!$offerBelongs->exists()){
+            return $this->respondWithSuccess(
+                'This offer doesn\'t belong to the task.',
+                []
+            );
+        }
+        
+
         $serviceCategoryId = Task::select('service_category_id')->where('id', $taskId)->first();
 
         // // Remove all session about coupon
@@ -188,6 +205,25 @@ class TaskCheckoutController extends ApiController
      */
     public function checkOutProcess(Request $request, $taskId, $offerId)
     {   
+
+        // Check if task owner is logged user & task is not payment yet.
+        $taskNotAssign = Task::where('id', $taskId)->where('user_id', $request->user('api')->id)->whereNull('offer_id');
+        if(!$taskNotAssign->exists()){
+            return $this->respondWithSuccess(
+                'A offer already assigned to this task.',
+                []
+            );
+        }
+
+        // Check if offer belongs to the task
+        $offerBelongs = TaskOffer::where('id', $offerId)->where('task_id', $taskId);
+        if(!$offerBelongs->exists()){
+            return $this->respondWithSuccess(
+                'This offer doesn\'t belong to the task.',
+                []
+            );
+        }
+        
         // we just need Stripe token
         // {
         //     "_token": "w31msyGAQOWbsdClnn1O6fo0KxsB2a0JNWI7Dh9n",
@@ -248,13 +284,11 @@ class TaskCheckoutController extends ApiController
                     "receipt_url"  => $charge['receipt_url']
                 ]);
 
-                $taskOrder->transaction()->save($orderTransaction);
+                $taskOrder->transactions()->save($orderTransaction);
+
 
                 // Add balance to user account
-                $user = Auth::user();
-                
-                // $user->balance = 
-
+                $user = Auth::guard('api')->user();
                 $user->update([
                     'balance' => $user->balance + $amount
                 ]);
@@ -263,18 +297,26 @@ class TaskCheckoutController extends ApiController
                     $user->appliedCoupons()->attach($request->coupon_id);
                 }
 
-
+                // Make Task as assigned and add offer_id
                 $task = Task::findOrFail($taskId);
                 $task->update([
                     'request_status' => Task::REQUEST_ACCEPTED,
                     'offer_id' => $offerId
                 ]);
 
+                // Make Task offer as confirmed
+                $taskOfferForUpdate = TaskOffer::findOrFail($offerId);
+                $taskOfferForUpdate->update([
+                    'status' => TaskOffer::STATUS_CONFIRMED,
+                    'accepted_at' => now()
+                ]);
+
+
                 DB::commit();
 
 
                 return $this->respondWithSuccess(
-                    'Payment is done successfully.',
+                    'Your Payment request is submitted successfully.',
                     []
                 ); 
             }
@@ -282,62 +324,14 @@ class TaskCheckoutController extends ApiController
             DB::rollBack();
 
             return $this->respondWithError(
-                'Payment failed. Please try again.',
+                'Your Payment request is failed. Please try again.',
                 [],
             );
             
         } catch (Exception $e) {
             Log::info($e->getMessage());
             return $this->respondWithError(
-                'Invalid Stripe token.',
-                [],
-                500
-            );
-        }
-    }
-
-    public function storeReview($taskOrderId, Request $request){
-
-        try {                     
-            $orderReview = TaskOrderReview::create([
-                'task_order_id'  => $taskOrderId,
-                'accuracy'       => $request->accuracy,
-                'rating'         => $request->rating,
-                'review'         => $request->review,  
-            ]);
-            
-            return $this->respondWithSuccess(
-                'Review is submitted.', $orderReview
-            );
-
-        } catch (Exception $e) {
-            Log::info($e->getMessage());
-
-            return $this->respondWithError(
-                'Something is wrong. Try again.',
-                [],
-                500
-            );
-        }
-    }
-
-    public function storeTips($taskOrderId, Request $request){
-
-        try {                     
-            TaskOrderTip::create([
-                'task_order_id'  => $taskOrderId,
-                'tip_amount'       => $request->tip_amount
-            ]);
-            
-            return $this->respondWithSuccess(
-                'Tips is submitted.'
-            );
-
-        } catch (Exception $e) {
-            Log::info($e->getMessage());
-
-            return $this->respondWithError(
-                'Something is wrong. Try again.',
+                'Your stripe token is Invalid.',
                 [],
                 500
             );

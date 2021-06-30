@@ -1,5 +1,5 @@
 <?php
-
+// Can delete
 namespace App\Repositories;
 
 use App\Models\TaskOffer;

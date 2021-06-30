@@ -11,8 +11,10 @@ class Vehicle extends Model
     protected $guarded=[];
 
 
+    // protected $appends = ['icon'];
+
     public function getIconAttribute($value)
     {
-        return asset('/frontend/assets/images/Icons').'/'.$value;
+        return asset('/frontend/assets/images/Icons/'.$value);
     }
 }

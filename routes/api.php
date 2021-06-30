@@ -11,13 +11,16 @@ use \App\Http\Controllers\Api\V1\Others\VehicleController;
 use \App\Http\Controllers\Api\V1\User\Auth\AuthController;
 use \App\Http\Controllers\Api\V1\Dropper\Auth\DropperAuthController;
 use App\Http\Controllers\Api\V1\Dropper\DropperTaskController;
+
 use App\Http\Controllers\Api\V1\User\AppController;
 use App\Http\Controllers\Api\V1\User\AppHomeController;
 use App\Http\Controllers\Api\V1\User\Auth\OTPController;
 use App\Http\Controllers\Api\V1\User\Auth\ResetPasswordController;
+use App\Http\Controllers\Api\V1\User\ReferralController;
 use App\Http\Controllers\Api\V1\User\TaskCheckoutController;
 use App\Http\Controllers\Api\V1\User\TaskController;
 use App\Http\Controllers\Api\V1\User\TaskOfferController;
+use App\Http\Controllers\Api\V1\User\TaskReviewController;
 use App\Http\Controllers\ApiController;
 use App\Models\Task;
 use App\Models\TaskOffer;
@@ -53,14 +56,14 @@ Route::group([
     Route::put('/password/reset', [ResetPasswordController::class, 'reset']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 
-    Route::post('/verify-phone', [OTPController::class, 'verifyPhone']);
 });
 
 Route::group([
     'prefix' => 'v1/auth',
-    "middleware" => ['jwt.verify', 'phone-verified-api']
-
+    "middleware" => ['jwt.verify']
+    
 ], function () {
+    Route::post('/verify-phone', [OTPController::class, 'verifyPhone']);
     Route::post('/logout', [AuthController::class, 'logout']);
     Route::put('/refresh', [AuthController::class, 'refresh']);
     Route::get('/profile', [AuthController::class, 'profile']);
@@ -69,6 +72,20 @@ Route::group([
     Route::put('/profile-image', [AuthController::class, 'changeProfileImage']);
     // Route::post('/update/{id}', [AuthController::class, 'update']);
 
+    // Tasks
+    Route::get('/tasks/in-progress', [TaskController::class, 'taskInProgress']);
+    Route::get('/tasks/pending', [TaskController::class, 'taskInPending']);
+    Route::get('/tasks/history', [TaskController::class, 'taskHistory']);
+    Route::get('/tasks/deliveries', [TaskController::class, 'taskDelivery']);
+
+    // Notifications
+    Route::get('/notifications', function(){
+        return response()->json([
+            'status' => 200,
+            'message' => 'Your notifications list is empty',
+            'data' => []
+        ]);
+    });
 });
 
 // Route::prefix('v1')->name('v1.')->group(function () {
@@ -97,20 +114,24 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     // Get task offers
     Route::get('/tasks/{taskId}/offers',  [TaskOfferController::class, 'index']);
     
-    // Get Checkout Page details info
+    // Get Checkout Page List of offers details 
     Route::get('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'index']);
 
     // Apply Coupon
     Route::post('/task-checkout/coupon/{couponCode}',[TaskCheckoutController::class, 'applyCoupon']);
 
-    // Check out 
+    // Submit for checkout
     Route::post('/task-checkout/{taskId}/offer/{offerId}',[TaskCheckoutController::class, 'checkOutProcess']);
 
-    Route::post('/task-order/{taskOrderId}/tips',[TaskCheckoutController::class, 'storeTips']);
+    // Store review  for as a task order
+    Route::post('/task-order/{taskOrderId}/review',[TaskReviewController::class, 'reviewSubmit']);
+
+    // Store Tips for as a task order
+    Route::post('/task-order/{taskOrderId}/tips',[TaskReviewController::class, 'storeTips']);
 
 
     // Refer and Earn
-    Route::post('refer-n-earn', [App\Http\Controllers\User\ReferralController::class, 'store']);
+    Route::post('refer-n-earn', [ReferralController::class, 'store']);
 
 
     // Route::get('payment/coupon/{coupon}', [App\Http\Controllers\User\CheckOutController::class, 'applyCoupon'])->name('apply-coupon');
@@ -147,17 +168,9 @@ Route::prefix('v1')->middleware(['jwt.verify', 'phone-verified-api'])->group(fun
     Route::post('/app-permission/{id}', [ AppController::class, 'updateAppPermission']);
     
 
-    Route::get('/tasks/{taskId}/offers/{offerId}', function($taskId){
-        // return "Offer accepted";
-
-        return response()->json([
-            'status' => 200,
-            'message' => "Offer accepted",
-            'data' => Task::find($taskId)
-        ]);
-
-    });
 });
+
+
 
 /**
  * Dropper Routes
@@ -168,10 +181,6 @@ Route::group([
 ], function ($router) {
     Route::post('/login', [DropperAuthController::class, 'login']);
     Route::post('/register', [DropperAuthController::class, 'register']);
-    Route::post('/logout', [DropperAuthController::class, 'logout']);
-    Route::post('/refresh', [DropperAuthController::class, 'refresh']);
-    Route::get('/profile', [DropperAuthController::class, 'profile']);
-    Route::put('/profile', [DropperAuthController::class, 'update']);
 
 
 
@@ -179,36 +188,72 @@ Route::group([
     Route::post('/password/confirm', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'confirm']);
     Route::put('/password/reset', [App\Http\Controllers\Api\V1\Dropper\Auth\ResetPasswordController::class, 'reset']);
 
+});
 
+
+Route::prefix('v1/dropper')->middleware('jwt.verify')->group(function () {
+
+    
+    Route::post('/logout', [DropperAuthController::class, 'logout']);
+    Route::post('/refresh', [DropperAuthController::class, 'refresh']);
+    Route::get('/profile', [DropperAuthController::class, 'profile']);
+    Route::put('/profile', [DropperAuthController::class, 'update']);
+
+
+
+    // Refer and Earn
+    Route::post('refer-n-earn', [App\Http\Controllers\Api\V1\Dropper\ReferralController::class, 'store']);
+
+
+    // Show task in maps
+    Route::get('/tasks/map-show', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'tasksMapShow']);
+    
+    // Get all the pending tasks
+    Route::get('/tasks/pending', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'pendingTasks']);
+
+    // Get all the confirmed tasks
+    Route::get('/tasks/confirmed', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'confirmedTasks']);
+
+    // Start a task
+    Route::post('/task-start', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'startTask']);
+
+
+    // Get all the in progress tasks
+    Route::get('/tasks/in-progress', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'inProgressTasks']);
+
+    // Get all completed tasks
+    Route::get('/tasks/completed', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'completedTasks']);
+
+    // Get single task info for Task View without task status logic
+    Route::get('/task-view/offers/{id}', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'singleTaskView']);
+
+
+
+    // Get single task info for submit offer
+    Route::get('/tasks/{taskId}', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'singleTaskInfo']);
 
     // Task Submit Offer
-    Route::post('/tasks/{taskId}/submit-offer', [DropperTaskController::class, 'submitOffer']);
+    Route::post('/tasks/{taskId}', [App\Http\Controllers\Api\V1\Dropper\offerController::class, 'submitOffer']);
+
+        
 
 
-
-    Route::get('/tasks/pending', function(){
-        return response()->json(["data" => []]);
-    });
-
-    Route::get('/tasks/confirmed', function(){
-        return response()->json(["data" => []]);
-    });
-
-    Route::get('/tasks/in-progress', function(){
-        return response()->json(["data" => []]);
-    });
-
-    Route::get('/tasks/completed', function(){
-        return response()->json(["data" => []]);
-    });
     Route::post('/tasks/review-submit', function(){
         return response()->json(["data" => []]);
     });
 
+
+    // Notifications
+    Route::get('/notifications', function(){
+        return response()->json([
+            'status' => 200,
+            'message' => 'Your notifications list is empty',
+            'data' => []
+        ]);
+    });
+
+
 });
-
-
-
 
 
 // =======Dropper Route Section=========

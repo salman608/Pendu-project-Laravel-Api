@@ -98,6 +98,7 @@ class TaskCollectDropSeeder extends Seeder
                 "name" => "Juice", 
                 "qty" => rand(2,20),
             ]));
+
         });
 
 

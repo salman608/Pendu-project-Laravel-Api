@@ -22,6 +22,12 @@ class OTPController extends ApiController
                 422
             );
         }
+        if(auth('api')->user()->hasVerifiedPhone()){
+            return $this->respondWithSuccess(
+                'You phone number already verified',
+                []
+            );
+        }
 
         auth('api')->user()->update(['phone_verified_at'=> now()]);
 

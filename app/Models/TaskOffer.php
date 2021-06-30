@@ -23,6 +23,10 @@ class TaskOffer extends Model
     public function task(){
         return $this->belongsTo(Task::class);
     }
+
+    public function order(){
+        return $this->hasOne(TaskOrder::class, 'task_offer_id');
+    }
     
 
 
