@@ -921,7 +921,6 @@ pre code {
   margin-left: 91.6666666667%;
 }
 
-
 @media (min-width: 576px) {
   .col-sm {
     flex-basis: 0;
@@ -1135,7 +1134,6 @@ pre code {
 }
 
 @media (min-width: 768px) {
-  
   .col-md {
     flex-basis: 0;
     flex-grow: 1;
@@ -1348,7 +1346,6 @@ pre code {
 }
 
 @media (min-width: 992px) {
-  
   .col-lg {
     flex-basis: 0;
     flex-grow: 1;
@@ -1561,7 +1558,6 @@ pre code {
 }
 
 @media (min-width: 1200px) {
-  
   .col-xl {
     flex-basis: 0;
     flex-grow: 1;
@@ -10907,10 +10903,4 @@ a.text-dark:focus {
   }
 }
 
-.dot {
-  height: 25px;
-  width: 25px;
-  background-color: #bbb;
-  border-radius: 50%;
-  display: inline-block;
-}
+
