@@ -8,12 +8,11 @@
         border-bottom: 1px solid #fcfdfd;
     }
 .card-otp {
-    width: 500px;
+    width: 100%;
     padding: 10px;
     border-radius: 20px;
     background: #fff;
     border: none;
-
     position: relative
 }
 .card-otp img{
@@ -28,7 +27,7 @@
     font-size: 15px
 }
 
-.form-.card-otp {
+/* .form-.card-otp {
     width: 400px;
     padding: 10px;
     border-radius: 20px;
@@ -36,7 +35,7 @@
     border: none;
     height: 350px;
     position: relative
-}
+} */
 
 
 .mobcontrol {
@@ -63,8 +62,8 @@
 
 
 .inputs input {
-    width: 45px;
-    height: 30px
+    width: 47px;
+    height: 35px
 }
 
 input[type=number]::-webkit-inner-spin-button,
@@ -84,10 +83,22 @@ input[type=number]::-webkit-outer-spin-button {
 
 .otp-text{
     font-size: 15px;
+    text-align: center;
 }
 
+@media(max-width:575px){
+    .card-otp {
+    /* width: 390px; */
+    margin: auto !important;
+   }
+}
 
-
+@media(max-width:360px){
+.card-otp {
+    width: 100% !important;
+    margin: auto !important;
+   }
+}
 
 </style>
 
@@ -99,9 +110,7 @@ input[type=number]::-webkit-outer-spin-button {
 
         <div class="modal-content">
             <div class="modal-header" style="border-bottom: 0px solid #dee2e6;padding:0px !important">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <input type="button" aria-hidden="true" class="modal-cross-btn" value="x"></input>
-                </button>
+
             </div>
             <div class="d-flex justify-content-center align-items-center container">
 
@@ -120,12 +129,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 
                         <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                             <input class="m-2 text-center form-control rounded" type="text" id="first" maxlength="1" />
-                             <input class="m-2 text-center form-control rounded" type="text" id="second" maxlength="1" />
-                             <input class="m-2 text-center form-control rounded" type="text" id="third" maxlength="1" />
-                             <input class="m-2 text-center form-control rounded" type="text" id="fourth" maxlength="1" />
-                             <input class="m-2 text-center form-control rounded" type="text" id="fifth" maxlength="1" />
-                             <input class="m-2 text-center form-control rounded" type="text" id="sixth" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="first" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="second" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="third" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="fourth" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="fifth" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="sixth" maxlength="1" />
                         </div>
 
 
