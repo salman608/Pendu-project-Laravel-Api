@@ -15,9 +15,28 @@ use Illuminate\Support\Facades\Log;
 
 class TaskController  extends ApiController
 {   
+    // Get list of active tasks
+    public function activeTasks(Request $request){
+        
+        $taskOffer = TaskOffer::with(['task.user','task','task.productCategories','task.serviceCategory','task.products'])->where('dropper_id', $request->user('dropper-api')->id)->where('status', TaskOffer::STATUS_IN_PROGRESS)->latest()->get();
+
+
+        if($taskOffer->isEmpty()){
+            return $this->respondWithSuccess(
+                'There are no active tasks.',
+                []
+            );
+        }
+        return $this->respondWithSuccess(
+            'All active tasks retrieved',
+            $taskOffer
+        );
+
+    }
+
     // Get list of Task for google Map
     public function tasksMapShow(){
-        $tasks = Task::with('products','serviceCategory','deliveryTime')->withCount('offers')->where('request_status', Task::REQUEST_PROCESSING)->latest()->get();
+        $tasks = Task::with('products','serviceCategory','productCategories','deliveryTime')->withCount('offers')->where('request_status', Task::REQUEST_PROCESSING)->latest()->get();
 
         if($tasks->isEmpty()){
             return $this->respondWithSuccess(
@@ -34,9 +53,9 @@ class TaskController  extends ApiController
 
     // Get single task info for submit offer
     public function singleTaskInfo($taskId){
-        $task = Task::with('user','products','serviceCategory','deliveryTime')->withCount('offers')->where('request_status', Task::REQUEST_PROCESSING)->where('id', $taskId)->get();
+        $task = Task::with('user','products','serviceCategory','productCategories','deliveryTime')->withCount('offers')->where('request_status', Task::REQUEST_PROCESSING)->where('id', $taskId)->first();
 
-        if($task->isEmpty()){
+        if(!$task){
             return $this->respondWithSuccess(
                 'Task id is not exist.',
                 []
@@ -54,9 +73,9 @@ class TaskController  extends ApiController
     public function singleTaskView(Request $request, $offerId){
 
 
-        $taskOffer = TaskOffer::with(['task','task.productCategories','task.serviceCategory','task.products'])->where('dropper_id', $request->user('dropper-api')->id)->latest()->get();
+        $taskOffer = TaskOffer::with(['task','task.productCategories','task.serviceCategory','task.products'])->where('dropper_id', $request->user('dropper-api')->id)->first();
 
-        if($taskOffer->isEmpty()){
+        if(!$taskOffer){
             return $this->respondWithSuccess(
                 'Task id is not exist.',
                 []
@@ -146,59 +165,4 @@ class TaskController  extends ApiController
             $taskOffer
         );
     }
-
-    // Start a task  of confirmed tasks list
-    public function startTask(Request $request){
-
-        // Check ownership 
-        $offerOwner = TaskOffer::where('id', $request->offer_id)->where('dropper_id', $request->user('dropper-api')->id);
-
-
-
-        if(!$offerOwner->exists()){
-            return $this->respondWithSuccess(
-                'This Offer is not belongs to you.',
-                []
-            );
-        }
-
-        // Check task  already started or not
-        $taskOffer = TaskOffer::with('order')->where('id', $request->offer_id)->where('dropper_id', $request->user('dropper-api')->id)->where('status', TaskOffer::STATUS_CONFIRMED)->first();
-
-        if(!$taskOffer){
-            return $this->respondWithSuccess(
-                'Your task already started ',
-                []
-            );
-        } 
-
-
-        DB::beginTransaction();
-
-        try {
-            $taskOffer->update([
-                'status' => TaskOffer::STATUS_IN_PROGRESS
-            ]);
-
-            $taskOffer->order()->update([
-                'status' => TaskOrder::STATUS_IN_PROGRESS
-            ]);
-
-            DB::commit();
-
-            return $this->respondWithSuccess(
-                'Your tasks has been started',
-            );
-        } catch (Exception $e) {
-            DB::rollBack();
-            Log::info($e->getMessage());
-
-            return $this->respondWithError(
-                'Something is wrong. Try again.',
-                $e->getMessage(),
-                500
-            );
-        }
-    }
-
 }

@@ -26,6 +26,9 @@ class CreateTaskOffersTable extends Migration
                 TaskOffer::STATUS_PENDING,
                 TaskOffer::STATUS_CONFIRMED,
                 TaskOffer::STATUS_IN_PROGRESS,
+                TaskOffer::STATUS_STARTED,
+                TaskOffer::STATUS_SHOP_COMPLETED,
+                TaskOffer::STATUS_DELIVERED,
                 TaskOffer::STATUS_COMPLETED,
             ])->default(TaskOffer::STATUS_PENDING);
             

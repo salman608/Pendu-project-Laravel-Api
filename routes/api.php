@@ -205,6 +205,10 @@ Route::prefix('v1/dropper')->middleware('jwt.verify')->group(function () {
     Route::post('refer-n-earn', [App\Http\Controllers\Api\V1\Dropper\ReferralController::class, 'store']);
 
 
+    // Get list of active tasks
+    Route::get('/tasks/active', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'activeTasks']);
+    
+
     // Show task in maps
     Route::get('/tasks/map-show', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'tasksMapShow']);
     
@@ -215,7 +219,16 @@ Route::prefix('v1/dropper')->middleware('jwt.verify')->group(function () {
     Route::get('/tasks/confirmed', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'confirmedTasks']);
 
     // Start a task
-    Route::post('/task-start', [App\Http\Controllers\Api\V1\Dropper\TaskController::class, 'startTask']);
+    Route::post('/task-start', [App\Http\Controllers\Api\V1\Dropper\TaskTimelineController::class, 'startTask']);
+
+    Route::post('/job-start/{offerId}', [App\Http\Controllers\Api\V1\Dropper\TaskTimelineController::class, 'startJob']);
+
+    // add or update product delivery info
+    Route::post('/shoppings/{taskId}/products/{productId}', [App\Http\Controllers\Api\V1\Dropper\ShoppingController::class, 'addOrUpdate']);
+
+    // remove product delivery info
+    Route::delete('/shoppings/{taskId}/products/{productId}', [App\Http\Controllers\Api\V1\Dropper\ShoppingController::class, 'remove']);
+
 
 
     // Get all the in progress tasks

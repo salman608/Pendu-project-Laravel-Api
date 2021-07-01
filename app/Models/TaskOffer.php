@@ -12,6 +12,9 @@ class TaskOffer extends Model
     public const STATUS_PENDING      = 'Pending';
     public const STATUS_CONFIRMED    = 'Confirmed';
     public const STATUS_IN_PROGRESS  = 'In Progress';
+    public const STATUS_STARTED      = 'Started';
+    public const STATUS_SHOP_COMPLETED = 'Shop Completed';
+    public const STATUS_DELIVERED    = 'Delivered';
     public const STATUS_COMPLETED    = 'Completed';
 
     protected $guarded = [];
@@ -27,8 +30,4 @@ class TaskOffer extends Model
     public function order(){
         return $this->hasOne(TaskOrder::class, 'task_offer_id');
     }
-    
-
-
-
 }

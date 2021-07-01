@@ -49,7 +49,9 @@ class DropperAuthController extends ApiController
                 'access_token' => $token,
                 'token_type' => 'bearer',
                 'expires_in' => Auth::guard('dropper-api')->factory()->getTTL(),
-                'dropper' => Auth::guard('dropper-api')->user()
+                'dropper' => Auth::guard('dropper-api')->user()->load(
+                    ['services']
+                )
                 
             ]
         );
@@ -110,7 +112,9 @@ class DropperAuthController extends ApiController
 
         return $this->respondWithSuccess(
             'Dropper successfully registered.',
-            $dropper
+            $dropper->load(
+                ['services']
+            )
         );
     }
 
@@ -159,7 +163,11 @@ class DropperAuthController extends ApiController
 
         if($request->has('level')){
             $dropper->load(
-                ['level', 'level.perkStatus', 'level.rules']
+                ['services','level', 'level.perkStatus', 'level.rules']
+            );
+        }else{
+            $dropper->load(
+                ['services']
             );
         }
 
@@ -226,7 +234,9 @@ class DropperAuthController extends ApiController
 
         return $this->respondWithSuccess(
             'Dropper profile updated successfully.',
-            $request->user('dropper-api')
+            $request->user('dropper-api')->load(
+                ['services']
+            )
         );
     }
 
@@ -243,7 +253,9 @@ class DropperAuthController extends ApiController
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => Auth::guard('dropper-api')->factory()->getTTL() * 60,
-            'dropper' => Auth::guard('dropper-api')->user()
+            'dropper' => Auth::guard('dropper-api')->user()->load(
+                ['services']
+            )
         ]);
     }
 }
