@@ -129,12 +129,12 @@ input[type=number]::-webkit-outer-spin-button {
 
 
                         <div id="otp" class="inputs d-flex flex-row justify-content-center mt-2">
-                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="first" maxlength="1" />
-                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="second" maxlength="1" />
-                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="third" maxlength="1" />
-                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="fourth" maxlength="1" />
-                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="fifth" maxlength="1" />
-                             <input class="m-2 text-center form-control font-weight-bold " type="text" id="sixth" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold" name="num1" type="text" value="1" id="first" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold" name="num2" type="text" value="2" id="second" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold" name="num3" type="text" value="3" id="third" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold" name="num4" type="text" value="4" id="fourth" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold" name="num5" type="text" value="5" id="fifth" maxlength="1" />
+                             <input class="m-2 text-center form-control font-weight-bold" name="num6" type="text" value="6" id="sixth" maxlength="1" />
                         </div>
 
 
