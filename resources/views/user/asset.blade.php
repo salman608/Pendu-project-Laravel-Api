@@ -29,6 +29,14 @@
 
 
 <style>
+
+.chart {
+    position: relative;
+    width: 70px !important;
+    height: 70px !important;
+    text-align: center;
+    line-height: 70px;
+}
 	.reg_image {
 		top: -8px;
 		position: absolute;
@@ -193,17 +201,24 @@
 
         /* chart */
         function _chart (){
-            $('.b-skills').appear(function() {
+            $('.offer-cont-item2').appear(function() {
                 setTimeout(function() {
                     $('.chart').easyPieChart({
-                        easing: 'easeOutElastic',
-                        delay: 3000,
-                        barColor: '#5ee39a',
-                        trackColor: '#fff',
-                        scaleColor: false,
-                        lineWidth: 21,
-                        trackWidth: 21,
-                        size: 250,
+                        // easing: 'easeOutElastic',
+                        // delay: 3000,
+                        // barColor: '#5ee39a',
+                        // trackColor: '#fff',
+                        // scaleColor: false,
+                        // lineWidth: 21,
+                        // trackWidth: 21,
+                        // size: 150,
+
+                        scaleColor:false,
+                        size:70,
+                        barColor:'#60E99C',
+                        trackColor:'#E8E8E8',
+                        scaleLength:0,
+                        lineWidth:8,
                         lineCap: 'round',
                         onStep: function(from, to, percent) {
                             this.el.children[0].innerHTML = Math.round(percent);

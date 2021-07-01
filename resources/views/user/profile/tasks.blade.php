@@ -12,6 +12,7 @@
 
 
 
+
 #pay-confirm-model-block{
         position: fixed;
         background-color: transparent;
@@ -218,6 +219,15 @@
     margin-left: 147px !important;
    }
 
+   /* //chart */
+   .chart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px;
+    width: 60px;
+}
+
 
   }
 
@@ -233,7 +243,15 @@
       margin-left: 60px !important;
     }
 
-  }
+   .chart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px !important;
+    width: 60px !important;
+   }
+
+   }
 
   @media screen and (max-width: 375px){
     .rate {
@@ -254,6 +272,13 @@
     height: 80px;
     border-radius: 23px;
   }
+  .chart canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 60px !important;
+    width: 60px !important;
+   }
   }
 
   @media screen and (max-width: 360px){
@@ -273,6 +298,13 @@
     width: 24% !important;
     height: 58px;
     border-radius: 18px;
+  }
+  .chart canvas {
+    position: absolute;
+    top: 0;
+    left: 9px;
+    height: 60px !important;
+    width: 60px !important;
   }
   }
 
@@ -946,10 +978,9 @@ $(document).ready(function(){
       offerItem += '<div class="col-md-2 offer-cont-item1"><div class="offer_image"><img src="'+ offerData['dropper']['profile_image'] +'" alt=""><h5>'+ offerData['dropper']['last_name'] +'</h5><h6><i class="fas fa-star"></i> <span>'+ offerData['dropper']['rating']  +'</span> </h6></div></div>';
 
 
-      offerItem += '<div class="b-skills"><div class="skill-item center-block"><div class="chart-container"><div class="chart " data-percent="92" data-bar-color="#23afe3"><span class="percent" data-after="%">92</span></div></div><p>Average accuracy</p></div>';
 
-      offerItem += '<div class="b-skills"><div class="skill-item center-block"><div class="chart-container"><div class="chart " data-percent="92" data-bar-color="#23afe3"><span class="percent" data-after="%">92</span></div></div><p>Average accuracy</p></div>';
-      
+      offerItem += '<div class="col-md-6 offer_middle_row offer-cont-item2"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average2 accuracy2</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success2 rate22</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
+
       //offerItem += '<div class="col-md-6 offer_middle_row offer-cont-item2"><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['average_accuracy'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['average_accuracy'] +'%<h6>Average accuracy</h6></div></div><div class="circle_offer"><div class="chart" data-percent="'+ offerData['dropper']['success_rate'] +'" data-scale-color="#ffb400">'+ offerData['dropper']['success_rate'] +'%<h6>Success rate</h6></div></div><div class="Vehicle_offer"><img src="'+ offerData['dropper']['vehicle']['icon'] +'" alt=""><h6>Vehicle type</h6></div></div>';
 
       offerItem += '<div class="col-md-3 offer-cont-item3"><div class="accept_offer_cost"><div class="circle_curve"><h1></h1><h4>$'+ offerData['amount'] +'</h4></div><a href="'+ url +'" type="button" class="btn">Accept Offer</a></div></div>';
@@ -1015,7 +1046,7 @@ $(document).ready(function(){
 
 
 
-                    // 
+                    //
                     _chart();
 
                   });
