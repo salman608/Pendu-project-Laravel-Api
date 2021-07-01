@@ -2259,10 +2259,10 @@ li.breadcrumb-item.active {
 
 .chart {
     position: relative;
-    width: 70px;
-    height: 70px;
-    text-align: center;
-    line-height: 70px;
+    width: 70px !important;
+    height: 70px !important;
+    text-align: center !important;
+    line-height: 70px !important;
 }
 
 .chart canvas {
