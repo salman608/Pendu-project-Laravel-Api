@@ -2,6 +2,25 @@
 @section('user_content')
 
 <style>
+    .rate .star-label{
+        margin-top: 28px;
+      }
+
+    .rating-label{
+        display: inline-block;
+    /* text-align: left; */
+    margin-left: -141px;
+    font-size: 13px;
+    margin-top: 40px !important;
+    font-weight: 600;
+    }
+
+ .range-wrap {
+    width: 161px !important;
+    position: relative;
+    margin-left: 132px;
+    margin-top: -35px;
+ }
 .review-row{
         margin-top: -222px;
     }
@@ -31,6 +50,7 @@
 .rate {
     float: left;
     margin-left: 265px;
+    margin-top: -2px !important;
 
 }
 .rate:not(:checked) > input {
@@ -451,6 +471,23 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     .circle_offer{
         padding: 0px 9px;
     }
+    .range-wrap{
+       margin-left: 117px !important;
+   }
+
+   .accurancy-lebel {
+    margin-left: -9px !important;
+   }
+   #Overall_rating{
+       font-size: 20px !important;
+   }
+
+   .accepted{
+       margin-top: -159px !important;
+   }
+   .id_num{
+    font-size: 16px !important;
+   }
 
   }
 
@@ -463,7 +500,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
       margin-left: 164px !important;
      }
      .accurancy-lebel {
-      margin-left: 60px !important;
+        margin-left: 39px !important;
+    }
+
+    .range-wrap {
+    margin-left: 171px !important;
     }
 
    .chart canvas {
@@ -482,12 +523,16 @@ input[type=range]:focus::-webkit-slider-runnable-track {
         margin-left: 199px !important;
     }
 
+    .range-wrap{
+       margin-left: 104px !important;
+   }
+
     .range {
     margin-left: 140px !important;
    }
    .accurancy-lebel {
-    margin-left: 19px !important;
-    }
+    margin-left: -23px !important;
+}
 
     .circle_curve h1 {
     top: -34vh;
@@ -502,6 +547,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     height: 60px !important;
     width: 60px !important;
    }
+   #Overall_rating{
+       font-size: 25px !important;
+       margin-left: -40px !important;
+   }
   }
 
   @media screen and (max-width: 360px){
@@ -513,7 +562,10 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     margin-left: 140px !important;
    }
    .accurancy-lebel {
-    margin-left: 19px !important;
+    margin-left: -28px  !important;
+   }
+   .range-wrap{
+       margin-left: 88px !important;
    }
 
    .circle_curve h1 {
@@ -529,6 +581,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     height: 60px !important;
     width: 60px !important;
   }
+  #Overall_rating{
+       font-size: 20px !important;
+   }
   }
 
   @media (max-width: 575.98px){
@@ -565,7 +620,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
                         </ol>
                       </nav>
 
-{{-- 
+{{--
                       <div class="range-wrap">
                         <div class="range-value" id="rangeV"></div>
                         <input id="range" type="range" min="0" max="100" value="70" step="1">
@@ -1302,7 +1357,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
                       </g>
                       <text id="Payment_released_" data-name="Payment released!" transform="translate(20041 1865.487)" font-size="25" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-119.85" y="0">Payment released!</tspan></text>
                       <text id="Review_your_experience" data-name="Review your experience" transform="translate(20049 1919.487)" fill="#5bdb98" font-size="16" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-98.408" y="0">Review your experience</tspan></text>
-                      <text id="Overall_rating" data-name="Overall rating" transform="translate(19907 1962.487)" fill="#1b3149" font-size="16" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-56.128" y="0">Overall rating</tspan></text>
+                      {{-- <text id="Overall_rating" data-name="Overall rating" transform="translate(19907 1962.487)" fill="#1b3149" font-size="18" font-family="Montserrat-SemiBold, Montserrat" font-weight="600"><tspan x="-90.128" y="0">Overall rating</tspan></text> --}}
 
                     </svg>
 
@@ -1311,25 +1366,30 @@ input[type=range]:focus::-webkit-slider-runnable-track {
                       @csrf
                     <div class="row review-row">
                             <div class="rate">
+                                <div class="rating-label">
+                                    <label  for="" style="">Ovarll Rating</label>
+                                </div>
+
                                 <input type="radio" class="review-name" checked id="star5" name="rate" value="5" />
-                                <label for="star5" title="text">5 stars</label>
+                                <label for="star5" class="star-label" title="text">5 stars</label>
                                 <input type="radio" class="review-name" checked id="star4" name="rate" value="4" />
-                                <label for="star4" title="text">4 stars</label>
+                                <label for="star4" class="star-label" title="text">4 stars</label>
                                 <input type="radio" class="review-name" checked id="star3" name="rate" value="3" />
-                                <label for="star3" title="text">3 stars</label>
+                                <label for="star3" class="star-label" title="text">3 stars</label>
                                 <input type="radio" class="review-name" id="star2" name="rate" value="2" />
-                                <label for="star2" title="text">2 stars</label>
+                                <label for="star2" class="star-label" title="text">2 stars</label>
                                 <input type="radio" class="review-name" id="star1" name="rate" value="1" />
-                                <label for="star1" title="text">1 star</label>
-                              </div>
+                                <label for="star1"  class="star-label" title="text">1 star</label>
+
+                            </div>
 
 
-
-                              <div class="accurancy range-wrap" style="margin: auto;margin-left: 77px;">
+                              <div class="accurancy" style="margin: auto;margin-left: 77px;">
                                   <label class="accurancy-lebel review-accurancy" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
-
+                                  <div class="range-wrap">
                                     <div class="range-value" id="rangeV"></div>
                                     <input id="range" name="range" type="range" min="0" max="100" value="70" step="1">
+                                  </div>
                               </div>
 
 
