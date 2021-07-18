@@ -3,6 +3,29 @@
 
 {{-- style start Here --}}
 <style>
+    /* dropper section */
+
+    .dropper-border{
+        border-top: 1px solid white;
+    }
+
+    .dropper_main {
+       padding-top: 83px !important;
+    }
+
+    .dropper_right_content h2 {
+       margin-top: -19px;
+       background: #5bdb98;
+       width: 297px;
+    }
+
+    .dropper_left_img img {
+    height: calc(6px + 28rem) !important;
+    width: auto;
+    margin: -10rem !important;
+   }
+
+
     .rating_point{
         padding-left: 0.5rem !important;
         margin-top: 3px;
@@ -163,11 +186,15 @@
 /* responsi design  */
 
  @media(max-width:475px){
+    .dropper_right_content ul li{
+        font-size: calc(7px + 3vw);
+    }
     .member_border h3{
         left: 74px;
     }
     .work_home_content h2{
-        left: 34%;
+        left: 27%;
+        font-size: calc(14px + 3vw);
     }
     .recent_heading h2{
         left: 73px;
@@ -177,12 +204,36 @@
         font-size: 22px;
     }
     .key_border h4 {
-     margin-left: 42px;
+
+     width: calc(260px + 6vw);
+     font-size: calc(12px + 2.9vw);
     }
     #invite_fd_home{
         width: 100% !important;
         margin: auto !important;
     }
+
+ .hero_item_icon svg {
+    width: 50px;
+    height: 74px;
+    margin: 3px auto;
+   }
+   .hero_item_icon{
+       border-radius: 13px !important;
+   }
+
+   .service_iteam_body h5 {
+    font-size: 20px;
+    font-weight: 800;
+   }
+   .tech_right_img img {
+    width: 18rem;
+   }
+
+   .work_card img {
+    height: 220px;
+    width: 220px;
+   }
  }
 
  @media(max-width:375px){
@@ -853,7 +904,7 @@
 
              <!-- ================ Become a dropper ============= -->
             <section class="dropper_main py-4">
-              <div class="container-fluid">
+              <div class="container-fluid dropper-border">
                 <div class="row">
                   <div class="col-md-6 col-sm-6">
                     <div class="dropper_left_img text-end">

@@ -20,7 +20,9 @@
     background-image: asset("frontend/assets/images/Icons/task white.svg");
 }
 .label-title {
-    font-weight: 600;
+    /* font-weight: 600; */
+    font-weight: bold;
+    font-size: 18px;
 }
 
 .input-bg-gray {
@@ -172,11 +174,11 @@ img.close-popup-image,
 
 .nb-mover {
     border: 1px solid;
-    height: 30px;
     border-radius: 10px;
     border-color: #ffdaa5;
-    padding-left: 15px;
+    padding: 7px;
 }
+
 
 .cross-button {
     border-radius: 50%;
@@ -365,8 +367,8 @@ img.close-popup-image,
         font-size: 11px;
     }
     .nb-mover {
-        height: 45px;
-        font-size: 11px;
+
+        font-size: 16px;
     }
 
     .deliver-info-dest {

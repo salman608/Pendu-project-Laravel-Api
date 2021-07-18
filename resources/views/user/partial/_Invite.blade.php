@@ -10,6 +10,10 @@
             width: 90% !important;
         }
 
+        .invite_content h1 {
+         font-size: 26px;
+        }
+
     }
 
     @media(max-width: 375px){
@@ -76,8 +80,9 @@
 
                         <div class="share_invite">
                             <span>Share:-</span>
-                            <a href="#" class='twiter'> <i class="fab fa-twitter-square"></i></a>
-                            <a href="#" class='fb'> <i class="fab fa-facebook-square"></i></a>
+                            <a href="https://twitter.com/intent/tweet?url= {{ auth()->user()->referral_link }}.com&display=popup"
+                            target="_blank"> <i class="fab fa-twitter-square"></i></a>
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ auth()->user()->referral_link }}.com&display=popup" class='fb' target="_blank"> <i class="fab fa-facebook-square"></i></a>
                             <a href="#" class='ins'> <i class="fab fa-instagram-square"></i></a>
                         </div>
 
