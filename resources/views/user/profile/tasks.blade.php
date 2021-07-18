@@ -565,17 +565,11 @@ input[type=range]:focus::-webkit-slider-runnable-track {
                         </ol>
                       </nav>
 
-{{--
-                      <div class="range-wrap">
-                        <input type="range" class="range">
-                        <output class="bubble"></output>
-                      </div> --}}
-
-
+{{-- 
                       <div class="range-wrap">
                         <div class="range-value" id="rangeV"></div>
-                        <input id="range" type="range" min="200" max="800" value="200" step="1">
-                      </div>
+                        <input id="range" type="range" min="0" max="100" value="70" step="1">
+                      </div> --}}
 
                 </div>
             </div>
@@ -1328,14 +1322,18 @@ input[type=range]:focus::-webkit-slider-runnable-track {
                                 <input type="radio" class="review-name" id="star1" name="rate" value="1" />
                                 <label for="star1" title="text">1 star</label>
                               </div>
-                              <div class="accurancy" style="margin: auto;margin-left: 77px;">
+
+
+
+                              <div class="accurancy range-wrap" style="margin: auto;margin-left: 77px;">
                                   <label class="accurancy-lebel review-accurancy" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
 
                                     <div class="range-value" id="rangeV"></div>
-                                    <input id="range" type="range" min="200" max="800" value="200" step="1">
-
-
+                                    <input id="range" name="range" type="range" min="0" max="100" value="70" step="1">
                               </div>
+
+
+
                               <div class="text-review">
                                   <textarea class="form-control input-group-lg bg-input-orange review-experience" name="experience"  cols="36" rows="4" placeholder="Write your experience here"></textarea>
                               </div>
@@ -1363,6 +1361,26 @@ input[type=range]:focus::-webkit-slider-runnable-track {
     $('#releasePaymentId').click(function() {
 
         $('#taskProcessModal').modal('hide');
+
+
+
+
+      // Range Slider
+      const range = document.getElementById('range');
+      const rangeV = document.getElementById('rangeV');
+
+      const  setValue = ()=>{
+          const newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) );
+          const newPosition = 10 - (newValue * 0.2);
+          rangeV.innerHTML = `<span>${range.value}</span>`;
+          rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
+      };
+
+      document.addEventListener("DOMContentLoaded", setValue);
+      range.addEventListener('input', setValue);
+
+
+
     });
 
     $('#submitReview').click(function() {
@@ -1382,18 +1400,8 @@ input[type=range]:focus::-webkit-slider-runnable-track {
         form.submit();
     });
 
-    const
-  range = document.getElementById('range'),
-  rangeV = document.getElementById('rangeV'),
-  setValue = ()=>{
-    const
-      newValue = Number( (range.value - range.min) * 100 / (range.max - range.min) ),
-      newPosition = 10 - (newValue * 0.2);
-    rangeV.innerHTML = `<span>${range.value}</span>`;
-    rangeV.style.left = `calc(${newValue}% + (${newPosition}px))`;
-  };
-document.addEventListener("DOMContentLoaded", setValue);
-range.addEventListener('input', setValue);
+
+
 
 </script>
 

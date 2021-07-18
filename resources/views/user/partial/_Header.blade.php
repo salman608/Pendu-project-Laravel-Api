@@ -1,6 +1,21 @@
 <style>
 
 
+.hidden-in-web{
+    display: none !important;
+}
+
+@media only screen and (max-width: 768px) {
+    .hidden-in-web{
+        display: block !important;
+    }
+}
+
+
+
+
+
+
 
 @media only screen and (min-width: 768px) {
     .mt-n7rem {
@@ -14,6 +29,9 @@
         text-align: center;
         font-size: 11px;
     }
+
+    
+
 }
 
 .navbar-logo-connt{
@@ -116,6 +134,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('allpost')}}">Blogs</a>
                     </li>
+                    
+                @guest
+                     
+
+                    <li class="nav-item hidden-in-web">
+                        <a class="nav-link" href="{{route('login')}}">Login</a>
+                        
+                    </li>
+                    <li class="nav-item hidden-in-web">
+                        <a class="nav-link" href="{{route('register')}}">Register</a>
+                        
+                    </li>
+
+                @endguest  
+                    
                     @if (!Auth::check())
                       <li class="nav-item dropper">
                           <a class="nav-link" href="{{route('dropper.register')}}">Become a Driver</a>
