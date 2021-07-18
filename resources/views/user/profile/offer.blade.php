@@ -87,6 +87,18 @@
         background-color: #60e99c;
     }
 
+    .percentage-round{
+        font-weight: bold;
+        height: 26px;
+        width: 26px;
+        border: 2px solid #ffffff;
+        border-radius: 50%;
+        text-align: center;
+        background: #ffb44a;
+        margin-left: 187px;
+        margin-top: -15px;
+    }
+
     @media(max-width: 478px){
         .card{
             width: 100% !important;
@@ -105,6 +117,13 @@
         }
         .promo-code-date{
             width: 50% !important;
+        }
+        .percentage-round{
+            margin-left: 284px !important;
+            font-size: 20px;
+            margin-top: -17px;
+            height: 35px;
+            width: 35px;
         }
     }
 
@@ -169,7 +188,11 @@
                                 <h5 style="font-size: 20px;color:white;margin-bottom:1px;" >{{$offer->promo_code}}</h5>
                                 <h5 style="font-size: 20px;color:white;" >{{$offer->discount_percentage}}% off</h5>
                             </div>
+
+                            <span class="percentage-round">%</span>
+
                             <div class="card-body promo">
+
                               <p class="card-text">{{Str::limit($offer->details,140)}}</p>
                               <h4><i class="far fa-hourglass"></i> <span style="font-size: 12px">Validity: {{$offer->valid_range}}</span></h4>
                               <div class="row promo-details mt-4">

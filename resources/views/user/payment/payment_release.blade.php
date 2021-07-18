@@ -93,6 +93,72 @@
   left: 50%;
 } */
 
+
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 20px 0;
+  width: 100%;
+}
+input[type=range]:focus {
+  outline: none;
+}
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #03a9f4;
+  border-radius: 25px;
+}
+input[type=range]::-webkit-slider-thumb {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 0 4px 0 rgba(0,0,0, 1);
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -8px;
+}
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #03a9f4;
+}
+.range-wrap{
+  width: 500px;
+  position: relative;
+}
+.range-value{
+  position: absolute;
+  top: -50%;
+}
+.range-value span{
+  width: 30px;
+  height: 24px;
+  line-height: 24px;
+  text-align: center;
+  background: #03a9f4;
+  color: #fff;
+  font-size: 12px;
+  display: block;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  border-radius: 6px;
+}
+.range-value span:before{
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-top: 10px solid #03a9f4;
+  border-left: 5px solid transparent;
+  border-right: 5px solid transparent;
+  top: 100%;
+  left: 50%;
+  margin-left: -5px;
+  margin-top: -1px;
+}
+
 /* responsive */
 @media (max-width: 575.98 px){
     .rate{
@@ -246,7 +312,11 @@
                               </div>
                               <div class="accurancy" style="margin: auto;margin-left: 77px;">
                                   <label class="accurancy-lebel review-accurancy" for="" style="font-size: 13px;margin-left: 57px">Order accurancy</label>
-                                    <input type="range" name="range" class="range">
+                                  <div class="range-wrap">
+                                    <div class="range-value" id="rangeV"></div>
+                                    <input id="range" type="range" min="200" max="800" value="200" step="1">
+                                  </div>
+
                               </div>
                               <div class="text-review">
                                   <textarea class="form-control input-group-lg bg-input-orange review-experience" name="experience"  cols="36" rows="4" placeholder="Write your experience here"></textarea>
@@ -300,27 +370,27 @@
 
 
 
-    const allRanges = document.querySelectorAll(".range-wrap");
-    allRanges.forEach(wrap => {
-      const range = wrap.querySelector(".range");
-      const bubble = wrap.querySelector(".bubble");
+    // const allRanges = document.querySelectorAll(".range-wrap");
+    // allRanges.forEach(wrap => {
+    //   const range = wrap.querySelector(".range");
+    //   const bubble = wrap.querySelector(".bubble");
 
-      range.addEventListener("input", () => {
-        setBubble(range, bubble);
-      });
-      setBubble(range, bubble);
-    });
+    //   range.addEventListener("input", () => {
+    //     setBubble(range, bubble);
+    //   });
+    //   setBubble(range, bubble);
+    // });
 
-    function setBubble(range, bubble) {
-      const val = range.value;
-      const min = range.min ? range.min : 0;
-      const max = range.max ? range.max : 100;
-      const newVal = Number(((val - min) * 100) / (max - min));
-      bubble.innerHTML = val;
+    // function setBubble(range, bubble) {
+    //   const val = range.value;
+    //   const min = range.min ? range.min : 0;
+    //   const max = range.max ? range.max : 100;
+    //   const newVal = Number(((val - min) * 100) / (max - min));
+    //   bubble.innerHTML = val;
 
-      // Sorta magic numbers based on size of the native UI thumb
-      bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
-    }
+    //   // Sorta magic numbers based on size of the native UI thumb
+    //   bubble.style.left = `calc(${newVal}% + (${8 - newVal * 0.15}px))`;
+    // }
 
 
 </script>

@@ -1009,9 +1009,9 @@ img.hero_apple_icon {
     text-align: center;
 }
 .dropper_left_img img {
-    height: calc(0px + 25rem);
+    height: calc(6px + 28rem) !important;
     width: auto;
-    margin: -5rem;
+    margin: -10rem !important;
 }
 
 .dropper_right_content h2 {
