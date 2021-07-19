@@ -15,6 +15,9 @@
         display: flex;
         justify-content: center;
     }
+    .blog_header_section{
+        padding: 0px 7px !important;
+    }
 
 </style>
 

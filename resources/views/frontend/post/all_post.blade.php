@@ -16,6 +16,9 @@
         .invite_button {
          margin-top: 10px;
         }
+        .blog_header_section{
+            padding: 0px 7px !important;
+        }
     }
 </style>
 
