@@ -236,6 +236,10 @@
         .invite_button {
          margin-top: 10px;
         }
+        .shop-small{
+            display: inline-block !important;
+            margin-bottom: 5px;
+        }
 
    }
    @media (max-width:375px){
@@ -480,7 +484,7 @@
                   </div>
                   <div class="form-group">
                     <label for="exampleInputPassword1" class="label-title">Products</label>&ensp;
-                    <small style="color: #56cd93">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
+                    <small class="shop-small" style="color: #FFDAA5">(Please Provide clear name & details if you have it. You''ll receive  photos of the items once shopper begin the shopping.)</small>
                     <div class="products-box">
                         <table class="table table-borderless border-top-0">
                             <tbody>

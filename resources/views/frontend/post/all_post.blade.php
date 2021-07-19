@@ -30,7 +30,7 @@
                     <nav aria-label="breadcrumb bread_item">
                         <ol class="breadcrumb">
                           <li class="breadcrumb-item"><a href="#">Home</a></li>
-                          <li class="breadcrumb-item active" aria-current="page">Library</li>
+                          <li class="breadcrumb-item active" aria-current="page">Blogs</li>
                         </ol>
                       </nav>
                 </div>
@@ -48,18 +48,6 @@
                 <div class="blog_header_content">
                     <h4>Pendu blogs</h4>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Placeat consequuntur ducimus quasi </p>
-
-                    @error('email')
-                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
-                    @enderror
-
-                    @if(session('success'))
-                    <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
-                    @endif
-
-                    @if(session('error'))
-                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
-                    @endif
 
                 </div>
                 <div class="blog_header_img">
@@ -84,7 +72,7 @@
 
                 <img class="card-img-top" src="{{ asset('uploads/images/posts/' . $post->featured_image)}}"
                     alt="Card image cap">
-                <div class="blog-dat mt-4">
+                <div class="blog-dat mt-4 blog_page_date_cat">
                     <ul>
                         <li style='list-style: none;'><a href="#">{{$post->serviceCategory->title}}</a></li>
                         <li><span><a href="#">{{$post->created_at->format('F j, Y')}}</a></span></li>
@@ -139,7 +127,7 @@
             <div class="card blog_item ">
                 <img class="card-img-top" src="{{asset('uploads/images/posts/' . $post->featured_image)}}"
                     alt="Card image cap">
-                <div class="blog-dat mt-4">
+                <div class="blog-dat mt-4 blog_page_date_cat">
                     <ul>
                         <li style='list-style: none;'><a href="#">{{$post->serviceCategory->title}}</a></li>
                         <li><span><a href="#">{{$post->created_at->format('F j, Y')}}</a></span></li>

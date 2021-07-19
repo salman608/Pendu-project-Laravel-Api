@@ -21,7 +21,7 @@
 }
 .label-title {
     /* font-weight: 600; */
-    font-weight: bold;
+    font-weight: 600 !important;
     font-size: 18px;
 }
 
@@ -161,7 +161,7 @@ img.close-popup-image,
 }
 .step-line-text {
     margin-top: 10px;
-    margin-left: -30px;
+    margin-left: -40px;
     position: absolute;
 }
 

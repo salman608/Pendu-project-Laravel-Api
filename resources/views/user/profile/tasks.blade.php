@@ -2,6 +2,13 @@
 @section('user_content')
 
 <style>
+    .range-value span{
+        background: black !important;
+    }
+    .range-value span:before{
+        border-top: 10px solid #161617 !important;
+
+    }
     .rate .star-label{
         margin-top: 28px;
       }

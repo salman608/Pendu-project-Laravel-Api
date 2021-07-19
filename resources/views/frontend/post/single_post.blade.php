@@ -30,7 +30,7 @@
                     <nav aria-label="breadcrumb bread_item">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Library</li>
+                            <li class="breadcrumb-item active" aria-current="page">Blogs</li>
                         </ol>
                     </nav>
                 </div>
@@ -42,46 +42,30 @@
 <!-- ============== Blog header =============== -->
 <div class="blog_header_section">
     <div class="row">
-
-
         <div class="container">
-            @foreach($header_post as $v_header_post)
             <div class="blog_header_content_area">
                 <div class="blog_header_content">
-
                     <h4>Pendu blogs</h4>
-                    <p>{{$v_header_post->title}} </p>
-
-                    @error('email')
-        <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
-        @enderror
-
-        @if(session('success'))
-        <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
-        @endif
-
-        @if(session('error'))
-        <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
-        @endif
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.<br> Placeat consequuntur ducimus quasi </p>
 
                 </div>
                 <div class="blog_header_img">
-                    <img src="{{asset('uploads/images/posts/' . $v_header_post->featured_image)}}" alt="">
+                    <img src="{{asset('frontend')}}/assets/images/Illustrations/blog.png" alt="">
 
                 </div>
 
             </div>
-            @endforeach
-            {{ $header_post->links() }}
         </div>
 
     </div>
 
 </div>
 
+
 <!-- ========== Blog next previous ============= -->
-<!-- <div class="container">
-    <div class="row mt-3">
+<div class="container">
+    <p class="mt-1"><a href="{{route('allpost')}}"> <i style="color: #8F8F8F" class="fa fa-arrow-left"></i>  <span style="color: #1B3149">Blogs</span></a></p>
+    {{-- <div class="row mt-3">
         <div class="col-md-12">
             <div class="next_previous_section">
 
@@ -99,8 +83,8 @@
 
             </div>
         </div>
-    </div>
-</div> -->
+    </div> --}}
+</div>
 
 <!-- ============ Blog content  ============== -->
 <div class="container">
@@ -165,7 +149,7 @@
         <div class="col-md-4 col-sm-6 mt-2 ">
             <div class="card blog_item ">
                 <img class="card-img-top" src="{{asset('uploads/images/posts/' . $v_post->featured_image)}}" alt="Card image cap">
-                <div class="blog-dat mt-4">
+                <div class="blog-dat mt-4 blog_page_date_cat">
                     <ul>
                         <li style='list-style: none;'><a
                                 href="">{{$v_post->serviceCategory->title}}</a></li>

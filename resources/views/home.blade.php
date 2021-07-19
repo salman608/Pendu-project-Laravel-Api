@@ -234,6 +234,10 @@
     height: 220px;
     width: 220px;
    }
+   .footer_share a i{
+    padding:0px 0px !important;
+    font-size: 13px !important;
+   }
  }
 
  @media(max-width:375px){
@@ -981,6 +985,20 @@
              </div>
 
              <div class="col-md-3 col-lg-3 col-sm-6 col-6 text-center p-1">
+                <div class="key_item">
+                    <svg xmlns="http://www.w3.org/2000/svg" class='key_item_svg' viewBox="0 0 220.133 210.177">
+                      <path id="star" d="M104.11,1.52l29.2,59.17a4.608,4.608,0,0,0,3.45,2.51l65.3,9.49a4.585,4.585,0,0,1,2.54,7.82l-47.25,46.06a4.6,4.6,0,0,0-1.32,4.06l11.15,65.04a4.581,4.581,0,0,1-6.65,4.83l-58.41-30.71a4.6,4.6,0,0,0-4.27,0L39.46,200.5a4.582,4.582,0,0,1-6.65-4.83l11.15-65.04a4.572,4.572,0,0,0-1.32-4.06L-4.61,80.51a4.584,4.584,0,0,1,2.54-7.82l65.3-9.49a4.59,4.59,0,0,0,3.45-2.51L95.88,1.52A4.589,4.589,0,0,1,104.11,1.52Z" transform="translate(10.071 5.038)" fill="none" stroke="#56cd93" stroke-width="8"/>
+                    </svg>
+
+
+                    <p class='mt-1 key-feature'>Community Ratings & Reviews</p>
+                   </div>
+
+             </div>
+
+             <div class="col-md-3 col-lg-3 col-sm-6 col-6 text-center p-1 pr-lg-3">
+
+
                <div class="key_item">
                 <svg xmlns="http://www.w3.org/2000/svg" class='key_item_svg' viewBox="0 0 199.69 174.715">
                   <g id="secure_payment" data-name="secure payment" transform="translate(-0.31 -8.775)">
@@ -1006,18 +1024,6 @@
                     </g>
                   </g>
                 </svg>
-
-                <p class='mt-1 key-feature'>Community Ratings & Reviews</p>
-               </div>
-
-             </div>
-
-             <div class="col-md-3 col-lg-3 col-sm-6 col-6 text-center p-1 pr-lg-3">
-               <div class="key_item">
-                <svg xmlns="http://www.w3.org/2000/svg" class='key_item_svg' viewBox="0 0 220.133 210.177">
-                  <path id="star" d="M104.11,1.52l29.2,59.17a4.608,4.608,0,0,0,3.45,2.51l65.3,9.49a4.585,4.585,0,0,1,2.54,7.82l-47.25,46.06a4.6,4.6,0,0,0-1.32,4.06l11.15,65.04a4.581,4.581,0,0,1-6.65,4.83l-58.41-30.71a4.6,4.6,0,0,0-4.27,0L39.46,200.5a4.582,4.582,0,0,1-6.65-4.83l11.15-65.04a4.572,4.572,0,0,0-1.32-4.06L-4.61,80.51a4.584,4.584,0,0,1,2.54-7.82l65.3-9.49a4.59,4.59,0,0,0,3.45-2.51L95.88,1.52A4.589,4.589,0,0,1,104.11,1.52Z" transform="translate(10.071 5.038)" fill="none" stroke="#56cd93" stroke-width="8"/>
-                </svg>
-
 
                 <p class='mt-1 key-feature'>Fair payments</p>
                </div>
@@ -1047,7 +1053,7 @@
                 <div class="col-lg-4 col-md-4 col-sm-6 mt-2 ">
                     <div class="card blog_item " >
                       <img class="card-img-top" src="{{asset('uploads/images/posts/' . $post->featured_image)}}" alt="Card image cap">
-                      <div class="blog-dat mt-4">
+                      <div class="blog-dat mt-4 blog_page_date_cat">
                         <ul>
                           <li style='list-style: none;' ><a href="#">{{$post->serviceCategory->title}}</a></li>
                           <li><span><a href="#">{{$post->created_at->format('F j, Y')}}</a></span></li>
