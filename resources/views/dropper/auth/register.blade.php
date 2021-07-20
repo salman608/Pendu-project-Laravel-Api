@@ -34,6 +34,23 @@
         .blog_header_img img {
            display: none;
          }
+         .dropper_home_btn button{
+            padding: 9px 133px !important;
+         }
+         #dropper_submit_btn{
+           padding: 9px 86px !important;
+         }
+
+    }
+
+    @media only screen (min-width: 360px){
+
+         .dropper_home_btn button{
+            padding: 9px 125px !important;
+         }
+         #dropper_submit_btn{
+            padding: 9px 78px !important;
+         }
 
     }
 
@@ -303,7 +320,7 @@
             </div>
             <div class="dropper_btn_area">
                 <a href="index.html" class='dropper_home_btn'><button type="button" class="btn ">Home</button></a>
-                <button type="submit" class="btn dropper_submit_btn">Submit application</button>
+                <button type="submit" class="btn dropper_submit_btn" id="dropper_submit_btn">Submit application</button>
             </div>
 
         </form>

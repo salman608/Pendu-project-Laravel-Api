@@ -312,7 +312,7 @@
     }
     .dropper_submit_btn {
         margin-top: 5px;
-        padding: 9px 18px !important;
+        padding: 9px 86px !important;
     }
     .dropper_btn_area a button {
         margin-top: 5px;
@@ -680,4 +680,16 @@
         height: auto;
         width: 100%;
     }
+
+}
+
+@media(max-width: 360px){
+
+    .dropper_home_btn button{
+       padding: 9px 125px !important;
+    }
+    #dropper_submit_btn{
+       padding: 9px 78px !important;
+    }
+
 }

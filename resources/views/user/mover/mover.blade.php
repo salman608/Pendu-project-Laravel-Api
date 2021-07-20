@@ -1,6 +1,9 @@
 @extends('user.asset')
 @section('user_content')
 <style>
+    .vichle-name{
+        margin-left: 13px;
+    }
 
      .task-body{
          border-radius: 10px;
@@ -241,6 +244,16 @@
             margin-bottom: 5px;
         }
 
+        #nextButton .button-outline{
+            padding: 8px 153px !important;
+        }
+
+        #nextButton .button {
+         padding: 10px 156px;
+         margin-top: 17px;
+         margin-left: -7px;
+       }
+
    }
    @media (max-width:375px){
         [type="radio"] + .d-time {
@@ -454,6 +467,7 @@
                            <div class="col form-check">
                             <input id="checboxStrip@php echo $vehicle->id @endphp" type="checkbox" name="vahicle_id" class="vehicle_id_cl" data-icon="{{ $vehicle->icon }}" value="{{$vehicle->id}}"/>
                                <img src="{{ $vehicle->icon }}" alt="">
+                               <p class="vichle-name">{{$vehicle->title}}</p>
                             </div>
                         </label>
 

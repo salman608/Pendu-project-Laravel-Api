@@ -1,5 +1,9 @@
 @extends('user.asset')
 <style>
+
+    .vichle-name{
+        margin-left: 13px;
+    }
     .task-body{
          border-radius: 10px;
          background: #fff;
@@ -239,6 +243,16 @@
             display: inline-block !important;
             margin-bottom: 5px;
         }
+
+        #nextButton .button-outline{
+            padding: 8px 153px !important;
+        }
+
+        #nextButton .button {
+         padding: 10px 156px;
+         margin-top: 17px;
+         margin-left: -7px;
+       }
 
 
    }
@@ -683,6 +697,7 @@
                            <div class="col form-check">
                                 <input id="checboxStrip@php echo $vehicle->id @endphp" type="checkbox" class="vehicle_id_cl" name="vahicle_id" value="{{$vehicle->id}}"/>
                                <img src="{{ $vehicle->icon }}" alt="">
+                               <p class="vichle-name">{{$vehicle->title}}</p>
                             </div>
                         </label>
 

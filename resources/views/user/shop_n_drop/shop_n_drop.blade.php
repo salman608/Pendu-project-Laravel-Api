@@ -181,7 +181,17 @@
             display: inline-block !important;
             margin-bottom: 5px;
         }
-    }
+
+        #nextButton .button-outline{
+            padding: 8px 153px !important;
+        }
+
+        #nextButton .button {
+         padding: 10px 156px;
+         margin-top: 17px;
+         margin-left: -7px;
+       }
+
     @media (max-width:375px){
         [type="radio"] + .d-time {
          width: 158px !important;
