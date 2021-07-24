@@ -85,7 +85,7 @@ Route::get('/testing', function(){
     return Config::get('app.url');
     // http://localhost
 
-    
+
     // return base_url(); // undefined
     // return pendu_url(); // undefined
 
@@ -93,7 +93,7 @@ Route::get('/testing', function(){
 });
 
 Route::get('/sms/', function(){
-    
+
     $receiverNumber = '+8801885544345';
     $message = "This is testing from Pendu";
 
@@ -116,6 +116,7 @@ Route::get('/sms/', function(){
 });
 
 Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 // Route::get('/', [HomeController::class, 'index'])->name('home');
 

@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
             $table->double('balance')->default(0);
             $table->string('suburb');
             $table->string('phone');
-            $table->string('profile_photo')->default("profile.png");
+            $table->string('profile_photo')->nullable();
             $table->string('role_id')->default(2);
             $table->string('email')->unique();
             $table->double('rating')->nullable();

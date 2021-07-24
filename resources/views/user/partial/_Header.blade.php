@@ -30,7 +30,7 @@
         font-size: 11px;
     }
 
-    
+
 
 }
 
@@ -134,21 +134,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{route('allpost')}}">Blogs</a>
                     </li>
-                    
+
                 @guest
-                     
+
 
                     <li class="nav-item hidden-in-web">
                         <a class="nav-link" href="{{route('login')}}">Login</a>
-                        
+
                     </li>
                     <li class="nav-item hidden-in-web">
                         <a class="nav-link" href="{{route('register')}}">Register</a>
-                        
+
                     </li>
 
-                @endguest  
-                    
+                @endguest
+
                     @if (!Auth::check())
                       <li class="nav-item dropper">
                           <a class="nav-link" href="{{route('dropper.register')}}">Become a Driver</a>
@@ -187,8 +187,17 @@
 
                     <li class='signup_login pl-2'>
                         <a>{{Auth::User()->name}} </a>
-                        <span><img class='user_pic' id='user_icon'
-                                src="https://ui-avatars.com/api/?name={{Auth::User()->name}}" alt=""></span>
+                        <span>
+                            @if (Auth::User()->profile_photo)
+                            <img class='user_pic' id='user_icon'
+                            src="{{auth()->user()->profile_photo_link}}" alt="">
+                            @else
+                            <img class='user_pic' id='user_icon'
+                             src="https://ui-avatars.com/api/?name={{Auth::User()->name}}" alt="">
+
+                            @endif
+
+                            </span>
                         <i class="fas fa-caret-down img_caret"></i>
                     </li>
                     @else

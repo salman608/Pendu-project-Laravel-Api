@@ -42,7 +42,7 @@
 
 
 
-                <a class="nav-link @if(isset($_GET['message'])) active @endif" id="v-pills-inbox-tab" data-toggle="pill" href="#v-pills-inbox" role="tab" aria-controls="v-pills-inbox" aria-selected="true"> <span>
+                {{-- <a class="nav-link @if(isset($_GET['message'])) active @endif" id="v-pills-inbox-tab" data-toggle="pill" href="#v-pills-inbox" role="tab" aria-controls="v-pills-inbox" aria-selected="true"> <span>
                   <svg xmlns="http://www.w3.org/2000/svg" class='profile_img_tab' viewBox="0 0 191.86 134.18">
                     <g id="Layer_6" transform="translate(-4.07 -32.91)">
                       <g id="Group_2" data-name="Group 2">
@@ -52,7 +52,7 @@
                     </g>
                   </svg>
 
-                </span> Inbox</a>
+                </span> Inbox</a> --}}
                 <a class="nav-link @if(Route::is('user.history') ) active @endif" href="{{ route('user.history') }} "> <span><i class="fas fa-history"></i> </span> History</a>
 
                 <a class="nav-link @if(Route::is('user.delivery') ) active @endif" href="{{ route('user.delivery') }} "> <span>

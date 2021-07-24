@@ -67,7 +67,7 @@ class User extends Authenticatable implements JWTSubject
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    
+
     public function referrals()
     {
         return $this->morphMany(Referral::class, 'referralable');
@@ -90,16 +90,16 @@ class User extends Authenticatable implements JWTSubject
     }
 
 
-    public function getProfilePhotoAttribute($value)
-    {   
-        // if(is_null($value) || $value){  
+    public function getProfilePhotoLinkAttribute()
+    {
+        // if(is_null($value) || $value){
         //     return url('uploads/user.png');
         // }
-        return asset('uploads/user/photos/').'/'.$value;  
+        return asset("uploads/user/photos/$this->profile_photo");
     }
 
 
-    
+
     /**
      * Get the user's referral link.
      *
@@ -109,7 +109,7 @@ class User extends Authenticatable implements JWTSubject
     {
         return $this->referral_link = route('register', ['ref' => $this->name]);
     }
-    
+
       /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
@@ -130,7 +130,7 @@ class User extends Authenticatable implements JWTSubject
 
 
 
-    
+
     public function hasVerifiedPhone()
     {
         return ! is_null($this->phone_verified_at);

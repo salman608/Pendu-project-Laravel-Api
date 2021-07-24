@@ -489,9 +489,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
        font-size: 20px !important;
    }
 
-   .accepted{
-       margin-top: -159px !important;
-   }
+
    .id_num{
     font-size: 16px !important;
    }

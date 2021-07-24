@@ -56,7 +56,15 @@
                                 <div class="col-12 mb-3">
 
                                 <div id="profile-container" style="text-align: center;">
-                                   <img id="profileImage" src="{{auth()->user()->profile_photo}}" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;"/>
+                                    @if (Auth::User()->profile_photo)
+                            <img class='user_pic' id='user_icon'
+                            src="{{auth()->user()->profile_photo_link}}" alt="" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;">
+                            @else
+                            <img class='user_pic' id='user_icon'
+                             src="https://ui-avatars.com/api/?name={{Auth::User()->name}}" alt="" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;">
+
+                            @endif
+                                   {{-- <img id="profileImage" src="{{auth()->user()->profile_photo}}" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;"/> --}}
 
 
                                    <i class="fa fa-pencil" style="margin: right" id="porImage"></i>
