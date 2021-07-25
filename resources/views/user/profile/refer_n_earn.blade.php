@@ -86,18 +86,6 @@
                  <button type="submit" class="btn invite_button refer_earn_invite_btn">Send invite</button>
                </div>
 
-              @error('email')
-              <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
-              @enderror
-
-              @if(session('success'))
-              <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
-              @endif
-
-              @if(session('error'))
-              <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
-              @endif
-
               </form>
 
                <p class='more_way more_way_refer' >More way to invite</p>
