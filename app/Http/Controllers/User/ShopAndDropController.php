@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use App\Models\DeliveryTime;
 use App\Models\ProductCategory;
+use App\Notifications\Task\TaskNetwork;
 use App\Repositories\TaskRepository;
 use Illuminate\Http\Request;
 use Exception;
@@ -81,6 +82,9 @@ class ShopAndDropController extends Controller
 
             $task->products()->createMany($products);
             $task->productCategories()->attach($request-> product_cats);
+
+            // Send notification
+            auth()->user()->notify(new TaskNetwork($task));
 
             DB::commit();
 

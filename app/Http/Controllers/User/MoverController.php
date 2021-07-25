@@ -7,6 +7,7 @@ use App\Models\DeliveryTime;
 use App\Models\Dropper;
 use App\Models\ProductCategory;
 use App\Models\Vehicle;
+use App\Notifications\Task\TaskNetwork;
 use Illuminate\Http\Request;
 use Session;
 use App\Repositories\TaskRepository;
@@ -101,7 +102,12 @@ class MoverController extends Controller
             $task->products()->createMany($products);
             // $task->productCategories()->attach($request-> product_cats);
 
+            // Send notification
+            auth()->user()->notify(new TaskNetwork($task));
+
+
             DB::commit();
+
 
 
 
