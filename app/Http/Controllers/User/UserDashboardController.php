@@ -18,7 +18,7 @@ class UserDashboardController extends Controller
 {
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->middleware('auth');
     }
 
 
@@ -159,7 +159,16 @@ class UserDashboardController extends Controller
      *
      */
     public function notifications(){
-        return view('user.profile.notification');
+
+        $data = [];
+        auth()->user()->unReadNotifications->markAsRead();
+
+         $data['notifications'] =  auth()->user()->notifications
+            ->groupBy(function($task){
+            return $task->created_at->format('j F Y');
+        });
+
+        return view('user.profile.notification', $data);
     }
 
     

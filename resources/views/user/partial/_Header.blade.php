@@ -179,9 +179,14 @@
                 <ul class="nav  ml-auto">
 
                     <li class="notification">
-                        <a href="#">
+                        <a href="{{route('user.notifications')}}">
                             <i class="far fa-bell"></i>
-                            <span class="badge notification_number">0</span>
+
+                            @if(auth()->user()->unReadNotifications->count()) 
+                                <span class="badge notification_number">{{auth()->user()->unReadNotifications->count()}}</span>
+                            @else
+                                <span class="badge notification_number">0</span>
+                            @endif
                         </a>
                     </li>
 
