@@ -13,6 +13,7 @@ use Exception;
 use DB;
 use Illuminate\Support\Facades\Log;
 use UxWeb\SweetAlert\SweetAlert;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class ReferralController  extends Controller
 {
@@ -56,13 +57,16 @@ class ReferralController  extends Controller
             DB::commit();
 
 
-            SweetAlert::success('Success Message', 'Your invitation has been sent.');
+
+            Alert::success('Success Title', 'Your invitation has been sent');
             return redirect()->back()->with('success', 'Your invitation has been sent.');
 
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
-            SweetAlert::error('Error Message', 'Your invitation has not been sent. Try again later.');
+
+            Alert::error('Error Title', 'Your invitation has not been sent. Try again later.');
+
             return redirect()->back()->with('error', 'Your invitation has not been sent. Try again later.');
         }
 

@@ -182,6 +182,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         UxWeb\SweetAlert\SweetAlertServiceProvider::class,
+        RealRashid\SweetAlert\SweetAlertServiceProvider::class,
 
 
     ],
@@ -239,6 +240,7 @@ return [
         'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
         'Image' => 'Intervention\Image\Facades\Image',
         'Alert' => UxWeb\SweetAlert\SweetAlert::class,
+        'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
 
 
     ],

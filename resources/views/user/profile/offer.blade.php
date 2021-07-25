@@ -97,6 +97,7 @@
         background: #ffb44a;
         margin-left: 187px;
         margin-top: -15px;
+        color: white;
     }
 
     @media(max-width: 478px){

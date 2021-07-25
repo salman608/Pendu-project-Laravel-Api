@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Image;
-
+use RealRashid\SweetAlert\Facades\Alert;
 class ProfileController extends Controller
 {
     /**

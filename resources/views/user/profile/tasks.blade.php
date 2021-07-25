@@ -856,9 +856,9 @@ input[type=range]:focus::-webkit-slider-runnable-track {
                      </select>
                </div>
             </div> -->
-      @if (session()->has('error'))
+      {{-- @if (session()->has('error'))
           <div class="alert alert-danger mt-4" style="font-size: 22px;" role="alert">{{ session()->get('error') }}</div>
-      @endif
+      @endif --}}
 
 
 @forelse($tasks as $task)

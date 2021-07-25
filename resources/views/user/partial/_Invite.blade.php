@@ -88,19 +88,6 @@
 
                     </form>
 
-                    @error('email')
-                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ $message }}</div>
-                    @enderror
-
-                    @if(session('success'))
-                    <div class="alert alert-success " style="width: 76%; margin:auto">{{ session('success') }}</div>
-                    @endif
-
-                    @if(session('error'))
-                    <div class="alert alert-danger " style="width: 76%; margin:auto">{{ session('error') }}</div>
-                    @endif
-
-
                     @endauth
                     @guest
                         <h1 style="color:#60e99c ">You have to login to refer and earn.</h1>

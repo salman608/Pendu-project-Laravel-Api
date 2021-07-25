@@ -147,7 +147,9 @@
 	@include('user.partial._Header')
 	@yield('user_content')
 	@include('user.partial._Footer')
-    @include('sweet::alert')
+    {{-- @include('sweet::alert') --}}
+
+    @include('sweetalert::alert')
 
 
 	<!-- Optional JavaScript -->

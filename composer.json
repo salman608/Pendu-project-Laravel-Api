@@ -16,6 +16,7 @@
         "laravel/framework": "^8.12",
         "laravel/tinker": "^2.5",
         "laravel/ui": "^3.2",
+        "realrashid/sweet-alert": "^4.0",
         "stripe/stripe-php": "^7.79",
         "twilio/sdk": "^6.24",
         "tymon/jwt-auth": "^1.0",
