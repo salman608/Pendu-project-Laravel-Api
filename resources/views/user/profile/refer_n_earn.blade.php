@@ -132,8 +132,10 @@
       </div>
    </div>
 </div>
+@include('sweet::alert')
 <!-- ---- end  tab ------ -->
 @include("user.component.task_process")
 @include("user.payment.payment_release")
+
 @endsection
 

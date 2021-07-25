@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Mail;
 use Exception;
 use DB;
 use Illuminate\Support\Facades\Log;
+use UxWeb\SweetAlert\SweetAlert;
 
 class ReferralController  extends Controller
 {
@@ -31,15 +32,15 @@ class ReferralController  extends Controller
     /**
      *  Store referral resource
      *
-     */    
+     */
     public function store(Request $request){
 
         $request->validate([
             'email' => [
                 'required',
-                new NotRefferingExisting($request->user())   
+                new NotRefferingExisting($request->user())
             ]
-                 
+
         ]);
 
         DB::beginTransaction();
@@ -48,17 +49,20 @@ class ReferralController  extends Controller
             $referral = $request->user()->referrals()->create(
                 array_merge( $request->only('email'),[ 'token' => STR::random(50)])
             );
-    
+
             Mail::to($referral->email)->send(
                 new ReferralReceived($request->user(), $referral)
             );
             DB::commit();
-            
+
+
+            SweetAlert::success('Success Message', 'Your invitation has been sent.');
             return redirect()->back()->with('success', 'Your invitation has been sent.');
 
         } catch (Exception $e) {
             DB::rollBack();
             Log::info($e->getMessage());
+            SweetAlert::error('Error Message', 'Your invitation has not been sent. Try again later.');
             return redirect()->back()->with('error', 'Your invitation has not been sent. Try again later.');
         }
 

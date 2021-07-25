@@ -23,6 +23,7 @@
 	<link rel="stylesheet" href="{{asset('frontend/assets/css/owl.theme.default.min.css')}}"/>
 	{{-- Multi select css --}}
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 
     <script src='{{asset('frontend/assets/js/jquery3.2.1.min.js')}}'></script>
 
@@ -146,6 +147,7 @@
 	@include('user.partial._Header')
 	@yield('user_content')
 	@include('user.partial._Footer')
+    @include('sweet::alert')
 
 
 	<!-- Optional JavaScript -->
@@ -232,6 +234,8 @@
             _chart();
         });
         </script>
+
+
 
 
 </body>

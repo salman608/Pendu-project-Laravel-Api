@@ -1556,6 +1556,7 @@ function modifyInputs() {
 }
 
 modifyInputs();
+@include('sweet::alert')
 
 </script>
 

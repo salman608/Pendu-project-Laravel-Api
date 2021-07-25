@@ -64,7 +64,7 @@
                              src="https://ui-avatars.com/api/?name={{Auth::User()->name}}" alt="" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;">
 
                             @endif
-                                   {{-- <img id="profileImage" src="{{auth()->user()->profile_photo}}" style="border: 1px solid #5bdb98;border-radius: 50%; margin: auto; display: inline-block;width: 78px;height: 78px;"/> --}}
+
 
 
                                    <i class="fa fa-pencil" style="margin: right" id="porImage"></i>

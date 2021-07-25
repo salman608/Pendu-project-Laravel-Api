@@ -1417,6 +1417,7 @@ input[type=range]:focus::-webkit-slider-runnable-track {
 
         <!-- --------- invite section --------------- -->
 @include("user.partial._Invite")
+@include('sweet::alert')
 
 {{-- @include("user.payment.payment_release") --}}
 
